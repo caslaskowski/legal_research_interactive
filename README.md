@@ -1,39 +1,58 @@
-# How Law Is Made — interactive 1L primer
+# The Question Method of Legal Research — Interactive Modules
 
-A static, GitHub Pages–hostable module on the three basic sources of law:
-**cases, statutes, and regulations** — what each is, how it's made, and when to use it.
+A static, GitHub Pages–hostable **hub** that links to interactive legal-research
+modules, one per chapter of the *Question Method of Legal Research* textbook.
+Built by Cas Laskowski (Firebrand).
 
-## Try it locally
-Just open `index.html` in a browser. No server needed — the content loads from
-`js/data.js` (classic scripts), so double-clicking the file works. An internet
-connection is only used to fetch the web fonts; without it, the site falls back
-to system serifs.
+## Layout
+
+```
+/
+├── index.html              ← the hub (GitHub Pages landing page)
+├── coming-soon.html        ← shared placeholder for not-yet-built modules
+├── assets/firebrand.css    ← the shared brand design system (one source of truth)
+├── js/
+│   ├── portal.js           ← renders the hub from the registry
+│   ├── coming-soon.js      ← renders a placeholder from the registry
+│   └── registry.js         ← auto-generated mirror of data/registry.json
+├── data/registry.json      ← THE list of modules + statuses (edit this)
+└── modules/
+    ├── sources/            ← Ch. 1 — "How Law Is Made" (live)
+    └── question-method/    ← Ch. 3 — Notice-of-Claim research sandbox (draft)
+```
+
+## Adding or updating a module (no code)
+
+1. Edit `data/registry.json`. Each entry has:
+   - `ch`, `part` (`I` / `II` / `III`), `title`, `desc`
+   - `status`: `"live"`, `"dev"` (in development), or `"plan"` (planned)
+   - `href` (only for `live` modules — the path to the module's `index.html`)
+   - `will` (optional bullet list shown on the placeholder page)
+   - `note` (optional small label, e.g. `"Draft"`)
+2. Regenerate the classic-script mirror so the site works when opened locally:
+
+   ```bash
+   python3 - <<'PY'
+   data = open('data/registry.json',encoding='utf-8').read().rstrip()
+   open('js/registry.js','w',encoding='utf-8').write(
+     "/* Auto-generated from data/registry.json — do not edit by hand. */\n\n"
+     "window.REGISTRY = " + data + ";\n")
+   print("rebuilt js/registry.js")
+   PY
+   ```
+
+A `plan` or `dev` module needs no page of its own — the hub links it to
+`coming-soon.html?ch=N`, which builds its holding page from the registry.
+When a module is ready, drop it under `modules/<slug>/`, set `status` to
+`"live"`, and add its `href`.
 
 ## Host on GitHub Pages
-1. Put the contents of this `site/` folder at the root of a repo (or in `/docs`).
-2. Repo → Settings → Pages → Build from branch → pick the branch and folder.
-3. Your URL will be `https://<user>.github.io/<repo>/`.
 
-## Pages
-- `index.html` — overview, objectives, navigation, companion-notes download, at-a-glance table
-- `workflow.html` — clickable lifecycle for each source
-- `source.html?id=statute|regulation|case` — full deep-dive (one template, three URLs)
-- `connections.html` — how the sources interact (with examples)
-- `quiz.html` — knowledge check with per-answer feedback
+Repo → Settings → Pages → Build from branch → pick your branch and `/ (root)`.
+Your URL will be `https://<user>.github.io/<repo>/`.
 
-## Editing content (no coding)
-All wording lives in the JSON files in `data/`. After editing them, regenerate
-`js/data.js` (the file the site actually reads) by running, from `site/`:
+## Local preview
 
-```
-python3 - <<'PY'
-files=[("HOME","home.json"),("SOURCES","sources.json"),("CONNECTIONS","connections.json"),("QUIZ","quiz.json"),("COMPANION","companion.json")]
-out=["/* Auto-generated from data/*.json */",""]
-for v,fn in files:
-    out.append(f"window.{v} = "+open('data/'+fn,encoding='utf-8').read().rstrip()+";\n")
-open('js/data.js','w',encoding='utf-8').write("\n".join(out))
-print("rebuilt js/data.js")
-PY
-```
-
-Or just edit the objects directly in `js/data.js` — they mirror the JSON exactly.
+Open `index.html` directly in a browser — no server required. Content loads
+from classic scripts (`registry.js`), so double-clicking works. An internet
+connection is only used to fetch web fonts.
