@@ -68,18 +68,9 @@
   /* ---- module list ---- */
   var mods = chap.modules || [];
   var liveN = mods.filter(function (m) { return m.status === "live"; }).length;
+  var hasTypes = mods.some(function (m) { return m.type; });
 
-  host.appendChild(el("div", { class: "mod-sectionhead" }, [
-    el("h2", {}, [mods.length === 1 ? "Module" : "Modules"]),
-    el("span", { class: "mod-count" }, [
-      mods.length + (mods.length === 1 ? " module" : " modules") +
-      (liveN ? " \u00b7 " + liveN + " available now" : " \u00b7 in the pipeline")
-    ])
-  ]));
-
-  var list = el("div", { class: "mod-list" });
-
-  mods.forEach(function (m) {
+  function buildModCard(m) {
     var st = STATUS[m.status] || STATUS.plan;
     var isLive = m.status === "live" && m.href;
 
@@ -102,21 +93,64 @@
 
     if (isLive) {
       body.push(el("span", { class: "mod-open", "aria-hidden": "true" }, ["Open module \u2192"]));
-      list.appendChild(el("a", {
+      return el("a", {
         class: "mod-card is-live",
         href: m.href,
         "aria-label": "Open module: " + m.title
-      }, body));
+      }, body);
     } else {
       var note = m.status === "dev"
         ? "This interactive module is being built now \u2014 check back soon."
         : "This module is planned. The chapter exists in the textbook; the interactive version is on the way.";
       body.push(el("p", { class: "mod-note" }, [note]));
-      list.appendChild(el("div", { class: "mod-card is-" + m.status }, body));
+      return el("div", { class: "mod-card is-" + m.status }, body);
     }
-  });
+  }
 
-  host.appendChild(list);
+  if (hasTypes) {
+    var orientMods = mods.filter(function (m) { return m.type === "orientation"; });
+    var pracMods   = mods.filter(function (m) { return m.type === "practice"; });
+    var otherMods  = mods.filter(function (m) { return !m.type; });
+
+    function renderSection(heading, subhead, items) {
+      if (!items.length) return;
+      var sec = el("div", { class: "mod-section" }, [
+        el("div", { class: "mod-sectionhead" }, [
+          el("h2", {}, [heading]),
+          el("span", { class: "mod-count" }, [subhead])
+        ])
+      ]);
+      var list = el("div", { class: "mod-list" });
+      items.forEach(function (m) { list.appendChild(buildModCard(m)); });
+      sec.appendChild(list);
+      host.appendChild(sec);
+    }
+
+    renderSection(
+      "Orientation",
+      "Explore the concepts from this chapter",
+      orientMods
+    );
+    renderSection(
+      "Practice",
+      "Apply what you\u2019ve learned",
+      pracMods
+    );
+    if (otherMods.length) {
+      renderSection("Modules", liveN + " available now", otherMods);
+    }
+  } else {
+    host.appendChild(el("div", { class: "mod-sectionhead" }, [
+      el("h2", {}, [mods.length === 1 ? "Module" : "Modules"]),
+      el("span", { class: "mod-count" }, [
+        mods.length + (mods.length === 1 ? " module" : " modules") +
+        (liveN ? " \u00b7 " + liveN + " available now" : " \u00b7 in the pipeline")
+      ])
+    ]));
+    var list = el("div", { class: "mod-list" });
+    mods.forEach(function (m) { list.appendChild(buildModCard(m)); });
+    host.appendChild(list);
+  }
 
   /* ---- prev / next chapter nav ---- */
   var ordered = chapters.slice().sort(function (a, b) { return a.ch - b.ch; });

@@ -2,6 +2,10 @@
   "title": "How Law Is Made: Cases, Statutes, and Regulations",
   "subtitle": "An interactive introduction for first-year law students.",
   "intro": "Most legal rules you will study come from three sources: statutes, regulations, and cases. This module shows what each one is, how it is created, and when a lawyer reaches for it. Work through the pages in order, and keep your companion notes open as you go.",
+  "method": {
+    "eyebrow": "How this relates to the Question Method",
+    "body": "Understanding how each source is made tells you more than when to use it — it tells you what authority it carries. A statute carries the weight of the legislature; a regulation carries delegated agency power; a case carries judicial interpretation of law as applied to facts. Those origins determine which source can bind a court, which must yield to another, and why your research is never done until you have found the right kind of source for the question you are actually asking."
+  },
   "objectives": [
     "Identify cases, statutes, and regulations and say who creates each.",
     "Trace the process that turns each one into binding law.",

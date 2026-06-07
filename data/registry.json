@@ -62,23 +62,36 @@
       "modules": [
         {
           "status": "live",
+          "type": "orientation",
           "slug": "sources",
           "href": "modules/sources/index.html",
           "note": "Sources primer",
           "title": "How Law Is Made — A 1L Primer",
-          "desc": "A guided tour of the U.S. sources of law and how they relate: primary vs. secondary, binding vs. persuasive, and the hierarchy that decides which source controls."
+          "desc": "A guided tour of the U.S. sources of law and how they relate: cases, statutes, and regulations — who makes each, how it becomes law, and when to reach for it."
         },
         {
-          "status": "plan",
+          "status": "live",
+          "type": "orientation",
           "slug": "rank-the-authorities",
+          "href": "modules/rank-the-authorities/index.html",
           "title": "Rank the Authorities",
-          "desc": "Sort a stack of authorities from a single jurisdiction by binding effect — the NextGen “intra-jurisdiction source ranking” skill.",
-          "will": [
-            "Order authorities by binding effect within a jurisdiction",
-            "Distinguish primary from secondary authority",
-            "Tell mandatory (binding) from persuasive authority",
-            "Spot when a statute controls over common law"
-          ]
+          "desc": "A map of the legal authority hierarchy: what makes one source control another, the line between primary and secondary, and why the same case can bind in one courtroom and only persuade in another."
+        },
+        {
+          "status": "live",
+          "type": "orientation",
+          "slug": "rank-the-authorities-quiz",
+          "href": "modules/rank-the-authorities/quiz.html",
+          "title": "Knowledge Check — Rank the Authorities",
+          "desc": "Eight questions covering the hierarchy of authority, primary vs. secondary, binding vs. persuasive, statute vs. common law, and court systems — with full explanatory feedback on every choice."
+        },
+        {
+          "status": "live",
+          "type": "practice",
+          "slug": "applying-the-hierarchy",
+          "href": "modules/rank-the-authorities/practice.html",
+          "title": "Applying the Hierarchy",
+          "desc": "Drills and applied exercises to test your command of legal authority: sort primary from secondary, tell binding from persuasive, decide when a statute controls, rank a full stack of authorities by binding effect, and place a court in its system."
         }
       ]
     },
