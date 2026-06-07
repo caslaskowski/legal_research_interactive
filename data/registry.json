@@ -74,16 +74,8 @@
           "type": "orientation",
           "slug": "rank-the-authorities",
           "href": "modules/rank-the-authorities/index.html",
-          "title": "Rank the Authorities",
+          "title": "Hierarchy of Authorities",
           "desc": "A map of the legal authority hierarchy: what makes one source control another, the line between primary and secondary, and why the same case can bind in one courtroom and only persuade in another."
-        },
-        {
-          "status": "live",
-          "type": "orientation",
-          "slug": "rank-the-authorities-quiz",
-          "href": "modules/rank-the-authorities/quiz.html",
-          "title": "Knowledge Check — Rank the Authorities",
-          "desc": "Eight questions covering the hierarchy of authority, primary vs. secondary, binding vs. persuasive, statute vs. common law, and court systems — with full explanatory feedback on every choice."
         },
         {
           "status": "live",

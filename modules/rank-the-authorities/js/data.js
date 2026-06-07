@@ -1,7 +1,7 @@
 /* Auto-generated from data/*.json by build.py — do not edit by hand. */
 
 window.HOME = {
-  "title": "Rank the Authorities",
+  "title": "Hierarchy of Authorities",
   "subtitle": "When two sources point in different directions, one controls. This module shows why — and which one.",
   "eyebrow": "Chapter 1 · Foundations of Legal Authority",
   "intro": "Finding sources is only half of legal research. The other half is knowing what to do with them. Before you can answer any legal question, you need to know which of your sources actually settles the matter — and which ones only inform. This module maps the structure that decides.",
@@ -1209,7 +1209,7 @@ window.COURTS = {
 };
 
 window.COMPANION = {
-  "title": "Rank the Authorities — Companion Notes",
+  "title": "Hierarchy of Authorities — Companion Notes",
   "intro": "Fill in each blank as you work through the module. Try to answer from memory first, then check yourself against the pages. When every blank is filled, this becomes your one-page guide to weighing authority.",
   "sections": [
     {
@@ -1450,7 +1450,7 @@ window.QUIZ = {
 window.NAV = [
   {
     "id": "home",
-    "label": "Rank the Authorities",
+    "label": "Hierarchy of Authorities",
     "page": "index.html"
   },
   {

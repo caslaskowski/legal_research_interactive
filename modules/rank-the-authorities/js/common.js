@@ -1,4 +1,4 @@
-/* Shared helpers for every page of the Rank the Authorities module.
+/* Shared helpers for every page of the Hierarchy of Authorities module.
    Classic script (no modules) so the site runs by simply opening index.html
    — no local server and no network beyond web fonts. All state stays in the
    browser; nothing is transmitted (FERPA-safe by construction). */
@@ -135,7 +135,7 @@
       el("div", { class: "wrap" }, [
         el("div", { class: "masthead-inner" }, [
           el("a", { class: "brand", href: "index.html" }, [
-            el("span", { class: "mark" }, ["Rank the Authorities"]),
+            el("span", { class: "mark" }, ["Hierarchy of Authorities"]),
             el("span", { class: "sub" }, ["Foundations of Authority"])
           ]),
           toggle,
@@ -147,7 +147,7 @@
 
   function buildFooter() {
     return el("footer", { class: "foot" }, [
-      el("span", {}, ["Rank the Authorities \u2014 an interactive skill-builder for the Question Method of Legal Research."]),
+      el("span", {}, ["Hierarchy of Authorities \u2014 an interactive skill-builder for the Question Method of Legal Research."]),
       el("span", {}, ["Primary over secondary \u00b7 binding over persuasive \u00b7 higher court over lower"])
     ]);
   }
