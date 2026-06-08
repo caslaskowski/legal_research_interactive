@@ -96,31 +96,31 @@ window.REGISTRY = {
       "title": "Introduction to Legal Research Platforms",
       "desc": "The mechanics of searching: natural-language vs. terms-and-connectors, the core Boolean operators, and setting jurisdiction and source filters before you run a query.",
       "modules": [
-  {
-    "status": "live",
-    "type": "orientation",
-    "slug": "database-interface",
-    "href": "modules/database-interface/index.html",
-    "title": "Database Interface Explorer",
-    "desc": "Click through a generic legal database — header tools, the search bar, jurisdiction and content filters, the browse tabs, then a results page — and learn what every part does, so you can find the same features on any platform."
-  },
-  {
-    "status": "live",
-    "type": "orientation",
-    "slug": "using-databases",
-    "href": "modules/using-databases/index.html",
-    "title": "Using Databases for Legal Research",
-    "desc": "Read a citation as a retrieval address, pull a known source by location alone, and build a live terms-and-connectors search over a sample library — watching results change against natural language."
-  },
-  {
-    "status": "live",
-    "type": "practice",
-    "slug": "database-practice",
-    "href": "modules/database-practice/index.html",
-    "title": "Database Practice",
-    "desc": "Short scenarios for the mechanics: where to start in a database, how to change a search to narrow or broaden it, and what a citation does (and does not) need to retrieve a document."
-  }
-]
+        {
+          "status": "live",
+          "type": "orientation",
+          "slug": "database-interface",
+          "href": "modules/database-interface/index.html",
+          "title": "Database Interface Explorer",
+          "desc": "Click through a generic legal database — header tools, the search bar, jurisdiction and content filters, the browse tabs, then a results page — and learn what every part does, so you can find the same features on any platform."
+        },
+        {
+          "status": "live",
+          "type": "orientation",
+          "slug": "using-databases",
+          "href": "modules/using-databases/index.html",
+          "title": "Using Databases for Legal Research",
+          "desc": "Read a citation as a retrieval address, pull a known source by location alone, and build a live terms-and-connectors search over a sample library — watching results change against natural language."
+        },
+        {
+          "status": "live",
+          "type": "practice",
+          "slug": "database-practice",
+          "href": "modules/database-practice/index.html",
+          "title": "Database Practice",
+          "desc": "Short scenarios for the mechanics: where to start in a database, how to change a search to narrow or broaden it, and what a citation does (and does not) need to retrieve a document."
+        }
+      ]
     },
     {
       "ch": 3,

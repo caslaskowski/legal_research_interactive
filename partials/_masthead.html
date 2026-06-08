@@ -1,0 +1,30 @@
+<!-- Shared masthead. Tokens filled by build_site.py:
+       {{BASE}}        relative path to repo root
+       {{MENU}}        the full "Browse modules" panel, generated from the registry
+       {{CUR_HOME}}    ' aria-current="page"' on the Home link, else empty
+       {{CUR_ABOUT}}   ' aria-current="page"' on the About link, else empty
+     No logo, no brand wordmark — title text only, per spec. -->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="{{BASE}}index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="{{BASE}}index.html"{{CUR_HOME}}>Home</a>
+        <details class="modmenu">
+          <summary aria-label="Browse all chapters and modules">Browse modules</summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+{{MENU}}
+            </div>
+          </div>
+        </details>
+        <a href="{{BASE}}about.html"{{CUR_ABOUT}}>About</a>
+      </nav>
+    </div>
+  </div>
+</header>

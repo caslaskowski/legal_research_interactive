@@ -1,13 +1,32 @@
 /* =============================================================================
-   FIREBRAND — shared brand design system
-   One source of truth for the Question Method interactive suite.
-   Import on every page (hub + each module) so the brand lives in one file.
+   Shared design system — The Question Method of Legal Research
+   One source of truth for the interactive suite. Import on every page (hub +
+   each module) so the look lives in one file.
 
-   Brand-matched to firebrandlib: a clean, light neutral-gray ground, cool
-   charcoal ink, and a single brick-crimson accent ("firebrand"). Serif display
-   for headings (in crimson), humanist sans for UI and body. Source types keep
-   their own hues for taxonomy; the crimson is the brand on top.
+   A clean, light neutral-gray ground, cool charcoal ink, and a single
+   brick-crimson accent. Humanist sans for UI and body, mono for code/labels.
+   Source types keep their own hues for taxonomy.
+
+   Fonts are self-hosted (assets/fonts/) — no third-party CDN request, so the
+   site leaks no student data to Google and renders identically offline.
+   Archivo and IBM Plex Mono are licensed under the SIL Open Font License.
    ========================================================================== */
+
+/* ---- self-hosted fonts ------------------------------------------------- */
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("fonts/archivo-400.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("fonts/archivo-500.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:600; font-display:swap;
+  src:url("fonts/archivo-600.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("fonts/archivo-700.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:800; font-display:swap;
+  src:url("fonts/archivo-800.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("fonts/ibm-plex-mono-400.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("fonts/ibm-plex-mono-500.woff2") format("woff2"); }
 
 :root{
   /* ground + ink (sampled from the brand site) ---------------------------- */
@@ -101,20 +120,51 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
   border-bottom: 1px solid var(--rule-strong);
   background: rgba(255,255,255,.35);
 }
-.masthead-inner{ display:flex; align-items:center; gap:18px; padding:15px 0; }
-.brand{ display:flex; align-items:center; gap:12px; margin-right:auto;
+.masthead-inner{ display:flex; align-items:center; gap:18px 28px; padding:15px 0; flex-wrap:wrap; }
+.brand{ display:flex; flex-direction:column; gap:3px; margin-right:auto;
   text-decoration:none; color:var(--ink); }
-.brand:hover{ color: var(--ink); }
-.brand .flamemark{ flex:0 0 auto; width:36px; height:36px; object-fit:cover; border-radius:50%; overflow:hidden; }
-.brand .mark{ font-family: var(--display); font-weight: 600; font-size: 1.4rem;
-  line-height: 1; letter-spacing:.1px; }
-.brand .mark .dot{ color: var(--flame); }
+.brand:hover .mark{ color: var(--flame); }
+.brand .mark{ font-family: var(--display); font-weight: 700; font-size: 1.22rem;
+  line-height: 1.08; letter-spacing:.1px; transition: color .15s ease; max-width: 30ch; }
 .brand .sub{ display:block; font-family: var(--sans); font-size:.62rem; font-weight:600;
-  letter-spacing:.14em; text-transform: uppercase; color: var(--ink-faint); margin-top:5px; }
+  letter-spacing:.14em; text-transform: uppercase; color: var(--ink-faint); }
 .topnav{ display:flex; gap:24px; align-items:center; }
-.topnav a{ font-family: var(--sans); font-size:.92rem; font-weight:600;
+.topnav > a{ font-family: var(--sans); font-size:.92rem; font-weight:600;
   color: var(--ink-soft); text-decoration:none; }
-.topnav a:hover, .topnav a[aria-current="page"]{ color: var(--flame); }
+.topnav > a:hover, .topnav > a[aria-current="page"]{ color: var(--flame); }
+
+/* ---- module menu (native <details> disclosure — works with no JS) ----- */
+.modmenu{ position: relative; }
+.modmenu > summary{
+  font-family: var(--sans); font-size:.92rem; font-weight:600; color: var(--ink-soft);
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap:.4em;
+  padding: 2px 0; }
+.modmenu > summary::-webkit-details-marker{ display:none; }
+.modmenu > summary::after{ content:"\25BE"; font-size:.7em; transition: transform .15s ease; }
+.modmenu[open] > summary, .modmenu > summary:hover{ color: var(--flame); }
+.modmenu[open] > summary::after{ transform: rotate(180deg); }
+.modmenu-panel{
+  position: absolute; right: 0; top: calc(100% + 12px); z-index: 60;
+  width: min(92vw, 880px); max-height: 72vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--rule-strong); border-radius: 8px;
+  box-shadow: var(--shadow-lg); padding: 22px 24px; }
+.modmenu-cols{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.modmenu-part > h2{ font-family: var(--sans); font-size:.66rem; font-weight:700;
+  letter-spacing:.14em; text-transform: uppercase; color: var(--ink-faint);
+  margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+.modmenu-chaps{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+.modmenu-chap > a{ font-family: var(--sans); font-weight:700; font-size:.9rem; color: var(--ink);
+  text-decoration:none; display:flex; gap:.5em; }
+.modmenu-chap > a:hover{ color: var(--flame); }
+.modmenu-chap .cn{ color: var(--ink-faint); font-variant-numeric: tabular-nums; flex:0 0 auto; }
+.modmenu-mods{ list-style:none; margin:4px 0 0 1.7em; padding:0;
+  display:flex; flex-direction:column; gap:3px;
+  border-left: 1px solid var(--rule); }
+.modmenu-mods a{ font-family: var(--sans); font-size:.84rem; font-weight:500;
+  color: var(--ink-soft); text-decoration:none; display:block; padding:1px 0 1px 12px; }
+.modmenu-mods a:hover{ color: var(--flame); }
+.modmenu-mods a[aria-current="page"]{ color: var(--flame); font-weight:600; }
+.modmenu-empty{ font-size:.78rem; color: var(--ink-faint); margin:3px 0 0 1.7em; padding-left:12px; }
 
 /* ---- footer ----------------------------------------------------------- */
 .foot{ border-top: 1px solid var(--rule-strong);
@@ -271,8 +321,10 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
   .entry{ grid-template-columns: 2.4rem 1fr; }
   .entry .ch-meta{ grid-column: 1 / -1; justify-content:flex-start; margin-top: 6px; }
   .entry .go{ display:none; }
-  .topnav{ gap: 16px; }
-  .brand .sub{ display:none; }
+  .topnav{ gap: 16px; flex-wrap:wrap; }
+  .modmenu-panel{ position: fixed; left: 12px; right: 12px; top: auto; width: auto;
+    max-height: 70vh; }
+  .modmenu-cols{ grid-template-columns: 1fr; gap: 18px; }
   .ch-nav{ flex-direction:column; }
   .ch-nav-link{ max-width: 100%; }
   .ch-nav-link.next{ text-align:left; align-items:flex-start; }
