@@ -96,30 +96,31 @@ window.REGISTRY = {
       "title": "Introduction to Legal Research Platforms",
       "desc": "The mechanics of searching: natural-language vs. terms-and-connectors, the core Boolean operators, and setting jurisdiction and source filters before you run a query.",
       "modules": [
-        {
-          "status": "plan",
-          "slug": "anatomy-of-a-citation",
-          "title": "Anatomy of a Citation",
-          "desc": "Take apart case, statute, and regulation citations to see what each part tells you about where a source lives and how much weight it carries.",
-          "will": [
-            "Read a case, statute, and regulation citation",
-            "Identify court and year — and what they signal about authority",
-            "Retrieve a known source directly from its citation"
-          ]
-        },
-        {
-          "status": "plan",
-          "slug": "build-a-boolean-search",
-          "title": "Build a Boolean Search",
-          "desc": "Construct and refine a terms-and-connectors search, then watch how jurisdiction and source filters reshape the results.",
-          "will": [
-            "Natural language vs. terms and connectors",
-            "Core connectors: AND, OR, NOT, and exact phrase",
-            "Root expanders and wildcards (! and *)",
-            "Set jurisdiction and source-type filters first"
-          ]
-        }
-      ]
+  {
+    "status": "live",
+    "type": "orientation",
+    "slug": "database-interface",
+    "href": "modules/database-interface/index.html",
+    "title": "Database Interface Explorer",
+    "desc": "Click through a generic legal database — header tools, the search bar, jurisdiction and content filters, the browse tabs, then a results page — and learn what every part does, so you can find the same features on any platform."
+  },
+  {
+    "status": "live",
+    "type": "orientation",
+    "slug": "using-databases",
+    "href": "modules/using-databases/index.html",
+    "title": "Using Databases for Legal Research",
+    "desc": "Read a citation as a retrieval address, pull a known source by location alone, and build a live terms-and-connectors search over a sample library — watching results change against natural language."
+  },
+  {
+    "status": "live",
+    "type": "practice",
+    "slug": "database-practice",
+    "href": "modules/database-practice/index.html",
+    "title": "Database Practice",
+    "desc": "Short scenarios for the mechanics: where to start in a database, how to change a search to narrow or broaden it, and what a citation does (and does not) need to retrieve a document."
+  }
+]
     },
     {
       "ch": 3,
@@ -128,6 +129,15 @@ window.REGISTRY = {
       "title": "The Question Method of Legal Research",
       "desc": "The engine of the whole book: ask a question, find an answer, write it down, and let that answer reveal the next question — until no substantive question remains.",
       "modules": [
+        {
+          "status": "live",
+          "type": "orientation",
+          "slug": "question-transformation",
+          "href": "modules/question-transformation/index.html",
+          "note": "New",
+          "title": "Reverse-Engineering the Question",
+          "desc": "Take a finished legal paragraph apart into the four research questions that built it, then watch those same questions become a synthesis table and an annotated outline — one color tying each question to its place in every form."
+        },
         {
           "status": "live",
           "slug": "question-method",

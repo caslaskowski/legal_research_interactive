@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using Databases for Legal Research — Citations &amp; Searching</title>
+<meta name="description" content="Read a citation, retrieve a known source, and build live terms-and-connectors searches against a sample database to see how each connector changes your results.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#86857d;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;
+--statute:#8a0100;--statute-tint:#f0dede;--regulation:#2f6d56;--case:#28406b;--case-tint:#dde2ed;--radius:4px;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);max-width:64ch;}
+.stagenav{position:sticky;top:0;z-index:20;background:rgba(238,238,238,.92);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--rule-strong);margin:0 -28px 22px;padding:10px 28px;display:flex;gap:6px;flex-wrap:wrap;}
+.stagenav a{font-size:.82rem;font-weight:700;color:var(--ink-soft);text-decoration:none;padding:6px 11px;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;}
+.stagenav a:hover{color:var(--flame);border-color:var(--flame);}
+.stage{margin:0 0 46px;scroll-margin-top:64px;}
+.stage h2{font-size:1.5rem;border-bottom:1.5px solid var(--ink);padding-bottom:7px;}
+.stage .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 4px;}
+.stage p{max-width:74ch;color:var(--ink-soft);}
+.stage p.body{color:var(--ink);}
+
+/* citation interactive */
+.citebox{background:#fff;border:1px solid var(--rule-strong);border-radius:8px;box-shadow:var(--shadow);padding:24px 22px;margin:14px 0;}
+.cite{font-family:var(--mono);font-size:clamp(1rem,2.6vw,1.4rem);line-height:2;color:var(--ink);}
+.cpart{border:1.5px dashed transparent;border-radius:5px;padding:2px 4px;cursor:pointer;font:inherit;background:transparent;color:inherit;}
+.cpart:hover{background:var(--flame-tint);border-color:var(--flame);}
+.cpart:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.cpart.lit{background:#fbe7a2;border-color:#d9b53a;}
+.citehint{font-size:.86rem;color:var(--ink-faint);margin-top:10px;}
+.staticcite{font-family:var(--mono);font-size:1.05rem;margin:6px 0 2px;color:var(--ink);}
+.lblrow{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.78rem;color:var(--ink-soft);margin:0 0 14px;}
+.lblrow b{color:var(--statute);}
+
+/* retrieval */
+.retrieve{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;}
+.retrieve .col{flex:1 1 280px;}
+.retbox{display:flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:#fff;margin:8px 0;}
+.retbox input{flex:1;border:0;font-family:var(--mono);font-size:1rem;padding:12px;color:var(--ink);background:transparent;}
+.retbox button{border:0;background:var(--ink);color:#fff;font:inherit;font-weight:700;padding:0 16px;cursor:pointer;}
+.dimpart{opacity:.32;text-decoration:line-through;}
+.keeppart{background:#cdeccd;border-radius:4px;padding:1px 4px;}
+
+/* search builder */
+.builder{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow-lg);overflow:hidden;margin:16px 0;}
+.builder-top{padding:16px 18px;border-bottom:1px solid var(--rule);}
+.qrow{display:flex;gap:8px;flex-wrap:wrap;}
+.qinput{flex:1 1 320px;font-family:var(--mono);font-size:1rem;padding:12px 13px;border:2px solid var(--ink);border-radius:8px;color:var(--ink);background:#fff;}
+.qinput:focus-visible{outline:3px solid var(--flame);outline-offset:1px;}
+.runbtn{border:0;background:var(--flame);color:#fff;font:inherit;font-weight:700;padding:0 22px;border-radius:8px;cursor:pointer;}
+.runbtn:hover{background:var(--flame-deep);}
+.connectors{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;align-items:center;}
+.connectors .lab{font-size:.74rem;color:var(--ink-faint);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-right:4px;}
+.cbtn{font-family:var(--mono);font-size:.84rem;font-weight:600;border:1px solid var(--rule-strong);background:var(--paper-2);
+  color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer;}
+.cbtn:hover{border-color:var(--flame);color:var(--flame);background:var(--flame-tint);}
+.cbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.preset{font-family:var(--mono);font-size:.8rem;border:1px dashed var(--rule-strong);background:#fff;color:var(--ink-soft);border-radius:999px;padding:6px 12px;cursor:pointer;}
+.preset:hover{border-color:var(--flame);color:var(--flame);border-style:solid;}
+.preset b{color:var(--flame);}
+.cmprow{margin-top:12px;font-size:.88rem;}
+.cmprow label{cursor:pointer;user-select:none;}
+
+.builder-out{display:grid;grid-template-columns:1fr;gap:0;}
+.outhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:12px 18px;background:var(--panel);border-bottom:1px solid var(--rule);}
+.outhead .cnt{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--ink);}
+.outhead .cnt em{color:var(--flame);font-style:normal;}
+.outhead .mode{font-size:.76rem;font-family:var(--mono);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;}
+.docs{padding:6px 18px 16px;}
+.doc{border-bottom:1px solid var(--rule);padding:13px 0;}
+.doc .dn{font-family:var(--display);font-weight:700;color:var(--case);font-size:1rem;}
+.doc .dm{font-size:.78rem;color:var(--ink-faint);font-family:var(--mono);margin:2px 0 5px;}
+.doc .dt{font-size:.92rem;color:var(--ink-soft);line-height:1.55;}
+.doc .dt mark{background:#fbe7a2;color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600;}
+.doc .rank{display:inline-block;font-family:var(--mono);font-size:.72rem;color:var(--regulation);font-weight:700;margin-left:6px;}
+.empty{padding:22px 18px;color:var(--ink-faint);font-style:italic;}
+.cmp-note{padding:10px 18px;background:var(--flame-tint);border-bottom:1px solid var(--rule);font-size:.88rem;color:var(--ink);}
+.anchorcue{background:var(--flame-tint);border-left:4px solid var(--flame);padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:.93rem;margin:14px 0;color:var(--ink);}
+
+.pop{position:fixed;z-index:60;max-width:340px;width:calc(100vw - 32px);background:#fff;color:var(--ink);border:1px solid var(--ink);border-radius:10px;box-shadow:var(--shadow-lg);}
+.pop[hidden]{display:none;}
+.pop-head{display:flex;align-items:flex-start;gap:10px;padding:14px 16px 8px;}
+.pop-head h2{font-family:var(--display);font-size:1rem;margin:0;flex:1;line-height:1.2;}
+.pop-close{font:inherit;font-size:1.1rem;line-height:1;background:transparent;border:1px solid var(--rule-strong);border-radius:6px;width:30px;height:30px;cursor:pointer;color:var(--ink-soft);}
+.pop-close:hover{background:var(--paper-2);color:var(--flame);}
+.pop-close:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.pop-body{padding:0 16px 16px;font-size:.9rem;line-height:1.5;color:var(--ink-soft);}
+.pop-arrow{position:absolute;width:14px;height:14px;background:#fff;border-left:1px solid var(--ink);border-top:1px solid var(--ink);transform:rotate(45deg);}
+</style>
+</head>
+<body class="shell">
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="wrap"><div class="masthead-inner">
+    <a class="brand" href="../../index.html" aria-label="Firebrand — module hub">
+      <span><span class="mark">Firebrand<span class="dot">.</span></span><span class="sub">Legal Research Modules</span></span></a>
+    <nav class="topnav" aria-label="Primary"><a href="../../index.html">Hub</a><a href="../database-interface/index.html">Interface</a></nav>
+  </div></div>
+</header>
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 2 · Educational</p>
+    <h1>Using Databases for Legal Research</h1>
+    <p class="lede">Two situations cover almost all database work. Either you already have a citation and need to <em>retrieve</em> a known source, or you don't and need to <em>search</em> for one. This module walks both, then lets you build live searches to feel how each connector changes what comes back.</p>
+
+    <nav class="stagenav" aria-label="Module sections">
+      <a href="#cite">1 · Read a citation</a>
+      <a href="#retrieve">2 · Retrieve a known source</a>
+      <a href="#search-modes">3 · Two ways to search</a>
+      <a href="#connectors">4 · Terms &amp; connectors</a>
+    </nav>
+
+    <!-- STAGE 1 — citation -->
+    <section class="stage" id="cite">
+      <p class="kicker">Stage 1</p>
+      <h2>Read a citation</h2>
+      <p class="body">A citation tells you three things at a glance: what kind of source it is, where it lives, and how much weight it might carry. Click each part of this case citation to see what it means.</p>
+      <div class="citebox">
+        <div class="cite" id="cite-interactive">
+          <button class="cpart" data-k="parties">Alvarez v. Northgate Property Mgmt.</button>,
+          <button class="cpart" data-k="vol">258</button>
+          <button class="cpart" data-k="rep">Ariz.</button>
+          <button class="cpart" data-k="pg">114</button>,
+          <button class="cpart" data-k="pin">137</button>
+          <button class="cpart" data-k="ct">(Ct. App. 2023)</button>
+        </div>
+        <p class="citehint">Tip: the court and year, tucked in the parenthetical, are what let you judge authority before you ever open the case.</p>
+      </div>
+      <p class="body" style="margin-top:18px;">Statutes and regulations follow the same logic &mdash; a location you can look up &mdash; just pointed at a code instead of a reporter:</p>
+      <p class="staticcite"><b style="color:var(--statute)">42</b> U.S.C. &sect; <b style="color:var(--statute)">12112(b)(5)(A)</b></p>
+      <div class="lblrow"><span><b>42</b> = title</span><span>U.S.C. = the code (United States Code)</span><span><b>&sect; 12112(b)(5)(A)</b> = section &amp; subsections</span></div>
+      <p class="staticcite"><b style="color:var(--regulation)">29</b> C.F.R. &sect; <b style="color:var(--regulation)">1630.2(o)</b></p>
+      <div class="lblrow"><span><b style="color:var(--regulation)">29</b> = title</span><span>C.F.R. = Code of Federal Regulations</span><span><b style="color:var(--regulation)">&sect; 1630.2(o)</b> = section</span></div>
+    </section>
+
+    <!-- STAGE 2 — retrieval -->
+    <section class="stage" id="retrieve">
+      <p class="kicker">Stage 2</p>
+      <h2>Retrieve a known source</h2>
+      <p class="body">When you already have a citation, you don't search &mdash; you retrieve. Enter only the <strong>location</strong> portions. The party names and the year are descriptive, not address: typing them in can actually interfere with a clean retrieval.</p>
+      <div class="retrieve">
+        <div class="col">
+          <p style="font-size:.85rem;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px;">The full citation</p>
+          <div class="cite" id="cite-retrieve" style="font-size:1.05rem;">
+            <span data-r="parties">Alvarez v. Northgate Property Mgmt.</span>,
+            <span data-r="loc">258 Ariz. 114</span>,
+            <span data-r="pin">137</span>
+            <span data-r="year">(Ct. App. 2023)</span>
+          </div>
+        </div>
+        <div class="col">
+          <p style="font-size:.85rem;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px;">What you type to retrieve</p>
+          <div class="retbox"><input id="retfield" type="text" readonly aria-label="Retrieval string" value=""><button id="retbtn" type="button">Build it</button></div>
+          <p id="retmsg" class="citehint" role="status" aria-live="polite">Press &ldquo;Build it&rdquo; to see which parts you actually enter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 3 — modes -->
+    <section class="stage" id="search-modes">
+      <p class="kicker">Stage 3</p>
+      <h2>Two ways to search</h2>
+      <p class="body"><strong>Natural language</strong> lets you describe your issue in plain words; the database ranks results by how well they match. It's a good way to start when you don't yet know the legal vocabulary. <strong>Terms and connectors</strong> (Boolean) is precise: you tell the database exactly which words must appear, which may appear, and which to exclude. Most research starts natural and gets more precise as your questions sharpen.</p>
+      <p class="body">The builder below does both, over a small sample database, so you can watch the difference for yourself.</p>
+    </section>
+
+    <!-- STAGE 4 — builder -->
+    <section class="stage" id="connectors">
+      <p class="kicker">Stage 4</p>
+      <h2>Terms &amp; connectors, live</h2>
+      <p class="body">Build a query and run it against the {N}-document sample database. Tap a connector to insert it, or type your own. Then tick &ldquo;compare with natural language&rdquo; to see how the same words behave without the logic.</p>
+      <div class="anchorcue">The connectors here are the foundation: <b>AND OR NOT</b>, <b>&ldquo;phrase&rdquo;</b>, the root expander <b>!</b>, and the single-character wildcard <b>*</b>. The precision tools &mdash; proximity (<span class="mono">/n /s /p</span>) and frequency (<span class="mono">ATLEAST</span>) &mdash; come in Chapter 9.</p>
+
+      <div class="builder">
+        <div class="builder-top">
+          <div class="qrow">
+            <input class="qinput" id="q" type="text" aria-label="Search query" value="(landlord OR lessor) AND habitability" spellcheck="false">
+            <button class="runbtn" id="run" type="button">Run search</button>
+          </div>
+          <div class="connectors" aria-label="Insert a connector">
+            <span class="lab">Insert</span>
+            <button class="cbtn" data-ins=" AND ">AND</button>
+            <button class="cbtn" data-ins=" OR ">OR</button>
+            <button class="cbtn" data-ins=" NOT ">NOT</button>
+            <button class="cbtn" data-ins="&quot;&quot;" data-back="1">&ldquo; &rdquo;</button>
+            <button class="cbtn" data-ins="!">!</button>
+            <button class="cbtn" data-ins="*">*</button>
+            <button class="cbtn" data-ins="(  )" data-back="2">( )</button>
+          </div>
+          <div class="presets" aria-label="Try an example">
+            <button class="preset" data-q="(landlord OR lessor) AND habitability">synonyms with <b>OR</b></button>
+            <button class="preset" data-q="habitability AND heat NOT prescription">narrow with <b>AND</b> / <b>NOT</b></button>
+            <button class="preset" data-q="&quot;reasonable accommodation&quot;">exact <b>phrase</b></button>
+            <button class="preset" data-q="employ!">root expander <b>employ!</b></button>
+            <button class="preset" data-q="bit!">the <b>bit!</b> trap</button>
+          </div>
+          <div class="cmprow">
+            <label><input type="checkbox" id="cmp"> Compare with natural language (same words, no logic)</label>
+          </div>
+        </div>
+        <div class="builder-out">
+          <div class="outhead">
+            <span class="cnt"><em id="rescnt">0</em> result<span id="ress">s</span></span>
+            <span class="mode" id="resmode">Boolean</span>
+          </div>
+          <div id="cmpnote" class="cmp-note" hidden></div>
+          <div class="docs" id="docs" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<div class="pop" id="pop" role="dialog" aria-modal="false" aria-labelledby="pop-title" hidden>
+  <span class="pop-arrow" id="pop-arrow" aria-hidden="true"></span>
+  <div class="pop-head"><h2 id="pop-title"></h2><button class="pop-close" id="pop-close" type="button" aria-label="Close explanation">&times;</button></div>
+  <div class="pop-body" id="pop-body"></div>
+</div>
+
+<footer class="foot"><div class="wrap">
+  <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+  <span>Chapter 2 &middot; Using Databases</span>
+</div></footer>
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  /* ===== search engine ===== */
+  function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+  function termRegex(raw){
+    if(raw.indexOf(" ")>=0){var parts=raw.trim().split(/\s+/).map(esc).join("\\s+");return new RegExp("\\b"+parts+"\\b","i");}
+    if(raw.charAt(raw.length-1)==="!")return new RegExp("\\b"+esc(raw.slice(0,-1))+"[a-z]*\\b","i");
+    if(raw.indexOf("*")>=0){var pat=raw.split("").map(function(c){return c==="*"?"[a-z]":esc(c);}).join("");return new RegExp("\\b"+pat+"\\b","i");}
+    return new RegExp("\\b"+esc(raw)+"\\b","i");
+  }
+  function tokenize(q){var t=[],i=0,n=q.length;while(i<n){var c=q[i];
+    if(/\s/.test(c)){i++;continue;}
+    if(c==="("){t.push({type:"LP"});i++;continue;}
+    if(c===")"){t.push({type:"RP"});i++;continue;}
+    if(c==='"'){var j=q.indexOf('"',i+1);if(j<0)j=n;t.push({type:"TERM",val:q.slice(i+1,j)});i=j+1;continue;}
+    var m=q.slice(i).match(/^[A-Za-z0-9!*\u00C0-\u024F-]+/);if(!m){i++;continue;}
+    var w=m[0],up=w.toUpperCase();
+    if(up==="AND"||up==="OR"||up==="NOT")t.push({type:"OP",val:up});else t.push({type:"TERM",val:w});
+    i+=w.length;}return t;}
+  function parse(toks){var p=0;function pk(){return toks[p];}function eat(){return toks[p++];}
+    function pOr(){var n=pAnd();while(pk()&&pk().type==="OP"&&pk().val==="OR"){eat();n={op:"OR",l:n,r:pAnd()};}return n;}
+    function pAnd(){var n=pNot();while(pk()){var t=pk();
+      if(t.type==="OP"&&t.val==="AND"){eat();n={op:"AND",l:n,r:pNot()};}
+      else if(t.type==="TERM"||t.type==="LP"||(t.type==="OP"&&t.val==="NOT")){n={op:"AND",l:n,r:pNot()};}
+      else break;}return n;}
+    function pNot(){if(pk()&&pk().type==="OP"&&pk().val==="NOT"){eat();return {op:"NOT",c:pNot()};}return pAtom();}
+    function pAtom(){var t=pk();if(!t)return{op:"TRUE"};
+      if(t.type==="LP"){eat();var e=pOr();if(pk()&&pk().type==="RP")eat();return e;}
+      if(t.type==="TERM"){eat();return{op:"TERM",val:t.val};}eat();return{op:"TRUE"};}
+    return pOr();}
+  function ev(n,x){if(!n)return true;switch(n.op){case"TRUE":return true;case"TERM":return termRegex(n.val).test(x);
+    case"NOT":return!ev(n.c,x);case"AND":return ev(n.l,x)&&ev(n.r,x);case"OR":return ev(n.l,x)||ev(n.r,x);}return false;}
+  function boolSearch(q){if(!q.trim())return[];var tree=parse(tokenize(q));return CORPUS.filter(function(d){return ev(tree,d.text);});}
+  var STOP={the:1,a:1,an:1,of:1,to:1,in:1,for:1,and:1,or:1,is:1,are:1,on:1,by:1,with:1,that:1,what:1,my:1,i:1,won:1,t:1,fix:1};
+  function nlSearch(q){var ws=(q.toLowerCase().match(/[a-z!*]+/g)||[]).filter(function(w){return!STOP[w]&&w.length>1;});
+    return CORPUS.map(function(d){var s=0;ws.forEach(function(w){if(termRegex(w).test(d.text))s++;});return{d:d,score:s};})
+      .sort(function(a,b){return b.score-a.score;});}
+
+  /* ===== synthetic, fictional corpus ===== */
+  var CORPUS=[
+    {n:"Alvarez v. Northgate Property Mgmt.", m:"Ct. App. Ariz. · 2023", text:"A residential landlord must keep the premises fit for habitability and provide heat in winter."},
+    {n:"Brennan v. Lakeshore Rentals LLC", m:"Mich. · 2019", text:"The lessor failed to restore heat within a reasonable time, breaching the warranty of habitability."},
+    {n:"Carter v. Pinecrest Holdings", m:"D. Ariz. · 2021", text:"The tenant sued the owner over a prolonged loss of heat; the habitability claim arose under state law."},
+    {n:"Delgado v. Summit Realty", m:"Cal. App. · 2024", text:"California obligates a landlord to provide heat; damages for lost habitability were measured by the rent abatement."},
+    {n:"Okafor v. Riverbend Logistics", m:"7th Cir. · 2022", text:"An employee who was fired alleged disability discrimination by her employer under federal law."},
+    {n:"Park v. Vanguard Staffing", m:"N.D. Ill. · 2020", text:"The worker was terminated after she requested a reasonable accommodation for a medical condition."},
+    {n:"Sloan v. Meridian Foods", m:"Ct. App. · 2023", text:"Employment of seasonal staff rose sharply; the employer later discharged several workers."},
+    {n:"In re Tarrant", m:"Bankr. · 2018", text:"A prescription for medical marijuana appeared in the debtor's records and was not at issue."},
+    {n:"State v. Whitlock", m:"Super. Ct. · 2021", text:"Marijuana possession charges were dropped; no prescription or medical defense was raised."},
+    {n:"Yates v. Coastal Mills", m:"Ct. App. · 2017", text:"The bitcoin payments and a bittersweet severance deal had nothing to do with the habitability dispute."}
+  ];
+
+  /* ===== popover (shared pattern) ===== */
+  var pop=document.getElementById("pop"),pt=document.getElementById("pop-title"),pb=document.getElementById("pop-body"),
+      pc=document.getElementById("pop-close"),pa=document.getElementById("pop-arrow"),last=null;
+  function place(t){pop.hidden=false;var r=t.getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight,m=12;
+    var left=Math.max(m,Math.min(r.left+r.width/2-pw/2,window.innerWidth-pw-m));
+    var below=r.bottom+10,pbl=below+ph<=window.innerHeight-m||r.top-ph-10<m,top=pbl?below:r.top-ph-10;
+    pop.style.left=left+"px";pop.style.top=top+"px";var ax=Math.max(14,Math.min(r.left+r.width/2-left-7,pw-26));pa.style.left=ax+"px";
+    if(pbl){pa.style.top="-8px";pa.style.borderLeft="1px solid var(--ink)";pa.style.borderTop="1px solid var(--ink)";pa.style.borderRight="none";pa.style.borderBottom="none";}
+    else{pa.style.top=(ph-7)+"px";pa.style.borderRight="1px solid var(--ink)";pa.style.borderBottom="1px solid var(--ink)";pa.style.borderLeft="none";pa.style.borderTop="none";}}
+  function open(t,title,body){last=t;pt.innerHTML=title;pb.innerHTML=body;pop.hidden=false;pop.style.left="-9999px";requestAnimationFrame(function(){place(t);pc.focus();});}
+  function close(rf){if(pop.hidden)return;pop.hidden=true;if(rf&&last)last.focus();last=null;}
+  pc.addEventListener("click",function(){close(true);});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")close(true);});
+  document.addEventListener("click",function(e){if(pop.hidden)return;if(!pop.contains(e.target)&&!(last&&last.contains(e.target)))close(false);});
+  window.addEventListener("resize",function(){if(!pop.hidden&&last)place(last);});
+  window.addEventListener("scroll",function(){if(!pop.hidden&&last)place(last);},true);
+
+  /* ===== stage 1: citation parts ===== */
+  var CP={parties:["Party names","The plaintiff and defendant. Descriptive only \u2014 you do not type these to retrieve the case."],
+    vol:["Volume","The reporter volume the opinion sits in \u2014 part of the address."],
+    rep:["Reporter","Which reporter publishes it (here, the Arizona Reports). Tells you the jurisdiction and court system."],
+    pg:["First page","The page the opinion begins on \u2014 the rest of the address."],
+    pin:["Pincite","The exact page of the quoted passage. You cite this when pointing to a specific line."],
+    ct:["Court &amp; year","The most information-dense part. The court tells you whether the case could bind you; the year, how current it is."]};
+  document.querySelectorAll("#cite-interactive .cpart").forEach(function(b){
+    b.setAttribute("aria-haspopup","dialog");
+    b.addEventListener("click",function(e){e.stopPropagation();
+      document.querySelectorAll("#cite-interactive .cpart").forEach(function(x){x.classList.remove("lit");});
+      b.classList.add("lit");
+      var k=b.getAttribute("data-k");open(b,CP[k][0],"<p>"+CP[k][1]+"</p>");
+      if(window.ExportReflect)ExportReflect.log("Inspected citation part",CP[k][0].replace(/&amp;/g,"&"));});
+  });
+
+  /* ===== stage 2: retrieval ===== */
+  var retDone=false;
+  document.getElementById("retbtn").addEventListener("click",function(){
+    var box=document.getElementById("cite-retrieve");
+    box.querySelector('[data-r="parties"]').className="dimpart";
+    box.querySelector('[data-r="pin"]').className="dimpart";
+    box.querySelector('[data-r="year"]').className="dimpart";
+    box.querySelector('[data-r="loc"]').className="keeppart";
+    document.getElementById("retfield").value="258 Ariz. 114";
+    document.getElementById("retmsg").textContent="Enter only the location: volume, reporter, first page. The struck-through parts are descriptive \u2014 leave them out.";
+    if(!retDone){retDone=true;if(window.ExportReflect)ExportReflect.log("Built a retrieval string","258 Ariz. 114 (location only)");}
+  });
+
+  /* ===== stage 4: builder ===== */
+  var q=document.getElementById("q"),docs=document.getElementById("docs"),rescnt=document.getElementById("rescnt"),
+      ress=document.getElementById("ress"),resmode=document.getElementById("resmode"),cmp=document.getElementById("cmp"),
+      cmpnote=document.getElementById("cmpnote");
+  // fill the {N}
+  document.querySelectorAll(".stage .body").forEach(function(p){p.innerHTML=p.innerHTML.replace("{N}",CORPUS.length);});
+
+  function hl(text,query){
+    var ws=(query.match(/"[^"]+"|[A-Za-z0-9!*-]+/g)||[]).filter(function(w){return !/^(AND|OR|NOT)$/i.test(w);})
+      .map(function(w){return w.replace(/"/g,"");});
+    var out=text;
+    ws.forEach(function(w){if(!w)return;try{out=out.replace(termRegex(w),function(mm){return "<mark>"+mm+"</mark>";});}catch(e){}});
+    return out;
+  }
+  function renderBool(){
+    var query=q.value;
+    var res=boolSearch(query);
+    resmode.textContent="Boolean — exact set";
+    rescnt.textContent=res.length; ress.style.display=res.length===1?"none":"";
+    if(!res.length){docs.innerHTML='<p class="empty">No documents satisfy that query. Boolean returns exactly what the logic allows \u2014 nothing more, nothing less. Try broadening with OR, or check a NOT that may be deleting good results.</p>';}
+    else docs.innerHTML=res.map(function(d){return '<div class="doc"><span class="dn">'+d.n+'</span><div class="dm">'+d.m+'</div><div class="dt">'+hl(d.text,query)+'</div></div>';}).join("");
+  }
+  function renderNL(){
+    var query=q.value;
+    var ranked=nlSearch(query).filter(function(r){return r.score>0;});
+    resmode.textContent="Natural language — ranked";
+    rescnt.textContent=ranked.length; ress.style.display=ranked.length===1?"none":"";
+    if(!ranked.length){docs.innerHTML='<p class="empty">Nothing matched any of those words.</p>';return;}
+    docs.innerHTML=ranked.map(function(r){return '<div class="doc"><span class="dn">'+r.d.n+'</span><span class="rank">'+r.score+' term'+(r.score===1?'':'s')+' matched</span><div class="dm">'+r.d.m+'</div><div class="dt">'+hl(r.d.text,query)+'</div></div>';}).join("");
+  }
+  function run(logit){
+    if(cmp.checked){
+      cmpnote.hidden=false;
+      cmpnote.innerHTML="Natural language ranks <b>every</b> document that shares a word and never excludes \u2014 so it casts wider and fuzzier. Boolean returns only the set your logic defines. Untick to switch back.";
+      renderNL();
+    } else {
+      cmpnote.hidden=true; renderBool();
+    }
+    if(logit&&window.ExportReflect)ExportReflect.log((cmp.checked?"Ran natural-language search":"Ran Boolean search"), q.value);
+  }
+  document.getElementById("run").addEventListener("click",function(){run(true);});
+  q.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();run(true);}});
+  cmp.addEventListener("change",function(){run(true);});
+  document.querySelectorAll(".cbtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var ins=b.getAttribute("data-ins"), back=parseInt(b.getAttribute("data-back")||"0",10);
+      var s=q.selectionStart||q.value.length,e=q.selectionEnd||q.value.length;
+      q.value=q.value.slice(0,s)+ins+q.value.slice(e);
+      var pos=s+ins.length-back; q.focus(); q.setSelectionRange(pos,pos);
+    });
+  });
+  document.querySelectorAll(".preset").forEach(function(b){
+    b.addEventListener("click",function(){q.value=b.getAttribute("data-q");cmp.checked=false;run(true);q.focus();});
+  });
+  run(false); // initial
+
+  /* ===== export ===== */
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"),{
+      module:"Using Databases for Legal Research",
+      chapter:"Chapter 2 — Introduction to Legal Research Platforms",
+      intro:"You read a citation, retrieved a known source, and built live searches.",
+      prompts:[
+        "Describe one search where adding or changing a connector clearly changed your results. What happened?",
+        "When would you reach for natural language, and when for terms and connectors? Tie your answer to where you are in a research question."
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>
