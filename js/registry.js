@@ -140,6 +140,7 @@ window.REGISTRY = {
         },
         {
           "status": "live",
+          "type": "orientation",
           "slug": "question-method",
           "href": "modules/question-method/index.html",
           "note": "Draft",
@@ -148,6 +149,7 @@ window.REGISTRY = {
         },
         {
           "status": "live",
+          "type": "practice",
           "slug": "question_chain",
           "href": "modules/question_chain/index.html",
           "note": "Draft",
