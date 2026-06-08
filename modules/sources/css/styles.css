@@ -6,32 +6,32 @@
 
 :root{
   /* paper + ink */
-  --paper:      #f6f1e7;
-  --paper-2:    #efe7d6;
-  --paper-3:    #e7ddc8;
-  --ink:        #211f1a;
-  --ink-soft:   #57534a;
-  --ink-faint:  #645e50;
-  --rule:       #d8cdb4;
-  --rule-soft:  #e4dac4;
-  --gold:       #9a7b2e;
+  --paper:      #eeeeee;
+  --paper-2:    #e6e6e6;
+  --paper-3:    #dcdcdc;
+  --ink:        #262622;
+  --ink-soft:   #54534d;
+  --ink-faint:  #86857d;
+  --rule:       #cfcfcf;
+  --rule-soft:  #dcdcdc;
+  --gold:       #9a6b1f;
 
   /* source accents */
-  --statute:      #7c2d3a;
-  --statute-tint: #efe0df;
+  --statute:      #a72d2a;
+  --statute-tint: #f1dedd;
   --regulation:      #2f6d56;
   --regulation-tint: #dde9e2;
   --case:      #28406b;
   --case-tint: #dde2ed;
 
-  --neutral:      #3a372f;
-  --neutral-tint: #e8e0cd;
+  --neutral:      #3a3a36;
+  --neutral-tint: #e2e2e0;
 
   --shadow:    0 1px 2px rgba(40,33,20,.06), 0 8px 28px rgba(40,33,20,.08);
   --shadow-lg: 0 2px 6px rgba(40,33,20,.08), 0 22px 60px rgba(40,33,20,.14);
 
-  --serif-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --serif-body:    "Spectral", Georgia, "Times New Roman", serif;
+  --serif-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif-body:    "Archivo", "Helvetica Neue", Arial, sans-serif;
 
   --measure: 68ch;
   --maxw: 1080px;
@@ -57,7 +57,7 @@ body{
 }
 
 /* ---- type ---- */
-h1,h2,h3,h4{ font-family: var(--serif-display); font-weight: 600; line-height: 1.12; margin: 0 0 .5em; color: var(--ink); letter-spacing: -.01em; }
+h1,h2,h3,h4{ font-family: var(--serif-display); font-weight: 700; line-height: 1.12; margin: 0 0 .5em; color: var(--ink); letter-spacing: -.01em; }
 h1{ font-size: clamp(2.3rem, 5vw, 3.5rem); font-weight: 600; }
 h2{ font-size: clamp(1.5rem, 3vw, 2rem); }
 h3{ font-size: 1.28rem; }
@@ -169,6 +169,8 @@ main{ flex: 1 0 auto; padding: 40px 0 72px; }
   .menu-list{ position: static; display: none; box-shadow: none; min-width: 0; margin: 2px 0 4px 12px; }
   .menu-list.open{ display: block; }
   .btn-notes{ align-self: flex-start; }
+  .navlink.nav-sub{ padding-left: 28px; }
+  .menu.nav-sub > .menu-btn{ padding-left: 28px; }
 }
 
 .btn-notes{
@@ -420,3 +422,13 @@ details[open] .open-hint::after{ content:" — close"; }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
+
+
+/* ===== Firebrand brand overrides (appended) ===================== */
+body{
+  /* replace the warm radial + paper grain with the brand's clean gray ground */
+  background-image: radial-gradient(1100px 560px at 92% -10%, rgba(167,45,42,.05), transparent 62%);
+  -webkit-font-smoothing: antialiased;
+}
+a{ text-underline-offset: 3px; }            /* brand links are underlined crimson (via --statute) */
+.eyebrow{ font-family: var(--serif-body); } /* sans eyebrows, not serif */

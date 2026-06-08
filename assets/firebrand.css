@@ -117,6 +117,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 
 /* ---- masthead --------------------------------------------------------- */
 .masthead{
+  position: relative; z-index: 100;
   border-bottom: 1px solid var(--rule-strong);
   background: rgba(255,255,255,.35);
 }
@@ -125,7 +126,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
   text-decoration:none; color:var(--ink); }
 .brand:hover .mark{ color: var(--flame); }
 .brand .mark{ font-family: var(--display); font-weight: 700; font-size: 1.22rem;
-  line-height: 1.08; letter-spacing:.1px; transition: color .15s ease; max-width: 30ch; }
+  line-height: 1.08; letter-spacing:.1px; transition: color .15s ease; white-space: nowrap; }
 .brand .sub{ display:block; font-family: var(--sans); font-size:.62rem; font-weight:600;
   letter-spacing:.14em; text-transform: uppercase; color: var(--ink-faint); }
 .topnav{ display:flex; gap:24px; align-items:center; }
@@ -143,6 +144,9 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .modmenu > summary::after{ content:"\25BE"; font-size:.7em; transition: transform .15s ease; }
 .modmenu[open] > summary, .modmenu > summary:hover{ color: var(--flame); }
 .modmenu[open] > summary::after{ transform: rotate(180deg); }
+.modmenu > summary .mm-label-open{ display:none; }
+.modmenu[open] > summary .mm-label-default{ display:none; }
+.modmenu[open] > summary .mm-label-open{ display:inline; }
 .modmenu-panel{
   position: absolute; right: 0; top: calc(100% + 12px); z-index: 60;
   width: min(92vw, 880px); max-height: 72vh; overflow-y: auto;
@@ -248,7 +252,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 /* =============================================================================
    CHAPTER PAGE — header + module list (live links + inline placeholders)
    ========================================================================== */
-.ch-wrap{ max-width: 880px; margin: 0 auto; }
+.ch-wrap{ max-width: var(--maxw); margin: 0 auto; }
 
 /* back link (also reused by the not-found card) */
 .cs-back{ font-family: var(--sans); font-size:.82rem; font-weight:600; letter-spacing:.02em;
@@ -322,6 +326,7 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
   .entry .ch-meta{ grid-column: 1 / -1; justify-content:flex-start; margin-top: 6px; }
   .entry .go{ display:none; }
   .topnav{ gap: 16px; flex-wrap:wrap; }
+  .brand .mark{ white-space: normal; }
   .modmenu-panel{ position: fixed; left: 12px; right: 12px; top: auto; width: auto;
     max-height: 70vh; }
   .modmenu-cols{ grid-template-columns: 1fr; gap: 18px; }

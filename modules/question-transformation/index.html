@@ -18,14 +18,15 @@
 --q3:#d55e00;--q3-tint:#f7e3d5;
 --q4:#a8478b;--q4-tint:#f1e2ec;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz@0,6..72;1,6..72&display=swap" rel="stylesheet">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
 <style>
-.lede{font-size:1.12rem;color:var(--ink-soft);max-width:64ch;}
+.lede{font-size:1.12rem;color:var(--ink-soft);max-width:none;}
 .howto{margin:18px 0 24px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);
-  border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:74ch;}
+  border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:none;}
 .howto b{color:var(--flame-deep);}
 
 /* step scaffolding */
@@ -35,7 +36,7 @@
 .step-tag .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);
   color:#fff;font-size:.74rem;font-weight:700;}
 .step h2{margin:0 0 .35em;font-size:1.3rem;}
-.step .intro{color:var(--ink-soft);max-width:72ch;margin:0 0 16px;font-size:.98rem;}
+.step .intro{color:var(--ink-soft);max-width:none;margin:0 0 16px;font-size:.98rem;}
 
 /* the legend / through-line key */
 .legend{border:1px solid var(--rule-strong);border-radius:8px;background:var(--panel);padding:14px 16px;margin:0 0 8px;}
@@ -53,7 +54,7 @@
 .legend .pending{color:var(--ink-faint);font-style:italic;}
 
 /* Stage 1: the finished paragraph as clickable sentences */
-.passage{font-family:var(--serif);font-size:1.18rem;line-height:1.7;color:var(--ink);max-width:68ch;
+.passage{font-family:var(--serif);font-size:1.18rem;line-height:1.7;color:var(--ink);max-width:none;
   border:1px solid var(--rule);border-radius:10px;background:#fff;box-shadow:var(--shadow);padding:22px 24px;margin:2px 0 14px;}
 .cite-line{display:block;margin:14px 0 0;font-family:var(--mono);font-size:.78rem;color:var(--ink-faint);}
 .case-name{font-style:italic;}
@@ -90,7 +91,7 @@
 .linkbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;border-radius:3px;}
 
 .aside{margin:14px 0 0;padding:13px 16px;border:1px solid var(--rule-strong);border-left:4px solid var(--case);
-  background:var(--case-tint,#dde2ed);border-radius:0 var(--radius) var(--radius) 0;font-size:.92rem;color:var(--ink);max-width:74ch;}
+  background:var(--case-tint,#dde2ed);border-radius:0 var(--radius) var(--radius) 0;font-size:.92rem;color:var(--ink);max-width:none;}
 .aside[hidden]{display:none;}
 .aside b{color:var(--case);}
 
@@ -138,7 +139,7 @@ table.syn th[scope="row"] .yr{font-family:var(--mono);font-style:normal;font-siz
 .outline .src{font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);}
 
 .transform-note{margin:26px 0 0;padding:18px 20px;border:1px solid var(--rule-strong);border-left:4px solid var(--flame);
-  background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:78ch;}
+  background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:none;}
 .transform-note h2{margin:0 0 .4em;font-size:1.05rem;}
 .transform-note a{color:var(--flame-deep);font-weight:600;}
 
@@ -150,23 +151,115 @@ section[hidden]{display:none;}
 </style>
 </head>
 <body class="shell">
+<!--shell:masthead:start-->
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="masthead">
   <div class="wrap">
     <div class="masthead-inner">
-      <a class="brand" href="../../index.html" aria-label="Firebrand — module hub">
-        <span><span class="mark">Firebrand<span class="dot">.</span></span>
-        <span class="sub">Legal Research Modules</span></span>
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
       </a>
       <nav class="topnav" aria-label="Primary">
-        <a href="../../index.html">Hub</a>
-        <a href="../question-method/index.html">Notice of Claim</a>
-        <a href="../question_chain/index.html">Working the Chain</a>
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=1"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=2"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=3"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/question-transformation/index.html" aria-current="page">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../modules/question_chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=4"><span class="cn">4</span> Secondary Sources Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=5"><span class="cn">5</span> Case Law Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=6"><span class="cn">6</span> Statutes Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=7"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=8"><span class="cn">8</span> Researching Across Sources</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=9"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=10"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=11"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=12"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=13"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=14"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=15"><span class="cn">15</span> AI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=16"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part III &middot; Specialized Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=17"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=18"><span class="cn">18</span> Basic FCIL Research</a>
+              </li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
       </nav>
     </div>
   </div>
 </header>
+<!--shell:masthead:end-->
 
 <main id="main">
   <div class="wrap ch-wrap">
@@ -328,12 +421,14 @@ section[hidden]{display:none;}
 <!-- live region for transform announcements -->
 <div id="live" class="sr-only" role="status" aria-live="polite"></div>
 
+<!--shell:footer:start-->
 <footer class="foot">
   <div class="wrap">
     <span>The Question Method of Legal Research &mdash; interactive modules.</span>
-    <span>Chapter 3 &middot; Reverse-Engineering the Question</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
   </div>
 </footer>
+<!--shell:footer:end-->
 
 <script src="../../js/export-reflect.js"></script>
 <script>

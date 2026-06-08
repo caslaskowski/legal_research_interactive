@@ -114,9 +114,9 @@
     return el("header", { class: "masthead" }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "masthead-inner" }, [
-          el("a", { class: "brand", href: "index.html" }, [
-            el("span", { class: "mark" }, ["How Law Is Made"]),
-            el("span", { class: "sub" }, ["A 1L Primer"])
+          el("a", { class: "brand", href: "../../index.html" }, [
+            el("span", { class: "mark" }, ["The Question Method of Legal Research"]),
+            el("span", { class: "sub" }, ["Interactive Legal Research Modules"])
           ]),
           toggle,
           navArea
