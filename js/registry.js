@@ -165,17 +165,26 @@ window.REGISTRY = {
       "title": "Secondary Sources Research",
       "desc": "Choosing the right secondary source for the question you are holding — encyclopedia, treatise, ALR, Restatement — and mining its footnotes to reach primary authority fast.",
       "modules": [
+      {
+          "status": "live", "type": "orientation",
+          "slug": "secondary-types",
+          "href": "modules/secondary-types/index.html",
+          "title": "The Types of Secondary Sources",
+        "desc": "Explore the nine major secondary sources, then re-sort them by the question they answer, their coverage, and their persuasive weight — and place each on a depth-and-breadth chart."
+        },
         {
-          "status": "plan",
-          "slug": "match-the-source",
-          "title": "Match the Source to the Question",
-          "desc": "Given a research question, pick the secondary source that fits its type, then follow the footnotes to the primary authority that answers it.",
-          "will": [
-            "Match question type to source: encyclopedia, treatise, ALR, Restatement",
-            "Read by table of contents and index, not cover to cover",
-            "Mine footnotes as your bridge to primary authority",
-            "Know when to leave the secondary source behind"
-          ]
+          "status": "live", "type": "orientation",
+          "slug": "using-secondary-sources",
+          "href": "modules/using-secondary-sources/index.html",
+          "title": "How to Use a Secondary Source",
+          "desc": "Read a source by the question in front of you: find the sentence that answers it and follow its footnote to primary authority — then recognize the moment to leave the source behind."
+        },
+        {
+          "status": "live", "type": "practice",
+          "slug": "secondary-practice",
+          "href": "modules/secondary-practice/index.html",
+          "title": "Secondary Sources Practice",
+          "desc": "Run one question through the full cycle — match, mine, follow, leave — then practice the trust-and-timing judgment calls, including when an adopted Restatement may earn a cite."
         }
       ]
     },
