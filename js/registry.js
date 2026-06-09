@@ -265,16 +265,20 @@ window.REGISTRY = {
       "desc": "Tracing a regulation from its enabling statute to the CFR and the Federal Register — and confirming it is still in force.",
       "modules": [
         {
-          "status": "plan",
-          "slug": "statute-to-regulation",
-          "title": "Statute → Agency → Regulation",
-          "desc": "Follow the delegation chain from a statute to the rule that implements it, and back again through the authority note.",
-          "will": [
-            "The delegation chain: statute to agency to rule",
-            "Find a rule in the CFR and the Federal Register",
-            "Read the preamble for the agency’s own explanation",
-            "Update a regulation with the eCFR, the LSA, and a citator"
-          ]
+          "status": "live",
+          "type": "orientation",
+          "slug": "reading-regulations",
+          "href": "modules/reading-regulations/index.html",
+          "title": "How to Read a Regulation",
+          "desc": "Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters."
+        },
+        {
+          "status": "live",
+          "type": "practice",
+          "slug": "regulation-practice",
+          "href": "modules/regulation-practice/index.html",
+          "title": "Regulations Practice",
+          "desc": "Navigate the CFR, choose between the CFR and the Federal Register, read shall/must/may/should, and check whether a regulation is still good law."
         }
       ]
     },
