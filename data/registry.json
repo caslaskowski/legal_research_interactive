@@ -193,29 +193,18 @@
       "title": "Case Law Research",
       "desc": "Reading opinions critically, separating holding from dictum, and using headnotes, key numbers, and citators to find and validate the cases that govern.",
       "modules": [
-        {
-          "status": "plan",
-          "slug": "holding-vs-dictum",
-          "title": "Holding vs. Dictum",
-          "desc": "Read an opinion and separate the holding that binds from the dictum that does not — then test it by changing the facts.",
-          "will": [
-            "Anatomy of a judicial opinion",
-            "Holding vs. dictum",
-            "Dispositive-fact identification (a NextGen skill)",
-            "Headnotes and key numbers as research tools"
-          ]
-        },
-        {
-          "status": "plan",
-          "slug": "validate-with-a-citator",
-          "title": "Validate with a Citator",
-          "desc": "Run an authority through a citator and read the signals before you rely on it.",
-          "will": [
-            "Why every case needs a citator check",
-            "Read citator signals and depth of treatment",
-            "Find later cases that erode or reaffirm a holding"
-          ]
-        }
+        { "status":"live", "type":"orientation", "slug":"case-graph",
+  "href":"modules/case-graph/index.html",
+  "title":"Cases as a Web of Answers",
+  "desc":"How one opinion answers several questions at once — following citations color-coded by question through a four-case web." },
+{ "status":"live", "type":"orientation", "slug":"reading-cases",
+  "href":"modules/reading-cases/index.html",
+  "title":"How to Read a Case",
+  "desc":"The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1." },
+{ "status":"live", "type":"practice", "slug":"case-practice",
+  "href":"modules/case-practice/index.html",
+  "title":"Case Law Practice",
+  "desc":"Build a defensible case set, tell holding from dictum, and decide whether a flagged case is still good law." }
       ]
     },
     {

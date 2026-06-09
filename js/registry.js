@@ -165,22 +165,25 @@ window.REGISTRY = {
       "title": "Secondary Sources Research",
       "desc": "Choosing the right secondary source for the question you are holding — encyclopedia, treatise, ALR, Restatement — and mining its footnotes to reach primary authority fast.",
       "modules": [
-      {
-          "status": "live", "type": "orientation",
+        {
+          "status": "live",
+          "type": "orientation",
           "slug": "secondary-types",
           "href": "modules/secondary-types/index.html",
           "title": "The Types of Secondary Sources",
-        "desc": "Explore the nine major secondary sources, then re-sort them by the question they answer, their coverage, and their persuasive weight — and place each on a depth-and-breadth chart."
+          "desc": "Explore the nine major secondary sources, then re-sort them by the question they answer, their coverage, and their persuasive weight — and place each on a depth-and-breadth chart."
         },
         {
-          "status": "live", "type": "orientation",
+          "status": "live",
+          "type": "orientation",
           "slug": "using-secondary-sources",
           "href": "modules/using-secondary-sources/index.html",
           "title": "How to Use a Secondary Source",
           "desc": "Read a source by the question in front of you: find the sentence that answers it and follow its footnote to primary authority — then recognize the moment to leave the source behind."
         },
         {
-          "status": "live", "type": "practice",
+          "status": "live",
+          "type": "practice",
           "slug": "secondary-practice",
           "href": "modules/secondary-practice/index.html",
           "title": "Secondary Sources Practice",
@@ -196,27 +199,28 @@ window.REGISTRY = {
       "desc": "Reading opinions critically, separating holding from dictum, and using headnotes, key numbers, and citators to find and validate the cases that govern.",
       "modules": [
         {
-          "status": "plan",
-          "slug": "holding-vs-dictum",
-          "title": "Holding vs. Dictum",
-          "desc": "Read an opinion and separate the holding that binds from the dictum that does not — then test it by changing the facts.",
-          "will": [
-            "Anatomy of a judicial opinion",
-            "Holding vs. dictum",
-            "Dispositive-fact identification (a NextGen skill)",
-            "Headnotes and key numbers as research tools"
-          ]
+          "status": "live",
+          "type": "orientation",
+          "slug": "case-graph",
+          "href": "modules/case-graph/index.html",
+          "title": "Cases as a Web of Answers",
+          "desc": "How one opinion answers several questions at once — following citations color-coded by question through a four-case web."
         },
         {
-          "status": "plan",
-          "slug": "validate-with-a-citator",
-          "title": "Validate with a Citator",
-          "desc": "Run an authority through a citator and read the signals before you rely on it.",
-          "will": [
-            "Why every case needs a citator check",
-            "Read citator signals and depth of treatment",
-            "Find later cases that erode or reaffirm a holding"
-          ]
+          "status": "live",
+          "type": "orientation",
+          "slug": "reading-cases",
+          "href": "modules/reading-cases/index.html",
+          "title": "How to Read a Case",
+          "desc": "The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1."
+        },
+        {
+          "status": "live",
+          "type": "practice",
+          "slug": "case-practice",
+          "href": "modules/case-practice/index.html",
+          "title": "Case Law Practice",
+          "desc": "Build a defensible case set, tell holding from dictum, and decide whether a flagged case is still good law."
         }
       ]
     },

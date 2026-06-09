@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cases as a Web of Answers — Case Law Research</title>
+<meta name="description" content="See how one case answers several research questions at once, follow a citation to the case relied on for a given answer, and read the whole citation web color-coded by question.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#86857d;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--radius:4px;
+--q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);max-width:64ch;}
+.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:74ch;}
+.howto b{color:var(--flame-deep);}
+.partkick{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:30px 0 0;}
+.parthead{margin:2px 0 6px;font-size:1.4rem;border-bottom:1.5px solid var(--ink);padding-bottom:7px;}
+.pintro{color:var(--ink-soft);max-width:72ch;margin:0 0 14px;font-size:.97rem;}
+
+/* Q legend chips */
+.qkey{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;}
+.qkey .k{display:flex;align-items:center;gap:7px;font-size:.82rem;border:1px solid var(--rule-strong);border-radius:999px;padding:4px 11px 4px 8px;background:#fff;}
+.qkey .sw{width:24px;height:0;border-top-width:3px;border-top-style:solid;}
+.qkey .lab{font-weight:700;}
+.q1 .lab,.lab.q1{color:var(--q1);} .q2 .lab,.lab.q2{color:var(--q2);} .q3 .lab,.lab.q3{color:var(--q3);} .q4 .lab,.lab.q4{color:var(--q4);}
+
+/* case tabs */
+.casetabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;}
+.casetab{font:inherit;font-size:.86rem;font-weight:600;border:1.5px solid var(--rule-strong);background:#fff;color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;}
+.casetab:hover{border-color:var(--flame);color:var(--flame);}
+.casetab:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.casetab[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* reader */
+.reader{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;box-shadow:var(--shadow);overflow:hidden;margin:0 0 14px;}
+.reader-cap{background:var(--panel);border-bottom:1px solid var(--rule);padding:12px 18px;}
+.reader-cap .nm{font-family:var(--display);font-weight:700;font-size:1.12rem;}
+.reader-cap .meta{font-family:var(--mono);font-size:.76rem;color:var(--ink-faint);margin-top:2px;}
+.reader-cap .found{display:inline-block;margin-left:8px;font-family:var(--sans);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--flame-deep);background:var(--flame-tint);border:1px solid var(--flame);border-radius:999px;padding:2px 8px;vertical-align:middle;}
+.reader-body{padding:16px 18px 18px;}
+.reader-body h3{font-family:var(--sans);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin:0 0 8px;}
+.answer{font-family:var(--serif);font-size:1.12rem;line-height:1.7;margin:0 0 12px;padding:8px 12px;border-left:4px solid var(--ink);border-radius:0 6px 6px 0;}
+.answer .qtag{font-family:var(--sans);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;padding:2px 8px;margin-right:8px;vertical-align:middle;border:1.5px solid;}
+.answer.q1{background:var(--q1-tint);border-color:var(--q1);} .answer.q1 .qtag{color:var(--q1);border-color:var(--q1);}
+.answer.q2{background:var(--q2-tint);border-color:var(--q2);} .answer.q2 .qtag{color:var(--q2);border-color:var(--q2);}
+.answer.q3{background:var(--q3-tint);border-color:var(--q3);} .answer.q3 .qtag{color:var(--q3);border-color:var(--q3);}
+.answer.q4{background:var(--q4-tint);border-color:var(--q4);} .answer.q4 .qtag{color:var(--q4);border-color:var(--q4);}
+.cites{border-top:1px dashed var(--rule-strong);margin-top:6px;padding-top:12px;}
+.citechips{display:flex;flex-wrap:wrap;gap:8px;}
+.citechip{font:inherit;font-size:.83rem;font-weight:600;border:1.5px solid;border-radius:8px;padding:7px 11px;cursor:pointer;background:#fff;display:flex;align-items:center;gap:7px;}
+.citechip:focus-visible{outline:3px solid var(--ink);outline-offset:2px;}
+.citechip .a{font-family:var(--mono);font-size:.7rem;font-weight:700;border-radius:4px;padding:1px 6px;color:#fff;}
+.citechip.q1{border-color:var(--q1);color:var(--q1);} .citechip.q1 .a{background:var(--q1);}
+.citechip.q2{border-color:var(--q2);color:var(--q2);} .citechip.q2 .a{background:var(--q2);}
+.citechip.q3{border-color:var(--q3);color:var(--q3);} .citechip.q3 .a{background:var(--q3);}
+.citechip.q4{border-color:var(--q4);color:var(--q4);} .citechip.q4 .a{background:var(--q4);}
+.citechip:hover{background:var(--panel);}
+.foundnote{font-size:.9rem;color:var(--ink-soft);font-style:italic;}
+
+/* graph */
+.graphwrap{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;box-shadow:var(--shadow);padding:14px;margin:0 0 12px;}
+.viewtoggle{display:flex;gap:8px;margin:0 0 10px;}
+.viewtoggle button{font:inherit;font-size:.84rem;font-weight:600;border:1.5px solid var(--rule-strong);background:#fff;color:var(--ink-soft);border-radius:8px;padding:7px 13px;cursor:pointer;}
+.viewtoggle button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+.viewtoggle button:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+svg.graph{width:100%;height:auto;display:block;}
+.gnode{cursor:pointer;}
+.gnode:focus-visible{outline:none;}
+.gnode:focus-visible circle{stroke:var(--flame);stroke-width:3.5;}
+.gdetail{margin:10px 0 0;padding:11px 14px;border-radius:8px;background:var(--panel);border:1px solid var(--rule-strong);font-size:.92rem;color:var(--ink);min-height:1.4em;}
+.gdetail[hidden]{display:none;}
+.elist{width:100%;border-collapse:collapse;font-size:.9rem;}
+.elist caption{text-align:left;font-size:.8rem;color:var(--ink-faint);margin-bottom:6px;}
+.elist th,.elist td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+.elist th{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);}
+.elist .ec{font-weight:700;white-space:nowrap;}
+.elist .ea{font-family:var(--mono);font-weight:700;font-size:.8rem;}
+.elist [hidden]{display:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+#export-slot{margin-top:30px;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=1"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=2"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=3"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../modules/question_chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=4"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=5"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/case-graph/index.html" aria-current="page">Cases as a Web of Answers</a></li>
+                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=6"><span class="cn">6</span> Statutes Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=7"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=8"><span class="cn">8</span> Researching Across Sources</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=9"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=10"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=11"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=12"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=13"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=14"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=15"><span class="cn">15</span> AI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=16"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part III &middot; Specialized Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=17"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=18"><span class="cn">18</span> Basic FCIL Research</a>
+              </li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 5 · Educational</p>
+    <h1>Cases as a Web of Answers</h1>
+    <p class="lede">One opinion rarely answers just one question. It settles the question you brought and, in the same breath, points you to the cases it relied on for the rest. This module follows those threads &mdash; color-coded by question, the same colors you met in the Question Method.</p>
+
+    <div class="qkey" id="qkey" aria-label="Question color key"></div>
+
+    <div class="howto"><b>How to move:</b> use the case tabs or the graph nodes to open a case. Inside a case, the colored citation chips are live &mdash; click one to jump to the case that opinion relied on for that answer.</div>
+
+    <!-- ===== Part 1 ===== -->
+    <p class="partkick">Part 1</p>
+    <h2 class="parthead">One case, more than one answer</h2>
+    <p class="pintro">Start with <b>Marsh</b>, the foundational case below. Notice it answers <em>two</em> different research questions &mdash; in two different colors. A single opinion is often a node with several answers hanging off it.</p>
+
+    <!-- ===== Part 2 ===== -->
+    <p class="partkick">Part 2</p>
+    <h2 class="parthead">Follow the thread that answers your question</h2>
+    <p class="pintro">Now open <b>Okafor</b>. It answers its own question (damages), but its reasoning <em>cites other cases</em> for the duty and the remedy. Click the chip for the question you care about to land on the case that answers it &mdash; and see that case answer questions of its own.</p>
+
+    <div class="casetabs" id="casetabs" role="group" aria-label="Open a case"></div>
+    <div class="reader" id="reader" aria-live="polite"></div>
+
+    <!-- ===== Part 3 ===== -->
+    <p class="partkick">Part 3</p>
+    <h2 class="parthead">The whole web</h2>
+    <p class="pintro">Zoom out. Each <b>node</b> is a case; each <b>edge</b> is one citation, colored by the question it answers and labeled with the answer it supplies (A1 is the answer to Q1). Where one case cites another for two answers, you&rsquo;ll see two separate lines.</p>
+
+    <div class="graphwrap">
+      <div class="viewtoggle" role="group" aria-label="Graph view">
+        <button id="v-graph" type="button" aria-pressed="true">Graph</button>
+        <button id="v-list" type="button" aria-pressed="false">List (text)</button>
+      </div>
+      <div id="graphview">
+        <svg class="graph" id="graph" viewBox="0 0 600 400" role="img" aria-label="Citation graph of four cases. A text list of the same connections is available via the List button."></svg>
+        <div class="gdetail" id="gdetail" role="status" aria-live="polite" hidden></div>
+      </div>
+      <div id="listview" hidden></div>
+    </div>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var Q={1:{label:"Is there a duty to provide heat?"},2:{label:"How fast must repairs happen?"},3:{label:"What remedies does the tenant have?"},4:{label:"What damages can be recovered?"}};
+  var DASH={1:"",2:"7,5",3:"2,5",4:"9,4,2,4"};
+  function qcolor(q){return getComputedStyle(document.documentElement).getPropertyValue("--q"+q).trim();}
+
+  var CASES={
+    marsh:{name:"Marsh v. Glenwood Apartments",short:"Marsh",cite:"12 Fict. 345 (State Sup. Ct. 2009)",foundational:true,
+      answers:[{q:1,text:"A residential landlord must keep a rental fit to live in, and that duty includes providing adequate heat."},
+               {q:2,text:"Once a landlord has notice of a defect, it must make repairs within a reasonable time."}],
+      cites:[]},
+    tinsley:{name:"Tinsley v. Rowan Property Mgmt.",short:"Tinsley",cite:"33 Fict. 12 (State App. 2014)",
+      answers:[{q:3,text:"When a landlord fails to repair within a reasonable time, the tenant may repair and deduct the cost, or withhold rent until the repair is made."}],
+      cites:[{to:"marsh",q:1}]},
+    okafor:{name:"Okafor v. Birchwood LLC",short:"Okafor",cite:"58 Fict. 201 (State App. 2019)",
+      answers:[{q:4,text:"Damages for a habitability breach are generally limited to the loss in rental value; emotional-distress damages require egregious conduct."}],
+      cites:[{to:"marsh",q:1},{to:"marsh",q:2},{to:"tinsley",q:3}]},
+    delgado:{name:"Delgado v. Castle Realty",short:"Delgado",cite:"61 Fict. 440 (State App. 2021)",
+      answers:[{q:3,text:"Rent withholding is available only after the tenant gives written notice and a reasonable opportunity to cure."}],
+      cites:[{to:"marsh",q:1},{to:"tinsley",q:3}]}
+  };
+  var ORDER=["marsh","tinsley","okafor","delgado"];
+  var POS={marsh:{x:300,y:196},tinsley:{x:300,y:62},okafor:{x:104,y:336},delgado:{x:496,y:336}};
+  var R=38;
+
+  // edges from cites
+  var EDGES=[];
+  ORDER.forEach(function(id){ CASES[id].cites.forEach(function(c){ EDGES.push({from:id,to:c.to,q:c.q}); }); });
+  function ansText(id,q){ var a=CASES[id].answers.filter(function(x){return x.q===q;})[0]; return a?a.text:""; }
+
+  /* ---- Q key ---- */
+  document.getElementById("qkey").innerHTML=[1,2,3,4].map(function(q){
+    return '<span class="k q'+q+'"><span class="sw" style="border-top-style:'+(DASH[q]?"dashed":"solid")+';border-top-color:var(--q'+q+')"></span><span class="lab q'+q+'">Q'+q+'</span> '+Q[q].label+'</span>';
+  }).join("");
+
+  /* ---- reader ---- */
+  var reader=document.getElementById("reader"), tabs=document.getElementById("casetabs"), curId=null;
+  ORDER.forEach(function(id){
+    var b=document.createElement("button"); b.className="casetab"; b.type="button"; b.dataset.id=id;
+    b.setAttribute("aria-pressed","false"); b.textContent=CASES[id].short;
+    b.addEventListener("click",function(){ loadCase(id,true); });
+    tabs.appendChild(b);
+  });
+  function loadCase(id,fromUser){
+    curId=id; var c=CASES[id];
+    tabs.querySelectorAll(".casetab").forEach(function(t){ t.setAttribute("aria-pressed", t.dataset.id===id?"true":"false"); });
+    var ans=c.answers.map(function(a){
+      return '<p class="answer q'+a.q+'"><span class="qtag q'+a.q+'">Q'+a.q+' &rarr; A'+a.q+'</span>'+a.text+'</p>';
+    }).join("");
+    var citesHtml="";
+    if(c.cites.length){
+      citesHtml='<div class="cites"><h3>This opinion relies on \u2014 follow a thread</h3><div class="citechips">'+
+        c.cites.map(function(ct){
+          return '<button class="citechip q'+ct.q+'" type="button" data-to="'+ct.to+'" data-q="'+ct.q+'">'+
+            CASES[ct.to].short+' <span class="a">cites for A'+ct.q+'</span></button>';
+        }).join("")+'</div></div>';
+    } else {
+      citesHtml='<div class="cites"><p class="foundnote">This is the foundational case &mdash; the others build on it. It cites secondary sources and earlier authority outside this set.</p></div>';
+    }
+    reader.innerHTML='<div class="reader-cap"><div class="nm">'+c.name+(c.foundational?'<span class="found">Foundational</span>':'')+
+      '</div><div class="meta">'+c.cite+'</div></div>'+
+      '<div class="reader-body"><h3>What this case answers</h3>'+ans+citesHtml+'</div>';
+    reader.querySelectorAll(".citechip").forEach(function(ch){
+      ch.addEventListener("click",function(){
+        loadCase(ch.dataset.to,true);
+        if(window.ExportReflect) ExportReflect.log("Followed a citation", CASES[id].short+" \u2192 "+CASES[ch.dataset.to].short+" (for A"+ch.dataset.q+")");
+      });
+    });
+    if(fromUser){ reader.scrollIntoView({behavior:"smooth",block:"nearest"});
+      if(window.ExportReflect) ExportReflect.log("Opened a case", c.name); }
+  }
+  loadCase("marsh",false);
+
+  /* ---- graph ---- */
+  var SVGNS="http://www.w3.org/2000/svg";
+  function el(n,a){var e=document.createElementNS(SVGNS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  var svg=document.getElementById("graph");
+  function selectEdge(e){
+    var d=document.getElementById("gdetail");
+    d.innerHTML='<b>'+CASES[e.from].short+'</b> cites <b>'+CASES[e.to].short+'</b> for <b style="color:var(--q'+e.q+')">A'+e.q+'</b> &mdash; \u201c'+ansText(e.to,e.q)+'\u201d';
+    d.hidden=false;
+  }
+  function buildGraph(){
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    // group parallel edges
+    var groups={};
+    EDGES.forEach(function(e){ var k=e.from+">"+e.to; (groups[k]=groups[k]||[]).push(e); });
+    Object.keys(groups).forEach(function(k){
+      var arr=groups[k], n=arr.length;
+      arr.forEach(function(e,i){
+        var p1=POS[e.from],p2=POS[e.to];
+        var dx=p2.x-p1.x,dy=p2.y-p1.y,len=Math.sqrt(dx*dx+dy*dy),ux=dx/len,uy=dy/len,px=-uy,py=ux;
+        var off=(i-(n-1)/2)*16;
+        var x1=p1.x+ux*R+px*off, y1=p1.y+uy*R+py*off, x2=p2.x-ux*(R+8)+px*off, y2=p2.y-uy*(R+8)+py*off;
+        var col=qcolor(e.q);
+        var g=el("g",{}); g.style.cursor="pointer";
+        var hit=el("line",{x1:x1,y1:y1,x2:x2,y2:y2,stroke:"transparent","stroke-width":16}); g.appendChild(hit);
+        g.appendChild(el("line",{x1:x1,y1:y1,x2:x2,y2:y2,stroke:col,"stroke-width":2.6,"stroke-dasharray":DASH[e.q],"stroke-linecap":"round"}));
+        // arrowhead
+        var ax=x2,ay=y2,a1=Math.atan2(y2-y1,x2-x1);
+        var s=8; var p=el("polygon",{points:[ax+","+ay,(ax-s*Math.cos(a1-0.4))+","+(ay-s*Math.sin(a1-0.4)),(ax-s*Math.cos(a1+0.4))+","+(ay-s*Math.sin(a1+0.4))].join(" "),fill:col});
+        g.appendChild(p);
+        // label
+        var mx=(x1+x2)/2, my=(y1+y2)/2;
+        var lbl=el("text",{x:mx,y:my-3,"text-anchor":"middle","font-size":"12","font-weight":"700",fill:col,"font-family":"IBM Plex Mono, monospace","paint-order":"stroke",stroke:"#fff","stroke-width":"3.5"}); lbl.textContent="A"+e.q;
+        g.appendChild(lbl);
+        g.addEventListener("click",function(){ selectEdge(e); });
+        svg.appendChild(g);
+      });
+    });
+    // nodes
+    ORDER.forEach(function(id){
+      var c=CASES[id],p=POS[id];
+      var g=el("g",{class:"gnode",tabindex:"0",role:"button","aria-label":c.name+". Answers "+c.answers.map(function(a){return "Q"+a.q;}).join(", ")+". Activate to open."});
+      g.appendChild(el("circle",{cx:p.x,cy:p.y,r:R,fill:c.foundational?"var(--flame-tint)":"#fff",stroke:c.foundational?"var(--flame)":"var(--ink)","stroke-width":c.foundational?3:2}));
+      var nm=el("text",{x:p.x,y:p.y+4,"text-anchor":"middle","font-size":"14","font-weight":"700",fill:"var(--ink)","font-family":"Archivo, sans-serif"}); nm.textContent=c.short; g.appendChild(nm);
+      // answer chips above node
+      var aw=c.answers.length, startx=p.x-(aw*16)/2+8;
+      c.answers.forEach(function(a,i){ g.appendChild(el("rect",{x:startx+i*16-6,y:p.y-R-14,width:12,height:8,rx:2,fill:qcolor(a.q)})); });
+      function open(){ loadCase(id,true); document.getElementById("reader").scrollIntoView({behavior:"smooth",block:"center"}); }
+      g.addEventListener("click",open);
+      g.addEventListener("keydown",function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); open(); }});
+      svg.appendChild(g);
+    });
+  }
+  buildGraph();
+
+  /* ---- list view ---- */
+  var listview=document.getElementById("listview");
+  listview.innerHTML='<table class="elist"><caption>Every citation in the web, as text. A1 is the answer to Q1, and so on.</caption>'+
+    '<thead><tr><th>Citing case</th><th>Cites</th><th>For</th><th>The answer it supplies</th></tr></thead><tbody>'+
+    EDGES.map(function(e){
+      return '<tr><td class="ec">'+CASES[e.from].short+'</td><td>'+CASES[e.to].short+'</td><td class="ea" style="color:var(--q'+e.q+')">A'+e.q+' (Q'+e.q+')</td><td>'+ansText(e.to,e.q)+'</td></tr>';
+    }).join("")+'</tbody></table>';
+
+  var vg=document.getElementById("v-graph"), vl=document.getElementById("v-list");
+  function setView(graph){
+    vg.setAttribute("aria-pressed",graph?"true":"false"); vl.setAttribute("aria-pressed",graph?"false":"true");
+    document.getElementById("graphview").hidden=!graph; listview.hidden=graph;
+  }
+  vg.addEventListener("click",function(){ setView(true); });
+  vl.addEventListener("click",function(){ setView(false); });
+
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"),{
+      module:"Cases as a Web of Answers",
+      chapter:"Chapter 5 — Case Law Research",
+      intro:"You traced how cases answer multiple questions and cite each other for specific answers.",
+      prompts:[
+        "Marsh answers two questions. In your own words, why does one opinion so often answer more than one?",
+        "When you followed a citation, you chose the thread for one question and ignored the others. How did your current question decide which line to follow?"
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>
