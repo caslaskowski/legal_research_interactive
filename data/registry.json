@@ -214,29 +214,18 @@
       "title": "Statutes Research",
       "desc": "Finding, reading, and updating statutes — and using annotated codes to jump from the text to the cases that interpret it.",
       "modules": [
-        {
-          "status": "plan",
-          "slug": "navigate-an-annotated-code",
-          "title": "Navigate an Annotated Code",
-          "desc": "Move from statutory text to its definitions, cross-references, and notes of decisions — reading a section in context, never in isolation.",
-          "will": [
-            "Navigate an annotated code",
-            "Read a statute alongside its definitions and neighboring sections",
-            "Use annotations to find interpreting cases",
-            "Confirm the version in force when the events occurred"
-          ]
-        },
-        {
-          "status": "plan",
-          "slug": "spot-the-ambiguity",
-          "title": "Spot the Ambiguity",
-          "desc": "Read a provision and flag the undefined terms and vague standards that become your next research questions — the NextGen “ambiguity spotting” skill.",
-          "will": [
-            "Find undefined terms and vague standards",
-            "Apply the canons of construction",
-            "Turn each ambiguity into a distinct next question"
-          ]
-        }
+        { "status":"live", "type":"orientation", "slug":"reading-statutes",
+  "href":"modules/reading-statutes/index.html",
+  "title":"How to Read a Statute",
+  "desc":"Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision." },
+{ "status":"live", "type":"orientation", "slug":"finding-statutes",
+  "href":"modules/finding-statutes/index.html",
+  "title":"How to Find a Statute",
+  "desc":"Three finding aids — Popular Name Table, subject Index, and conversion table — each matched to what you already know about a law." },
+{ "status":"live", "type":"practice", "slug":"statute-practice",
+  "href":"modules/statute-practice/index.html",
+  "title":"Statutes Practice",
+  "desc":"Find an answer in a section's table of contents, read what a statute's status means for your research, and match a finding aid to what you know." }
       ]
     },
     {

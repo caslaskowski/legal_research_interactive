@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Read a Statute — Statutes Research</title>
+<meta name="description" content="Read a real statute the way a researcher does: name its parts, open its table of contents, check the definitions, and let an ambiguity send you to the Notes of Decision.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#86857d;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--radius:4px;
+--q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
+--slate:#4a5568;--slate-tint:#e7eaef;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);max-width:64ch;}
+.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:74ch;}
+.howto b{color:var(--flame-deep);}
+
+.casegrid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
+@media (max-width:860px){.casegrid{grid-template-columns:1fr;}}
+
+.viewer{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;box-shadow:var(--shadow);overflow:hidden;}
+.crumbs{background:var(--panel);border-bottom:1px solid var(--rule);padding:8px 16px;font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.crumbs .sep{opacity:.5;}
+.vbody{padding:16px 18px 18px;}
+.vkick{font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--flame);margin:0 0 3px;}
+.vtitle{font-family:var(--display);font-weight:700;font-size:1.16rem;margin:0 0 4px;line-height:1.25;}
+.vcite{font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);margin:0 0 12px;}
+
+.stat{font-family:var(--serif);font-size:1.1rem;line-height:1.75;color:var(--ink);background:var(--panel);border-radius:8px;padding:14px 16px;margin:0 0 14px;}
+.cmp{font:inherit;background:transparent;border:0;border-bottom:2px dotted var(--slate);color:var(--ink);cursor:pointer;padding:0 1px;}
+.cmp:hover{background:var(--slate-tint);}
+.cmp:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.cmp.term{border-bottom:2px solid var(--q1);background:var(--q1-tint);font-weight:600;}
+.cmp.term:hover{background:#cfe2f1;}
+.cmprow{display:flex;flex-direction:column;gap:8px;margin:0 0 14px;}
+.cmpitem{display:flex;gap:10px;align-items:center;width:100%;text-align:left;font:inherit;font-size:.92rem;background:#fff;border:1.5px solid var(--rule-strong);border-radius:8px;padding:10px 12px;cursor:pointer;color:var(--ink);}
+.cmpitem:hover{border-color:var(--slate);background:var(--panel);}
+.cmpitem:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.cmpitem .lab{font-family:var(--sans);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);background:var(--slate-tint);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+
+.toclist{list-style:none;margin:0;padding:0;border:1px solid var(--rule);border-radius:8px;overflow:hidden;}
+.toclist li{border-bottom:1px solid var(--rule);}
+.toclist li:last-child{border-bottom:0;}
+.tocrow{display:flex;gap:12px;align-items:baseline;width:100%;text-align:left;font:inherit;background:#fff;border:0;padding:11px 14px;cursor:pointer;color:var(--ink);}
+.tocrow:hover{background:var(--panel);}
+.tocrow:focus-visible{outline:3px solid var(--flame);outline-offset:-3px;}
+.tocrow .sec{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--flame);white-space:nowrap;min-width:74px;}
+.tocrow .ti{flex:1;}
+.tocrow .role{font-family:var(--sans);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);border:1px solid var(--rule-strong);border-radius:999px;padding:2px 8px;white-space:nowrap;}
+.tocrow[data-go]{}
+.tocrow:not([data-go]){cursor:default;}
+.tocrow:not([data-go]):hover{background:#fff;}
+
+.deflist{font-family:var(--serif);font-size:1rem;line-height:1.65;color:var(--ink);}
+.deflist .cat{margin:0 0 6px;}
+.deflist .cat b{font-family:var(--sans);color:var(--flame-deep);}
+
+.nav-actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding-top:13px;border-top:1px dashed var(--rule-strong);}
+.goact{font:inherit;font-size:.86rem;font-weight:600;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:8px 13px;cursor:pointer;}
+.goact.ghost{background:#fff;color:var(--ink);}
+.goact:hover{background:var(--flame);border-color:var(--flame);color:#fff;}
+.goact:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+
+.nextq{margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;background:var(--q1-tint);border-left:4px solid var(--q1);font-size:.95rem;color:var(--ink);}
+.nextq .qt{font-family:var(--sans);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--q1);display:block;margin-bottom:3px;}
+.nextq b{color:var(--ink);}
+
+.deadcall{margin:0;padding:12px 14px;border-radius:8px;background:#f0efea;border:1px dashed var(--rule-strong);color:var(--ink-soft);font-size:.95rem;}
+.deadcall .h{font-family:var(--sans);font-weight:700;color:var(--ink);margin-bottom:3px;}
+.excerpt p{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin:0 0 9px;color:var(--ink);}
+.excerpt .pp{font-family:var(--mono);font-size:.72rem;color:var(--flame);font-weight:600;margin-right:6px;}
+
+.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
+.info h2{font-size:1.08rem;margin:0 0 10px;}
+.info p{font-size:.93rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
+.info .tie{font-size:.86rem;color:var(--ink);background:var(--q1-tint);border-left:3px solid var(--q1);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+#export-slot{margin-top:30px;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=1"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=2"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=3"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../modules/question_chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=4"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=5"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=6"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/reading-statutes/index.html" aria-current="page">How to Read a Statute</a></li>
+                  <li><a href="../../modules/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../modules/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=7"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=8"><span class="cn">8</span> Researching Across Sources</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=9"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=10"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=11"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=12"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=13"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=14"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=15"><span class="cn">15</span> AI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=16"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part III &middot; Specialized Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=17"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../chapter.html?ch=18"><span class="cn">18</span> Basic FCIL Research</a>
+              </li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 6 · Educational</p>
+    <h1>How to Read a Statute</h1>
+    <p class="lede">A statute states the rule without explaining it &mdash; every word carries weight, and the answer to your question is rarely on the page you landed on. So you name the parts, open the table of contents, check the definitions, and let what&rsquo;s <em>undefined or ambiguous</em> point you to the next source.</p>
+
+    <div class="howto"><b>How to move:</b> on the statute, click any underlined part to learn what it is and how to read it &mdash; the panel on the right explains it. The dark buttons <b>navigate</b> the source: open the table of contents, the definitions, or the Notes of Decision, just as you would in an annotated code.</div>
+
+    <div class="casegrid">
+      <section class="viewer" aria-label="Statute source viewer">
+        <nav class="crumbs" id="crumbs" aria-label="You are here"></nav>
+        <div class="vbody" id="vbody" aria-live="polite"></div>
+      </section>
+
+      <aside class="info" id="info" aria-live="polite" tabindex="-1">
+        <p class="ik">Reading guide</p>
+        <h2>Name the parts</h2>
+        <p>Click any underlined part of the statute and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
+      </aside>
+    </div>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  // Statute text below is the public-domain text of the Americans with Disabilities Act
+  // (42 U.S.C. 12182(a), 12181(7)). Notes of Decision are paraphrased in original prose; citations are real.
+  var COMPONENTS={
+    heading:{ik:"Part of the statute",h:"Section number & heading",
+      p:["The number (42 U.S.C. \u00a7 12182) tells you exactly where the rule lives in the Code; the heading describes its subject.",
+         "Headings are often added by the codifier, not the legislature, so courts treat them as a non-binding description \u2014 a navigation aid, not operative law."]},
+    operative:{ik:"Part of the statute",h:"Operative text",
+      p:["This is the binding rule \u2014 the substantive command that creates rights or imposes obligations. Every word here matters.",
+         "Read it slowly and notice the load-bearing words: <em>who</em> is bound, <em>what</em> conduct is barred, and against <em>what protected ground</em>. Each of those can become its own question."]},
+    term:{ik:"The load-bearing term",h:"\u201cplace of public accommodation\u201d",
+      p:["This is the phrase the whole rule turns on \u2014 the ban only reaches a <em>place of public accommodation</em>. So your first move is to ask whether it\u2019s defined.",
+         "It <em>is</em> defined, in \u00a7 12181(7). Open the definitions and read it before you assume what it covers."],
+      tie:"Your next question is forming: does this term reach your client\u2019s situation? Open the definitions to find out.",
+      go:{label:"Open the definitions \u2192",to:"definitions"}},
+    definitionsref:{ik:"How to engage",h:"Check the definitions",
+      p:["A statutory definition overrides ordinary meaning, so a defined term never means just what you\u2019d guess. Always check whether a word you\u2019re reading is defined elsewhere in the act.",
+         "Here, \u201cpublic accommodation\u201d is defined in a separate section (\u00a7 12181(7)). Reading the operative text without it would be reading half the rule."],
+      go:{label:"Open the definitions \u2192",to:"definitions"}},
+    structure:{ik:"How to engage",h:"Where this provision sits",
+      p:["Subsection (a) is the <em>general rule</em>. The same section continues with specific prohibitions in (b); nearby sections add new-construction duties, exemptions, and enforcement.",
+         "Knowing where a provision sits in the structure tells you how it interacts with the rest \u2014 and the table of contents is how you see that structure at a glance."],
+      go:{label:"Open the table of contents \u2192",to:"toc"}}
+  };
+
+  var NODES={
+    statute:{
+      crumbs:["U.S. Code","Title 42","\u00a7 12182"],
+      kick:"United States Code \u00b7 verbatim text",
+      title:"\u00a7 12182. Prohibition of discrimination by public accommodations",
+      cite:"42 U.S.C. \u00a7 12182(a) (public-domain statutory text). Subsection (b) and neighbors summarized in the table of contents.",
+      hint:{ik:"Reading guide",h:"Name the parts",p:"Click any underlined part of the statute and its explanation appears here \u2014 what the part is, and how a researcher reads it."},
+      render:function(){
+        return '<button class="cmpitem" data-comp="heading"><span class="lab">Heading</span> \u00a7 12182. Prohibition of discrimination by public accommodations &mdash; (a)&nbsp;General rule</button>'+
+        '<p class="stat"><button class="cmp" data-comp="operative">No individual shall be discriminated against on the basis of disability in the full and equal enjoyment of the goods, services, facilities, privileges, advantages, or accommodations of any</button> <button class="cmp term" data-comp="term">place of public accommodation</button> by any person who owns, leases (or leases to), or operates a place of public accommodation.</p>'+
+        '<div class="cmprow">'+
+          '<button class="cmpitem" data-comp="definitionsref"><span class="lab">Definitions</span> \u201cpublic accommodation\u201d is defined in \u00a7 12181(7) &mdash; check it</button>'+
+          '<button class="cmpitem" data-comp="structure"><span class="lab">Structure</span> this is the general rule; specific prohibitions, exemptions, and enforcement sit nearby</button>'+
+        '</div>'+
+        '<div class="nav-actions">'+
+          '<button class="goact" data-go="toc">Open the Title III table of contents</button>'+
+          '<button class="goact ghost" data-go="notes">Open the Notes of Decision</button>'+
+        '</div>';
+      }
+    },
+    toc:{
+      crumbs:["U.S. Code","Title 42","Subchapter III","Contents"],
+      kick:"Table of contents \u00b7 Public Accommodations (Title III)",
+      title:"Subchapter III \u2014 Public Accommodations Operated by Private Entities",
+      cite:"42 U.S.C. \u00a7\u00a7 12181\u201312189. The role label on each entry tells you what kind of answer lives there.",
+      hint:{ik:"Reading guide",h:"Navigate by structure",p:"A table of contents is a map of where each kind of answer lives. Your question about what a term means belongs in <strong>Definitions</strong>; a question about who is excused belongs in <strong>Exemptions</strong>. Open the part that matches the question you\u2019re holding."},
+      render:function(){
+        var rows=[
+          ["\u00a7 12181","Definitions","Definitions","definitions"],
+          ["\u00a7 12182(a)","General rule \u2014 the prohibition you just read","General rule","statute"],
+          ["\u00a7 12182(b)","Specific prohibitions (denial, unequal benefit, segregation)","Specific obligations",null],
+          ["\u00a7 12183","New construction and alterations","Specific obligations",null],
+          ["\u00a7 12184","Specified public transportation by private entities","Scope",null],
+          ["\u00a7 12186","Regulations","Implementation",null],
+          ["\u00a7 12187","Exemptions for private clubs and religious organizations","Exceptions",null],
+          ["\u00a7 12188","Enforcement","Enforcement / penalties",null],
+          ["\u00a7 12189","Examinations and courses","Specific obligations",null]
+        ];
+        return '<ul class="toclist">'+rows.map(function(r){
+          var go=r[3]?' data-go="'+r[3]+'"':'';
+          return '<li><button class="tocrow"'+go+'><span class="sec">'+r[0]+'</span><span class="ti">'+r[1]+(r[3]?' <span style="color:var(--flame);font-weight:600">\u2192</span>':'')+'</span><span class="role">'+r[2]+'</span></button></li>';
+        }).join("")+'</ul>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="statute">\u2190 Back to \u00a7 12182</button></div>';
+      }
+    },
+    definitions:{
+      crumbs:["U.S. Code","Title 42","\u00a7 12181","Definitions"],
+      kick:"Definitions \u00b7 verbatim categories (condensed)",
+      title:"\u00a7 12181(7). \u201cPublic accommodation\u201d",
+      cite:"42 U.S.C. \u00a7 12181(7). The twelve categories are statutory; examples within each are condensed.",
+      hint:{ik:"Reading guide",h:"Read the definition closely",p:"A defined term controls over ordinary meaning. Notice the <em>shape</em> of this definition: it is a list of physical places. That shape is exactly what makes the next question hard."},
+      render:function(){
+        var cats=[
+          ["A","Inns, hotels, and other places of lodging"],
+          ["B","Restaurants, bars, and other establishments serving food or drink"],
+          ["C","Theaters, concert halls, stadiums, and other places of exhibition or entertainment"],
+          ["D","Auditoriums, convention centers, lecture halls"],
+          ["E","Bakeries, grocery stores, clothing stores, shopping centers, and other sales or rental establishments"],
+          ["F","Laundromats, banks, barber shops, travel and funeral services, gas stations, professional offices of lawyers, accountants, and health-care providers, hospitals"],
+          ["G","Terminals, depots, and stations for public transportation"],
+          ["H","Museums, libraries, galleries"],
+          ["I","Parks, zoos, amusement parks"],
+          ["J","Nurseries, schools, and other places of education"],
+          ["K","Day-care centers, senior centers, homeless shelters, food banks, and social service establishments"],
+          ["L","Gymnasiums, health spas, bowling alleys, golf courses, and other places of exercise or recreation"]
+        ];
+        return '<p style="font-family:var(--serif);font-size:1.04rem;color:var(--ink);margin:0 0 10px;">The term means a facility operated by a private entity whose operations affect commerce and that falls within one of these categories:</p>'+
+        '<div class="deflist">'+cats.map(function(c){return '<p class="cat"><b>('+c[0]+')</b> '+c[1]+'.</p>';}).join("")+'</div>'+
+        '<p style="font-size:.92rem;color:var(--ink-soft);margin:14px 0 0;">Every category is a <em>physical place</em>. Faced with that, a court deciding whether something unlisted fits may invoke an interpretive canon &mdash; <em>ejusdem generis</em>, the idea that a catch-all reaches only things like those listed &mdash; which is part of why the courts have split on the question below.</p>'+
+        '<div class="nextq"><span class="qt">Your next question</span><b>Is a website &mdash; which has no physical location &mdash; a &ldquo;place of public accommodation&rdquo;?</b> The statute won\u2019t tell you. The cases will.</div>'+
+        '<div class="nav-actions"><button class="goact" data-go="notes">Open the Notes of Decision \u2192</button><button class="goact ghost" data-go="statute">\u2190 Back to \u00a7 12182</button></div>';
+      }
+    },
+    notes:{
+      crumbs:["Annotated Code","\u00a7 12182","Notes of Decision"],
+      kick:"Notes of Decision \u00b7 holdings paraphrased, citations real",
+      title:"Notes of Decision \u2014 \u00a7 12182",
+      cite:"Organized by topic. Not every topic answers the question you\u2019re holding.",
+      hint:{ik:"Reading guide",h:"Triage the topics",p:"Annotations are organized by topic, and each note is a question a court has already answered. Pick the topic that matches <em>your</em> question &mdash; whether a website is a public accommodation &mdash; and leave the rest as later questions. Some topics here are off point."},
+      render:function(){
+        var rows=[
+          ["Physical-place requirement","Whether a public accommodation must be an actual, physical place","case_weyer","live"],
+          ["Non-physical entities","Whether the term reaches entities with no physical structure","case_carparts","live"],
+          ["Websites \u2014 nexus to a physical store","Whether a website tied to physical locations is covered","case_robles","live"],
+          ["Reasonable modifications","What changes in policy a covered entity must make","dead_mods","dead"],
+          ["Standing and injury","Who may sue and what injury is required","dead_standing","dead"]
+        ];
+        return '<ul class="toclist">'+rows.map(function(r){
+          return '<li><button class="tocrow" data-go="'+r[2]+'"><span class="sec" style="min-width:18px">'+(r[3]==="dead"?"\u2014":"\u00b6")+'</span><span class="ti">'+r[0]+' <span style="color:var(--flame);font-weight:600">\u2192</span><br><span style="font-size:.82rem;color:var(--ink-faint)">'+r[1]+'</span></span></button></li>';
+        }).join("")+'</ul>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="definitions">\u2190 Back to the definition</button></div>';
+      }
+    },
+    case_weyer:{
+      crumbs:["Notes of Decision","Physical-place requirement","Weyer"],
+      kick:"Primary authority \u00b7 9th Cir.",
+      title:"Weyer v. Twentieth Century Fox Film Corp.",
+      cite:"198 F.3d 1104 (9th Cir. 2000). Holding paraphrased.",
+      hint:{ik:"A potential answer",h:"One side of the split",p:"This reading ties the statute to its list: a public accommodation is an actual, physical place you can enter. Note it, then check whether other circuits agree."},
+      render:function(){
+        return '<div class="excerpt"><p>Reading the list of categories in \u00a7 12181(7), the court treated a &ldquo;place of public accommodation&rdquo; as an <em>actual, physical place</em> that customers enter &mdash; the examples are all such places, and the court declined to extend the term to a benefit that had no connection to one.</p>'+
+        '<p>Under this view, a website that is not connected to a physical location would fall outside the statute.</p></div>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="notes">\u2190 Back to Notes of Decision</button></div>';
+      }
+    },
+    case_carparts:{
+      crumbs:["Notes of Decision","Non-physical entities","Carparts"],
+      kick:"Primary authority \u00b7 1st Cir.",
+      title:"Carparts Distrib. Ctr. v. Automotive Wholesaler\u2019s Ass\u2019n",
+      cite:"37 F.3d 12 (1st Cir. 1994). Holding paraphrased.",
+      hint:{ik:"A potential answer",h:"The other side of the split",p:"This reading looks past the physical examples to the statute\u2019s purpose, and concludes the term is not limited to physical structures. This is the conflict that makes your question live."},
+      render:function(){
+        return '<div class="excerpt"><p>The court concluded that &ldquo;public accommodation&rdquo; is <em>not limited to physical structures</em>. It reasoned that some listed examples (such as travel and insurance services) are often provided without a customer ever entering a building, so reading the term to require a physical place would leave gaps the statute did not intend.</p>'+
+        '<p>Under this view, an entity with no physical location can still be a public accommodation.</p></div>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="notes">\u2190 Back to Notes of Decision</button></div>';
+      }
+    },
+    case_robles:{
+      crumbs:["Notes of Decision","Websites \u2014 nexus","Robles"],
+      kick:"Primary authority \u00b7 9th Cir.",
+      title:"Robles v. Domino\u2019s Pizza, LLC",
+      cite:"913 F.3d 898 (9th Cir. 2019), cert. denied. Holding paraphrased.",
+      hint:{ik:"A potential answer",h:"A middle path \u2014 and a new question",p:"This is the &ldquo;nexus&rdquo; approach: a website is covered when it connects customers to a physical place of public accommodation. Notice it answers your question only for sites tied to a physical store \u2014 which raises the next question for online-only businesses."},
+      render:function(){
+        return '<div class="excerpt"><p>The court held that the ADA applies to the <em>website and app</em> of a business because they connect customers to the goods and services of its <em>physical</em> restaurants &mdash; the &ldquo;nexus&rdquo; between the site and the physical place brought the site within the statute.</p>'+
+        '<p>This leaves open how the statute applies to a business that exists <em>only</em> online, with no physical place at all &mdash; your next question, if that is your client.</p></div>'+
+        '<div class="nextq"><span class="qt">A note on weight</span>These three cases are from different circuits and point different ways. Which one <b>binds</b> you depends on your jurisdiction &mdash; the case-law skills from Chapter 5 apply here.</div>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="notes">\u2190 Back to Notes of Decision</button></div>';
+      }
+    },
+    dead_mods:{
+      crumbs:["Notes of Decision","Reasonable modifications"],
+      kick:"Off point",title:"Reasonable modifications",cite:"",
+      hint:{ik:"Triage",h:"Not your question",p:"These notes are about what a <em>covered</em> entity must do once it is covered \u2014 useful later, but they assume the coverage question you are still answering."},
+      render:function(){
+        return '<div class="deadcall"><div class="h">Nothing here for the coverage question</div>The cases under this topic address what changes in policy a public accommodation must make. They presuppose that the entity <em>is</em> a public accommodation &mdash; the very point you are still researching.</div>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="notes">\u2190 Back to Notes of Decision</button></div>';
+      }
+    },
+    dead_standing:{
+      crumbs:["Notes of Decision","Standing and injury"],
+      kick:"Off point",title:"Standing and injury",cite:"",
+      hint:{ik:"Triage",h:"Not your question",p:"Standing is about <em>who</em> may bring the suit and what injury they must show \u2014 a different question from whether the defendant is covered at all."},
+      render:function(){
+        return '<div class="deadcall"><div class="h">Nothing here for the coverage question</div>These notes concern who may sue and what injury is required. They don\u2019t bear on whether a website is a place of public accommodation.</div>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="notes">\u2190 Back to Notes of Decision</button></div>';
+      }
+    }
+  };
+
+  var vbody=document.getElementById("vbody"), crumbs=document.getElementById("crumbs"), info=document.getElementById("info"), curNode=null;
+
+  function setInfo(o){
+    var html='<p class="ik">'+o.ik+'</p><h2>'+o.h+'</h2>';
+    if(o.p){ (Array.isArray(o.p)?o.p:[o.p]).forEach(function(par){ html+='<p>'+par+'</p>'; }); }
+    if(o.tie) html+='<p class="tie">'+o.tie+'</p>';
+    if(o.go) html+='<p><button class="goact" data-go="'+o.go.to+'" style="margin-top:2px">'+o.go.label+'</button></p>';
+    info.innerHTML=html;
+    bindGo(info);
+  }
+  function showComp(key){
+    var c=COMPONENTS[key]; if(!c) return;
+    setInfo(c); info.focus();
+    if(window.ExportReflect) ExportReflect.log("Inspected a statute part", c.h);
+  }
+  function bindGo(scope){
+    scope.querySelectorAll("[data-go]").forEach(function(b){
+      if(b.__bound) return; b.__bound=true;
+      b.addEventListener("click",function(){ loadNode(b.dataset.go,true); });
+    });
+  }
+  function loadNode(id,fromUser){
+    var n=NODES[id]; if(!n) return; curNode=id;
+    crumbs.innerHTML=n.crumbs.map(function(c,i){return (i?'<span class="sep">\u203a</span>':'')+'<span>'+c+'</span>';}).join(" ");
+    vbody.innerHTML='<p class="vkick">'+n.kick+'</p><h2 class="vtitle">'+n.title+'</h2>'+(n.cite?'<p class="vcite">'+n.cite+'</p>':'')+n.render();
+    vbody.querySelectorAll("[data-comp]").forEach(function(b){ b.addEventListener("click",function(){ showComp(b.dataset.comp); }); });
+    bindGo(vbody);
+    setInfo(n.hint);
+    if(fromUser){
+      document.querySelector(".viewer").scrollIntoView({behavior:"smooth",block:"nearest"});
+      if(window.ExportReflect) ExportReflect.log("Navigated the source", n.title);
+    }
+  }
+  loadNode("statute",false);
+
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"),{
+      module:"How to Read a Statute",
+      chapter:"Chapter 6 — Statutes Research",
+      intro:"You read a statute by its parts, navigated its structure, and let an ambiguity send you to the cases.",
+      prompts:[
+        "The operative rule turned on one defined term. Why is checking the definitions section never optional?",
+        "The definition existed but didn\u2019t settle the website question. What made it ambiguous, and how did that become your next research question?",
+        "The Notes of Decision pointed three different ways. What decides which one you can actually rely on?"
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>
