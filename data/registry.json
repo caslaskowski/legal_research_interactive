@@ -259,17 +259,20 @@
       "title": "Researching Across Sources",
       "desc": "Assembling an answer that spans statutes, regulations, and cases at both the federal and state levels — the statute-regulation-case-law triangle.",
       "modules": [
-        {
-          "status": "plan",
-          "slug": "map-the-triangle",
-          "title": "Map the Triangle",
-          "desc": "Take an issue — like ADA website accessibility — and map it across every layer of authority, reconciling what each source tells you.",
-          "will": [
-            "Map an issue across statute, regulation, and case law",
-            "Move fluidly between source types",
-            "Reconcile and sequence what each source says",
-            "Spot and resolve conflicts between sources"
-          ]
+        { "status":"live", "type":"orientation", "slug":"tracing-sources",
+          "href":"modules/tracing-sources/index.html",
+          "title":"Tracing the Law Across Sources",
+          "desc":"Three real chains — Rowan, Schechter Poultry, and Arizona's Voter Protection Act — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution."
+        },
+        { "status":"live", "type":"orientation", "slug":"research-hypothesis",
+          "href":"modules/research-hypothesis/index.html",
+          "title":"Following a Research Hypothesis",
+          "desc":"Form a hypothesis on a veterans-benefits problem and test it across sources — from a secondary source to the statute, 38 C.F.R. § 3.326, and the case that supplies the argument."
+        },
+        { "status":"live", "type":"practice", "slug":"across-sources-practice",
+          "href":"modules/across-sources-practice/index.html",
+          "title":"Across Sources Practice",
+          "desc":"Two problems — FMLA and Arizona workers' comp — each solved by pulling a statute, a regulation, and a case, with reveal-for-answer authority."
         }
       ]
     },
@@ -280,17 +283,15 @@
       "title": "Narrowing and Closing Out Your Research",
       "desc": "The precision toolkit — proximity and frequency operators — and how to recognize analytical and practical closure so you know when to stop.",
       "modules": [
-        {
-          "status": "plan",
-          "slug": "tighten-then-stop",
-          "title": "Tighten the Search, Then Stop",
-          "desc": "Sharpen a query with proximity and frequency connectors, then decide whether you have reached closure.",
-          "will": [
-            "Proximity connectors (/n, /s, /p) and frequency (ATLEAST)",
-            "Tighten a search as the question narrows",
-            "Tell “no results” from “no law”",
-            "Recognize analytical vs. practical closure"
-          ]
+        { "status":"live", "type":"orientation", "slug":"precision-search",
+          "href":"modules/precision-search/index.html",
+          "title":"Building a Precision Search",
+          "desc":"Turn a research question into a precise Boolean search, watching each connector — OR, quotes, proximity, ATLEAST, a jurisdiction filter — reshape an illustrative result funnel."
+        },
+        { "status":"live", "type":"orientation", "slug":"closing-out",
+          "href":"modules/closing-out/index.html",
+          "title":"Knowing When to Stop",
+          "desc":"Run the closing-out protocol, tell 'no results' from 'no law,' diagnose a stuck search, and draft an exportable research-closure note."
         }
       ]
     },
