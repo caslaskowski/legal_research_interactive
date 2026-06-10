@@ -13,9 +13,6 @@
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
 --shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <style>
 .lede{font-size:1.12rem;color:var(--ink-soft);max-width:64ch;}
@@ -78,8 +75,8 @@
           <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
           <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
             <div class="modmenu-cols">
-            <section class="modmenu-part">
-              <h2>Part I &middot; Foundational Legal Research</h2>
+            <section class="modmenu-part" aria-label="Part I — Foundational Legal Research">
+              <p class="modmenu-ph" aria-hidden="true">Part I &middot; Foundational Legal Research</p>
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../chapter.html?ch=1"><span class="cn">1</span> Foundations of Legal Authority</a>
@@ -102,7 +99,7 @@
                 <ul class="modmenu-mods">
                   <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
                   <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
-                  <li><a href="../../modules/question_chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../modules/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
                 </ul>
               </li>
               <li class="modmenu-chap">
@@ -138,14 +135,23 @@
               </li>
               <li class="modmenu-chap">
                 <a href="../../chapter.html?ch=8"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../modules/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../modules/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../chapter.html?ch=9"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
+                </ul>
               </li>
               </ul>
             </section>
-            <section class="modmenu-part">
-              <h2>Part II &middot; Advanced Legal Research</h2>
+            <section class="modmenu-part" aria-label="Part II — Advanced Legal Research">
+              <p class="modmenu-ph" aria-hidden="true">Part II &middot; Advanced Legal Research</p>
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../chapter.html?ch=10"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
@@ -170,8 +176,8 @@
               </li>
               </ul>
             </section>
-            <section class="modmenu-part">
-              <h2>Part III &middot; Specialized Legal Research</h2>
+            <section class="modmenu-part" aria-label="Part III — Specialized Legal Research">
+              <p class="modmenu-ph" aria-hidden="true">Part III &middot; Specialized Legal Research</p>
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../chapter.html?ch=17"><span class="cn">17</span> Research for Legal Scholarship</a>
@@ -244,6 +250,9 @@
 <footer class="foot">
   <div class="wrap">
     <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span class="foot-privacy">Your work is saved only in this browser &mdash; nothing is sent anywhere.
+      <button type="button" class="foot-clear" onclick="try{localStorage.clear();this.textContent='Saved progress cleared';this.disabled=true;}catch(e){}">Clear saved progress on this device</button>
+    </span>
     <span>Constantly in beta · built by Cas Laskowski</span>
   </div>
 </footer>

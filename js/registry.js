@@ -150,8 +150,8 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "practice",
-          "slug": "question_chain",
-          "href": "modules/question_chain/index.html",
+          "slug": "question-chain",
+          "href": "modules/question-chain/index.html",
           "note": "Draft",
           "title": "Working the Chain — Forward & Reverse",
           "desc": "Build a chain of research questions forward from a fact pattern, then reverse-engineer the questions behind a finished analysis."

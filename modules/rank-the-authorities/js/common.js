@@ -131,13 +131,18 @@
 
     document.addEventListener("click", function (e) { if (!e.target.closest(".menu")) closeAll(); });
 
-    return el("header", { class: "masthead" }, [
+    return el("header", { class: "masthead" + (hasShell() ? " module-subnav" : ""), "aria-label": "Module" }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "masthead-inner" }, [
-          el("a", { class: "brand", href: "../../index.html" }, [
-            el("span", { class: "mark" }, ["The Question Method of Legal Research"]),
-            el("span", { class: "sub" }, ["Interactive Legal Research Modules"])
-          ]),
+          hasShell()
+            ? el("a", { class: "brand", href: "index.html" }, [
+                el("span", { class: "mark" }, [(window.HOME && window.HOME.title) || "Hierarchy of Authorities"]),
+                el("span", { class: "sub" }, ["Module navigation"])
+              ])
+            : el("a", { class: "brand", href: "../../index.html" }, [
+                el("span", { class: "mark" }, ["The Question Method of Legal Research"]),
+                el("span", { class: "sub" }, ["Interactive Legal Research Modules"])
+              ]),
           toggle,
           navArea
         ])
@@ -152,14 +157,23 @@
     ]);
   }
 
+  /* True when the static shared shell (masthead/footer baked by
+     build_site.py) is already on the page; then this module renders its
+     header as a secondary nav and skips its own skip link and footer. */
+  function hasShell() {
+    return !!document.querySelector("header.masthead:not(.module-subnav)");
+  }
+
   function mountChrome(activeId) {
     document.body.classList.add("shell");
     var main = document.querySelector("main");
     if (main && !main.id) main.id = "main";
-    var skip = el("a", { class: "skip", href: "#main" }, ["Skip to content"]);
-    document.body.insertBefore(skip, document.body.firstChild);
+    if (!hasShell()) {
+      var skip = el("a", { class: "skip", href: "#main" }, ["Skip to content"]);
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
     document.body.insertBefore(buildHeader(activeId), main);
-    document.body.appendChild(buildFooter());
+    if (!hasShell()) document.body.appendChild(buildFooter());
   }
 
   /* ---- companion notes -> downloadable .txt (generated locally) ---- */

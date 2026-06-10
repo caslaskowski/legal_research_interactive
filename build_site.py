@@ -83,10 +83,11 @@ def build_menu(base, current_rel):
                 '              </li>'
                 % (base, c["ch"], c["ch"], esc(c["title"]), mods_html))
         cols.append(
-            '            <section class="modmenu-part">\n'
-            '              <h2>Part %s &middot; %s</h2>\n'
+            '            <section class="modmenu-part" aria-label="Part %s — %s">\n'
+            '              <p class="modmenu-ph" aria-hidden="true">Part %s &middot; %s</p>\n'
             '              <ul class="modmenu-chaps">\n'
-            % (esc(part["id"]), esc(part.get("name", "")))
+            % (esc(part["id"]), esc(part.get("name", "")),
+               esc(part["id"]), esc(part.get("name", "")))
             + "\n".join(rows)
             + '\n              </ul>\n'
             '            </section>')

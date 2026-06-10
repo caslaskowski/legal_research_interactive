@@ -639,3 +639,11 @@ main{ flex: 1 0 auto; padding: 40px 0 72px; }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
+
+/* ---- shared-shell integration ------------------------------------------
+   When the static site shell (baked by build_site.py) is on the page, the
+   module's own header renders with .module-subnav and acts as a secondary,
+   in-module navigation bar under the site masthead. */
+.masthead.module-subnav{ border-top: 1px solid var(--rule); box-shadow: none; }
+.masthead.module-subnav .brand .mark{ font-size: .98rem; }
+.masthead.module-subnav .brand .sub{ font-size: .56rem; }
