@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Find a Statute — Ch. 6 · Statutes Research</title>
+<meta name="description" content="Three finding aids — the Popular Name Table, the subject Index, and the conversion table — each matched to what you already know about a law.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--radius:4px;
+--q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
+--slate:#4a5568;--slate-tint:#e7eaef;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);}
+.howto{margin:18px 0 24px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
+.howto b{color:var(--flame-deep);}
+
+.tool{border:1px solid var(--rule-strong);border-radius:11px;background:#fff;box-shadow:var(--shadow);margin:0 0 18px;overflow:hidden;}
+.tool-head{padding:14px 18px 12px;border-bottom:1px solid var(--rule);background:var(--panel);}
+.tool-head .num{font-family:var(--mono);font-size:.7rem;color:var(--flame);font-weight:600;}
+.tool-head h2{font-size:1.18rem;margin:2px 0 6px;}
+.usewhen{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--ink);background:var(--q2-tint);border:1px solid var(--q2);border-radius:999px;padding:3px 11px;}
+.usewhen b{color:#13674c;}
+.tool-body{padding:15px 18px 18px;}
+.tool-body p.intro{font-size:.93rem;color:var(--ink-soft);margin:0 0 12px;}
+
+.picks{display:flex;flex-direction:column;gap:8px;margin:0 0 4px;}
+.pick{display:flex;gap:11px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:.95rem;background:#fff;border:1.5px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;color:var(--ink);}
+.pick:hover{border-color:var(--flame);background:var(--flame-tint);}
+.pick:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.pick[aria-pressed="true"]{border-color:var(--ink);background:var(--panel);}
+.pick .pk{font-family:var(--mono);font-size:.7rem;color:var(--ink-faint);white-space:nowrap;}
+
+.result{margin:12px 0 0;border:1px solid var(--rule-strong);border-left:4px solid var(--q1);border-radius:0 8px 8px 0;background:var(--q1-tint);padding:13px 15px;}
+.result[hidden]{display:none;}
+.result .nm{font-weight:700;font-size:1rem;margin:0 0 6px;}
+.result .ln{font-family:var(--mono);font-size:.86rem;color:var(--ink);margin:2px 0;}
+.result .ln .k{color:var(--ink-faint);}
+.result .note{font-size:.86rem;color:var(--ink-soft);margin:9px 0 0;}
+
+.ctable{width:100%;border-collapse:collapse;font-size:.92rem;margin:4px 0 0;}
+.ctable th,.ctable td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--rule);}
+.ctable th{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);}
+.ctable td.t{font-family:var(--mono);font-weight:600;white-space:nowrap;}
+.ctable tr.hot td{background:var(--q1-tint);}
+.ctable a{color:var(--flame);font-weight:600;text-decoration:none;}
+.ctable a:hover{text-decoration:underline;}
+.from{font-family:var(--mono);font-size:.82rem;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:8px 11px;margin:0 0 12px;}
+
+.handoff{margin:8px 0 0;padding:14px 18px;border:1px solid var(--rule-strong);border-left:4px solid var(--ink);background:#fff;border-radius:0 var(--radius) var(--radius) 0;font-size:.95rem;color:var(--ink-soft);}
+.handoff b{color:var(--ink);} .handoff a{color:var(--flame);font-weight:600;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+#export-slot{margin-top:30px;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html" aria-current="page">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 6 · Educational</p>
+    <h1>How to Find a Statute</h1>
+    <p class="lede">You rarely start with a citation. You start with something you <em>know</em> &mdash; a law&rsquo;s common name, its subject, or a citation in the wrong form &mdash; and the trick is reaching for the finding aid that matches what you have. Three of them, each suited to a different starting point.</p>
+
+    <div class="howto"><b>Try each tool.</b> The green tag on each one tells you <em>when</em> to reach for it. All three roads below end at the same place &mdash; Title III of the ADA &mdash; which is exactly where <a href="../reading-statutes/index.html" style="color:var(--flame-deep);font-weight:600">How to Read a Statute</a> picks up.</div>
+
+    <!-- Tool 1: Popular Name Table -->
+    <section class="tool">
+      <div class="tool-head">
+        <span class="num">Finding aid 1</span>
+        <h2>Popular Name Table</h2>
+        <span class="usewhen"><b>Use when</b> you know the law&rsquo;s common name but not its citation.</span>
+      </div>
+      <div class="tool-body">
+        <p class="intro">Laws are known by their names long before anyone remembers their code numbers. The Popular Name Table maps the name to the citation &mdash; including the <strong>Public Law number</strong>, your starting point for everything from legislative history to the conversion table below.</p>
+        <div class="picks" id="pnt-picks" role="group" aria-label="Look up an act by name"></div>
+        <div class="result" id="pnt-result" hidden></div>
+      </div>
+    </section>
+
+    <!-- Tool 2: Index -->
+    <section class="tool">
+      <div class="tool-head">
+        <span class="num">Finding aid 2</span>
+        <h2>Subject Index</h2>
+        <span class="usewhen"><b>Use when</b> you know the subject but not the law&rsquo;s name.</span>
+      </div>
+      <div class="tool-body">
+        <p class="intro">When you can describe the problem but can&rsquo;t name the statute, the index is your route. You look up the <em>subject</em>, follow the sub-entries to something specific, and it hands you the section number.</p>
+        <div class="picks" id="idx-picks" role="group" aria-label="Look up a subject in the index"></div>
+        <div class="result" id="idx-result" hidden></div>
+      </div>
+    </section>
+
+    <!-- Tool 3: Conversion table -->
+    <section class="tool">
+      <div class="tool-head">
+        <span class="num">Finding aid 3</span>
+        <h2>Conversion table</h2>
+        <span class="usewhen"><b>Use when</b> you have one citation form and need another.</span>
+      </div>
+      <div class="tool-body">
+        <p class="intro">The Popular Name Table gave you <strong>Pub. L. 101-336</strong> &mdash; but a law&rsquo;s sections rarely sit together in the Code. The conversion table shows where each part of the Act actually landed, so you can jump from the public-law citation to the exact code sections you need.</p>
+        <div class="from">Starting point &mdash; from the Popular Name Table: &nbsp;<b>Americans with Disabilities Act of 1990</b> &nbsp;&middot;&nbsp; Pub. L. 101-336 &nbsp;&middot;&nbsp; 104 Stat. 327</div>
+        <table class="ctable">
+          <thead><tr><th>Title</th><th>Subject</th><th>Codified at</th></tr></thead>
+          <tbody>
+            <tr><td class="t">Title I</td><td>Employment</td><td>42 U.S.C. &sect;&sect; 12111&ndash;12117</td></tr>
+            <tr><td class="t">Title II</td><td>Public services (state &amp; local government)</td><td>42 U.S.C. &sect;&sect; 12131&ndash;12165</td></tr>
+            <tr class="hot"><td class="t">Title III</td><td>Public accommodations (private entities)</td><td><a href="../reading-statutes/index.html">42 U.S.C. &sect;&sect; 12181&ndash;12189 &rarr;</a></td></tr>
+            <tr><td class="t">Title IV</td><td>Telecommunications</td><td>47 U.S.C. &sect; 225</td></tr>
+            <tr><td class="t">Title V</td><td>Miscellaneous provisions</td><td>42 U.S.C. &sect;&sect; 12201&ndash;12213</td></tr>
+          </tbody>
+        </table>
+        <p class="result note" style="background:none;border:0;padding:0;margin-top:11px;color:var(--ink-soft);font-size:.88rem;">One Public Law, five places in the Code. Your client&rsquo;s problem is about a private business serving the public &mdash; <strong>Title III</strong> &mdash; so you follow that row to <a href="../reading-statutes/index.html" style="color:var(--flame);font-weight:600">&sect; 12181 / &sect; 12182</a>.</p>
+      </div>
+    </section>
+
+    <p class="handoff"><b>All three roads converged.</b> Whether you started from the name, the subject, or the Public Law number, you arrived at Title III, &sect;&sect; 12181&ndash;12189. The finding aid you pick is decided by <em>what you already know</em> &mdash; which is the Question Method working at the very first step. Next, open <a href="../reading-statutes/index.html">How to Read a Statute</a> to work the provision itself.</p>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-6/">Ch. 6 · Statutes Research</a></p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-6/reading-statutes/index.html"><span class="dir">← Previous</span><span class="t">How to Read a Statute</span></a>
+    <a class="modnav-link next" href="../../ch-6/statute-practice/index.html"><span class="dir">Next →</span><span class="t">Statutes Practice</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  // Popular Name Table — real credit-line citations.
+  var PNT=[
+    {name:"Americans with Disabilities Act of 1990", pl:"Pub. L. 101-336", stat:"104 Stat. 327", code:"42 U.S.C. ch. 126, \u00a7\u00a7 12101 et seq.",
+     note:"This is the credit line. The Public Law number (101-336) is your key to the conversion table below and to legislative history."},
+    {name:"Clean Air Act", pl:"Pub. L. 88-206", stat:"77 Stat. 392", code:"42 U.S.C. ch. 85, \u00a7\u00a7 7401 et seq.",
+     note:"A different law with a different home in the Code \u2014 the table doesn\u2019t care what the law is about, only what it\u2019s called."},
+    {name:"Family and Medical Leave Act of 1993", pl:"Pub. L. 103-3", stat:"107 Stat. 6", code:"29 U.S.C. ch. 28, \u00a7\u00a7 2601 et seq.",
+     note:"Notice it lands in Title 29 (Labor), not Title 42 \u2014 the table saves you from guessing which title to browse."},
+    {name:"Fair Labor Standards Act of 1938", pl:"Pub. L. 75-718", stat:"52 Stat. 1060", code:"29 U.S.C. ch. 8, \u00a7\u00a7 201 et seq.",
+     note:"Older laws are found the same way \u2014 the popular name is stable even when the citation isn\u2019t obvious."}
+  ];
+  var pntPicks=document.getElementById("pnt-picks"), pntResult=document.getElementById("pnt-result");
+  PNT.forEach(function(a,i){
+    var b=document.createElement("button"); b.className="pick"; b.type="button"; b.setAttribute("aria-pressed","false"); b.dataset.i=i;
+    b.innerHTML='<span class="pk">name</span><span>'+a.name+'</span>'; pntPicks.appendChild(b);
+  });
+  pntPicks.addEventListener("click",function(e){
+    var b=e.target.closest(".pick"); if(!b) return; var a=PNT[+b.dataset.i];
+    pntPicks.querySelectorAll(".pick").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
+    pntResult.innerHTML='<p class="nm">'+a.name+'</p>'+
+      '<p class="ln"><span class="k">Public Law&nbsp;&nbsp;</span>'+a.pl+'</p>'+
+      '<p class="ln"><span class="k">Statutes at Large&nbsp;&nbsp;</span>'+a.stat+'</p>'+
+      '<p class="ln"><span class="k">Codified at&nbsp;&nbsp;</span>'+a.code+'</p>'+
+      '<p class="note">'+a.note+'</p>';
+    pntResult.hidden=false;
+    if(window.ExportReflect) ExportReflect.log("Popular Name Table lookup", a.name+" \u2192 "+a.pl);
+  });
+
+  // Subject index — disability cluster, converging on public accommodations.
+  var IDX=[
+    {sub:"Discrimination \u2014 Public accommodations (private entities)", sec:"42 U.S.C. \u00a7 12182", tail:"This is the route for a private business serving the public \u2014 ADA Title III. The section you want.", target:true},
+    {sub:"Discrimination \u2014 Employment", sec:"42 U.S.C. \u00a7 12112", tail:"ADA Title I. Same statute, different problem \u2014 the index keeps the titles distinct."},
+    {sub:"Discrimination \u2014 Public services (state & local government)", sec:"42 U.S.C. \u00a7 12132", tail:"ADA Title II. The index\u2019s sub-entries are how you avoid landing in the wrong title."},
+    {sub:"Definitions \u2014 \u201cPublic accommodation\u201d", sec:"42 U.S.C. \u00a7 12181(7)", tail:"The index also points straight at the definitions section \u2014 useful once you know a term is doing the work."}
+  ];
+  var idxPicks=document.getElementById("idx-picks"), idxResult=document.getElementById("idx-result");
+  IDX.forEach(function(a,i){
+    var b=document.createElement("button"); b.className="pick"; b.type="button"; b.setAttribute("aria-pressed","false"); b.dataset.i=i;
+    b.innerHTML='<span class="pk">subject</span><span>'+a.sub+'</span>'; idxPicks.appendChild(b);
+  });
+  idxPicks.addEventListener("click",function(e){
+    var b=e.target.closest(".pick"); if(!b) return; var a=IDX[+b.dataset.i];
+    idxPicks.querySelectorAll(".pick").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
+    idxResult.innerHTML='<p class="nm">'+a.sub+'</p><p class="ln"><span class="k">See&nbsp;&nbsp;</span>'+a.sec+(a.target?' &nbsp;<a href="../reading-statutes/index.html" style="color:var(--flame);font-weight:600;text-decoration:none">\u2192 read it</a>':'')+'</p><p class="note">'+a.tail+'</p>';
+    idxResult.hidden=false;
+    if(window.ExportReflect) ExportReflect.log("Index lookup", a.sub+" \u2192 "+a.sec);
+  });
+
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"),{
+      module:"How to Find a Statute",
+      chapter:"Chapter 6 — Statutes Research",
+      intro:"You used three finding aids and saw that which one fits is decided by what you already know.",
+      prompts:[
+        "Name the three starting points \u2014 and the finding aid each one calls for.",
+        "Why does an act\u2019s text end up scattered across different code sections, and how did the conversion table get you to the right one?"
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>

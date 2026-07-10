@@ -59,7 +59,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "sources",
-          "href": "modules/sources/index.html",
+          "href": "ch-1/sources/index.html",
           "note": "Sources primer",
           "title": "How Law Is Made — A 1L Primer",
           "desc": "A guided tour of the U.S. sources of law and how they relate: cases, statutes, and regulations — who makes each, how it becomes law, and when to reach for it."
@@ -68,7 +68,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "rank-the-authorities",
-          "href": "modules/rank-the-authorities/index.html",
+          "href": "ch-1/rank-the-authorities/index.html",
           "title": "Hierarchy of Authorities",
           "desc": "A map of the legal authority hierarchy: what makes one source control another, the line between primary and secondary, and why the same case can bind in one courtroom and only persuade in another."
         },
@@ -76,7 +76,7 @@
           "status": "live",
           "type": "practice",
           "slug": "applying-the-hierarchy",
-          "href": "modules/rank-the-authorities/practice.html",
+          "href": "ch-1/rank-the-authorities/practice.html",
           "title": "Applying the Hierarchy",
           "desc": "Drills and applied exercises to test your command of legal authority: sort primary from secondary, tell binding from persuasive, decide when a statute controls, rank a full stack of authorities by binding effect, and place a court in its system."
         }
@@ -93,7 +93,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "database-interface",
-          "href": "modules/database-interface/index.html",
+          "href": "ch-2/database-interface/index.html",
           "title": "Database Interface Explorer",
           "desc": "Click through a generic legal database — header tools, the search bar, jurisdiction and content filters, the browse tabs, then a results page — and learn what every part does, so you can find the same features on any platform."
         },
@@ -101,7 +101,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "using-databases",
-          "href": "modules/using-databases/index.html",
+          "href": "ch-2/using-databases/index.html",
           "title": "Using Databases for Legal Research",
           "desc": "Read a citation as a retrieval address, pull a known source by location alone, and build a live terms-and-connectors search over a sample library — watching results change against natural language."
         },
@@ -109,7 +109,7 @@
           "status": "live",
           "type": "practice",
           "slug": "database-practice",
-          "href": "modules/database-practice/index.html",
+          "href": "ch-2/database-practice/index.html",
           "title": "Database Practice",
           "desc": "Short scenarios for the mechanics: where to start in a database, how to change a search to narrow or broaden it, and what a citation does (and does not) need to retrieve a document."
         }
@@ -126,7 +126,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "question-transformation",
-          "href": "modules/question-transformation/index.html",
+          "href": "ch-3/question-transformation/index.html",
           "note": "New",
           "title": "Reverse-Engineering the Question",
           "desc": "Take a finished legal paragraph apart into the four research questions that built it, then watch those same questions become a synthesis table and an annotated outline — one color tying each question to its place in every form."
@@ -135,7 +135,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "question-method",
-          "href": "modules/question-method/index.html",
+          "href": "ch-3/question-method/index.html",
           "note": "Draft",
           "title": "Notice of Claim — Research Sandbox",
           "desc": "Work a real Arizona notice-of-claim problem through the question → answer → better-question cycle, logging every move in a research log.",
@@ -145,7 +145,7 @@
           "status": "live",
           "type": "practice",
           "slug": "question-chain",
-          "href": "modules/question-chain/index.html",
+          "href": "ch-3/question-chain/index.html",
           "note": "Draft",
           "title": "Working the Chain — Forward & Reverse",
           "desc": "Build a chain of research questions forward from a fact pattern, then reverse-engineer the questions behind a finished analysis.",
@@ -155,7 +155,7 @@
           "status": "live",
           "type": "practice",
           "slug": "type-the-question",
-          "href": "modules/type-the-question/index.html",
+          "href": "ch-3/type-the-question/index.html",
           "note": "New",
           "title": "Type the Question",
           "desc": "Name the type of fourteen research questions — definitional, exploratory, focusing, or application — then pick the source family each one points to. The feedback explains the tell in every question's wording."
@@ -173,7 +173,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "reading-secondary",
-          "href": "modules/reading-secondary/index.html",
+          "href": "ch-4/reading-secondary/index.html",
           "note": "Appendix A",
           "title": "How to Read a Secondary Source",
           "desc": "Walk the anatomy of a secondary source — finding aids, narrative text, footnotes, the currency line, and the editorial apparatus — clicking each part to learn what it does and how the Question Method reads it."
@@ -182,7 +182,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "secondary-types",
-          "href": "modules/secondary-types/index.html",
+          "href": "ch-4/secondary-types/index.html",
           "title": "The Types of Secondary Sources",
           "desc": "Explore the nine major secondary sources, then re-sort them by the question they answer, their coverage, and their persuasive weight — and place each on a depth-and-breadth chart."
         },
@@ -190,7 +190,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "using-secondary-sources",
-          "href": "modules/using-secondary-sources/index.html",
+          "href": "ch-4/using-secondary-sources/index.html",
           "title": "How to Use a Secondary Source",
           "desc": "Read a source by the question in front of you: find the sentence that answers it and follow its footnote to primary authority — then recognize the moment to leave the source behind."
         },
@@ -198,7 +198,7 @@
           "status": "live",
           "type": "practice",
           "slug": "secondary-practice",
-          "href": "modules/secondary-practice/index.html",
+          "href": "ch-4/secondary-practice/index.html",
           "title": "Secondary Sources Practice",
           "desc": "Run one question through the full cycle — match, mine, follow, leave — then practice the trust-and-timing judgment calls, including when an adopted Restatement may earn a cite."
         }
@@ -215,7 +215,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "case-graph",
-          "href": "modules/case-graph/index.html",
+          "href": "ch-5/case-graph/index.html",
           "title": "Cases as a Web of Answers",
           "desc": "How one opinion answers several questions at once — following citations color-coded by question through a four-case web."
         },
@@ -223,7 +223,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "reading-cases",
-          "href": "modules/reading-cases/index.html",
+          "href": "ch-5/reading-cases/index.html",
           "title": "How to Read a Case",
           "desc": "The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1.",
           "verified": "2026-07-09"
@@ -232,7 +232,7 @@
           "status": "live",
           "type": "practice",
           "slug": "case-practice",
-          "href": "modules/case-practice/index.html",
+          "href": "ch-5/case-practice/index.html",
           "title": "Case Law Practice",
           "desc": "Build a defensible case set, tell holding from dictum, and decide whether a flagged case is still good law."
         }
@@ -249,7 +249,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "reading-statutes",
-          "href": "modules/reading-statutes/index.html",
+          "href": "ch-6/reading-statutes/index.html",
           "title": "How to Read a Statute",
           "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision."
         },
@@ -257,7 +257,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "finding-statutes",
-          "href": "modules/finding-statutes/index.html",
+          "href": "ch-6/finding-statutes/index.html",
           "title": "How to Find a Statute",
           "desc": "Three finding aids — Popular Name Table, subject Index, and conversion table — each matched to what you already know about a law."
         },
@@ -265,7 +265,7 @@
           "status": "live",
           "type": "practice",
           "slug": "statute-practice",
-          "href": "modules/statute-practice/index.html",
+          "href": "ch-6/statute-practice/index.html",
           "title": "Statutes Practice",
           "desc": "Find an answer in a section's table of contents, read what a statute's status means for your research, and match a finding aid to what you know."
         }
@@ -290,14 +290,14 @@
             "Pull the preamble through the source note",
             "Check currency with the List of CFR Sections Affected"
           ],
-          "href": "modules/finding-regulations/index.html",
+          "href": "ch-7/finding-regulations/index.html",
           "note": "New"
         },
         {
           "status": "live",
           "type": "orientation",
           "slug": "reading-regulations",
-          "href": "modules/reading-regulations/index.html",
+          "href": "ch-7/reading-regulations/index.html",
           "title": "How to Read a Regulation",
           "desc": "Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters."
         },
@@ -305,7 +305,7 @@
           "status": "live",
           "type": "practice",
           "slug": "regulation-practice",
-          "href": "modules/regulation-practice/index.html",
+          "href": "ch-7/regulation-practice/index.html",
           "title": "Regulations Practice",
           "desc": "Navigate the CFR, choose between the CFR and the Federal Register, read shall/must/may/should, and check whether a regulation is still good law.",
           "verified": "2026-07-09"
@@ -323,7 +323,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "tracing-sources",
-          "href": "modules/tracing-sources/index.html",
+          "href": "ch-8/tracing-sources/index.html",
           "title": "Tracing the Law Across Sources",
           "desc": "Three real chains — Rowan, Schechter Poultry, and Arizona's Voter Protection Act — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution.",
           "verified": "2026-07-09"
@@ -332,7 +332,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "research-hypothesis",
-          "href": "modules/research-hypothesis/index.html",
+          "href": "ch-8/research-hypothesis/index.html",
           "title": "Following a Research Hypothesis",
           "desc": "Form a hypothesis on a veterans-benefits problem and test it across sources — from a secondary source to the statute, 38 C.F.R. § 3.326, and the case that supplies the argument."
         },
@@ -340,7 +340,7 @@
           "status": "live",
           "type": "practice",
           "slug": "across-sources-practice",
-          "href": "modules/across-sources-practice/index.html",
+          "href": "ch-8/across-sources-practice/index.html",
           "title": "Across Sources Practice",
           "desc": "Two problems — FMLA and Arizona workers' comp — each solved by pulling a statute, a regulation, and a case, with reveal-for-answer authority."
         }
@@ -357,7 +357,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "precision-search",
-          "href": "modules/precision-search/index.html",
+          "href": "ch-9/precision-search/index.html",
           "title": "Building a Precision Search",
           "desc": "Turn a research question into a precise Boolean search, watching each connector — OR, quotes, proximity, ATLEAST, a jurisdiction filter — reshape an illustrative result funnel."
         },
@@ -365,7 +365,7 @@
           "status": "live",
           "type": "orientation",
           "slug": "closing-out",
-          "href": "modules/closing-out/index.html",
+          "href": "ch-9/closing-out/index.html",
           "title": "Knowing When to Stop",
           "desc": "Run the closing-out protocol, tell 'no results' from 'no law,' diagnose a stuck search, and draft an exportable research-closure note."
         },
@@ -381,7 +381,7 @@
             "Build and read a search log",
             "Run the closing-out protocol as a checklist"
           ],
-          "href": "modules/diagnose-the-broken-search/index.html",
+          "href": "ch-9/diagnose-the-broken-search/index.html",
           "note": "New"
         },
         {
@@ -396,7 +396,7 @@
             "Spot compound answers that reach past their question",
             "Cumulative, shuffled review of the Part I diagnostic skills"
           ],
-          "href": "modules/mixed-review/index.html",
+          "href": "ch-9/mixed-review/index.html",
           "note": "Cumulative"
         }
       ]
@@ -585,31 +585,31 @@
       {
         "id": "A",
         "title": "How to Read a Secondary Source",
-        "href": "modules/reading-secondary/index.html",
+        "href": "ch-4/reading-secondary/index.html",
         "also": "Also under Ch. 4"
       },
       {
         "id": "B",
         "title": "How to Read a Case",
-        "href": "modules/reading-cases/index.html",
+        "href": "ch-5/reading-cases/index.html",
         "also": "Also under Ch. 5"
       },
       {
         "id": "C",
         "title": "How to Read a Statute",
-        "href": "modules/reading-statutes/index.html",
+        "href": "ch-6/reading-statutes/index.html",
         "also": "Also under Ch. 6"
       },
       {
         "id": "D",
         "title": "How to Read a Regulation",
-        "href": "modules/reading-regulations/index.html",
+        "href": "ch-7/reading-regulations/index.html",
         "also": "Also under Ch. 7"
       },
       {
         "id": "G",
         "title": "Glossary — Flashcards",
-        "href": "modules/glossary-flashcards/index.html",
+        "href": "appendices/glossary-flashcards/index.html",
         "also": "Every defined term in the book"
       }
     ]

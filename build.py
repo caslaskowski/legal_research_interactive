@@ -90,7 +90,7 @@ def main():
         subprocess.run([sys.executable, "build_registry.py"], check=True)
         subprocess.run([sys.executable, "build_site.py"], check=True)
         # module-level generators, folded into the pipeline (idempotent)
-        gen = os.path.join("modules", "rank-the-authorities", "build.py")
+        gen = os.path.join("ch-1", "rank-the-authorities", "build.py")
         if os.path.exists(gen):
             subprocess.run([sys.executable, os.path.basename(gen)],
                            cwd=os.path.dirname(gen), check=True)

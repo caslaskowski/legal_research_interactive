@@ -119,7 +119,7 @@
       ".er-eyebrow{font-family:var(--sans,sans-serif);text-transform:uppercase;letter-spacing:.14em;" +
       "font-size:.7rem;font-weight:700;color:var(--flame,#a72d2a);margin:0 0 .5rem;}" +
       ".er h2{margin:0 0 .4em;}" +
-      ".er-intro{color:var(--ink-soft,#54534d);font-size:.95rem;max-width:70ch;margin:0 0 1rem;}" +
+      ".er-intro{color:var(--ink-soft,#54534d);font-size:.95rem;margin:0 0 1rem;}" +
       ".er-field{margin:0 0 14px;}" +
       ".er-field label{display:block;font-weight:600;font-size:.92rem;margin:0 0 5px;color:var(--ink,#262622);}" +
       ".er-input{width:100%;font:inherit;font-size:.95rem;padding:9px 11px;border:1.5px solid var(--rule-strong,#b6b6b6);" +

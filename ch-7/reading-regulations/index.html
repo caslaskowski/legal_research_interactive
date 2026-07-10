@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Read a Regulation — Ch. 7 · Basic Regulations and Administrative Research</title>
+<meta name="description" content="Read a regulation the way a researcher does: trace it to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when to reach for the Federal Register instead.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--radius:4px;
+--q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
+--slate:#4a5568;--slate-tint:#e7eaef;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);}
+.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
+.howto b{color:var(--flame-deep);}
+
+.casegrid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
+@media (max-width:860px){.casegrid{grid-template-columns:1fr;}}
+
+.viewer{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;box-shadow:var(--shadow);overflow:hidden;}
+.crumbs{background:var(--panel);border-bottom:1px solid var(--rule);padding:8px 16px;font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.crumbs .sep{opacity:.5;}
+.vbody{padding:16px 18px 18px;}
+.vkick{font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--flame);margin:0 0 3px;}
+.vtitle{font-family:var(--display);font-weight:700;font-size:1.16rem;margin:0 0 4px;line-height:1.25;}
+.vcite{font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);margin:0 0 12px;}
+
+.stat{font-family:var(--serif);font-size:1.1rem;line-height:1.75;color:var(--ink);background:var(--panel);border-radius:8px;padding:14px 16px;margin:0 0 14px;}
+.cmp{font:inherit;background:transparent;border:0;border-bottom:2px dotted var(--slate);color:var(--ink);cursor:pointer;padding:0 1px;}
+.cmp:hover{background:var(--slate-tint);}
+.cmp:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.cmp.must{border-bottom:2px solid var(--q1);background:var(--q1-tint);font-weight:600;}
+.cmp.exc{border-bottom:2px solid var(--q3);background:var(--q3-tint);font-weight:600;}
+.cmprow{display:flex;flex-direction:column;gap:8px;margin:0 0 14px;}
+.cmpitem{display:flex;gap:10px;align-items:center;width:100%;text-align:left;font:inherit;font-size:.92rem;background:#fff;border:1.5px solid var(--rule-strong);border-radius:8px;padding:10px 12px;cursor:pointer;color:var(--ink);}
+.cmpitem:hover{border-color:var(--slate);background:var(--panel);}
+.cmpitem:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.cmpitem .lab{font-family:var(--sans);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);background:var(--slate-tint);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.cmpitem.src .lab{color:var(--flame-deep);background:var(--flame-tint);}
+
+.toclist{list-style:none;margin:0;padding:0;border:1px solid var(--rule);border-radius:8px;overflow:hidden;}
+.toclist li{border-bottom:1px solid var(--rule);}
+.toclist li:last-child{border-bottom:0;}
+.tocrow{display:flex;gap:12px;align-items:baseline;width:100%;text-align:left;font:inherit;background:#fff;border:0;padding:11px 14px;cursor:pointer;color:var(--ink);}
+.tocrow:hover{background:var(--panel);}
+.tocrow:focus-visible{outline:3px solid var(--flame);outline-offset:-3px;}
+.tocrow .sec{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--flame);white-space:nowrap;min-width:96px;}
+.tocrow .ti{flex:1;}
+.tocrow .role{font-family:var(--sans);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);border:1px solid var(--rule-strong);border-radius:999px;padding:2px 8px;white-space:nowrap;}
+.tocrow:not([data-go]){cursor:default;}
+.tocrow:not([data-go]):hover{background:#fff;}
+.hier{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:10px 13px;margin:0 0 12px;line-height:1.7;}
+.hier b{color:var(--flame);}
+
+.deflist{font-family:var(--serif);font-size:1rem;line-height:1.65;color:var(--ink);}
+.deflist .d{margin:0 0 9px;} .deflist .d b{font-family:var(--sans);color:var(--flame-deep);}
+
+.nav-actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding-top:13px;border-top:1px dashed var(--rule-strong);}
+.goact{font:inherit;font-size:.86rem;font-weight:600;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:8px 13px;cursor:pointer;}
+.goact.ghost{background:#fff;color:var(--ink);}
+.goact:hover{background:var(--flame);border-color:var(--flame);color:#fff;}
+.goact:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+
+/* comparison */
+.whenrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 16px;}
+@media (max-width:620px){.whenrow{grid-template-columns:1fr;}}
+.whencard{border:1.5px solid var(--rule-strong);border-radius:9px;padding:12px 14px;background:#fff;}
+.whencard h4{margin:0 0 6px;font-size:1rem;}
+.whencard.cfr{border-left:4px solid var(--q2);} .whencard.cfr h4{color:#13674c;}
+.whencard.fr{border-left:4px solid var(--q4);} .whencard.fr h4{color:#7a3568;}
+.whencard p{font-size:.9rem;color:var(--ink-soft);line-height:1.55;margin:0;}
+.whencard .def{display:inline-block;font-family:var(--sans);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;padding:2px 8px;margin-bottom:6px;}
+.whencard.cfr .def{color:#13674c;background:var(--q2-tint);} .whencard.fr .def{color:#7a3568;background:var(--q4-tint);}
+
+.pgrid{width:100%;border-collapse:collapse;font-size:.92rem;margin:6px 0 0;}
+.pgrid th,.pgrid td{border:1px solid var(--rule-strong);padding:10px 12px;text-align:left;vertical-align:top;}
+.pgrid thead th{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);background:var(--panel);}
+.pgrid th[scope=row]{font-size:.82rem;color:var(--ink);background:var(--panel);width:34%;}
+.pgrid td .nm{font-weight:700;}
+.pgrid td .sub{font-size:.8rem;color:var(--ink-faint);}
+.pgrid td.now{background:var(--q2-tint);} .pgrid td.hist{background:var(--q4-tint);}
+.errnote{margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;background:var(--flame-tint);border-left:4px solid var(--flame);font-size:.92rem;color:var(--ink);}
+.errnote b{color:var(--flame-deep);}
+
+.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
+.info h2{font-size:1.08rem;margin:0 0 10px;}
+.info p{font-size:.93rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
+.info .tie{font-size:.86rem;color:var(--ink);background:var(--q1-tint);border-left:3px solid var(--q1);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+#export-slot{margin-top:30px;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html" aria-current="page">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../ch-7/reading-regulations/index.html" aria-current="page"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 7 · Educational</p>
+    <h1>How to Read a Regulation</h1>
+    <p class="lede">A regulation is where a statute&rsquo;s command gets specific. You read it much like a statute &mdash; but you start one step earlier, with the <em>authority</em> that lets the agency speak at all, and you finish by asking whether the codified text is really the whole story. These are the same ADA Title&nbsp;III rules from the last chapter, now in the agency&rsquo;s hands.</p>
+
+    <div class="howto"><b>How to move:</b> click any underlined part of the regulation to learn what it is &mdash; the panel on the right explains it. The dark buttons <b>navigate</b> the CFR: open the Part&rsquo;s table of contents and drill into it the same way you navigated the Code. The <b>Source Note</b> opens a comparison of the CFR and the Federal&nbsp;Register.</div>
+
+    <div class="casegrid">
+      <section class="viewer" aria-label="Regulation source viewer">
+        <nav class="crumbs" id="crumbs" aria-label="You are here"></nav>
+        <div class="vbody" id="vbody" aria-live="polite"></div>
+      </section>
+
+      <aside class="info" id="info" aria-live="polite" tabindex="-1">
+        <p class="ik">Reading guide</p>
+        <h2>Name the parts</h2>
+        <p>Click any underlined part of the regulation and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
+      </aside>
+    </div>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-7/">Ch. 7 · Basic Regulations and Administrative Research</a></p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-7/finding-regulations/index.html"><span class="dir">← Previous</span><span class="t">How to Find a Regulation</span></a>
+    <a class="modnav-link next" href="../../ch-7/regulation-practice/index.html"><span class="dir">Next →</span><span class="t">Regulations Practice</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  // Regulatory text below is the public-domain text of 28 C.F.R. Part 36 (DOJ, ADA Title III).
+  var COMPONENTS={
+    partheading:{ik:"Part of the regulation",h:"Part heading",
+      p:["The heading names the subject of the whole Part and is how you orient yourself in the CFR.",
+         "The CFR nests like the Code: <strong>Title 28</strong> (Judicial Administration) \u2192 <strong>Chapter I</strong> (Department of Justice) \u2192 <strong>Part 36</strong> (this Part) \u2192 <strong>Subpart</strong> \u2192 <strong>Section</strong>. Open the table of contents to see that structure."],
+      go:{label:"Open the Part 36 table of contents \u2192",to:"toc"}},
+    authority:{ik:"Part of the regulation",h:"Authority note",
+      p:["This cites the statute that <em>empowers</em> the agency to issue these rules \u2014 here, the ADA itself (42 U.S.C. 12181\u201312189), the statute you read in Chapter 6.",
+         "It is your link back to the enabling law and the outer boundary of the agency\u2019s power: a regulation cannot reach beyond what its statute authorizes. Start here, because the statute sets the limits the rule must live within."]},
+    source:{ik:"Part of the regulation",h:"Source note",
+      p:["This cites the <em>Federal Register</em> issues where the rule was first published (1991) and last amended (2010). It is your pathway off the codified page.",
+         "Follow it when you want the agency\u2019s own explanation of the rule \u2014 the <strong>preamble</strong> \u2014 which lives in the Federal Register, not in the CFR text."],
+      tie:"This note is the hinge between the two places a regulation lives. Open the comparison to see when you go to each.",
+      go:{label:"CFR vs. the Federal Register \u2192",to:"comparison"}},
+    heading:{ik:"Part of the regulation",h:"Section number & heading",
+      p:["\u00a7 36.302 tells you exactly where the rule sits in the CFR; the heading describes its subject.",
+         "Like a statute\u2019s heading, treat it as a descriptive locator \u2014 useful for navigation, not the operative command itself."]},
+    operative:{ik:"How to engage",h:"Read the verb",
+      p:["This is the operative rule. Read the verb that drives it: <strong>shall</strong> or <strong>must</strong> = mandatory; <strong>may</strong> = discretion; <strong>should</strong> = a recommendation.",
+         "Here, \u201cshall make reasonable modifications\u201d is a command \u2014 the entity has no choice, except as the rule itself carves out."]},
+    exception:{ik:"How to engage",h:"The exception",
+      p:["The \u201cunless\u2026\u201d clause limits the command: the modification isn\u2019t required if the entity shows it would <em>fundamentally alter</em> the nature of its goods or services.",
+         "A rule\u2019s real scope often lives in its exceptions. Read them as closely as the command \u2014 they are where many research questions hide."]},
+    definitionsref:{ik:"How to engage",h:"Check the definitions",
+      p:["Regulatory definitions control over ordinary meaning, exactly as statutory ones do. \u201cPublic accommodation\u201d and related terms are defined in \u00a7 36.104.",
+         "That regulatory definition builds on the statutory categories you read in Chapter 6 \u2014 the agency fills in the detail, but it can\u2019t exceed the statute\u2019s grant."],
+      go:{label:"Open the definitions (\u00a7 36.104) \u2192",to:"definitions"}},
+    standards:{ik:"How to engage",h:"Standards, tables & figures",
+      p:["The buildable specifics \u2014 exact measurements like a ramp\u2019s maximum running slope \u2014 live in the 2010 ADA Standards, an appendix to this Part, set out in tables and figures that carry the <em>force of law</em>. Don\u2019t skip them.",
+         "That\u2019s a <em>design</em> standard (it tells you precisely what to build), as opposed to a <em>performance</em> standard (which states a goal and leaves the means open). Regulations like these also often incorporate outside technical standards by reference."],
+      go:{label:"See the standards in the table of contents \u2192",to:"toc"}}
+  };
+
+  var NODES={
+    regulation:{
+      crumbs:["CFR","Title 28","Ch. I (DOJ)","Part 36","\u00a7 36.302"],
+      kick:"Code of Federal Regulations \u00b7 verbatim text",
+      title:"\u00a7 36.302 Modifications in policies, practices, or procedures",
+      cite:"28 C.F.R. \u00a7 36.302(a) (public-domain regulatory text). Implements ADA Title III.",
+      hint:{ik:"Reading guide",h:"Name the parts",p:"Click any underlined part of the regulation and its explanation appears here \u2014 what the part is, and how a researcher reads it. Notice the order a researcher works in: authority first, then the operative text, then the definitions."},
+      render:function(){
+        return '<div class="cmprow">'+
+          '<button class="cmpitem" data-comp="partheading"><span class="lab">Part heading</span> Part 36 &mdash; Nondiscrimination on the Basis of Disability by Public Accommodations</button>'+
+          '<button class="cmpitem" data-comp="authority"><span class="lab">Authority</span> 42 U.S.C. 12181&ndash;12189; 28 U.S.C. 509, 510 &mdash; the statute that empowers these rules</button>'+
+          '<button class="cmpitem src" data-comp="source"><span class="lab">Source</span> 56 FR 35544, July 26, 1991, as amended at 75 FR 56236, Sept. 15, 2010 &mdash; opens the comparison</button>'+
+          '<button class="cmpitem" data-comp="heading"><span class="lab">Section</span> \u00a7 36.302 Modifications in policies, practices, or procedures &mdash; (a) General</button>'+
+        '</div>'+
+        '<p class="stat">A public accommodation <button class="cmp must" data-comp="operative">shall make reasonable modifications</button> in policies, practices, or procedures, when the modifications are necessary to afford goods, services, facilities, privileges, advantages, or accommodations to individuals with disabilities, <button class="cmp exc" data-comp="exception">unless the public accommodation can demonstrate that making the modifications would fundamentally alter</button> the nature of the goods, services, facilities, privileges, advantages, or accommodations.</p>'+
+        '<div class="cmprow">'+
+          '<button class="cmpitem" data-comp="definitionsref"><span class="lab">Definitions</span> key terms are defined in \u00a7 36.104 &mdash; check them</button>'+
+          '<button class="cmpitem" data-comp="standards"><span class="lab">Standards</span> the buildable measurements live in the 2010 ADA Standards (tables &amp; figures)</button>'+
+        '</div>'+
+        '<div class="nav-actions">'+
+          '<button class="goact" data-go="toc">Open the Part 36 table of contents</button>'+
+          '<button class="goact ghost" data-go="comparison">CFR vs. the Federal Register</button>'+
+        '</div>';
+      }
+    },
+    toc:{
+      crumbs:["CFR","Title 28","Ch. I (DOJ)","Part 36","Contents"],
+      kick:"Table of contents \u00b7 navigate the CFR",
+      title:"Part 36 \u2014 Public Accommodations (ADA Title III)",
+      cite:"The CFR nests by subject, just like the Code. The role label tells you what kind of answer each subpart holds.",
+      hint:{ik:"Reading guide",h:"Navigate by structure",p:"You navigate the CFR the way you navigated the Code: drill from the broad Part down to the Subpart that matches your question. A question about what a word means lives in <strong>Definitions</strong>; a question about exact measurements lives in the <strong>Standards</strong>. Open the subpart that fits the question you\u2019re holding."},
+      render:function(){
+        var rows=[
+          ["Subpart A","General \u2014 purpose, and the definitions (\u00a7 36.104)","Definitions","definitions"],
+          ["Subpart B","General Requirements \u2014 the broad prohibitions on discrimination","General rule",null],
+          ["Subpart C","Specific Requirements \u2014 what a covered entity must do (incl. \u00a7 36.302)","Specific obligations","regulation"],
+          ["Subpart D","New Construction and Alterations \u2014 adopts the 2010 ADA Standards","Design standards","standards"],
+          ["Subpart E","Enforcement \u2014 complaints, investigations, remedies","Enforcement",null],
+          ["Subpart F","Certification of state and local building codes","Procedure",null],
+          ["Appendix","2010 ADA Standards for Accessible Design \u2014 tables &amp; figures","Standards / tables","standards"]
+        ];
+        return '<div class="hier"><b>Title 28</b> Judicial Administration &nbsp;\u203a&nbsp; <b>Chapter I</b> Department of Justice &nbsp;\u203a&nbsp; <b>Part 36</b> &nbsp;\u203a&nbsp; <b>Subpart</b> &nbsp;\u203a&nbsp; <b>Section</b></div>'+
+        '<ul class="toclist">'+rows.map(function(r){
+          var go=r[3]?' data-go="'+r[3]+'"':'';
+          return '<li><button class="tocrow"'+go+'><span class="sec">'+r[0]+'</span><span class="ti">'+r[1]+(r[3]?' <span style="color:var(--flame);font-weight:600">\u2192</span>':'')+'</span><span class="role">'+r[2]+'</span></button></li>';
+        }).join("")+'</ul>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="regulation">\u2190 Back to \u00a7 36.302</button></div>';
+      }
+    },
+    definitions:{
+      crumbs:["CFR","Part 36","Subpart A","\u00a7 36.104"],
+      kick:"Definitions \u00b7 verbatim (condensed)",
+      title:"\u00a7 36.104 Definitions",
+      cite:"28 C.F.R. \u00a7 36.104. Definitions condensed; they control over ordinary meaning.",
+      hint:{ik:"Reading guide",h:"Definitions control",p:"A defined term means what the regulation says it means \u2014 not what you\u2019d guess. Notice that the regulation\u2019s \u201cplace of public accommodation\u201d points right back to the statutory categories from Chapter 6: the agency fills in detail, it doesn\u2019t rewrite the statute."},
+      render:function(){
+        var defs=[
+          ["Place of public accommodation","A facility operated by a private entity whose operations affect commerce and that falls within one of the categories listed in the ADA \u2014 the same categories you read at 42 U.S.C. \u00a7 12181(7)."],
+          ["Public accommodation","A private entity that owns, leases (or leases to), or operates a place of public accommodation."],
+          ["Readily achievable","Easily accomplishable and able to be carried out without much difficulty or expense \u2014 a standard that turns on the facts."],
+          ["Undue burden","Significant difficulty or expense \u2014 again a fact-sensitive standard a court must apply."]
+        ];
+        return '<div class="deflist">'+defs.map(function(d){return '<p class="d"><b>'+d[0]+'.</b> '+d[1]+'</p>';}).join("")+'</div>'+
+        '<p style="font-size:.9rem;color:var(--ink-soft);margin:12px 0 0;">Two of these &mdash; \u201creadily achievable\u201d and \u201cundue burden\u201d &mdash; are judgment standards, not bright lines. When a rule turns on one, your next question is how courts and the agency have applied it.</p>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="regulation">\u2190 Back to \u00a7 36.302</button><button class="goact ghost" data-go="toc">\u2190 Table of contents</button></div>';
+      }
+    },
+    standards:{
+      crumbs:["CFR","Part 36","Subpart D / Appendix","2010 Standards"],
+      kick:"Design standards \u00b7 force of law",
+      title:"2010 ADA Standards for Accessible Design",
+      cite:"Adopted by Subpart D and set out in the appendix \u2014 tables and figures with the force of law.",
+      hint:{ik:"Reading guide",h:"A design standard",p:"This is where the rule stops describing goals and starts giving numbers. The measurements are mandatory, and the tables and figures are part of the regulation \u2014 not illustrations you can skip."},
+      render:function(){
+        return '<p style="font-family:var(--serif);font-size:1.04rem;line-height:1.7;color:var(--ink);">The Standards translate the general duty into exact, buildable requirements &mdash; for example, a ramp&rsquo;s running slope may be no steeper than <strong>1:12</strong>, with specified landings and edge protection. These appear in numbered tables and figures.</p>'+
+        '<p style="font-size:.92rem;color:var(--ink-soft);">This is a <strong>design standard</strong>: it tells you precisely what to build, leaving no discretion in the means &mdash; unlike a <strong>performance standard</strong>, which states a goal (\u201caccessible to wheelchair users\u201d) and lets you choose how to meet it. Standards like these also frequently <strong>incorporate outside technical standards by reference</strong> (for instance, ICC/ANSI A117.1), which then carry the same force as the regulation itself.</p>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="toc">\u2190 Table of contents</button><button class="goact ghost" data-go="regulation">\u2190 Back to \u00a7 36.302</button></div>';
+      }
+    },
+    comparison:{
+      crumbs:["Source note","CFR vs. Federal Register"],
+      kick:"Where regulations live \u00b7 conceptual",
+      title:"The CFR and the Federal Register",
+      cite:"Two publications, one body of law. Knowing which to open is a base-level research skill.",
+      hint:{ik:"Reading guide",h:"One current, one historical",p:"The same split you already know from statutes shows up again here. Read the two cards, then the grid \u2014 the analogy is the thing to remember."},
+      render:function(){
+        return '<div class="whenrow">'+
+          '<div class="whencard cfr"><span class="def">Your default</span><h4>Go to the CFR when\u2026</h4><p>you need the <strong>operative rule as it stands today</strong>. The CFR is the official, current, subject-organized codification of regulations in force \u2014 almost always what you want.</p></div>'+
+          '<div class="whencard fr"><span class="def">Sometimes the key</span><h4>Go to the Federal Register when\u2026</h4><p>you need the agency\u2019s <strong>preamble</strong> \u2014 its own explanation of what a rule means and why \u2014 or you\u2019re tracing recent or proposed action. The final-rule entry adds context the codified text leaves out.</p></div>'+
+        '</div>'+
+        '<table class="pgrid"><caption class="sr-only">Parallel between statutory and regulatory publications</caption>'+
+          '<thead><tr><th scope="col"></th><th scope="col">Statutes</th><th scope="col">Regulations</th></tr></thead>'+
+          '<tbody>'+
+            '<tr><th scope="row">Current, organized by subject<br><span class="sub" style="font-weight:400">where the rule lives now</span></th>'+
+              '<td class="now"><span class="nm">U.S. Code</span><br><span class="sub">codified by title</span></td>'+
+              '<td class="now"><span class="nm">CFR</span><br><span class="sub">codified by title</span></td></tr>'+
+            '<tr><th scope="row">Chronological, as-made<br><span class="sub" style="font-weight:400">the historical record</span></th>'+
+              '<td class="hist"><span class="nm">Statutes at Large</span><br><span class="sub">session laws, in order passed</span></td>'+
+              '<td class="hist"><span class="nm">Federal Register</span><br><span class="sub">rules, in order published</span></td></tr>'+
+          '</tbody></table>'+
+        '<p style="font-size:.93rem;color:var(--ink-soft);margin:13px 0 0;">The CFR is to the Federal Register what the Code is to the session laws: one tells you the rule <em>now</em>, organized by subject; the other is the dated record of how it got there. The <strong>Source Note</strong> you clicked is the bridge \u2014 it points from the codified text straight into the Federal Register.</p>'+
+        '<div class="errnote"><b>The most common regulatory-research error:</b> stopping at the CFR text and never opening the Federal Register preamble &mdash; where the agency actually explains what its rule means.</div>'+
+        '<div class="nav-actions"><button class="goact ghost" data-go="regulation">\u2190 Back to \u00a7 36.302</button></div>';
+      }
+    }
+  };
+
+  var vbody=document.getElementById("vbody"), crumbs=document.getElementById("crumbs"), info=document.getElementById("info");
+  function setInfo(o){
+    var html='<p class="ik">'+o.ik+'</p><h2>'+o.h+'</h2>';
+    if(o.p){ (Array.isArray(o.p)?o.p:[o.p]).forEach(function(par){ html+='<p>'+par+'</p>'; }); }
+    if(o.tie) html+='<p class="tie">'+o.tie+'</p>';
+    if(o.go) html+='<p><button class="goact" data-go="'+o.go.to+'" style="margin-top:2px">'+o.go.label+'</button></p>';
+    info.innerHTML=html; bindGo(info);
+  }
+  function showComp(key){ var c=COMPONENTS[key]; if(!c) return; setInfo(c); info.focus(); if(window.ExportReflect) ExportReflect.log("Inspected a regulation part", c.h); }
+  function bindGo(scope){ scope.querySelectorAll("[data-go]").forEach(function(b){ if(b.__b) return; b.__b=true; b.addEventListener("click",function(){ loadNode(b.dataset.go,true); }); }); }
+  function loadNode(id,fromUser){
+    var n=NODES[id]; if(!n) return;
+    crumbs.innerHTML=n.crumbs.map(function(c,i){return (i?'<span class="sep">\u203a</span>':'')+'<span>'+c+'</span>';}).join(" ");
+    vbody.innerHTML='<p class="vkick">'+n.kick+'</p><h2 class="vtitle">'+n.title+'</h2>'+(n.cite?'<p class="vcite">'+n.cite+'</p>':'')+n.render();
+    vbody.querySelectorAll("[data-comp]").forEach(function(b){ b.addEventListener("click",function(){ showComp(b.dataset.comp); }); });
+    bindGo(vbody); setInfo(n.hint);
+    if(fromUser){ document.querySelector(".viewer").scrollIntoView({behavior:"smooth",block:"nearest"}); if(window.ExportReflect) ExportReflect.log("Navigated the source", n.title); }
+  }
+  loadNode("regulation",false);
+
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"),{
+      module:"How to Read a Regulation",
+      chapter:"Chapter 7 — Regulations Research",
+      intro:"You traced a regulation to its authorizing statute, navigated the CFR, read its operative language, and saw when the Federal Register matters.",
+      prompts:[
+        "Why does a researcher start with the authority note rather than the operative text?",
+        "The rule was codified in the CFR, but its explanation lived elsewhere. Where \u2014 and why is skipping it the most common regulatory-research mistake?",
+        "State the parallel in one sentence: the CFR is to the Federal Register as ____ is to ____."
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>

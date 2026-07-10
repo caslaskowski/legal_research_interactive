@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossary Flashcards — The Question Method of Legal Research</title>
+<meta name="description" content="Every glossary term in the textbook as a flashcard deck. Sort cards into got-it and again, save progress in this browser, and download a progress file you can re-load anywhere.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{max-width:760px;margin:0 auto;padding:26px 28px 10px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
+  .howto{background:var(--panel);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 22px;}
+
+  .statusrow{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 0 14px;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--ink-soft);}
+  .prog{flex:1;min-width:140px;height:6px;background:var(--paper-2);border-radius:3px;overflow:hidden;}
+  .prog span{display:block;height:100%;width:0;background:var(--flame);transition:width .3s;}
+
+  .fcard{background:#fff;border:1px solid var(--rule-strong);border-radius:12px;box-shadow:var(--shadow);min-height:230px;padding:26px 28px;display:flex;flex-direction:column;justify-content:center;text-align:center;}
+  .fcard .side{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 12px;}
+  .fcard .term{font-family:"Newsreader",Georgia,serif;font-size:1.6rem;line-height:1.3;margin:0;}
+  .fcard .def{font-size:1.02rem;line-height:1.65;color:var(--ink);margin:0 auto;text-align:left;}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0 8px;}
+  .btn{font:inherit;font-size:.92rem;font-weight:600;background:var(--panel);border:1.5px solid var(--rule-strong);border-radius:8px;padding:10px 18px;cursor:pointer;color:var(--ink);}
+  .btn:hover{border-color:var(--flame);}
+  .btn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .btn.flip{border-color:var(--flame);color:var(--flame);}
+  .btn.got{border-color:#2e6b34;color:#2e6b34;}
+  .btn.again{border-color:var(--flame);}
+  .btn[disabled]{opacity:.5;cursor:default;}
+  .kbd{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);text-align:center;margin:2px 0 20px;}
+  .kbd kbd{border:1px solid var(--rule-strong);border-radius:4px;padding:0 5px;background:#fff;}
+
+  .filerow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px dashed var(--rule-strong);margin:22px 0 0;padding:16px 0 4px;}
+  .filerow .btn{font-size:.82rem;padding:7px 12px;font-weight:500;}
+  .filerow label.btn{display:inline-block;}
+  .filerow input[type=file]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .filenote{font-size:.82rem;color:var(--ink-soft);flex-basis:100%;}
+  .announce{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .donebox{background:var(--panel);border:1px solid var(--rule-strong);border-radius:10px;padding:20px 22px;text-align:center;}
+  .donebox .big{font-family:var(--mono);font-size:1.4rem;color:var(--flame);margin:2px 0 8px;}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../appendices/glossary-flashcards/index.html" aria-current="page"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / Glossary</p>
+    <h1>Glossary Flashcards</h1>
+    <p class="lede">Every term the textbook defines, as a deck. Terms are defined here as the book uses them; the fuller treatment lives at each term's first appearance in the chapters.</p>
+    <div class="howto"><b>How to use this:</b> flip the card, then be honest — <b>Got it</b> retires the card for this pass, <b>Again</b> sends it to the back of the pile. Your progress saves in this browser automatically. Download a progress file before you leave a shared machine, and re-load it anywhere.</div>
+
+    <div class="statusrow">
+      <span id="counts">—</span>
+      <div class="prog"><span id="progfill"></span></div>
+      <button class="btn" id="shuffleBtn" type="button" style="font-size:.78rem;padding:6px 10px;">Shuffle</button>
+      <button class="btn" id="restartBtn" type="button" style="font-size:.78rem;padding:6px 10px;">Restart deck</button>
+    </div>
+
+    <div class="fcard" id="fcard" aria-live="polite">
+      <p class="side" id="side">Term</p>
+      <p class="term" id="face">Loading&hellip;</p>
+    </div>
+
+    <div class="controls">
+      <button class="btn again" id="againBtn" type="button">Again &#8634;</button>
+      <button class="btn flip" id="flipBtn" type="button" aria-pressed="false">Flip card</button>
+      <button class="btn got" id="gotBtn" type="button">Got it &#10003;</button>
+    </div>
+    <p class="kbd">Keyboard: <kbd>Space</kbd> flip &middot; <kbd>&larr;</kbd> again &middot; <kbd>&rarr;</kbd> got it</p>
+
+    <div class="filerow" style="border-top:1px dashed var(--rule-strong);flex-direction:column;align-items:stretch;">
+      <label for="fc-reflect" style="font-weight:600;font-size:.9rem;">Reflection (for your study record)</label>
+      <textarea id="fc-reflect" rows="3" style="font:inherit;font-size:.9rem;padding:9px 11px;border:1.5px solid var(--rule-strong);border-radius:8px;background:#fff;" placeholder="Which terms keep coming back, and where in the book will you revisit them?"></textarea>
+      <div><button class="btn" id="recordBtn" type="button">&#8595; Download study record (.txt) &mdash; submit this</button></div>
+      <span class="filenote">The study record is a readable summary of your work &mdash; retired terms, the terms you marked &ldquo;Again&rdquo; most, and your reflection &mdash; generated on your device for you to turn in.</span>
+    </div>
+
+    <div class="filerow">
+      <button class="btn" id="exportBtn" type="button">&#8595; Download progress (.json)</button>
+      <label class="btn" for="importFile">&#8593; Load a progress file<input type="file" id="importFile" accept=".json,application/json"></label>
+      <span class="filenote">The progress file is a small text file that lives only on your device. Nothing is sent anywhere; re-loading it restores your deck even after this browser's saved data is cleared.</span>
+    </div>
+    <div class="announce" id="announce" role="status" aria-live="polite"></div>
+  </div>
+</main>
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script>
+(function(){
+  "use strict";
+  var KEY = "qmflash_v1";
+  var TERMS = [
+    ["ALR annotation","An article in American Law Reports collecting and analyzing the case law of many jurisdictions on a narrow legal issue; a primary tool for survey questions."],
+    ["analytical closure","The judgment that research is complete because every question has been answered or identified as genuinely open, the rule and its application are covered, and further research would only refine wording."],
+    ["annotated code","A statutory code enhanced with editorial notes: case annotations, cross-references to regulations and secondary sources, and history notes."],
+    ["annotated outline","The running document that records the product of research: each question's synthesized answer, organized under the structure the final document will take."],
+    ["application question","A question asking how a rule operates on specific facts, answered by locating cases with similar facts (fact-finding) or by building the rule from multiple sources when nothing is on point (constructive application)."],
+    ["authority note","The note accompanying a CFR part that cites the statute empowering the agency to issue it."],
+    ["binding authority","Law a court must follow: the constitution, statutes, and regulations of its own jurisdiction, the decisions of higher courts in its own system, and federal law applicable within it."],
+    ["canons of construction","Established interpretive principles courts use to read ambiguous statutory text, such as the plain meaning rule, expressio unius, ejusdem generis, and the rule against surplusage."],
+    ["citator","A tool (KeyCite or Shepard's) that tracks an authority's subsequent history and treatment, showing whether it remains good law."],
+    ["code","Statutes arranged by subject as currently amended, in an official or annotated compilation."],
+    ["committee report","The report accompanying a bill out of committee; generally the most authoritative legislative history document."],
+    ["common law","Judge-made law developed case by case through judicial decision."],
+    ["constructive application","Answering an application question no decision squarely addresses by building the rule from the cases that exist and reasoning by analogy."],
+    ["definitional question","A question asking what a word or phrase means, answered by a dictionary for a working definition or by the statute's definitions section, a regulation, or case law when precision is critical."],
+    ["dictum","A statement in an opinion not necessary to the decision; persuasive at most, never binding."],
+    ["dispositive facts","The facts a decision actually turned on; identifying them is the key skill for predicting how a case applies to new facts."],
+    ["docket","The court's running record of a litigation: every filing, order, and event, in order."],
+    ["exploratory question","A question asking what the legal landscape looks like, answered by an encyclopedia or general search (no-clue), a treatise (foundational), or ALRs, Restatements, and 50-state surveys (survey)."],
+    ["Federal Register","The daily federal publication of proposed and final rules, notices, and presidential documents."],
+    ["focusing question","A question asking what the specific governing rule, standard, or test is; the move from secondary to primary authority."],
+    ["guidance document","Agency material, such as manuals, opinion letters, and policy statements, that explains the agency's interpretation without the force of law."],
+    ["hallucination","A generative AI output that is plausible but fabricated, including invented citations, quotations, and holdings."],
+    ["headnote","An editor-written summary of a single point of law in an opinion; a research tool, not authority."],
+    ["holding","The court's resolution of the issue necessary to its decision; the portion of an opinion carrying precedential weight."],
+    ["hornbook","A one-volume treatise summarizing an area of law, written primarily for students."],
+    ["legislative history","The documents produced as a bill moves through the legislature, used to uncover legislative intent when statutory text is ambiguous."],
+    ["List of CFR Sections Affected (LSA)","The monthly record of which CFR sections have changed since the last annual update."],
+    ["Notice of Proposed Rulemaking (NPRM)","The Federal Register notice proposing a rule and opening the public comment period; the record of the agency's intent."],
+    ["persuasive authority","Authority a court may consider but need not follow: primary authority from other jurisdictions, lower or coordinate courts, secondary sources, and dicta."],
+    ["practical closure","Stopping research because an external limit, a deadline, a budget, or an instruction, forces the stop, with what remains documented."],
+    ["preemption","Federal law displacing state law in areas where Congress has constitutional power, either expressly or impliedly. In scholarship, preemption research instead means checking whether your argument has already been made."],
+    ["primary authority","The law itself: constitutions, statutes, regulations, case law, and treaties."],
+    ["Question Method","The research method this book teaches: write a single research question, research it, record the answer scoped to that question, and let the answer produce the next question, repeating until closure."],
+    ["research closure","The professional judgment that research is good enough for its purpose; it comes in analytical and practical forms."],
+    ["Research Log","The running record of the research process: each question, its type, the source consulted, the scoped answer, the citation, and the next question."],
+    ["Restatement","The American Law Institute's synthesis of common-law rules in an area; among the most persuasive secondary authorities."],
+    ["root expander","The search operator (!) that retrieves every word sharing a root, such as negligen! for negligent, negligence, and negligently."],
+    ["secondary source","Material about the law, such as encyclopedias, treatises, ALR annotations, and law review articles, used to find and understand primary authority but rarely cited as law."],
+    ["session laws","Laws as enacted, published in chronological order, such as the United States Statutes at Large."],
+    ["single-source trap","A long run of Research Log entries in one source type with the question still only partly answered; the log-visible signal to switch sources."],
+    ["slip law","The first official publication of a newly enacted statute, issued as a standalone document."],
+    ["source note","The note citing the Federal Register document that created or last amended a CFR part; the thread you pull to reach the preamble."],
+    ["stare decisis","The doctrine that courts stand by precedent: their own prior decisions and those of the courts above them."],
+    ["terms and connectors","The precision search mode built from Boolean operators, proximity connectors, expanders, and phrase searching."],
+    ["treatise","A comprehensive scholarly treatment of a single area of law, often multivolume, organized to give the field's structure."]
+  ];
+
+  /* ---- state: { order:[idx...], pos:n, got:{idx:true}, again:{idx:count} } ---- */
+  var state = null;
+  function freshState(shuffled) {
+    var order = TERMS.map(function(_, i){ return i; });
+    if (shuffled) for (var i = order.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t;
+    }
+    return { v: 1, order: order, pos: 0, got: {}, again: {}, restarts: 0, saved: new Date().toISOString() };
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) { var s = JSON.parse(raw); if (s && s.v === 1 && Array.isArray(s.order)) return s; }
+    } catch (e) {}
+    return freshState(true);
+  }
+  function save() {
+    state.saved = new Date().toISOString();
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  var faceEl = document.getElementById("face"), sideEl = document.getElementById("side"),
+      cardEl = document.getElementById("fcard"), counts = document.getElementById("counts"),
+      fill = document.getElementById("progfill"), announce = document.getElementById("announce");
+  var flipBtn = document.getElementById("flipBtn"), gotBtn = document.getElementById("gotBtn"),
+      againBtn = document.getElementById("againBtn");
+  var showingDef = false;
+
+  function remaining() {
+    return state.order.filter(function (idx) { return !state.got[idx]; });
+  }
+  function currentIdx() {
+    var rem = remaining();
+    if (!rem.length) return null;
+    if (state.pos >= rem.length) state.pos = 0;
+    return rem[state.pos];
+  }
+  function render(announceText) {
+    var gotN = Object.keys(state.got).length, rem = remaining();
+    counts.textContent = gotN + " of " + TERMS.length + " retired \u00b7 " + rem.length + " to go";
+    fill.style.width = Math.round(gotN / TERMS.length * 100) + "%";
+    var idx = currentIdx();
+    if (idx === null) {
+      cardEl.innerHTML = "<div class=\"donebox\"><p class=\"side\">Deck complete</p>" +
+        "<div class=\"big\">" + TERMS.length + " / " + TERMS.length + "</div>" +
+        "<p>Every term retired. Restart the deck for another pass \u2014 the terms you marked \u201cAgain\u201d most often are the ones to revisit in the chapters.</p></div>";
+      flipBtn.disabled = gotBtn.disabled = againBtn.disabled = true;
+      return;
+    }
+    flipBtn.disabled = false;
+    gotBtn.disabled = againBtn.disabled = !showingDef;
+    sideEl.textContent = showingDef ? "Definition" : "Term";
+    faceEl.className = showingDef ? "def" : "term";
+    faceEl.textContent = showingDef ? TERMS[idx][1] : TERMS[idx][0];
+    if (!cardEl.contains(sideEl)) { cardEl.innerHTML = ""; cardEl.appendChild(sideEl); cardEl.appendChild(faceEl); }
+    flipBtn.setAttribute("aria-pressed", String(showingDef));
+    if (announceText) QM.announce(announce, announceText);
+  }
+
+  function flip() {
+    if (currentIdx() === null) return;
+    showingDef = !showingDef;
+    render(showingDef ? "Definition shown" : "Term shown");
+  }
+  function mark(got) {
+    var idx = currentIdx();
+    if (idx === null || !showingDef) return;
+    if (got) { state.got[idx] = true; }
+    else {
+      state.again[idx] = (state.again[idx] || 0) + 1;
+      state.pos++; /* card goes to the back of the remaining pile */
+    }
+    showingDef = false;
+    save();
+    render(got ? "Marked got it. Next card." : "Marked again \u2014 it will come back. Next card.");
+  }
+
+  flipBtn.addEventListener("click", flip);
+  gotBtn.addEventListener("click", function(){ mark(true); });
+  againBtn.addEventListener("click", function(){ mark(false); });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+    if (e.key === " ") { e.preventDefault(); flip(); }
+    else if (e.key === "ArrowRight") { mark(true); }
+    else if (e.key === "ArrowLeft") { mark(false); }
+  });
+  document.getElementById("shuffleBtn").addEventListener("click", function () {
+    var rem = remaining();
+    for (var i = state.order.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = state.order[i];
+      state.order[i] = state.order[j]; state.order[j] = t;
+    }
+    state.pos = 0; showingDef = false; save(); render("Deck shuffled \u2014 " + rem.length + " cards remaining");
+  });
+  document.getElementById("restartBtn").addEventListener("click", function () {
+    if (!window.confirm("Restart the deck? Your got-it marks will be cleared. Again counts and the restart tally are kept for your study record.")) return;
+    var keepAgain = state.again, restarts = (state.restarts || 0) + 1;
+    state = freshState(true); state.again = keepAgain; state.restarts = restarts;
+    showingDef = false; save(); render("Deck restarted");
+  });
+
+  /* ---- the turn-in study record (.txt) ---- */
+  document.getElementById("recordBtn").addEventListener("click", function () {
+    var bar = new Array(63).join("=");
+    var gotN = Object.keys(state.got).length;
+    var hard = Object.keys(state.again).map(function (k) {
+      return { t: TERMS[+k][0], n: state.again[k] };
+    }).sort(function (a, b) { return b.n - a.n; }).slice(0, 8);
+    var L = [bar, "GLOSSARY FLASHCARDS \u2014 STUDY RECORD", bar,
+      "Date: " + new Date().toLocaleString(), "",
+      "Terms retired this pass: " + gotN + " of " + TERMS.length,
+      "Deck restarts (additional passes): " + (state.restarts || 0), ""];
+    L.push("TERMS MARKED \u201cAGAIN\u201d MOST (revisit these in the chapters)");
+    L.push(new Array(43).join("-"));
+    if (!hard.length) L.push("  (none \u2014 every term retired on first sight)");
+    hard.forEach(function (h) { L.push("  " + h.t + "  \u2014 marked Again " + h.n + (h.n === 1 ? " time" : " times")); });
+    L.push("");
+    var refl = document.getElementById("fc-reflect").value.trim();
+    L.push("REFLECTION");
+    L.push(new Array(43).join("-"));
+    L.push(refl ? refl : "  (no reflection entered)");
+    L.push("");
+    L.push("Generated locally in the student's browser \u2014 no data was sent anywhere.");
+    var blob = new Blob([L.join("\n")], { type: "text/plain" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "glossary-study-record.txt";
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    QM.announce(announce, "Study record downloaded");
+  });
+
+  /* ---- download / re-load progress (survives cleared browser data) ---- */
+  document.getElementById("exportBtn").addEventListener("click", function () {
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "glossary-flashcards-progress.json";
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    QM.announce(announce, "Progress file downloaded");
+  });
+  document.getElementById("importFile").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var s = JSON.parse(r.result);
+        if (!s || s.v !== 1 || !Array.isArray(s.order)) throw new Error("bad file");
+        state = s; showingDef = false; save();
+        render("Progress file loaded \u2014 " + remaining().length + " cards remaining");
+      } catch (err) {
+        QM.announce(announce, "That file does not look like a flashcards progress file.");
+      }
+      e.target.value = "";
+    };
+    r.readAsText(f);
+  });
+
+  state = load();
+  render();
+  QM.storageNotice({ keys: [KEY], parent: document.querySelector(".pagewrap") });
+})();
+</script>
+</body>
+</html>

@@ -111,7 +111,7 @@ strong{ font-weight: 600; }
   font-family: var(--sans); text-transform: uppercase; letter-spacing: .16em;
   font-size: .72rem; font-weight: 600; color: var(--ink-faint); margin: 0 0 .9rem;
 }
-.measure{ max-width: var(--measure); }
+.measure{ max-width: none; }
 .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
   clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .skip{ position:absolute; left:-9999px; top:0; background:var(--ink); color:#fff;
@@ -207,14 +207,14 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
    HUB — landing page
    ========================================================================== */
 .hero{ padding: 8px 0 4px; }
-.hero .lede{ font-size: 1.18rem; color: var(--ink-soft); max-width: 62ch; }
+.hero .lede{ font-size: 1.18rem; color: var(--ink-soft); }
 .hero h1{ margin-bottom: .28em; }
 
 /* the method strip */
 .method{ margin: 38px 0 8px; border:1px solid var(--rule-strong); border-radius: var(--radius);
   background: var(--panel); padding: 24px 26px; box-shadow: var(--shadow); }
 .method .eyebrow{ color: var(--flame); }
-.method-intro{ color: var(--ink-soft); font-size: .98rem; margin: 0 0 4px; max-width: 76ch; }
+.method-intro{ color: var(--ink-soft); font-size: .98rem; margin: 0 0 4px; }
 .method-steps{ list-style: none; counter-reset: step; margin: 16px 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 14px 22px; }
 .method-steps li{ counter-increment: step; position: relative; padding-left: 40px; font-size: .94rem; color: var(--ink-soft); }
@@ -234,7 +234,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
   color: var(--flame); }
 .part-head h2{ margin:0; font-size: 1.45rem; }
 .part-head .pcount{ margin-left:auto; font-family: var(--mono); font-size:.7rem; color: var(--ink-faint); letter-spacing:.04em; }
-.part-blurb{ color: var(--ink-soft); margin: 10px 0 18px; max-width: 74ch; }
+.part-blurb{ color: var(--ink-soft); margin: 10px 0 18px; }
 
 /* chapter ledger */
 .ledger{ display:flex; flex-direction:column; }
@@ -295,7 +295,7 @@ a.mod-card.is-live:focus-visible{ outline: 3px solid var(--flame); outline-offse
 .mod-head{ display:flex; align-items:center; gap: 12px; flex-wrap:wrap; margin-bottom: 8px; }
 .mod-title{ font-family: var(--display); font-size: 1.22rem; font-weight: 700; margin: 0; }
 a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
-.mod-desc{ color: var(--ink-soft); margin: 0 0 4px; max-width: 72ch; }
+.mod-desc{ color: var(--ink-soft); margin: 0 0 4px; }
 
 .mod-willwrap{ margin-top: 14px; }
 .mod-willhead{ font-family: var(--sans); font-size:.72rem; font-weight:700; letter-spacing:.08em;

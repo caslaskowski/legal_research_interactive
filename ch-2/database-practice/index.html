@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Database Practice — Ch. 2 · Introduction to Legal Research Platforms</title>
+<meta name="description" content="Practice the mechanics of working in a legal database: where to start, how to change a search, and how to read a citation as a retrieval address. No grade — every option comes with a reason.">
+<!-- fallback brand tokens so the page is usable even opened on its own -->
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;
+--statute:#8a0100;--regulation:#2f6d56;--case:#28406b;--radius:4px;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);max-width:none;}
+.howto{margin:18px 0 26px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);
+  border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:none;}
+.howto b{color:var(--flame-deep);}
+
+/* progress */
+.prog{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);
+  margin:0 0 18px;}
+.prog b{color:var(--flame);}
+
+/* question cards */
+.q{border:1px solid var(--rule-strong);border-radius:8px;background:#fff;box-shadow:var(--shadow);
+  margin:0 0 22px;padding:0;overflow:hidden;}
+.q-grp{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  color:#fff;background:var(--ink);padding:7px 18px;}
+.q-body{padding:18px 20px 20px;}
+.q-stem{font-size:1.02rem;font-weight:600;color:var(--ink);margin:0 0 4px;max-width:none;}
+.q-stem .scenario{display:block;font-weight:400;color:var(--ink-soft);font-size:.96rem;margin:0 0 10px;}
+.q-search{font-family:var(--mono);font-size:.9rem;background:var(--panel);border:1px solid var(--rule);
+  border-radius:6px;padding:8px 12px;display:inline-block;margin:2px 0 12px;color:var(--ink);}
+
+/* options as a radiogroup */
+.opts{display:flex;flex-direction:column;gap:9px;margin:6px 0 0;}
+.opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;font:inherit;font-size:.97rem;
+  color:var(--ink);background:#fff;border:1.5px solid var(--rule-strong);border-radius:7px;padding:12px 14px;cursor:pointer;
+  transition:border-color .12s,background .12s;}
+.opt:hover{border-color:var(--flame);background:var(--flame-tint);}
+.opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.opt .dot{flex:0 0 auto;width:19px;height:19px;border-radius:50%;border:2px solid var(--ink-faint);margin-top:1px;
+  display:grid;place-items:center;}
+.opt[aria-checked="true"]{border-color:var(--ink);background:var(--panel);}
+.opt[aria-checked="true"] .dot{border-color:var(--flame);}
+.opt[aria-checked="true"] .dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--flame);}
+.opt .otxt{flex:1;}
+
+/* verdicts revealed after answering */
+.verdicts{margin:16px 0 0;border-top:1px dashed var(--rule-strong);padding-top:14px;}
+.verdicts[hidden]{display:none;}
+.vh{font-family:var(--sans);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--ink-faint);margin:0 0 10px;}
+.v{display:flex;gap:11px;align-items:flex-start;margin:0 0 11px;font-size:.93rem;line-height:1.5;color:var(--ink-soft);}
+.v .badge{flex:0 0 auto;font-family:var(--sans);font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;border-radius:999px;padding:3px 9px 3px 8px;display:inline-flex;align-items:center;gap:5px;
+  border:1.5px solid currentColor;white-space:nowrap;margin-top:1px;}
+.v .badge .ic{font-size:.85rem;line-height:1;}
+.v.strong .badge{color:#1f6f4f;background:#e7f1ec;}
+.v.workable .badge{color:#7a5b00;background:#f4eddb;}
+.v.weak .badge{color:#8a0100;background:var(--flame-tint);}
+.v .vtxt{flex:1;}
+.v .vtxt b{color:var(--ink);}
+.v.is-pick{background:var(--flame-tint);border-radius:6px;padding:8px 10px;margin-left:-10px;margin-right:-10px;}
+.you-chose{font-size:.9rem;color:var(--ink);font-weight:600;margin:2px 0 12px;}
+.you-chose .mono{font-family:var(--mono);font-weight:500;}
+
+.takeaway{margin:34px 0 10px;padding:18px 20px;border:1px solid var(--rule-strong);border-left:4px solid var(--case);
+  background:var(--case-tint,#dde2ed);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);max-width:none;}
+.takeaway h2{margin:0 0 .4em;font-size:1.05rem;}
+.takeaway a{color:var(--flame-deep);font-weight:600;}
+
+#export-slot{margin-top:30px;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html" aria-current="page">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 2 · Practice</p>
+    <h1>Database Practice</h1>
+    <p class="lede">A few short scenarios to practice the <em>mechanics</em> of working in a database &mdash; where to begin, how to adjust a search, and how to read a citation as a retrieval address. This is practice, not a test.</p>
+
+    <div class="howto">
+      Most of these have <b>more than one defensible answer</b>. Pick the option you would actually choose, then read why <b>each</b> option could or could not work. Nothing is scored, and nothing is saved &mdash; the point is to think through the trade-offs. <em>Which</em> source best fits a question is a strategy skill you build in <a href="../../index.html" style="color:var(--flame-deep);font-weight:600;">Chapter 3</a>; here we are just getting comfortable with the controls.
+    </div>
+
+    <p class="prog" id="prog" role="status" aria-live="polite">Answered <b id="prog-n">0</b> of <span id="prog-t">6</span></p>
+
+    <div id="quiz"></div>
+
+    <div class="takeaway">
+      <h2>The two ideas underneath all of this</h2>
+      <p>A <b>filter</b> controls <em>where</em> the database looks (jurisdiction, court, date, source type); a <b>search term</b> controls <em>what words</em> it looks for. Reaching for the wrong one is the most common database stumble. And a full citation is a unique <em>address</em>: once you have the reporter citation, the party names and the year are confirmation, not requirements.</p>
+      <p>Ready to put a real chain of questions together? Head to <a href="../../ch-3/question-chain/index.html">Working the Chain</a> in Chapter 3.</p>
+    </div>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-2/">Ch. 2 · Introduction to Legal Research Platforms</a></p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-2/using-databases/index.html"><span class="dir">← Previous</span><span class="t">Using Databases for Legal Research</span></a>
+    <a class="modnav-link next" href="../../ch-3/"><span class="dir">Next chapter →</span><span class="t">Ch. 3 · The Question Method of Legal Research</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ---- the practice items ----
+     verdict: "strong" | "workable" | "weak"  (qualitative, never a score) */
+  var QSETS = [
+    {
+      id:"start-erisa",
+      group:"Where would you start? · the mechanics",
+      stem:"Mechanically, where do you start?",
+      scenario:"It is your first week as a summer associate at an employment firm. A partner asks you to find a good source that explains the basics of ERISA (a federal employee-benefits statute). You open the database. You do not yet know the vocabulary of this area.",
+      options:[
+        {id:"nl", text:"Type a plain-language question into the search box (\u201cwhat is ERISA\u201d).",
+         verdict:"workable", why:"A wide plain-language net is a fine first move when you don\u2019t know the terms yet \u2014 it will surface explanatory secondary sources you can learn the vocabulary from."},
+        {id:"pa", text:"Set the content filter to the Labor & Employment practice area first.",
+         verdict:"strong", why:"Narrowing the whole platform to the right field before you type anything pre-filters cases, statutes, and secondary sources to your area. A clean, low-risk place to begin."},
+        {id:"tc", text:"Build a terms-and-connectors query right away.",
+         verdict:"workable", why:"Powerful, but premature here \u2014 a precise query needs terms you don\u2019t have yet. Better once the area has handed you its vocabulary."},
+        {id:"code", text:"Go straight to Federal \u2192 United States Code and pull up the ERISA statute.",
+         verdict:"workable", why:"This takes you to the law itself, but the statute text isn\u2019t a source that <b>explains the basics</b> \u2014 you\u2019d still want a secondary source to orient you first."}
+      ]
+    },
+    {
+      id:"still-good",
+      group:"Where would you start? · the mechanics",
+      stem:"Which tool do you reach for?",
+      scenario:"You found a helpful 2019 California case. Before you rely on it, you need to know whether it is still good law \u2014 not overruled or reversed.",
+      options:[
+        {id:"citator", text:"The citator (the tool that validates whether authority is still good).",
+         verdict:"strong", why:"This is exactly what a citator is for: it shows later treatment \u2014 whether the case was overruled, criticized, or affirmed."},
+        {id:"history", text:"Your search History.",
+         verdict:"weak", why:"History just records what <b>you</b> searched and opened. It says nothing about whether a case is still valid."},
+        {id:"folders", text:"Folders / Workspace.",
+         verdict:"weak", why:"Folders store documents for a matter. Useful for keeping the case, useless for validating it."},
+        {id:"alerts", text:"Set an Alert on the case.",
+         verdict:"workable", why:"An alert is good for staying current <b>going forward</b>, but it won\u2019t tell you the case\u2019s status right now \u2014 the citator does that."}
+      ]
+    },
+    {
+      id:"narrow-ca",
+      group:"Change the search · the mechanics",
+      stem:"How do you focus this on California law?",
+      scenario:"You ran this search and got far too many results, from courts all over the country:",
+      search:"dog AND bite AND liability",
+      options:[
+        {id:"filter", text:"Set the jurisdiction filter to California.",
+         verdict:"strong", why:"Jurisdiction is a <b>filter</b>, not a search word. Setting it tells the database <em>where</em> to look without polluting your query."},
+        {id:"addterm", text:"Add AND California to the query.",
+         verdict:"workable", why:"It can help, but it\u2019s crude \u2014 \u201cCalifornia\u201d shows up in opinions from everywhere (parties, quoted cases), so you\u2019ll still get out-of-state noise. Filters are cleaner for jurisdiction."},
+        {id:"or", text:"Change the AND connectors to OR.",
+         verdict:"weak", why:"OR <b>broadens</b> \u2014 you\u2019d get even more results, and still from everywhere. Wrong direction for this problem."},
+        {id:"phrase", text:"Put it in quotation marks: \u201cdog bite liability\u201d.",
+         verdict:"weak", why:"A phrase search narrows by exact wording, not by location. It changes <em>what</em> you match, not <em>where</em>."}
+      ]
+    },
+    {
+      id:"broaden",
+      group:"Change the search · the mechanics",
+      stem:"How do you get more results?",
+      scenario:"This search returned almost nothing, and you suspect you\u2019re being too restrictive:",
+      search:"physician AND negligence AND informed-consent",
+      options:[
+        {id:"or", text:"Swap some ANDs for OR (e.g., physician OR doctor).",
+         verdict:"strong", why:"OR broadens by accepting <em>any</em> of the alternatives \u2014 it catches documents that used \u201cdoctor\u201d where you wrote \u201cphysician.\u201d"},
+        {id:"root", text:"Use a root expander on a key term: negligen!",
+         verdict:"strong", why:"The ! expander catches every ending \u2014 negligen! finds negligence, negligent, negligently \u2014 widening the net without losing the concept."},
+        {id:"add", text:"Add another AND term to be safe.",
+         verdict:"weak", why:"Every AND <b>narrows</b> further. Adding one would give you fewer results, not more."},
+        {id:"quote", text:"Quote the phrase \u201cinformed consent.\u201d",
+         verdict:"weak", why:"A phrase search is more restrictive, not less \u2014 it demands those exact words in that exact order. That shrinks the set."}
+      ]
+    },
+    {
+      id:"cite-missing",
+      group:"Citations · reading the address",
+      stem:"What is the missing piece that would retrieve the exact case?",
+      scenario:"A classmate says, \u201cjust search Pelham and pull it up.\u201d You type Pelham into the database and get hundreds of results.",
+      options:[
+        {id:"reporter", text:"The reporter citation \u2014 volume, reporter, page (e.g., 92 Ill. 2d 13).",
+         verdict:"strong", why:"A reporter citation is a unique address. Drop it into the search box or the \u201cget by citation\u201d field and exactly one document comes back."},
+        {id:"year", text:"The year, 1982.",
+         verdict:"workable", why:"A year helps a filter trim the list, but plenty of cases share a year \u2014 it won\u2019t uniquely identify this one."},
+        {id:"parties", text:"Both party names, Pelham v. Griesheimer.",
+         verdict:"workable", why:"Full party names narrow things a lot and often work \u2014 but common surnames recur, so this isn\u2019t as certain as the reporter citation."},
+        {id:"judge", text:"The name of the judge who wrote it.",
+         verdict:"weak", why:"Databases aren\u2019t built to retrieve a single opinion by its author\u2019s name \u2014 one judge writes many opinions."}
+      ]
+    },
+    {
+      id:"cite-ignore",
+      group:"Citations · reading the address",
+      stem:"Which part <em>alone</em> is enough to retrieve the document?",
+      scenario:"You already have the full citation for a case you want to open: Pelham v. Griesheimer, 92 Ill. 2d 13 (1982). You don\u2019t need to discover it \u2014 just pull up the document.",
+      options:[
+        {id:"reporter", text:"92 Ill. 2d 13 \u2014 the reporter citation.",
+         verdict:"strong", why:"That\u2019s the address. With the reporter citation in hand, the party names and the year are confirmation \u2014 you can safely ignore them for retrieval."},
+        {id:"parties", text:"Pelham v. Griesheimer \u2014 the party names.",
+         verdict:"workable", why:"The parties will usually surface it, but not as reliably or uniquely as the reporter citation does."},
+        {id:"year", text:"1982 \u2014 the year.",
+         verdict:"weak", why:"Far too broad on its own. A year retrieves thousands of documents."},
+        {id:"all", text:"You need all three together.",
+         verdict:"weak", why:"A natural instinct, but over-cautious. The reporter citation alone is a unique locator; requiring all three just slows you down."}
+      ]
+    }
+  ];
+
+  var BADGE = {
+    strong:   ["\u2713","Strong move"],
+    workable: ["\u223c","Workable"],
+    weak:     ["\u2717","Weak move"]
+  };
+
+  var answered = {};
+  var quiz = document.getElementById("quiz");
+  document.getElementById("prog-t").textContent = QSETS.length;
+
+  function updateProg(){
+    document.getElementById("prog-n").textContent = Object.keys(answered).length;
+  }
+
+  QSETS.forEach(function(qs, qi){
+    var card = document.createElement("section");
+    card.className = "q";
+
+    var grp = document.createElement("p");
+    grp.className = "q-grp";
+    grp.textContent = "Question " + (qi+1) + " \u2014 " + qs.group;
+    card.appendChild(grp);
+
+    var body = document.createElement("div");
+    body.className = "q-body";
+
+    var stemId = "stem-" + qs.id;
+    var stem = document.createElement("p");
+    stem.className = "q-stem";
+    stem.id = stemId;
+    var inner = "";
+    if(qs.scenario) inner += '<span class="scenario">'+qs.scenario+'</span>';
+    if(qs.search) inner += '<span class="q-search">'+qs.search+'</span><br>';
+    inner += qs.stem;
+    stem.innerHTML = inner;
+    body.appendChild(stem);
+
+    var chosenLine = document.createElement("p");
+    chosenLine.className = "you-chose";
+    chosenLine.hidden = true;
+    body.appendChild(chosenLine);
+
+    var opts = document.createElement("div");
+    opts.className = "opts";
+    opts.setAttribute("role","radiogroup");
+    opts.setAttribute("aria-labelledby", stemId);
+
+    var optEls = [];
+    qs.options.forEach(function(o, oi){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "opt";
+      b.setAttribute("role","radio");
+      b.setAttribute("aria-checked","false");
+      b.tabIndex = oi === 0 ? 0 : -1;
+      b.dataset.oid = o.id;
+      b.innerHTML = '<span class="dot" aria-hidden="true"></span><span class="otxt">'+o.text+'</span>';
+      opts.appendChild(b);
+      optEls.push(b);
+    });
+    body.appendChild(opts);
+
+    var verdicts = document.createElement("div");
+    verdicts.className = "verdicts";
+    verdicts.hidden = true;
+    verdicts.setAttribute("aria-live","polite");
+    var vh = document.createElement("p");
+    vh.className = "vh";
+    vh.textContent = "Why each option works \u2014 or doesn\u2019t";
+    verdicts.appendChild(vh);
+    body.appendChild(verdicts);
+
+    card.appendChild(body);
+    quiz.appendChild(card);
+
+    function buildVerdicts(pickId){
+      verdicts.innerHTML = "";
+      verdicts.appendChild(vh);
+      qs.options.forEach(function(o){
+        var row = document.createElement("div");
+        row.className = "v " + o.verdict + (o.id === pickId ? " is-pick" : "");
+        var label = BADGE[o.verdict];
+        var pickTag = o.id === pickId ? ' <b>(your pick)</b>' : '';
+        row.innerHTML =
+          '<span class="badge"><span class="ic" aria-hidden="true">'+label[0]+'</span>'+label[1]+'</span>'+
+          '<span class="vtxt"><b>'+o.text+'</b>'+pickTag+'<br>'+o.why+'</span>';
+        verdicts.appendChild(row);
+      });
+    }
+
+    function choose(b){
+      var oid = b.dataset.oid;
+      optEls.forEach(function(x){
+        var on = x === b;
+        x.setAttribute("aria-checked", on ? "true" : "false");
+        x.tabIndex = on ? 0 : -1;
+      });
+      var opt = qs.options.filter(function(o){return o.id===oid;})[0];
+      chosenLine.hidden = false;
+      chosenLine.innerHTML = 'You chose: <span class="mono">'+opt.text+'</span>';
+      buildVerdicts(oid);
+      verdicts.hidden = false;
+      if(!answered[qs.id]){ answered[qs.id] = true; updateProg(); }
+      if(window.ExportReflect){
+        ExportReflect.log("Q"+(qi+1)+" ("+qs.group.split(" \u00b7 ")[0]+")",
+          "chose: "+opt.text.replace(/<[^>]+>/g,"")+"  \u2014  ["+BADGE[opt.verdict][1]+"]");
+      }
+    }
+
+    opts.addEventListener("click", function(e){
+      var b = e.target.closest(".opt"); if(!b) return;
+      choose(b);
+    });
+    opts.addEventListener("keydown", function(e){
+      var i = optEls.indexOf(document.activeElement);
+      if(i < 0) return;
+      var idx = null;
+      if(e.key==="ArrowDown"||e.key==="ArrowRight") idx=(i+1)%optEls.length;
+      else if(e.key==="ArrowUp"||e.key==="ArrowLeft") idx=(i-1+optEls.length)%optEls.length;
+      else if(e.key==="Home") idx=0;
+      else if(e.key==="End") idx=optEls.length-1;
+      else if(e.key===" "||e.key==="Enter"){ e.preventDefault(); choose(optEls[i]); return; }
+      if(idx!==null){ e.preventDefault(); optEls[idx].focus(); choose(optEls[idx]); }
+    });
+  });
+
+  /* ---- export + reflection (process / effort focused) ---- */
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"), {
+      module: "Database Practice",
+      chapter: "Chapter 2 — Introduction to Legal Research Platforms",
+      intro: "You worked through the database mechanics scenarios.",
+      prompts: [
+        "Which scenario made you pause the longest, and what were you weighing between the options?",
+        "Describe a time one of your answers changed after you read the reasons for the other options. What shifted your thinking?",
+        "In your own words: when would you reach for a filter, and when would you change the search terms?"
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>

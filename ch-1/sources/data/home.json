@@ -1,0 +1,35 @@
+{
+  "title": "How Law Is Made: Cases, Statutes, and Regulations",
+  "subtitle": "An interactive introduction for first-year law students.",
+  "intro": "Most legal rules you will study come from three sources: statutes, regulations, and cases. This module shows what each one is, how it is created, and when a lawyer reaches for it. Work through the pages in order, and keep your companion notes open as you go.",
+  "method": {
+    "eyebrow": "How this relates to the Question Method",
+    "body": "Understanding how each source is made tells you more than when to use it — it tells you what authority it carries. A statute carries the weight of the legislature; a regulation carries delegated agency power; a case carries judicial interpretation of law as applied to facts. Those origins determine which source can bind a court, which must yield to another, and why your research is never done until you have found the right kind of source for the question you are actually asking."
+  },
+  "objectives": [
+    "Identify cases, statutes, and regulations and say who creates each.",
+    "Trace the process that turns each one into binding law.",
+    "Recognize when each source is the right tool for a legal question."
+  ],
+  "nav": [
+    { "id": "workflow", "label": "How Each Source Is Made", "page": "workflow.html", "blurb": "Click through the lifecycle of each source." },
+    { "id": "statute", "label": "Statutes \u2014 Deep Dive", "page": "source.html?id=statute", "blurb": "The written law enacted by the legislature." },
+    { "id": "regulation", "label": "Regulations \u2014 Deep Dive", "page": "source.html?id=regulation", "blurb": "The detailed rules agencies issue under a statute." },
+    { "id": "case", "label": "Cases \u2014 Deep Dive", "page": "source.html?id=case", "blurb": "How courts decide disputes and make precedent." },
+    { "id": "connections", "label": "Bringing It Together", "page": "connections.html", "blurb": "How the three sources interact and check one another." },
+    { "id": "quiz", "label": "Knowledge Check", "page": "quiz.html", "blurb": "Test yourself, with detailed feedback on every answer." }
+  ],
+  "companion": {
+    "title": "Companion Notes",
+    "description": "A fill-in-the-blanks worksheet. Complete it as you move through the module \u2014 once it is filled in, it becomes your one-page cheat sheet.",
+    "buttonText": "Download Companion Notes (.txt)"
+  },
+  "atAGlance": {
+    "columns": ["Source", "Made by", "What it does", "Best used when"],
+    "rows": [
+      ["Statute", "Legislature", "Sets broad, binding rules and policy", "You need foundational, jurisdiction-wide authority or a brand-new rule"],
+      ["Regulation", "Executive agency, under a statute", "Fills in the technical detail a statute leaves open", "You need precise, operational specifics on a delegated subject"],
+      ["Case", "Court (judge)", "Interprets law, applies it to facts, and makes precedent", "You need to know how the law applies, what ambiguous text means, or the rule where no statute speaks"]
+    ]
+  }
+}

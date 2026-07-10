@@ -1,0 +1,190 @@
+{
+  "sources": [
+    {
+      "id": "statute",
+      "slug": "statute",
+      "title": "Statutes",
+      "tagline": "The written laws enacted by elected legislators.",
+      "madeBy": "A legislature \u2014 the elected representatives of the public.",
+      "role": "Sets the broad, binding rules and policy choices for a jurisdiction.",
+      "whenUseful": "When you need the foundational, democratically enacted rule on a subject. Statutes carry broad authority and can create entirely new rights, duties, programs, or crimes.",
+      "theme": "statute",
+      "workflow": [
+        {
+          "id": "bill",
+          "label": "Bill",
+          "brief": "A proposed law introduced by a legislator. It has been written down and formally offered, but it is not yet law and has no legal effect.",
+          "use": "The starting point: an idea for a new rule that must survive committee review, debate, and votes before it can bind anyone."
+        },
+        {
+          "id": "session-law",
+          "label": "Session Law",
+          "brief": "Once the legislature passes the bill and the executive signs it (or a veto is overridden), it becomes an enacted law, published in the order in which it was passed.",
+          "use": "The authoritative record of exactly what the legislature adopted, and when \u2014 the law as enacted, before it is reorganized."
+        },
+        {
+          "id": "codified-statute",
+          "label": "Codified Statute",
+          "brief": "The enacted law is broken apart and filed by subject into the jurisdiction's code, with later amendments woven in alongside related laws.",
+          "use": "Where lawyers and the public actually find the current law on a topic. Codification gathers scattered enactments into one organized, up-to-date place."
+        }
+      ],
+      "deepDive": {
+        "intro": "A statute is a law written and enacted by a legislature \u2014 the branch made up of elected representatives. In most modern legal systems, statutes are the primary form of law, because they come directly from the people's chosen lawmakers.",
+        "sections": [
+          {
+            "heading": "What a statute is",
+            "body": "A statute is a binding rule adopted by the legislature. Because it comes from elected lawmakers, it is usually the most direct expression of public policy, and it can do things no other source can do on its own: create new programs, define crimes, grant or remove rights, and raise and spend public money."
+          },
+          {
+            "heading": "How a statute is made",
+            "body": "A statute begins life as a bill \u2014 a proposed law that any legislator can introduce. The bill is studied in committee, debated, amended, and voted on. To become law it must pass the legislature and then be signed by the executive (or, if vetoed, be re-passed by a large enough majority). At that moment it becomes a session law. Later, it is codified: editors place it by subject into the jurisdiction's code so it can be found and read alongside related laws."
+          },
+          {
+            "heading": "Session law versus codified statute",
+            "body": "These are the same law in two different arrangements. The session law is the official text exactly as enacted, frozen in time and numbered in the order it passed \u2014 useful when you need to see precisely what the law said at a given moment. The codified statute is that same law reorganized by topic and kept current as amendments are added \u2014 useful when you simply need the law in force today. Knowing both exist explains why a single statute can be found in two very different-looking places."
+          },
+          {
+            "heading": "When a statute is the right source",
+            "body": "Reach for a statute when you need broad, durable authority: a brand-new rule where none exists, the controlling policy on a subject, or a rule that applies across the whole jurisdiction. As a general matter, statutes outrank regulations and ordinary case law on the same subject, so a statute is also where you look first to see whether those other sources are even allowed to operate."
+          }
+        ],
+        "whyUseful": "Statutes are the backbone of the legal system: broad in reach, forward-looking, and democratically legitimate. They are generally supreme over regulations and over case law that merely interprets a statute, which makes them the natural place to start when you ask, 'What is the rule, and who is allowed to change it?'",
+        "keyTerms": [
+          { "term": "Bill", "definition": "A proposed law that has been introduced but not yet enacted." },
+          { "term": "Legislature", "definition": "The branch of elected representatives that makes statutes." },
+          { "term": "Enact", "definition": "To formally make a bill into law." },
+          { "term": "Session law", "definition": "An enacted law published in the order it was passed." },
+          { "term": "Codify", "definition": "To organize enacted laws by subject into a code." },
+          { "term": "Amendment", "definition": "A formal change to an existing statute." }
+        ]
+      }
+    },
+    {
+      "id": "regulation",
+      "slug": "regulation",
+      "title": "Regulations",
+      "tagline": "The detailed rules agencies issue to carry out a statute.",
+      "madeBy": "An executive agency, using authority that a statute delegated to it.",
+      "role": "Fills in and implements the broad commands of a statute with specific, technical detail.",
+      "whenUseful": "When you need the precise, operational specifics a statute leaves to experts \u2014 and when the legislature has handed the subject to an agency.",
+      "theme": "regulation",
+      "workflow": [
+        {
+          "id": "authorizing-statute",
+          "label": "Authorizing Statute",
+          "brief": "A statute gives an agency the power to make rules on a subject and sets the limits of that power.",
+          "use": "Regulations exist only because a statute authorized them. This is both the source of the agency's authority and the leash on it."
+        },
+        {
+          "id": "proposed-rule",
+          "label": "Proposed Rule",
+          "brief": "The agency publishes a draft rule and invites the public to comment on it during a set period.",
+          "use": "Lets affected people respond before a rule binds them, and builds a record the agency must consider before finalizing."
+        },
+        {
+          "id": "final-rule",
+          "label": "Final Rule",
+          "brief": "After reviewing the comments, the agency issues the binding final rule, usually with an explanation of its reasoning.",
+          "use": "This is the rule that now carries the force of law. The accompanying explanation lets the public and courts understand and check it."
+        },
+        {
+          "id": "codified-regulation",
+          "label": "Codified Regulation",
+          "brief": "The final rule is organized by subject into the jurisdiction's regulatory code.",
+          "use": "Where you find the current operative regulations on a topic, gathered with related rules."
+        }
+      ],
+      "deepDive": {
+        "intro": "A regulation \u2014 sometimes called a 'rule' \u2014 is a detailed directive issued by an executive agency to put a statute into practice. Agencies are staffed by subject-matter specialists, so regulations are where broad legislative goals become concrete, workable requirements.",
+        "sections": [
+          {
+            "heading": "What a regulation is",
+            "body": "A regulation is a binding rule issued by an executive agency rather than by the legislature. Statutes often set a goal in general terms \u2014 'keep the water safe,' 'prevent unfair trade practices' \u2014 and leave the technical specifics to experts. The regulation supplies those specifics: the exact limits, procedures, forms, and definitions."
+          },
+          {
+            "heading": "Where the authority comes from",
+            "body": "Agencies have no inherent power to make law. A statute must first delegate authority to the agency and mark its boundaries. This matters in practice: a regulation that goes beyond what its authorizing statute allows can be challenged and struck down. Every regulation is therefore tethered to a statute behind it."
+          },
+          {
+            "heading": "How a regulation is made",
+            "body": "Once a statute grants authority, the agency typically uses a public process. It first issues a proposed rule and invites comments from anyone affected. After reading and weighing those comments, it issues a final rule, usually accompanied by an explanation that responds to the major objections. The final rule is then codified \u2014 placed by subject into the regulatory code \u2014 so it can be found alongside related rules. The comment step is what gives the public a voice and gives courts a record to review."
+          },
+          {
+            "heading": "When a regulation is the right source",
+            "body": "Reach for a regulation when you need precise, technical, operational detail; when the subject is one the legislature handed to an agency; or when the rules need to keep pace with changing facts. Statutes change slowly; regulations can be updated far more nimbly within the authority the statute provides."
+          }
+        ],
+        "whyUseful": "Regulations translate broad statutory goals into rules people can actually follow. They are expert-driven, far quicker to update than statutes, and binding like law \u2014 but only within the boundaries their statute sets, which keeps them accountable to the legislature's choices.",
+        "keyTerms": [
+          { "term": "Agency", "definition": "An executive body that administers a statute and issues regulations." },
+          { "term": "Authorizing (enabling) statute", "definition": "The statute that grants and limits an agency's rulemaking power." },
+          { "term": "Proposed rule", "definition": "A draft regulation published for public comment; not yet binding." },
+          { "term": "Comment period", "definition": "The window during which the public can respond to a proposed rule." },
+          { "term": "Final rule", "definition": "The binding regulation issued after comments are considered." },
+          { "term": "Codified regulation", "definition": "A final rule organized by subject into the regulatory code." }
+        ]
+      }
+    },
+    {
+      "id": "case",
+      "slug": "case",
+      "title": "Cases",
+      "tagline": "Courts deciding real disputes \u2014 and, in the process, making precedent.",
+      "madeBy": "Courts (judges), deciding actual disputes between parties.",
+      "role": "Resolves a specific dispute and, when published, interprets the law and creates precedent that guides later courts.",
+      "whenUseful": "When you need to know how the law applies to facts, what ambiguous statutory or regulatory language means, or what the rule is where no statute speaks.",
+      "theme": "case",
+      "workflow": [
+        {
+          "id": "appellate-dispute",
+          "label": "Appellate Dispute",
+          "brief": "A party who lost in the trial court asks a higher court to review legal errors. The appellate court focuses on questions of law, not on re-trying the facts.",
+          "use": "Appeals are where courts typically announce rules that will guide future cases \u2014 the engine of precedent. (The dispute first passed through a trial court below.)"
+        },
+        {
+          "id": "slip-opinion",
+          "label": "Slip Opinion",
+          "brief": "The court's written decision as first released, on its own, right after the court rules \u2014 before official publication and subject to later correction.",
+          "use": "The earliest official statement of the court's reasoning and result; how the parties and public first learn the outcome."
+        },
+        {
+          "id": "published-opinion",
+          "label": "Published Opinion",
+          "brief": "The finalized decision printed in the official reports, fixed in form and citable.",
+          "use": "Once published, the opinion is precedent \u2014 later courts look to it to decide similar cases."
+        }
+      ],
+      "deepDive": {
+        "intro": "A case is a court's written decision resolving a real dispute between parties. Along the way, the court must say what the law is and how it applies. When that decision is published, its reasoning guides future courts \u2014 and that is how cases make law through precedent.",
+        "sections": [
+          {
+            "heading": "What a case is",
+            "body": "A court decides an actual controversy between parties, and in doing so it interprets and applies the law to a concrete set of facts. The written explanation of that decision is the opinion. Unlike a statute, a case does not announce a rule in the abstract; it shows the law in action, settling exactly how a rule plays out when real facts meet it."
+          },
+          {
+            "heading": "Why appeals matter most for law-making",
+            "body": "Trial courts mostly resolve who wins on the facts of a single dispute, and their decisions usually do not bind anyone else. Appellate courts focus on questions of law, and their published opinions are what create precedent for future cases. That is why this module follows a dispute at the appellate stage: it is where a single case turns into guidance for everyone."
+          },
+          {
+            "heading": "How a precedent is made",
+            "body": "After an appellate court decides, it releases a slip opinion \u2014 the decision standing alone, issued right away and still open to correction. Once finalized, it becomes a published opinion in the official reports: fixed in form, assigned a citation, and available for any later court or lawyer to rely on. Publication is the moment a one-off decision becomes durable law."
+          },
+          {
+            "heading": "When a case is the right source",
+            "body": "Reach for a case when you need to know how the law actually applies: what an ambiguous statute or regulation means in practice, how a rule resolves a specific fact pattern, or what the governing rule is where no statute addresses the issue at all. In that last situation, the court itself supplies the rule \u2014 law made entirely through cases."
+          }
+        ],
+        "whyUseful": "Cases give law its meaning in the real world. They resolve ambiguity, adapt rules to new facts, and fill gaps where no statute speaks. Through precedent, they also make the law predictable: once a court has decided how a rule applies, others can rely on that answer.",
+        "keyTerms": [
+          { "term": "Court / judge", "definition": "The body and official that decide disputes and write opinions." },
+          { "term": "Appeal", "definition": "A request that a higher court review a lower court's decision for legal error." },
+          { "term": "Question of law", "definition": "An issue about what the law is or means, as opposed to what the facts were." },
+          { "term": "Slip opinion", "definition": "A court's decision as first released, before official publication and subject to correction." },
+          { "term": "Published opinion", "definition": "The finalized, citable decision printed in the official reports." },
+          { "term": "Precedent", "definition": "A published decision that guides how later courts decide similar cases." }
+        ]
+      }
+    }
+  ]
+}
