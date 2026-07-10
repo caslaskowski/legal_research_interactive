@@ -89,6 +89,7 @@
   /* ---- masthead + nav ---- */
   function navlink(id, activeId, extraClass) {
     var item = navItem(id);
+    if (!item) return null;
     return el("a", {
       class: "navlink" + (extraClass ? " " + extraClass : ""), href: item.page,
       "aria-current": id === activeId ? "page" : null
@@ -114,7 +115,7 @@
       links.push(navlink("quiz", activeId, "nav-sub"));
     }
 
-    var topnav = el("nav", { class: "topnav", "aria-label": "Primary" }, links);
+    var topnav = el("nav", { class: "topnav", "aria-label": "Primary" }, links.filter(Boolean));
 
     var notesBtn = el("button", { class: "btn-notes", type: "button", onclick: downloadCompanion }, ["\u2193 Companion Notes"]);
     var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav, notesBtn]);

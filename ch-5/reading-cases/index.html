@@ -355,7 +355,7 @@
   var info=document.getElementById("info");
   function show(i){
     var p=PARTS[i];
-    if(WK.active){ WK.answer(p.key, p.label); return; }
+    if(typeof WK==="object"&&WK.active){ WK.answer(p.key, p.label); return; }
     op.querySelectorAll(".part").forEach(function(x){ x.classList.toggle("active", +x.dataset.i===i); });
     var html='<p class="ik">'+(p.role==="q"?"Issue / holding \u2014 the question":"Part of the opinion")+'</p><h2>'+p.label+'</h2><p>'+p.info+'</p>';
     if(p.tie) html+='<p class="tie">'+p.tie+'</p>';

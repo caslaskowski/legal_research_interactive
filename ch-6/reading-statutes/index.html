@@ -510,7 +510,7 @@
     bindGo(info);
   }
   function showComp(key){
-    if(WK.active){ var _c=COMPONENTS[key]; WK.answer(key, _c?_c.h:key); return; }
+    if(typeof WK==="object"&&WK.active){ var _c=COMPONENTS[key]; WK.answer(key, _c?_c.h:key); return; }
     var c=COMPONENTS[key]; if(!c) return;
     setInfo(c); info.focus();
     if(window.ExportReflect) ExportReflect.log("Inspected a statute part", c.h);
@@ -522,7 +522,7 @@
     });
   }
   function loadNode(id,fromUser){
-    if(WK.active && fromUser){ var _Q=WKQ[WK.qi];
+    if(typeof WK==="object"&&WK.active && fromUser){ var _Q=WKQ[WK.qi];
       if(_Q && String(_Q.a).indexOf("node:")===0){
         WK.answer("node:"+id, {notes:"Notes of Decision",toc:"Table of contents",definitions:"Definitions",statute:"The statute"}[id]||id);
         return; } }

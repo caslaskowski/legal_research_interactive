@@ -17,3 +17,6 @@ Ch. 15 fully approved 2026-07-10 and built the same day.
 - Callouts use the warm `--callout` parchment (#f5efe0), red border and red headers retained; the red tint is reserved for hover affordance and wrong-answer feedback.
 - "How to Read a …" modules: engage steps render as a numbered strip at the top (home-page style) and each carries a "Work the Page" exercise — hold a question, click the part that answers it. No "Your question is" framing anywhere.
 - Glossary flashcards filter by chapter (term→chapter derived from first appearance in the textbook).
+
+## Runtime-integrity round (2026-07-10, prompted by the flashcards loading failure)
+Three production bugs found and fixed by executing every live page in jsdom: the flashcards chapter filter ran before state loaded (init order); the rank suite's header requested nav ids the generator never emitted (crashed every suite page); and the suite's practice and quiz pages shipped without their data files (`practice.json`, `quiz.json` now authored, generator MAP extended, `navlink` guarded). Standing rule: **every new module must pass `node scripts/smoke.js` before it ships** — CI enforces it.

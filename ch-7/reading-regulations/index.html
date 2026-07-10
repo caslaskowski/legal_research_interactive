@@ -486,7 +486,7 @@
     info.innerHTML=html; bindGo(info);
   }
   function showComp(key){
-    if(WK.active){ var _c=COMPONENTS[key]; WK.answer(key, _c?_c.h:key); return; } var c=COMPONENTS[key]; if(!c) return; setInfo(c); info.focus(); if(window.ExportReflect) ExportReflect.log("Inspected a regulation part", c.h); }
+    if(typeof WK==="object"&&WK.active){ var _c=COMPONENTS[key]; WK.answer(key, _c?_c.h:key); return; } var c=COMPONENTS[key]; if(!c) return; setInfo(c); info.focus(); if(window.ExportReflect) ExportReflect.log("Inspected a regulation part", c.h); }
   function bindGo(scope){ scope.querySelectorAll("[data-go]").forEach(function(b){ if(b.__b) return; b.__b=true; b.addEventListener("click",function(){ loadNode(b.dataset.go,true); }); }); }
   function loadNode(id,fromUser){
     var n=NODES[id]; if(!n) return;

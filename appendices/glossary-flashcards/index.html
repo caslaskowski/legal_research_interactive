@@ -428,6 +428,7 @@
   /* ---- chapter filter chips ---- */
   var CH_LABEL = { 0: "General" };
   function renderChips() {
+    if (!state) return;
     var wrap = document.getElementById("chchips");
     wrap.innerHTML = "";
     var chs = allChapters();
@@ -457,7 +458,6 @@
       wrap.appendChild(b);
     });
   }
-  renderChips();
 
   document.getElementById("shuffleBtn").addEventListener("click", function () {
     var rem = remaining();
@@ -536,6 +536,7 @@
   });
 
   state = load();
+  renderChips();
   render();
   QM.storageNotice({ keys: [KEY], parent: document.querySelector(".pagewrap") });
 })();
