@@ -2,9 +2,9 @@
 *Working document for the module build-out. Updated 2026-07-10.*
 
 ## Approved queue (from the marked v2 plan)
-Built: **10-P1 Catch the Fabricated Citation** · **12-L1 Trace the Bill** · Ch. 17 overview + Scholarship Research Checklist (chapter page, no modules — per rejection of 17-L1/17-P1).
-Remaining, in build order: 10-L1 Duties Behind the Research → 13-L1 + 13-P1 (one dating pass for deference content) → 11-L1 + 11-P1 → 16-L1 + 16-P1 → 14-L1 + 14-P1 → 15-P2 → 10-P2.
-**Open decisions: 15-L1 (How the Machine Guesses) and 15-P1 (Verify the AI's Work) — DECISION lines were blank.** Registry keeps the pre-existing verify-the-ai placeholder pending the answer.
+Built: **10-P1 Catch the Fabricated Citation** · **12-L1 Trace the Bill** · **15-L1 How the Machine Guesses** · **15-P1 Verify the AI's Work** · **15-P2 Right Tool, Right Question** · Ch. 17 overview + Scholarship Research Checklist (chapter page, no modules — per rejection of 17-L1/17-P1).
+Remaining, in build order: 10-L1 Duties Behind the Research → 13-L1 + 13-P1 (one dating pass for deference content) → 11-L1 + 11-P1 → 16-L1 + 16-P1 → 14-L1 + 14-P1 → 10-P2.
+Ch. 15 fully approved 2026-07-10 and built the same day.
 
 ## Her comments to honor at build time
 - **11-L1 Read the Docket:** surface the *unintuitive* parts — reverse chronology (newest entries first) and multi-part docket entries for a single filing (rare but real).

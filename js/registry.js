@@ -588,29 +588,34 @@ window.REGISTRY = {
       "desc": "Using generative and AI-assisted tools without abdicating judgment — their strengths, failure modes like hallucinated citations, and a verification workflow.",
       "modules": [
         {
-          "status": "plan",
-          "slug": "verify-the-ai",
-          "title": "Verify the AI’s Work",
-          "desc": "Run an AI-assisted query through the four-step framework and catch the fabricated authority before it reaches a brief.",
-          "will": [
-            "Where AI helps and where it hallucinates",
-            "The four-step framework for AI-assisted research",
-            "Verify every AI output against primary authority",
-            "The professional-responsibility limits on AI use"
-          ],
-          "type": "practice"
+          "status": "live",
+          "type": "orientation",
+          "slug": "how-the-machine-guesses",
+          "href": "ch-15/how-the-machine-guesses/index.html",
+          "note": "New",
+          "verified": "2026-07-10",
+          "title": "How the Machine Guesses",
+          "desc": "Feel prediction-without-retrieval: build a sentence one likely token at a time, watch the same mechanism assemble a perfect-looking fictional citation, walk the four-step framework, and sort what these tools can and cannot do."
         },
         {
-          "status": "plan",
+          "status": "live",
+          "type": "practice",
+          "slug": "verify-the-ai",
+          "href": "ch-15/verify-the-ai/index.html",
+          "note": "New",
+          "verified": "2026-07-10",
+          "title": "Verify the AI’s Work",
+          "desc": "A fluent AI answer with six citations — two solid, one disapproved, one real but cited for its opposite, two that do not exist. Run the four-step framework against the same closed database from Chapter 10, then decide how much of the answer survives."
+        },
+        {
+          "status": "live",
           "type": "practice",
           "slug": "right-tool-right-question",
+          "href": "ch-15/right-tool-right-question/index.html",
+          "note": "New",
+          "verified": "2026-07-10",
           "title": "Right Tool, Right Question",
-          "desc": "Ten research questions — for each, the best-fit tool: terms-and-connectors, database-integrated AI, general-purpose AI with verification, or no AI at all.",
-          "will": [
-            "Where each tool is strong",
-            "Where each fails",
-            "The verification tax every AI answer carries"
-          ]
+          "desc": "Ten research tasks — for each, the best-fit tool: terms-and-connectors, database-integrated AI, general-purpose AI with verification, or no AI at all. Every option’s reasoning is shown."
         }
       ]
     },

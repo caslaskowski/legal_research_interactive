@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Right Tool, Right Question — Ch. 15 · GenAI and Legal Research</title>
+<meta name="description" content="Ten research tasks — for each, the best-fit tool: terms-and-connectors, database-integrated AI, general-purpose AI with verification, or no AI at all. Every option's reasoning is shown.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1100px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
+  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 18px;}
+  .tally{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 16px;}
+  .card{background:#fff;border:1.5px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:0 0 16px;}
+  .card .num{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 5px;}
+  .card .task{font-weight:600;font-size:1rem;line-height:1.55;margin:0 0 12px;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;line-height:1.5;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.92;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .why{display:block;font-weight:400;font-size:.85rem;color:var(--ink-soft);margin-top:5px;line-height:1.5;}
+  .fb{margin:12px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 11px;}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html" aria-current="page">Right Tool, Right Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-15/" style="color:var(--flame)">Ch.&nbsp;15</a> / Right Tool, Right Question</p>
+    <h1>Right Tool, Right Question</h1>
+    <p class="lede">A generative tool is one instrument among several &mdash; and the choice is driven by the same thing that has driven every choice in this book: the question you are holding. Ten tasks below. For each, pick the tool you would actually reach for. Several have a defensible second choice; the reasoning for every option is shown once you answer.</p>
+    <div class="howto"><b>How to use this:</b> pick, then read why each option works or doesn&rsquo;t. Where the answer is &ldquo;AI, then verify,&rdquo; the verification is not a formality &mdash; it is the four-step framework&rsquo;s second step, and skipping it is how sanctions happen.</div>
+    <p class="tally" id="tally">0 of 10 answered</p>
+    <div id="deck"></div>
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-15/">Ch. 15 · GenAI and Legal Research</a></p>
+  <p class="modnav-verified">Authorities verified as of 2026-07-10. The law changes — run the method, don’t trust the module.</p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-15/verify-the-ai/index.html"><span class="dir">← Previous</span><span class="t">Verify the AI’s Work</span></a>
+    <a class="modnav-link next" href="../../ch-16/"><span class="dir">Next chapter →</span><span class="t">Ch. 16 · The NextGen Bar Exam and Legal Research</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var el = QM.el;
+
+  /* option archetypes reused across cards */
+  var TC   = "Terms-and-connectors / citation retrieval";
+  var INTG = "Database-integrated AI (retrieval-backed) \u2014 then verify";
+  var GEN  = "General-purpose AI \u2014 then verify";
+  var NOAI = "Not an AI task";
+
+  var CARDS = [
+    { task:"Retrieve 42 U.S.C. \u00a7 1983 and read its current text.",
+      opts:[
+        { t:TC, good:true, why:"A citation is a retrieval address \u2014 type it into the database and read the official current text. Nothing to generate." },
+        { t:INTG, why:"It would find it \u2014 but you'd be adding a generative layer to a task that is pure retrieval. Go straight to the source." },
+        { t:GEN, why:"Asking a model to recite a statute is asking it to cite from memory \u2014 the exact failure mode Chapter 15 exists to warn about." } ] },
+    { task:"You've never heard the phrase \u201crestrictive covenant.\u201d Get oriented and pick up the vocabulary.",
+      opts:[
+        { t:GEN, good:true, why:"Concept orientation is a strength: it's the vocabulary-acquisition move, and the real research that follows does the verifying. (An encyclopedia works too \u2014 the tool is new; the move isn't.)" },
+        { t:TC, why:"Hard to search precisely for a concept you can't yet name \u2014 that's the very problem orientation solves first." },
+        { t:NOAI, why:"Too strict. Orientation-with-verification is squarely in the appropriate-use column." } ] },
+    { task:"Find Ninth Circuit cases using \u201creasonable accommodation\u201d within ten words of remote-work language.",
+      opts:[
+        { t:TC, good:true, why:"That sentence IS a proximity search \u2014 quotation marks, /10, a court filter. Precision retrieval, no generation wanted." },
+        { t:INTG, why:"It may find some \u2014 but you specified an exact retrieval condition, and only the operators guarantee it's honored." },
+        { t:GEN, why:"A general model can't search the Ninth Circuit at all; it can only predict what such cases might say." } ] },
+    { task:"What is the current rule in your jurisdiction on a question you already understand well?",
+      opts:[
+        { t:INTG, good:true, why:"Current + jurisdiction-specific = retrieval-backed only, and then you read what it returns. The generative layer summarizes; the retrieval keeps it honest." },
+        { t:GEN, why:"\u201cCurrent\u201d and \u201cyour jurisdiction\u201d are exactly what a training cutoff and no jurisdiction filter cannot deliver \u2014 stating current law is in the not-without-verification column for a reason." },
+        { t:TC, why:"Entirely defensible \u2014 a targeted search plus reading gets you there. The integrated tool just gets you to the same reading faster." } ] },
+    { task:"Brainstorm search terms and synonyms for an issue you're about to research.",
+      opts:[
+        { t:GEN, good:true, why:"Straight from the appropriate-use column: a wrong synonym costs nothing, because the database results do the verifying." },
+        { t:TC, why:"Circular \u2014 the terms are what you're trying to generate before you can search well." },
+        { t:NOAI, why:"Needlessly strict; this is one of the safest uses there is." } ] },
+    { task:"Summarize an opinion you have already read and verified.",
+      opts:[
+        { t:GEN, good:true, why:"Appropriate use, verbatim from the chapter's table \u2014 you supplied the source and your own reading is the error-check." },
+        { t:INTG, why:"Fine too \u2014 but the win condition is the same: it's appropriate because YOU have read the case, whatever tool summarizes it." },
+        { t:NOAI, why:"Too strict once you've done the reading; the summary is generation over your verified text." } ] },
+    { task:"Confirm that the case anchoring your argument is still good law.",
+      opts:[
+        { t:NOAI, good:true, why:"This is the citator's job \u2014 a curated treatment database, not a generative task. No model, general or integrated, replaces running the flag." },
+        { t:INTG, why:"Integrated tools may surface treatment \u2014 but the confirmation itself is the citator's report, which you check directly." },
+        { t:GEN, why:"A general model has no live treatment data; it will guess, confidently." } ] },
+    { task:"Draft Research Log questions from your notes of a client interview \u2014 which include confidential facts.",
+      opts:[
+        { t:NOAI, good:true, why:"As posed, yes: drafting log questions is an appropriate use, but confidential client facts decide the tool \u2014 and a free public chatbot that may retain or train on inputs is out. The duty of confidentiality travels with the facts; use only a tool your practice setting has approved for client information, or strip the confidences first." },
+        { t:GEN, why:"The task is fine; the inputs aren't. Pasting client confidences into a public tool is a confidentiality problem before it's a research one." },
+        { t:INTG, why:"Closer \u2014 professional platforms carry confidentiality terms \u2014 but the answer still depends on your setting's policy, not the tool's marketing." } ] },
+    { task:"Predict how the judge will rule on your motion.",
+      opts:[
+        { t:NOAI, good:true, why:"From the chapter's not-without-verification column \u2014 and there is nothing to verify a prediction against. Fluent confidence about an unknowable outcome is the most seductive failure mode there is." },
+        { t:INTG, why:"Analytics products report what a judge HAS done \u2014 data, not prophecy. The generative prediction itself is still theater." },
+        { t:GEN, why:"It will happily answer. That is precisely the problem." } ] },
+    { task:"Reformat a table of authorities and fix citation punctuation in a draft.",
+      opts:[
+        { t:GEN, good:true, why:"Appropriate \u2014 with the chapter's one condition: instruct the tool to track or list its changes, because silent regeneration can quietly alter text you never asked it to touch. Then compare against your original." },
+        { t:TC, why:"Search operators don't edit documents." },
+        { t:NOAI, why:"Too strict \u2014 formatting and editing sit in the appropriate-use column, with the track-changes discipline attached." } ] }
+  ];
+
+  var deck = document.getElementById("deck"), tally = document.getElementById("tally");
+  var done = 0, right = 0;
+  CARDS.forEach(function (C, i) {
+    var card = el("div", { class: "card" });
+    card.appendChild(el("p", { class: "num" }, ["Task " + (i + 1) + " of " + CARDS.length]));
+    card.appendChild(el("p", { class: "task" }, [C.task]));
+    var wrap = el("div", { class: "opts", role: "group", "aria-label": "Tool choices for task " + (i + 1) });
+    var fb = el("div", { class: "fb", role: "status", "aria-live": "polite" });
+    var locked = false;
+    C.opts.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [o.t]);
+      b.addEventListener("click", function () {
+        if (locked) return;
+        locked = true;
+        wrap.querySelectorAll(".opt").forEach(function (x, xi) {
+          x.disabled = true;
+          var O = C.opts[xi];
+          if (O.good) x.classList.add("good");
+          else if (x === b) x.classList.add("bad");
+          x.appendChild(el("span", { class: "why" }, [O.why]));
+        });
+        var ok = !!o.good;
+        done++; if (ok) right++;
+        tally.textContent = done + " of " + CARDS.length + " answered \u00b7 " + right + " matched the best fit";
+        fb.textContent = "";
+        window.setTimeout(function(){ fb.textContent = ok
+          ? "Best fit. Read the other options' reasoning \u2014 the near-misses teach the boundaries."
+          : "The best fit is marked in green \u2014 and the reasoning under each option shows why."; }, 30);
+        if (window.ExportReflect) ExportReflect.log("Task " + (i + 1) + " \u2014 " + C.task.slice(0, 60),
+          (ok ? "best fit: " : "chose " + o.t + "; best fit: ") + C.opts.filter(function(x){return x.good;})[0].t);
+        if (done === CARDS.length && window.ExportReflect) ExportReflect.log("Deck complete", right + " / " + CARDS.length);
+      });
+      wrap.appendChild(b);
+    });
+    card.appendChild(wrap);
+    card.appendChild(fb);
+    deck.appendChild(card);
+  });
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "Right Tool, Right Question",
+    chapter: "Chapter 15 \u2014 GenAI and Legal Research",
+    intro: "Your ten tool calls are collected locally. Add a reflection and download the record.",
+    prompts: [
+      "State the rule you were applying by the end: what about a question tells you which tool it wants?",
+      "Which task's best fit surprised you, and what boundary did its reasoning teach?"
+    ]
+  });
+})();
+</script>
+</body>
+</html>
