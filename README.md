@@ -108,7 +108,11 @@ generations diverged because these conventions were implicit; now they're the la
 9. **Chain-style mechanics teach the method**: the next question does not unlock
    until the current answer is recorded, and distractors are keyed to the named
    anti-patterns (a compressed leap, a term of art not yet surfaced, a sibling
-   asked before its parent) with feedback naming the anti-pattern.
+   asked before its parent) with feedback naming the anti-pattern. Wherever
+   question types are named, use the book's exact vocabulary — definitional;
+   exploratory (no-clue / foundational / survey); focusing; application
+   (fact-finding / constructive) — never near-synonyms, and never
+   hypothesis-testing framing anywhere.
 10. **Accessibility passes**: keyboard operability, one `<h1>`, reduced-motion
     override, and a clean pa11y run (CI enforces this).
 11. **Hypo provenance documented**: a comment noting which textbook chapter or

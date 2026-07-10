@@ -331,10 +331,11 @@
         {
           "status": "live",
           "type": "orientation",
-          "slug": "research-hypothesis",
-          "href": "ch-8/research-hypothesis/index.html",
-          "title": "Following a Research Hypothesis",
-          "desc": "Form a hypothesis on a veterans-benefits problem and test it across sources — from a secondary source to the statute, 38 C.F.R. § 3.326, and the case that supplies the argument."
+          "slug": "question-trail",
+          "href": "ch-8/question-trail/index.html",
+          "title": "Following the Question Trail",
+          "desc": "Hold one question at a time on a real veterans-benefits problem and follow it across sources — from a secondary source to the statute, 38 C.F.R. § 3.326, and the case that answers it. Each answer produces the next question; nothing is assumed in advance.",
+          "verified": "2026-07-10"
         },
         {
           "status": "live",
