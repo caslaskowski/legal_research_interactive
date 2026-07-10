@@ -65,7 +65,7 @@
         el("h3", {}, ["How Each Source Is Made"]),
         el("p", {}, [(first && first.blurb) || "Click through the lifecycle of each source, from first draft to binding law."])
       ]),
-      el("a", { class: "btn", href: (first && first.page) || "workflow.html" }, ["Begin the module \u2192"])
+      el("a", { class: "btn", href: (first && first.page) || "workflow.html" }, ["Start the module \u2192"])
     ])
   ]));
 })();

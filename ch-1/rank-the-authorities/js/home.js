@@ -15,6 +15,10 @@
     el("p", {}, [H.method.body])
   ]));
 
+  app.appendChild(el("p", { class: "reveal d1", style: "margin:18px 0 6px" }, [
+    el("a", { class: "start-cta", href: "hierarchy.html" }, ["Start the module \u2192"])
+  ]));
+
   /* at a glance */
   var g = H.atAGlance;
   var thead = el("thead", {}, [el("tr", {}, g.columns.map(function (c) { return el("th", { scope: "col" }, [c]); }))]);

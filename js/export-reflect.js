@@ -45,6 +45,42 @@
 
   function log(label, detail) {
     state.log.push({ at: new Date(), label: String(label), detail: detail == null ? "" : String(detail) });
+    persist();
+  }
+
+  /* ---- multi-page modules: one record across pages, for this session ---- */
+  var sessionKey = null;
+  function persist() {
+    if (!sessionKey) return;
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        started: state.started.toISOString(),
+        log: state.log.map(function (e) {
+          return { at: (e.at instanceof Date ? e.at.toISOString() : e.at), label: e.label, detail: e.detail };
+        })
+      }));
+    } catch (e) {}
+  }
+  function hydrate(key) {
+    sessionKey = key;
+    try {
+      var raw = sessionStorage.getItem(key);
+      if (!raw) return;
+      var d = JSON.parse(raw);
+      if (d && Array.isArray(d.log)) {
+        state.log = d.log.map(function (e) {
+          return { at: new Date(e.at), label: e.label, detail: e.detail };
+        });
+        if (d.started) state.started = new Date(d.started);
+      }
+    } catch (e) {}
+  }
+  /* pages that only contribute to the record call collect(); the page with
+     the download UI calls mount() with the same session key. */
+  function collect(opts) {
+    if (opts && opts.session) hydrate(opts.session);
+    if (opts && opts.module) state.module = opts.module;
+    if (opts && opts.chapter) state.chapter = opts.chapter;
   }
 
   function buildText(name, answers) {
@@ -135,6 +171,7 @@
   }
 
   function mount(node, cfg) {
+    if (cfg && cfg.session) hydrate(cfg.session);
     if (!node) return;
     injectCSS();
     state.module = cfg.module || "Module";
@@ -185,5 +222,5 @@
     node.appendChild(sec);
   }
 
-  window.ExportReflect = { mount: mount, log: log };
+  window.ExportReflect = { mount: mount, log: log, collect: collect };
 })();

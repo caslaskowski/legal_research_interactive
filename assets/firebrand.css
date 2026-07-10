@@ -393,3 +393,28 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .ch-check ol{ margin: 0; padding-left: 22px; }
 .ch-check li{ margin: 0 0 12px; line-height: 1.6; }
 .ch-check li::marker{ color: var(--flame); font-weight: 700; }
+
+/* ---- multi-page module standard: home CTA, contents cards, in-module pager ---- */
+.start-cta{ display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:1rem;
+  background:var(--flame); color:#fff; border:2px solid var(--flame); border-radius:9px;
+  padding:12px 22px; text-decoration:none; margin:4px 0 8px; }
+.start-cta:hover{ background:var(--flame-deep); border-color:var(--flame-deep); }
+.start-cta:focus-visible{ outline:3px solid var(--flame); outline-offset:3px; }
+.modcontents{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin:14px 0 26px; }
+.modcontents a{ display:block; background:#fff; border:1.5px solid var(--rule-strong); border-radius:10px;
+  padding:13px 16px; text-decoration:none; color:var(--ink); }
+.modcontents a:hover{ border-color:var(--flame); }
+.modcontents a:focus-visible{ outline:3px solid var(--flame); outline-offset:2px; }
+.modcontents .k{ display:block; font-family:var(--mono); font-size:.62rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--flame); margin:0 0 4px; }
+.modcontents b{ display:block; font-size:.98rem; margin:0 0 4px; }
+.modcontents span.d{ display:block; font-size:.82rem; color:var(--ink-soft); line-height:1.5; }
+.modpager{ display:flex; justify-content:space-between; gap:14px; border-top:1px solid var(--rule);
+  margin:34px 0 8px; padding-top:16px; }
+.modpager a{ display:inline-flex; flex-direction:column; text-decoration:none; color:var(--ink);
+  border:1.5px solid var(--rule-strong); border-radius:9px; padding:10px 15px; max-width:48%; }
+.modpager a:hover{ border-color:var(--flame); }
+.modpager a:focus-visible{ outline:3px solid var(--flame); outline-offset:2px; }
+.modpager .dir{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--flame); }
+.modpager .t{ font-weight:600; font-size:.92rem; }
+.modpager .spacer{ flex:1; }

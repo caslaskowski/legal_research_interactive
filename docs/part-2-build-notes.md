@@ -20,3 +20,12 @@ Ch. 15 fully approved 2026-07-10 and built the same day.
 
 ## Runtime-integrity round (2026-07-10, prompted by the flashcards loading failure)
 Three production bugs found and fixed by executing every live page in jsdom: the flashcards chapter filter ran before state loaded (init order); the rank suite's header requested nav ids the generator never emitted (crashed every suite page); and the suite's practice and quiz pages shipped without their data files (`practice.json`, `quiz.json` now authored, generator MAP extended, `navlink` guarded). Standing rule: **every new module must pass `node scripts/smoke.js` before it ships** — CI enforces it.
+
+## Module-structure standard (2026-07-10)
+- **Single-page is the default.** A module splits into multiple pages only when one page would carry too much (her call on Trace the Bill).
+- **Multi-page modules share one structure so students are never thrown:** the home page carries the intro, a **“Start the module →”** primary button (`.start-cta`), and a **Module contents** card list (`.modcontents`); every content page carries breadcrumbs back through the module home and a consistent **in-module pager** (`.modpager`); deep-dive material is reached by **“Learn more … →”** links from overview elements (the ch-1 sources pattern).
+- **One record per module:** contributing pages call `ExportReflect.collect({module, chapter, session})`; the final page mounts the download UI with the same session key, so the record accumulates across pages for the browser session.
+- CTA language standardized: sources home and rank home now also say “Start the module →”.
+
+## Orientation-lesson rule (2026-07-10)
+Every chapter that carries a “How to Read” appendix module lists a takeaway-reinforcing orientation lesson **above** it: ch-4 leads with The Types of Secondary Sources; ch-5 with Cases as a Web of Answers; ch-6 with How to Find a Statute; ch-7 with From Statute to Regulation. Part II chapters already follow this (each has a lesson before its practice modules). Standing rule for all future chapters.

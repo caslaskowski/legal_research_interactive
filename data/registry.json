@@ -172,19 +172,19 @@
         {
           "status": "live",
           "type": "orientation",
+          "slug": "secondary-types",
+          "href": "ch-4/secondary-types/index.html",
+          "title": "The Types of Secondary Sources",
+          "desc": "Explore the nine major secondary sources, then re-sort them by the question they answer, their coverage, and their persuasive weight — and place each on a depth-and-breadth chart."
+        },
+        {
+          "status": "live",
+          "type": "orientation",
           "slug": "reading-secondary",
           "href": "ch-4/reading-secondary/index.html",
           "note": "Appendix A",
           "title": "How to Read a Secondary Source",
           "desc": "A secondary source as a database renders it — navigable table of contents, narrative, footnotes, currency line, editorial apparatus — then the core move, three times: hold a question, find the sentence that answers it, and pull the citation from that sentence's footnote."
-        },
-        {
-          "status": "live",
-          "type": "orientation",
-          "slug": "secondary-types",
-          "href": "ch-4/secondary-types/index.html",
-          "title": "The Types of Secondary Sources",
-          "desc": "Explore the nine major secondary sources, then re-sort them by the question they answer, their coverage, and their persuasive weight — and place each on a depth-and-breadth chart."
         },
         {
           "status": "live",
@@ -248,18 +248,18 @@
         {
           "status": "live",
           "type": "orientation",
-          "slug": "reading-statutes",
-          "href": "ch-6/reading-statutes/index.html",
-          "title": "How to Read a Statute",
-          "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision."
-        },
-        {
-          "status": "live",
-          "type": "orientation",
           "slug": "finding-statutes",
           "href": "ch-6/finding-statutes/index.html",
           "title": "How to Find a Statute",
           "desc": "Three finding aids — Popular Name Table, subject Index, and conversion table — each matched to what you already know about a law."
+        },
+        {
+          "status": "live",
+          "type": "orientation",
+          "slug": "reading-statutes",
+          "href": "ch-6/reading-statutes/index.html",
+          "title": "How to Read a Statute",
+          "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision."
         },
         {
           "status": "live",
@@ -495,7 +495,7 @@
           "href": "ch-12/trace-the-bill/index.html",
           "note": "New",
           "title": "Trace the Bill",
-          "desc": "The legislative process as a pipeline you can walk, then each history source in depth — what it is, the weight it carries, the questions it answers, and when to reach for it — plus the anatomy of a committee report."
+          "desc": "The legislative process as a pipeline you can walk, with a deep-dive page for each history source — what it is, the weight it carries, the questions it answers — plus the anatomy of a committee report and the route-and-cautions checks. A short multi-page module; start on the overview."
         },
         {
           "status": "plan",

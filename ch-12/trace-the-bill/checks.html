@@ -3,33 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trace the Bill — Ch. 12 · Legislative History Research</title>
-<meta name="description" content="The legislative process as a pipeline you can walk — each stage clickable, each history source a deep-dive page away.">
+<title>Route, Cautions &amp; Checks — Trace the Bill · Ch. 12</title>
+<meta name="description" content="Compiled legislative histories first, the textualism caution, two knowledge checks, and the module's downloadable record.">
 <!--shell:head:start-->
 <link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <!--shell:head:end-->
 <style>
-  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1200px;}
-  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
-  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 20px;}
-  h2.sec{font-size:1.3rem;margin:26px 0 4px;}
-  .secdesc{color:var(--ink-soft);margin:0 0 14px;line-height:1.6;}
-  .pipe{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:0 0 14px;}
-  .stage{flex:1 1 150px;font:inherit;text-align:left;background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:10px 12px;cursor:pointer;min-width:140px;}
-  .stage:hover{border-color:var(--flame);}
-  .stage:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
-  .stage[aria-current="true"]{border-color:var(--flame);background:var(--callout);}
-  .stage .n{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);display:block;}
-  .stage .t{font-weight:700;font-size:.92rem;display:block;margin:2px 0 2px;}
-  .stage .d{font-size:.76rem;color:var(--ink-soft);display:block;line-height:1.4;}
-  .stagepanel{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:14px 18px;margin:0 0 8px;font-size:.94rem;line-height:1.6;}
-  .stagepanel .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 5px;}
-  .stagepanel p{margin:0 0 9px;}
-  .stagepanel .doc{background:var(--callout);border-left:3px solid var(--flame);border-radius:0 6px 6px 0;padding:8px 12px;font-size:.88rem;}
-  .stagepanel .doc b{color:var(--flame);}
-  .stagepanel .lm{display:inline-block;margin-top:6px;font-weight:600;color:var(--flame);}
+  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1100px;}
+  .lede{font-size:1.02rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 20px;}
+  h2.sec{font-size:1.3rem;margin:26px 0 10px;}
+  .route{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:10px;padding:16px 20px;margin:0 0 8px;font-size:.95rem;line-height:1.65;scroll-margin-top:16px;}
+  .route b{color:var(--flame);}
+  .kc{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:14px 0;}
+  .kc .q{font-weight:600;margin:0 0 12px;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.85;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .kc .fb{margin:12px 0 0;font-size:.93rem;line-height:1.55;color:var(--ink-soft);}
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
   }
@@ -147,7 +143,7 @@
               <li class="modmenu-chap">
                 <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
                 <ul class="modmenu-mods">
-                  <li><a href="../../ch-12/trace-the-bill/index.html" aria-current="page">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
                 </ul>
               </li>
               <li class="modmenu-chap">
@@ -194,37 +190,36 @@
 
 <main id="main">
   <div class="pagewrap">
-    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-12/" style="color:var(--flame)">Ch.&nbsp;12</a> / Trace the Bill</p>
-    <h1>Trace the Bill</h1>
-    <p class="lede">A statute&rsquo;s words sometimes run out before your question does &mdash; and when they do, you go back to the documents the legislature left behind on the way to enactment. Those documents are not created equal. This module walks the process first, so you know where each document comes from, then takes each source in depth on its own page.</p>
-    <div class="howto"><b>How to use this:</b> a short multi-page module. Walk the <b>pipeline</b> below for the overview &mdash; each stage says what it leaves behind, with a link to that source&rsquo;s deep dive. Then work the pages in order: the sources one by one, the inside of a committee report, and the route-and-cautions checks. Your work is collected into one record you can download on the final page.</div>
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-12/" style="color:var(--flame)">Ch.&nbsp;12</a> / <a href="index.html" style="color:var(--flame)">Trace the Bill</a> / Route, Cautions &amp; Checks</p>
+    <h1>Route, Cautions &amp; Checks</h1>
+    <p class="lede">How you actually get in, the caution that governs everything you just learned, and two quick checks. Your record below collects your work from every page of this module in this session.</p>
 
-    <p><a class="start-cta" href="sources.html">Start the module &rarr;</a></p>
+    <h2 class="sec">The route in, and the caution out</h2>
+    <div class="route" id="route">
+      <p style="margin:0 0 10px;"><b>Route: compiled legislative histories first.</b> Before assembling documents stage by stage, check whether someone already has: the major services and government sources publish compiled legislative histories keyed to the public-law number. Start from the statute&rsquo;s Public Law citation, look for a compiled history, and only build your own trail when none exists.</p>
+      <p style="margin:0;"><b>Caution: persuasive, never binding.</b> Legislative history is evidence of meaning, not law. It persuades some judges and actively repels others &mdash; textualist judges may discount everything you just learned to weigh. Know your court before you build an argument on it.</p>
+    </div>
 
-    <h2 class="sec" style="margin-top:10px;">Module contents</h2>
-    <nav class="modcontents" aria-label="Module contents">
-      <a href="sources.html"><span class="k">Page 1</span><b>The Sources, One by One</b><span class="d">Each history document in depth &mdash; its weight, the questions it answers, and when to reach for it.</span></a>
-      <a href="report.html"><span class="k">Page 2</span><b>Inside a Committee Report</b><span class="d">The most authoritative document, from the inside &mdash; purpose, section-by-section analysis, dissenting views.</span></a>
-      <a href="checks.html"><span class="k">Page 3</span><b>Route, Cautions &amp; Checks</b><span class="d">Compiled histories first, the textualism caution, two quick checks, and your downloadable record.</span></a>
+    <h2 class="sec">Two quick checks</h2>
+    <div class="kc">
+      <p class="q">A phrase in the enacted statute is ambiguous, and you want the most authoritative account of what the legislature meant by it. Which document first?</p>
+      <div class="opts" id="kc1" role="group" aria-label="First knowledge check"></div>
+      <div class="fb" id="kc1fb" role="status" aria-live="polite"></div>
+    </div>
+    <div class="kc">
+      <p class="q">A sponsor&rsquo;s floor statement squarely supports your client&rsquo;s reading of the statute. What is it worth?</p>
+      <div class="opts" id="kc2" role="group" aria-label="Second knowledge check"></div>
+      <div class="fb" id="kc2fb" role="status" aria-live="polite"></div>
+    </div>
+
+    <div id="export-slot"></div>
+
+    <nav class="modpager" aria-label="Module pages">
+      <a href="report.html"><span class="dir">&larr; Back</span><span class="t">Inside a Committee Report</span></a>
+      <a href="../../ch-12/"><span class="dir">Done &rarr;</span><span class="t">Back to Chapter 12</span></a>
     </nav>
-
-    <h2 class="sec">The process, as a research trail</h2>
-    <p class="secdesc">Each stage of a bill&rsquo;s life produces a document &mdash; and every one of those documents is a place your research can look. Click a stage.</p>
-    <div class="pipe" id="pipe" role="group" aria-label="Legislative process pipeline"></div>
-    <div class="stagepanel"><p class="k" id="sp-k">Stage</p><div id="sp-body" role="status" aria-live="polite"><p>Pick a stage above to see what happens there and what it leaves for a researcher.</p></div></div>
-
   </div>
 </main>
-
-<!--shell:modnav:start-->
-<nav class="modnav" aria-label="Module navigation">
-  <p class="modnav-crumb">Part of <a href="../../ch-12/">Ch. 12 · Legislative History Research</a></p>
-  <div class="modnav-links">
-    <span></span>
-    <a class="modnav-link next" href="../../ch-13/"><span class="dir">Next chapter →</span><span class="t">Ch. 13 · Advanced Administrative Research</span></a>
-  </div>
-</nav>
-<!--shell:modnav:end-->
 
 <!--shell:footer:start-->
 <footer class="foot">
@@ -241,48 +236,56 @@
 (function(){
   "use strict";
   var el = QM.el;
-  if (window.ExportReflect) ExportReflect.collect({
+
+  function kc(wrapId, fbId, logName, opts) {
+    var wrap = document.getElementById(wrapId), fb = document.getElementById(fbId), done = false;
+    opts.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [o.t]);
+      b.addEventListener("click", function () {
+        if (done) return;
+        done = true;
+        wrap.querySelectorAll(".opt").forEach(function (x, i) {
+          x.disabled = true;
+          if (opts[i].good) x.classList.add("good");
+          else if (x === b) x.classList.add("bad");
+        });
+        QM.announce(fb, o.fb);
+        if (window.ExportReflect) ExportReflect.log(logName, o.good ? "correct" : "incorrect \u2014 chose " + o.t);
+      });
+      wrap.appendChild(b);
+    });
+  }
+  kc("kc1", "kc1fb", "Knowledge check: most authoritative document", [
+    { t: "The committee report \u2014 its section-by-section analysis", good: true,
+      fb: "Right. The committee report is generally the most authoritative history document, and the section-by-section analysis is where the committee explains the very language you are construing. (If the provision changed in conference, the conference report takes over.)" },
+    { t: "Hearing testimony from the agency that requested the bill", good: false,
+      fb: "Hearings illuminate the problem, but witnesses are not the legislature \u2014 low weight on what Congress meant. Start with the committee report's section-by-section analysis." },
+    { t: "A floor statement by any member who voted for it", good: false,
+      fb: "A lone member's remarks are nearly worthless as collective intent; even a sponsor's statement is only moderate. The committee report's section-by-section analysis comes first." },
+    { t: "The sponsor's press release the week after signing", good: false,
+      fb: "Post-enactment \u2014 the weakest history there is. The enacting legislature had already spoken. Start with the committee report." }
+  ]);
+  kc("kc2", "kc2fb", "Knowledge check: sponsor statement weight", [
+    { t: "Moderate persuasive weight \u2014 and how much depends on your judge", good: true,
+      fb: "Right. Sponsor and floor-manager statements sit in the middle band: real evidence, well below a committee report \u2014 and before a textualist judge, possibly worth nothing at all. Know your court." },
+    { t: "Binding \u2014 the sponsor wrote the bill", good: false,
+      fb: "No legislative history binds; only the enacted text is law. Even the strongest history is evidence of meaning, and a sponsor's statement is only moderate evidence." },
+    { t: "Worthless \u2014 courts never consider floor statements", good: false,
+      fb: "Overcorrection. Many courts do weigh sponsor statements \u2014 moderately. The judges who reject them are the reason you check your court before relying." },
+    { t: "Equal to the committee report", good: false,
+      fb: "One member speaking, even the sponsor, is weaker evidence of collective intent than the committee's institutional explanation. The report outranks it." }
+  ]);
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
     module: "Trace the Bill",
     chapter: "Chapter 12 \u2014 Legislative History Research",
-    session: "qm_er_trace_the_bill"
-  });
-
-  var STAGES = [
-    { k:"intro", t:"Bill introduced", d:"Numbered and referred to committee",
-      body:"<p>A member introduces the bill; it gets a number (H.R. or S.) and goes to the committee with jurisdiction. Most bills die right here \u2014 which is itself a research fact: an idea Congress considered and did not enact.</p>",
-      doc:"<b>Document left behind:</b> the bill's introduced text \u2014 useful for comparing what was proposed against what survived." },
-    { k:"committee", t:"Committee", d:"Hearings, markup \u2014 and the report",
-      body:"<p>The committee holds hearings, marks the bill up, and \u2014 if it approves \u2014 sends it to the floor with a written report explaining what the bill does and why. This is where the most valuable history is made.</p>",
-      doc:"<b>Documents left behind:</b> hearing transcripts and the <b>committee report</b> \u2014 the most authoritative legislative history document.<br><a class=\"lm\" href=\"sources.html#creport\">Learn more: the committee report \u2192</a> &nbsp; <a class=\"lm\" href=\"sources.html#hearings\">the hearings \u2192</a>" },
-    { k:"floor", t:"Floor", d:"Debate, amendment, passage",
-      body:"<p>The full chamber debates, may amend, and votes. Members' statements \u2014 especially the sponsor's and the floor manager's \u2014 enter the Congressional Record.</p>",
-      doc:"<b>Document left behind:</b> the Congressional Record's floor debate.<br><a class=\"lm\" href=\"sources.html#floor\">Learn more: floor debate &amp; sponsor statements \u2192</a>" },
-    { k:"conference", t:"Conference", d:"Reconciling the two chambers",
-      body:"<p>When House and Senate pass different versions, a conference committee negotiates the final text \u2014 the last word on what both chambers actually agreed to.</p>",
-      doc:"<b>Document left behind:</b> the <b>conference report</b>.<br><a class=\"lm\" href=\"sources.html#confreport\">Learn more: the conference report \u2192</a>" },
-    { k:"enact", t:"Enactment", d:"Signed into law",
-      body:"<p>Both chambers pass the identical text and the President signs (or a veto is overridden). The bill becomes a public law \u2014 and everything said about it afterward is post-enactment history, the weakest kind.</p>",
-      doc:"<b>Document left behind:</b> the slip law, with its Public Law number \u2014 the key to finding a compiled legislative history.<br><a class=\"lm\" href=\"checks.html#route\">Learn more: the compiled-history route \u2192</a> &nbsp; <a class=\"lm\" href=\"sources.html#post\">post-enactment statements \u2192</a>" },
-    { k:"publish", t:"Publication", d:"Slip law \u2192 Statutes at Large \u2192 Code",
-      body:"<p>The slip law is bound chronologically into the Statutes at Large, then reorganized by subject into the U.S. Code \u2014 the same publication chain you learned for statutes, now seen from the history side.</p>",
-      doc:"<b>Research tie:</b> the Public Law and Statutes at Large citations in a code section's history note are your entry points back into everything above." }
-  ];
-  var pipe = document.getElementById("pipe"), spk = document.getElementById("sp-k"), spb = document.getElementById("sp-body");
-  var seen = {};
-  STAGES.forEach(function (s, i) {
-    var b = el("button", { class: "stage", type: "button" }, []);
-    b.appendChild(el("span", { class: "n" }, ["Stage " + (i + 1)]));
-    b.appendChild(el("span", { class: "t" }, [s.t]));
-    b.appendChild(el("span", { class: "d" }, [s.d]));
-    b.addEventListener("click", function () {
-      pipe.querySelectorAll(".stage").forEach(function (x, xi) { x.setAttribute("aria-current", String(xi === i)); });
-      spk.textContent = "Stage " + (i + 1) + " \u00b7 " + s.t;
-      spb.innerHTML = "";
-      window.setTimeout(function(){ spb.innerHTML = s.body + '<p class="doc">' + s.doc + '</p>'; }, 30);
-      if (!seen[s.k]) { seen[s.k] = true;
-        if (window.ExportReflect) ExportReflect.log("Pipeline stage explored", s.t); }
-    });
-    pipe.appendChild(b);
+    session: "qm_er_trace_the_bill",
+    intro: "This record accumulates across all pages of this module during your browser session \u2014 pipeline stages, report parts, and the checks above. Add a reflection and download it.",
+    prompts: [
+      "Write the research question that would send you to legislative history at all \u2014 what has to be true of the statute's text first?",
+      "Rank the five sources from memory, most authoritative to least, and note the one whose placement surprised you.",
+      "Your judge is a committed textualist. What changes about how \u2014 and whether \u2014 you use what you found?"
+    ]
   });
 })();
 </script>
