@@ -44,7 +44,7 @@
 
   /* brand flame (crimson) — the single accent that ties this module to the hub */
   --flame:      #a72d2a;
-  --flame-tint: #f1dedd;
+  --flame-tint: #f1dedd;--callout:#f5efe0;
   --flame-deep: #7f211f;
 
   /* the chrome's accent token points at the flame for cohesion */
@@ -267,7 +267,7 @@ main{ flex: 1 0 auto; padding: 40px 0 72px; }
 
 /* a Question-Method framing note — the "am I done?" prompt */
 .method-note{
-  border-left: 4px solid var(--flame); background: var(--flame-tint);
+  border-left: 4px solid var(--flame); background:var(--callout);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 16px 20px; margin: 22px 0; max-width: var(--measure);
 }
@@ -335,7 +335,7 @@ main{ flex: 1 0 auto; padding: 40px 0 72px; }
    CALLOUTS  (shared by hierarchy / courts)
    ========================================================================= */
 .callout{
-  border-left: 4px solid var(--flame); background: var(--flame-tint);
+  border-left: 4px solid var(--flame); background:var(--callout);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 16px 20px; margin: 22px 0; max-width: var(--measure);
 }

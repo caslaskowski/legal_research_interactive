@@ -88,17 +88,18 @@
       var mods = c.modules || [];
       var st = STATUS[chapterStatus(mods)] || STATUS.plan;
       var liveN = mods.filter(function (m) { return m.status === "live"; }).length;
+      var isGuide = !!c.overview && !liveN;
       var countTxt = mods.length + (mods.length === 1 ? " module" : " modules");
       var availTxt = liveN ? " \u00b7 " + liveN + " available" : "";
 
       var meta = el("div", { class: "ch-meta" }, [
         el("span", { class: "ch-note" }, [countTxt + availTxt]),
-        el("span", { class: "pill " + st.cls }, [st.label]),
+        el("span", { class: "pill " + (isGuide ? "live" : st.cls) }, [isGuide ? "Guide" : st.label]),
         el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
       ]);
 
       ledger.appendChild(el("a", {
-        class: "entry" + (liveN ? " is-live" : " is-plan"),
+        class: "entry" + ((liveN || isGuide) ? " is-live" : " is-plan"),
         href: "ch-" + c.ch + "/",
         "aria-label": "Chapter " + c.ch + " \u2014 " + c.title +
           " (" + countTxt + availTxt + ")"

@@ -7,7 +7,7 @@
 <meta name="description" content="Practice mining a secondary source: read by the question in front of you, find the sentence that answers it, and follow its footnote to the primary authority.">
 <style>
 :root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
---rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;
 --statute:#8a0100;--regulation:#2f6d56;--case:#28406b;--case-tint:#dde2ed;--radius:4px;
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
 --shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <style>
 .lede{font-size:1.12rem;color:var(--ink-soft);}
-.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);
+.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--callout);
   border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
 .howto b{color:var(--flame-deep);}
 .principles{margin:0 0 26px;padding:0;list-style:none;display:grid;gap:10px;}
@@ -42,7 +42,7 @@
 .sent{transition:background .15s;border-radius:4px;padding:1px 2px;}
 .sent.correct{background:#fff6d6;box-shadow:inset 0 0 0 1.5px #d9b53a;}
 .fn{font-family:var(--sans);font-size:.62em;font-weight:700;vertical-align:super;line-height:0;color:var(--flame);
-  background:var(--flame-tint);border:1.5px solid var(--flame);border-radius:5px;padding:1px 5px;margin-left:2px;cursor:pointer;}
+  background:var(--callout);border:1.5px solid var(--flame);border-radius:5px;padding:1px 5px;margin-left:2px;cursor:pointer;}
 .fn:hover{background:var(--flame);color:#fff;}
 .fn:focus-visible{outline:3px solid var(--ink);outline-offset:2px;}
 .fn.correct{background:var(--regulation);border-color:var(--regulation);color:#fff;}
@@ -56,7 +56,7 @@
 .feedback{margin:6px 0 0;padding:13px 16px;border-radius:8px;font-size:.95rem;line-height:1.55;min-height:1.5em;}
 .feedback[hidden]{display:none;}
 .feedback.good{background:#e7f1ec;border:1px solid var(--regulation);color:var(--ink);}
-.feedback.try{background:var(--flame-tint);border:1px solid var(--flame);color:var(--ink);}
+.feedback.try{background:var(--callout);border:1px solid var(--flame);color:var(--ink);}
 .feedback b{color:var(--flame-deep);}
 .feedback .pivot{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--rule-strong);font-style:italic;}
 
@@ -168,12 +168,18 @@
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>

@@ -149,6 +149,18 @@ def chapter_page(c):
     sections = (mod_section("Orientation", "Explore the concepts from this chapter", orient, base)
                 + "\n" + mod_section("Practice", "Apply what you\u2019ve learned", prac, base)
                 + "\n" + mod_section("Modules", "", other, base))
+    ov = c.get("overview")
+    if ov:
+        paras = "\n".join('    <p class="ch-ov-p">%s</p>' % p for p in ov.get("paras", []))
+        chk = ""
+        cl = ov.get("checklist")
+        if cl:
+            items = "\n".join('      <li>%s</li>' % esc(i) for i in cl.get("items", []))
+            chk = ('  <div class="ch-check">\n    <h3>%s</h3>\n    <ol>\n%s\n    </ol>\n  </div>'
+                   % (esc(cl.get("title", "Checklist")), items))
+        sections = ('  <div class="ch-overview">\n'
+                    + ('    <p class="ch-ov-kicker">%s</p>\n' % esc(ov["kicker"]) if ov.get("kicker") else "")
+                    + paras + "\n" + chk + "\n  </div>\n" + sections)
     title = "Chapter %d: %s \u2014 The Question Method of Legal Research" % (c["ch"], c["title"])
     return """<!doctype html>
 <html lang="en">

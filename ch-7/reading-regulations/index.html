@@ -7,16 +7,33 @@
 <meta name="description" content="Read a regulation the way a researcher does: trace it to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when to reach for the Federal Register instead.">
 <style>
 :root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
---rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--radius:4px;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;--radius:4px;
 --q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
 --slate:#4a5568;--slate-tint:#e7eaef;
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
 --shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+  .steps{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px 8px;margin:0 0 24px;}
+  .steps h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 12px;}
+  .steps ol{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px 20px;}
+  .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
+  .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
+  .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
+  .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+  .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
+  .wkpanel .ws{font-size:.82rem;color:var(--ink-soft);margin:0 0 8px;}
+  .wkpanel .wf{font-size:.87rem;line-height:1.55;margin:0 0 8px;}
+  .wkpanel .wf.good{color:#2e6b34;}
+  .wkpanel .wf.bad{color:#8a1c00;}
+  .wkpanel button.wbtn{font:inherit;font-size:.83rem;font-weight:600;background:#fff;border:1.5px solid var(--flame);color:var(--flame);border-radius:7px;padding:6px 11px;cursor:pointer;}
+  .wkpanel button.wbtn:hover{background:rgba(167,45,42,.08);}
+  .wkpanel button.wbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
 </style>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <style>
 .lede{font-size:1.12rem;color:var(--ink-soft);}
-.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
+.howto{margin:18px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--callout);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
 .howto b{color:var(--flame-deep);}
 
 .casegrid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
@@ -41,7 +58,7 @@
 .cmpitem:hover{border-color:var(--slate);background:var(--panel);}
 .cmpitem:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
 .cmpitem .lab{font-family:var(--sans);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);background:var(--slate-tint);border-radius:4px;padding:2px 7px;white-space:nowrap;}
-.cmpitem.src .lab{color:var(--flame-deep);background:var(--flame-tint);}
+.cmpitem.src .lab{color:var(--flame-deep);background:var(--callout);}
 
 .toclist{list-style:none;margin:0;padding:0;border:1px solid var(--rule);border-radius:8px;overflow:hidden;}
 .toclist li{border-bottom:1px solid var(--rule);}
@@ -84,7 +101,7 @@
 .pgrid td .nm{font-weight:700;}
 .pgrid td .sub{font-size:.8rem;color:var(--ink-faint);}
 .pgrid td.now{background:var(--q2-tint);} .pgrid td.hist{background:var(--q4-tint);}
-.errnote{margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;background:var(--flame-tint);border-left:4px solid var(--flame);font-size:.92rem;color:var(--ink);}
+.errnote{margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;background:var(--callout);border-left:4px solid var(--flame);font-size:.92rem;color:var(--ink);}
 .errnote b{color:var(--flame-deep);}
 
 .info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
@@ -198,12 +215,18 @@
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
@@ -251,17 +274,34 @@
 
     <div class="howto"><b>How to move:</b> click any underlined part of the regulation to learn what it is &mdash; the panel on the right explains it. The dark buttons <b>navigate</b> the CFR: open the Part&rsquo;s table of contents and drill into it the same way you navigated the Code. The <b>Source Note</b> opens a comparison of the CFR and the Federal&nbsp;Register.</div>
 
+    <section class="steps" aria-label="How to engage with a regulation">
+      <h2>How to engage with a regulation — the five moves</h2>
+      <ol>
+        <li><b>Start with the authority note</b>The statute that lets the agency speak — no authority, no rule.</li>
+        <li><b>Read the operative text like a statute</b>Verbs, exceptions, defined terms — the same precision applies.</li>
+        <li><b>Check the Part’s definitions</b>Regulatory terms are fixed at the Part level, not section by section.</li>
+        <li><b>Follow the source note to the Federal Register</b>The preamble is the agency’s explanation — skipping it is the most common regulatory-research mistake.</li>
+        <li><b>Confirm currency</b>A codified rule can be amended, stayed, or vacated after the CFR volume printed.</li>
+      </ol>
+    </section>
+
+
     <div class="casegrid">
       <section class="viewer" aria-label="Regulation source viewer">
         <nav class="crumbs" id="crumbs" aria-label="You are here"></nav>
         <div class="vbody" id="vbody" aria-live="polite"></div>
       </section>
 
-      <aside class="info" id="info" aria-live="polite" tabindex="-1">
+      <div class="sidecol"><aside class="info" id="info" aria-live="polite" tabindex="-1">
         <p class="ik">Reading guide</p>
         <h2>Name the parts</h2>
         <p>Click any underlined part of the regulation and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
+      <div class="wkpanel" aria-label="Work the page">
+        <h2>Work the page</h2>
+        <div id="wkbody"></div>
+      </div>
+      </div>
     </div>
 
     <div id="export-slot"></div>
@@ -287,6 +327,7 @@
 </footer>
 <!--shell:footer:end-->
 
+<script src="../../js/lib.js"></script>
 <script src="../../js/export-reflect.js"></script>
 <script>
 (function(){
@@ -439,7 +480,8 @@
     if(o.go) html+='<p><button class="goact" data-go="'+o.go.to+'" style="margin-top:2px">'+o.go.label+'</button></p>';
     info.innerHTML=html; bindGo(info);
   }
-  function showComp(key){ var c=COMPONENTS[key]; if(!c) return; setInfo(c); info.focus(); if(window.ExportReflect) ExportReflect.log("Inspected a regulation part", c.h); }
+  function showComp(key){
+    if(WK.active){ var _c=COMPONENTS[key]; WK.answer(key, _c?_c.h:key); return; } var c=COMPONENTS[key]; if(!c) return; setInfo(c); info.focus(); if(window.ExportReflect) ExportReflect.log("Inspected a regulation part", c.h); }
   function bindGo(scope){ scope.querySelectorAll("[data-go]").forEach(function(b){ if(b.__b) return; b.__b=true; b.addEventListener("click",function(){ loadNode(b.dataset.go,true); }); }); }
   function loadNode(id,fromUser){
     var n=NODES[id]; if(!n) return;
@@ -450,6 +492,71 @@
     if(fromUser){ document.querySelector(".viewer").scrollIntoView({behavior:"smooth",block:"nearest"}); if(window.ExportReflect) ExportReflect.log("Navigated the source", n.title); }
   }
   loadNode("regulation",false);
+
+  
+  var WKQ = [
+    { q:"What lets the agency issue this rule at all \u2014 which part cites the statute behind it?",
+      a:"authority",
+      why:"The authority note anchors the regulation to its enabling statute \u2014 the first thing a researcher confirms, because a rule without authority is no rule.",
+      miss:{ source:"the source note points to the Federal Register history, not the empowering statute.",
+             partheading:"the Part heading names the subject; the power comes from the statute in the authority note." } },
+    { q:"Who must do what \u2014 where is the operative command?",
+      a:"operative",
+      why:"Same discipline as a statute: the command lives in the operative text's verb, with everything else supporting it.",
+      miss:{ standards:"standards fill in technical detail once you know the command.",
+             exception:"the exception carves back a command you have to find first." } },
+    { q:"Is the codified text the whole story \u2014 which part points to the version with the agency's explanation?",
+      a:"source",
+      why:"The source note bridges to the Federal Register, where the preamble explains what the rule means and why \u2014 the explanation never gets codified.",
+      miss:{ authority:"the authority note points to Congress; you want the agency's own explanation.",
+             heading:"the heading names the section \u2014 the explanation lives in the Federal Register." } }
+  ];
+
+  /* ---- Work the Page: hold a question, click the part that answers it ---- */
+  var WK = { active:false, qi:-1 };
+  (function(){
+    var host = document.getElementById("wkbody");
+    function start(i){
+      WK.qi = i; WK.active = true;
+      var Q = WKQ[i];
+      host.innerHTML = "";
+      host.appendChild(QM.el("p",{class:"ws"},["Question "+(i+1)+" of "+WKQ.length]));
+      host.appendChild(QM.el("p",{class:"wq"},["\u201c"+Q.q+"\u201d"]));
+      host.appendChild(QM.el("p",{class:"ws"},[Q.hint || "Click the part of the document that answers it."]));
+      host.appendChild(QM.el("div",{class:"wf",id:"wkfb",role:"status","aria-live":"polite"}));
+    }
+    function idle(first){
+      WK.active = false; WK.qi = -1;
+      host.innerHTML = "";
+      host.appendChild(QM.el("p",{class:"ws"},[first
+        ? "Hold a question, then find the part of the page that answers it \u2014 the move every source rewards. (Anatomy clicks pause while a question is open.)"
+        : "All questions worked. Explore freely, or run them again."]));
+      var b = QM.el("button",{class:"wbtn",type:"button"},[first ? "Start question 1 \u2192" : "Run them again \u21ba"]);
+      b.addEventListener("click",function(){ start(0); });
+      host.appendChild(b);
+      if(!first && window.ExportReflect) ExportReflect.log("Work-the-page complete", String(WKQ.length)+" questions");
+    }
+    WK.answer = function(key,label){
+      var Q = WKQ[WK.qi], fb = document.getElementById("wkfb");
+      if(!Q || !fb) return;
+      if(key === Q.a || (Q.also && Q.also.indexOf(key) !== -1)){
+        fb.className = "wf good"; fb.innerHTML = "";
+        window.setTimeout(function(){ fb.innerHTML = "<b>"+label+"</b> \u2014 right. "+Q.why; },30);
+        if(window.ExportReflect) ExportReflect.log("Work-the-page Q"+(WK.qi+1),"found: "+label);
+        WK.active = false;
+        var nxt = WK.qi+1 < WKQ.length;
+        var b = QM.el("button",{class:"wbtn",type:"button"},[nxt ? "Next question \u2192" : "Finish \u2192"]);
+        b.addEventListener("click",function(){ nxt ? start(WK.qi+1) : idle(false); });
+        host.appendChild(b);
+      } else {
+        fb.className = "wf bad"; fb.innerHTML = "";
+        var miss = (Q.miss && Q.miss[key]) ? Q.miss[key] : "that part answers a different question.";
+        window.setTimeout(function(){ fb.innerHTML = "<b>"+label+"</b> \u2014 not this one: "+miss+" Hold the question and scan again."; },30);
+        if(window.ExportReflect) ExportReflect.log("Work-the-page Q"+(WK.qi+1)+" miss","picked "+label);
+      }
+    };
+    idle(true);
+  })();
 
   if(window.ExportReflect){
     ExportReflect.mount(document.getElementById("export-slot"),{

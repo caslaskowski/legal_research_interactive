@@ -13,7 +13,7 @@
   if (H.method) {
     var mbox = document.createElement("div");
     mbox.className = "method-callout reveal d1";
-    mbox.style.cssText = "margin-top:28px;border-left:4px solid #a72d2a;background:#f6eeed;border-radius:0 4px 4px 0;padding:16px 20px";
+    mbox.style.cssText = "margin-top:28px;border-left:4px solid #a72d2a;background:#f5efe0;border-radius:0 4px 4px 0;padding:16px 20px";
     var mEyebrow = document.createElement("p");
     mEyebrow.className = "eyebrow";
     mEyebrow.style.cssText = "color:#a72d2a;margin-bottom:.4rem";

@@ -7,11 +7,28 @@
 <meta name="description" content="Walk the anatomy of a real appellate opinion — Glik v. Cunniffe — clicking each part to learn what it is and how to read it, with the issue and holding tied back to the Question Method.">
 <style>
 :root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
---rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--radius:4px;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;--radius:4px;
 --q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
 --slate:#4a5568;--slate-tint:#e7eaef;
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
 --shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+  .steps{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px 8px;margin:0 0 24px;}
+  .steps h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 12px;}
+  .steps ol{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px 20px;}
+  .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
+  .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
+  .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
+  .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+  .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
+  .wkpanel .ws{font-size:.82rem;color:var(--ink-soft);margin:0 0 8px;}
+  .wkpanel .wf{font-size:.87rem;line-height:1.55;margin:0 0 8px;}
+  .wkpanel .wf.good{color:#2e6b34;}
+  .wkpanel .wf.bad{color:#8a1c00;}
+  .wkpanel button.wbtn{font:inherit;font-size:.83rem;font-weight:600;background:#fff;border:1.5px solid var(--flame);color:var(--flame);border-radius:7px;padding:6px 11px;cursor:pointer;}
+  .wkpanel button.wbtn:hover{background:rgba(167,45,42,.08);}
+  .wkpanel button.wbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
 </style>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <style>
@@ -20,7 +37,7 @@
 .moves li{display:flex;gap:11px;align-items:baseline;font-size:.95rem;color:var(--ink-soft);}
 .moves .n{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;}
 .moves b{color:var(--ink);}
-.howto{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
+.howto{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--callout);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
 .howto b{color:var(--flame-deep);}
 
 .casegrid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
@@ -51,7 +68,7 @@
 .info h2{font-size:1.12rem;margin:0 0 10px;}
 .info p{font-size:.94rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
 .info .tie{font-size:.86rem;color:var(--ink);background:var(--q1-tint);border-left:3px solid var(--q1);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
-.info .warn{font-size:.86rem;color:var(--ink);background:var(--flame-tint);border-left:3px solid var(--flame);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
+.info .warn{font-size:.86rem;color:var(--ink);background:var(--callout);border-left:3px solid var(--flame);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
 
 .weighnote{margin:22px 0 0;padding:14px 18px;border:1px solid var(--rule-strong);border-left:4px solid var(--ink);background:#fff;border-radius:0 var(--radius) var(--radius) 0;font-size:.95rem;color:var(--ink-soft);}
 .weighnote b{color:var(--ink);}
@@ -162,12 +179,18 @@
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
@@ -222,17 +245,34 @@
 
     <div class="howto"><b>Click any part of the opinion</b> to learn what it is and how to read it. The <span style="color:var(--q1);font-weight:700;">issue and holding</span> are tinted in Question-Method blue &mdash; the issue is the court&rsquo;s version of Step&nbsp;1.</div>
 
+    <section class="steps" aria-label="How to engage with an opinion">
+      <h2>How to engage with an opinion — the five moves</h2>
+      <ol>
+        <li><b>Read the caption first</b>Court and jurisdiction decide whether this case can bind you — before you read a word further.</li>
+        <li><b>Find the issue</b>The court’s version of Step 1: the question this opinion exists to answer.</li>
+        <li><b>Pull the holding</b>The court’s answer to the issue — the part with precedential force.</li>
+        <li><b>Mine the reasoning</b>What the rule turns on. When your facts differ, this is where your argument lives.</li>
+        <li><b>Check the treatment</b>Run the citator before you rely — a case can look perfect and no longer be good law.</li>
+      </ol>
+    </section>
+
+
     <div class="casegrid">
       <article class="opinion" aria-label="Elided opinion of Glik v. Cunniffe">
         <div class="opinion-top">Elided &amp; abridged for teaching · public-domain opinion text</div>
         <div class="opinion-body" id="opinion"></div>
       </article>
 
-      <aside class="info" id="info" aria-live="polite" tabindex="-1">
+      <div class="sidecol"><aside class="info" id="info" aria-live="polite" tabindex="-1">
         <p class="ik">Tap a part</p>
         <h2>The anatomy of an opinion</h2>
         <p>Select any highlighted section of <em>Glik v. Cunniffe</em> on the left and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
+      <div class="wkpanel" aria-label="Work the page">
+        <h2>Work the page</h2>
+        <div id="wkbody"></div>
+      </div>
+      </div>
     </div>
 
     <p class="weighnote"><b>So &mdash; would you cite it?</b> <em>Glik</em> is a First Circuit decision: binding on federal courts in the First Circuit, persuasive everywhere else. Deciding which cases are worth citing for a given matter &mdash; jurisdiction, court level, how on-point they are, and whether they&rsquo;re still good law &mdash; is its own skill. You&rsquo;ll practice it in <a href="../case-practice/index.html">Case Law Practice</a>.</p>
@@ -261,6 +301,7 @@
 </footer>
 <!--shell:footer:end-->
 
+<script src="../../js/lib.js"></script>
 <script src="../../js/export-reflect.js"></script>
 <script>
 (function(){
@@ -309,6 +350,7 @@
   var info=document.getElementById("info");
   function show(i){
     var p=PARTS[i];
+    if(WK.active){ WK.answer(p.key, p.label); return; }
     op.querySelectorAll(".part").forEach(function(x){ x.classList.toggle("active", +x.dataset.i===i); });
     var html='<p class="ik">'+(p.role==="q"?"Issue / holding \u2014 the question":"Part of the opinion")+'</p><h2>'+p.label+'</h2><p>'+p.info+'</p>';
     if(p.tie) html+='<p class="tie">'+p.tie+'</p>';
@@ -318,6 +360,72 @@
     if(window.ExportReflect) ExportReflect.log("Inspected a part of the opinion", p.label);
   }
   op.addEventListener("click",function(e){ var b=e.target.closest(".part"); if(b) show(+b.dataset.i); });
+
+  
+  var WKQ = [
+    { q:"You just pulled this case from a search. Can it bind the court you're in \u2014 which part tells you who is speaking?",
+      a:"caption",
+      why:"The caption's court and jurisdiction settle bindingness before anything else \u2014 which is why it is always the first read.",
+      miss:{ history:"the history tells you how the case got here, not which court is speaking now.",
+             headnotes:"headnotes are the publisher's voice, not the court's." } },
+    { q:"What did the court actually decide on the question it faced?",
+      a:"holding",
+      why:"The holding is the court's answer to the issue \u2014 the only part with precedential force.",
+      miss:{ issue:"the issue states the question; you are after its answer.",
+             headnotes:"a headnote summarizes the holding, but it is an editor's words \u2014 never citable.",
+             disposition:"the disposition says who won; the holding says what rule decided it." } },
+    { q:"Your client's facts differ a little from these. Which part tells you how far the rule stretches?",
+      a:"reasoning",
+      why:"The reasoning shows what the rule turns on \u2014 the raw material for arguing that different facts still (or no longer) fit.",
+      miss:{ holding:"the holding gives the result on THESE facts; the stretch lives in the why.",
+             facts:"the facts matter, but only the reasoning tells you which of them carried weight." } }
+  ];
+
+  /* ---- Work the Page: hold a question, click the part that answers it ---- */
+  var WK = { active:false, qi:-1 };
+  (function(){
+    var host = document.getElementById("wkbody");
+    function start(i){
+      WK.qi = i; WK.active = true;
+      var Q = WKQ[i];
+      host.innerHTML = "";
+      host.appendChild(QM.el("p",{class:"ws"},["Question "+(i+1)+" of "+WKQ.length]));
+      host.appendChild(QM.el("p",{class:"wq"},["\u201c"+Q.q+"\u201d"]));
+      host.appendChild(QM.el("p",{class:"ws"},[Q.hint || "Click the part of the document that answers it."]));
+      host.appendChild(QM.el("div",{class:"wf",id:"wkfb",role:"status","aria-live":"polite"}));
+    }
+    function idle(first){
+      WK.active = false; WK.qi = -1;
+      host.innerHTML = "";
+      host.appendChild(QM.el("p",{class:"ws"},[first
+        ? "Hold a question, then find the part of the page that answers it \u2014 the move every source rewards. (Anatomy clicks pause while a question is open.)"
+        : "All questions worked. Explore freely, or run them again."]));
+      var b = QM.el("button",{class:"wbtn",type:"button"},[first ? "Start question 1 \u2192" : "Run them again \u21ba"]);
+      b.addEventListener("click",function(){ start(0); });
+      host.appendChild(b);
+      if(!first && window.ExportReflect) ExportReflect.log("Work-the-page complete", String(WKQ.length)+" questions");
+    }
+    WK.answer = function(key,label){
+      var Q = WKQ[WK.qi], fb = document.getElementById("wkfb");
+      if(!Q || !fb) return;
+      if(key === Q.a || (Q.also && Q.also.indexOf(key) !== -1)){
+        fb.className = "wf good"; fb.innerHTML = "";
+        window.setTimeout(function(){ fb.innerHTML = "<b>"+label+"</b> \u2014 right. "+Q.why; },30);
+        if(window.ExportReflect) ExportReflect.log("Work-the-page Q"+(WK.qi+1),"found: "+label);
+        WK.active = false;
+        var nxt = WK.qi+1 < WKQ.length;
+        var b = QM.el("button",{class:"wbtn",type:"button"},[nxt ? "Next question \u2192" : "Finish \u2192"]);
+        b.addEventListener("click",function(){ nxt ? start(WK.qi+1) : idle(false); });
+        host.appendChild(b);
+      } else {
+        fb.className = "wf bad"; fb.innerHTML = "";
+        var miss = (Q.miss && Q.miss[key]) ? Q.miss[key] : "that part answers a different question.";
+        window.setTimeout(function(){ fb.innerHTML = "<b>"+label+"</b> \u2014 not this one: "+miss+" Hold the question and scan again."; },30);
+        if(window.ExportReflect) ExportReflect.log("Work-the-page Q"+(WK.qi+1)+" miss","picked "+label);
+      }
+    };
+    idle(true);
+  })();
 
   if(window.ExportReflect){
     ExportReflect.mount(document.getElementById("export-slot"),{

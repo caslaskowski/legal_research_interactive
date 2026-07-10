@@ -102,6 +102,12 @@
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
   }
+  .steps{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px 8px;margin:0 0 24px;}
+  .steps h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 12px;}
+  .steps ol{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 20px;}
+  .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
+  .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
+  .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
 </style>
 </head>
 <body class="shell">
@@ -206,12 +212,18 @@
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
@@ -256,6 +268,17 @@
     <h1>How to Read a Secondary Source</h1>
     <p class="lede">A secondary source talks <em>about</em> the law rather than being the law. It is a map, not the territory: you use it to find and understand primary authority, and with rare exceptions you do not cite it as the law itself. Below is a demonstration encyclopedia entry, rendered the way a database renders one &mdash; a navigable table of contents on the left, the document in the middle. Reading it well is the Question Method applied to a page.</p>
     <div class="howto"><b>How to use this:</b> first explore the anatomy &mdash; click the table of contents, any sentence of the narrative, a footnote, the currency line, and the research references, and the <b>Parts of the source</b> panel explains each. Then run the <b>Work the page</b> exercise on the right: it hands you a question, you find the sentence that answers it, and you pull the citation from that sentence&rsquo;s footnote &mdash; the move this whole appendix exists to teach.</div>
+
+    <section class="steps" aria-label="How to engage with the source">
+      <h2>How to engage with a secondary source — the five moves</h2>
+      <ol>
+        <li><b>Match the source type to your question type</b>A no-clue exploratory question wants an encyclopedia; a foundational question wants a treatise; a survey question across jurisdictions wants an ALR annotation, a Restatement, or a 50-state survey.</li>
+        <li><b>Navigate &mdash; do not read end to end</b>Use the table of contents and index to jump to the section that answers your <em>current</em> question. That is what the sidebar is for.</li>
+        <li><b>Find the sentence, then mine its footnote</b>Hold your question, scan the narrative for the sentence that answers it, and follow that sentence&rsquo;s footnote to the primary authority &mdash; one case now; log the rest as later questions with their citations noted.</li>
+        <li><b>Confirm against primary authority, and check currency</b>A secondary source can be out of date, can oversimplify, or can be wrong. Go read what it points to, and note the &ldquo;current through&rdquo; date.</li>
+        <li><b>Cite primary authority, not the secondary source</b>With narrow exceptions, you build the argument on the authority the source led you to.</li>
+      </ol>
+    </section>
 
     <section class="db" aria-label="Demonstration — a secondary source as a database renders it (fictional)">
       <div class="db-browserbar" aria-hidden="true">
@@ -320,18 +343,10 @@
       </div>
     </section>
 
-    <section class="engage" aria-labelledby="engage-h">
-      <h2 id="engage-h">How to engage with the source</h2>
-      <ol>
-        <li><b>Match the source type to your question type.</b> A no-clue exploratory question wants an encyclopedia; a foundational question wants a treatise; a survey question across jurisdictions wants an ALR annotation, a Restatement, or a 50-state survey.</li>
-        <li><b>Navigate &mdash; do not read end to end.</b> Use the table of contents and index to jump to the section that answers your <em>current</em> question. That is what the sidebar is for.</li>
-        <li><b>Find the sentence, then mine its footnote.</b> Hold your question, scan the narrative for the sentence that answers it, and follow that sentence&rsquo;s footnote to the primary authority &mdash; one case now; log the rest as later questions with their citations noted.</li>
-        <li><b>Confirm against primary authority, and check currency.</b> A secondary source can be out of date, can oversimplify, or can be wrong. Go read what it points to, and note the &ldquo;current through&rdquo; date.</li>
-        <li><b>Cite primary authority, not the secondary source.</b> With narrow exceptions, you build the argument on the authority the source led you to.</li>
-      </ol>
+    <section class="engage" aria-label="Knowledge check">
 
       <div class="kc">
-        <p class="q">Your question is: <i>&ldquo;How do the fifty states handle a landlord&rsquo;s duty to provide heat?&rdquo;</i> Which secondary source does that question point to?</p>
+        <p class="q">A question arrives on your desk: <i>&ldquo;How do the fifty states handle a landlord&rsquo;s duty to provide heat?&rdquo;</i> Which secondary source does it point to?</p>
         <div class="opts" id="kc-opts" role="group" aria-label="Pick the source that matches the question"></div>
         <div class="fb" id="kc-fb" role="status" aria-live="polite"></div>
       </div>

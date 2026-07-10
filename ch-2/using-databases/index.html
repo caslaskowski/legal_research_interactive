@@ -7,7 +7,7 @@
 <meta name="description" content="Read a citation, retrieve a known source, and build live terms-and-connectors searches against a sample database to see how each connector changes your results.">
 <style>
 :root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
---rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;
 --statute:#8a0100;--statute-tint:#f0dede;--regulation:#2f6d56;--case:#28406b;--case-tint:#dde2ed;--radius:4px;
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
 --shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
@@ -84,8 +84,8 @@
 .doc .dt mark{background:#fbe7a2;color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600;}
 .doc .rank{display:inline-block;font-family:var(--mono);font-size:.72rem;color:var(--regulation);font-weight:700;margin-left:6px;}
 .empty{padding:22px 18px;color:var(--ink-faint);font-style:italic;}
-.cmp-note{padding:10px 18px;background:var(--flame-tint);border-bottom:1px solid var(--rule);font-size:.88rem;color:var(--ink);}
-.anchorcue{background:var(--flame-tint);border-left:4px solid var(--flame);padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:.93rem;margin:14px 0;color:var(--ink);}
+.cmp-note{padding:10px 18px;background:var(--callout);border-bottom:1px solid var(--rule);font-size:.88rem;color:var(--ink);}
+.anchorcue{background:var(--callout);border-left:4px solid var(--flame);padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:.93rem;margin:14px 0;color:var(--ink);}
 
 .pop{position:fixed;z-index:60;max-width:340px;width:calc(100vw - 32px);background:#fff;color:var(--ink);border:1px solid var(--ink);border-radius:10px;box-shadow:var(--shadow-lg);}
 .pop[hidden]{display:none;}
@@ -200,12 +200,18 @@
               <ul class="modmenu-chaps">
               <li class="modmenu-chap">
                 <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                </ul>
               </li>
               <li class="modmenu-chap">
                 <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>

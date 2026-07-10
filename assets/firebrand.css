@@ -52,7 +52,7 @@
   --flame:      #a72d2a;   /* brand red — the signature */
   --flame-deep: #8a0100;   /* deep crimson for hover / emphasis */
   --ember:      #c44d44;   /* lighter crimson flare (logo highlight) */
-  --flame-tint: #f1dedd;
+  --flame-tint: #f1dedd;--callout:#f5efe0;
 
   /* source-type taxonomy hues (kept across the suite) --------------------- */
   --statute:      #8a0100; --statute-tint: #f0dede;
@@ -381,3 +381,15 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
   padding: 4px 10px; cursor: pointer; }
 .storage-note button:hover{ border-color: var(--flame); }
 .storage-note button:focus-visible{ outline: 3px solid var(--flame); outline-offset: 2px; }
+
+/* ---- chapter overview + checklist (registry "overview") ------------------- */
+.ch-overview{ margin: 0 0 30px; }
+.ch-ov-kicker{ font-family: var(--mono); font-size: .72rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--flame); margin: 0 0 8px; }
+.ch-ov-p{ font-size: 1.02rem; line-height: 1.7; color: var(--ink); margin: 0 0 14px; }
+.ch-check{ background: var(--panel); border: 1.5px solid var(--rule-strong);
+  border-left: 4px solid var(--flame); border-radius: 10px; padding: 18px 22px; margin: 20px 0 0; }
+.ch-check h3{ font-size: 1.05rem; margin: 0 0 10px; }
+.ch-check ol{ margin: 0; padding-left: 22px; }
+.ch-check li{ margin: 0 0 12px; line-height: 1.6; }
+.ch-check li::marker{ color: var(--flame); font-weight: 700; }

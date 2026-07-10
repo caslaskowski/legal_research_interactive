@@ -413,16 +413,39 @@ window.REGISTRY = {
       "modules": [
         {
           "status": "plan",
-          "slug": "competent-research-duty",
-          "title": "The Competent-Research Duty",
-          "desc": "Walk scenarios where research — or its absence — triggers Model Rules 1.1, 3.3, 5.1, and 5.3, including the obligation to find adverse authority.",
+          "type": "orientation",
+          "slug": "duties-behind-the-research",
+          "title": "The Duties Behind the Research",
+          "desc": "The chapter's spine as an explorable: competence (Rule 1.1), candor (Rule 3.3), and supervision (Rules 5.1/5.3) — what each requires of research, what triggers it, and what breach looks like.",
           "will": [
-            "Competence as a research duty (Rule 1.1)",
-            "Candor and the duty to disclose adverse authority (Rule 3.3)",
-            "Supervising others’ research (Rules 5.1 and 5.3)",
-            "Build verification into the workflow"
-          ],
-          "type": "practice"
+            "The three duties, panel by panel",
+            "The consequences ladder — lost credibility to discipline",
+            "Build verification into the research workflow",
+            "Where AI use meets each duty"
+          ]
+        },
+        {
+          "status": "live",
+          "type": "practice",
+          "slug": "catch-the-fabricated-citation",
+          "href": "ch-10/catch-the-fabricated-citation/index.html",
+          "note": "New",
+          "verified": "2026-07-10",
+          "title": "Catch the Fabricated Citation",
+          "desc": "A short brief, eight citations, one closed database. Retrieve each authority — or discover it does not exist — then classify it: supports, does not support, negatively treated, or fabricated. Feedback names the verification step that catches each failure."
+        },
+        {
+          "status": "plan",
+          "type": "practice",
+          "slug": "the-duty-calls",
+          "title": "The Duty Calls",
+          "desc": "Six scenarios where research — or its absence — triggers a professional duty. Pick the required move; the feedback walks the rule's logic.",
+          "will": [
+            "Adverse binding authority the night before filing",
+            "Relying on unverified AI output",
+            "‘I didn't have time to update the cases’",
+            "Supervising another researcher's work"
+          ]
         }
       ]
     },
@@ -435,16 +458,28 @@ window.REGISTRY = {
       "modules": [
         {
           "status": "plan",
-          "slug": "read-a-docket",
-          "title": "Read a Docket",
-          "desc": "Trace a case through its docket and pull the filings that reveal its posture, its arguments, and the road to the opinion.",
+          "type": "orientation",
+          "slug": "read-the-docket",
+          "title": "Read the Docket",
+          "desc": "The interactive anatomy of a docket sheet plus the life of a filing — complaint to judgment — including the parts that trip new readers.",
           "will": [
-            "What lives in a docket",
-            "Find briefs, motions, and orders",
-            "Mine briefs for arguments and authorities",
-            "Track pending cases and court rules"
-          ],
-          "type": "orientation"
+            "What lives in a docket, part by part",
+            "Reverse chronology — the newest entries come first",
+            "Multi-part entries for a single filing",
+            "The life of a filing: complaint → answer → motions → briefs → orders → judgment"
+          ]
+        },
+        {
+          "status": "plan",
+          "type": "practice",
+          "slug": "pull-the-right-paper",
+          "title": "Pull the Right Paper",
+          "desc": "Match the research need to the court document — and never mistake a brief for authority.",
+          "will": [
+            "Complaint, brief, or order — which answers your question",
+            "A brief is advocacy, not authority",
+            "PACER and the free alternatives"
+          ]
         }
       ]
     },
@@ -456,17 +491,25 @@ window.REGISTRY = {
       "desc": "Reconstructing what a statute meant by tracing bills, committee reports, hearings, and floor debate — and weighing each source correctly.",
       "modules": [
         {
-          "status": "plan",
+          "status": "live",
+          "type": "orientation",
           "slug": "trace-the-bill",
+          "href": "ch-12/trace-the-bill/index.html",
+          "note": "New",
           "title": "Trace the Bill",
-          "desc": "Start from a public-law citation and follow a statute back through its legislative record, in chronological order.",
+          "desc": "The legislative process as a pipeline you can walk, then each history source in depth — what it is, the weight it carries, the questions it answers, and when to reach for it — plus the anatomy of a committee report."
+        },
+        {
+          "status": "plan",
+          "type": "practice",
+          "slug": "weigh-the-history",
+          "title": "Weigh the History",
+          "desc": "Rank five history documents by interpretive weight, then make the judgment calls — including the textualism caution.",
           "will": [
-            "The legislative process as a research trail",
-            "Weigh committee reports, hearings, and floor statements",
-            "Find compiled legislative histories first",
-            "Use history responsibly — it is persuasive, not binding"
-          ],
-          "type": "orientation"
+            "Committee report at the top — and why",
+            "Sponsor statements, hearings, and post-enactment history in their places",
+            "History persuades some judges and repels others — know your court"
+          ]
         }
       ]
     },
@@ -479,16 +522,27 @@ window.REGISTRY = {
       "modules": [
         {
           "status": "plan",
+          "type": "orientation",
+          "slug": "beyond-the-rule",
+          "title": "Beyond the Rule",
+          "desc": "Rulemaking, guidance, and adjudication as a clickable comparison — how each is made, where each lives, what each binds — and the deference story from Chevron to Loper Bright to Skidmore as a timeline you walk.",
+          "will": [
+            "The three families of agency material",
+            "What binds and what persuades",
+            "The deference timeline, post-Loper Bright"
+          ]
+        },
+        {
+          "status": "plan",
+          "type": "practice",
           "slug": "weigh-the-agency-materials",
           "title": "Weigh the Agency Materials",
-          "desc": "Sort binding regulation from persuasive guidance and advisory letters, logging an authority level for every finding.",
+          "desc": "One question, a stack of agency materials: assign each an authority level and log why — the record is the chapter's professional artifact.",
           "will": [
-            "Rulemaking vs. guidance vs. adjudication",
-            "Locate guidance, opinion letters, and ALJ decisions",
+            "Rule vs. guidance vs. adjudication, in the ranking",
             "Record an authority level for every finding",
-            "Judicial deference after Loper Bright"
-          ],
-          "type": "practice"
+            "The Skidmore persuasion factors, applied"
+          ]
         }
       ]
     },
@@ -501,16 +555,28 @@ window.REGISTRY = {
       "modules": [
         {
           "status": "plan",
+          "type": "orientation",
           "slug": "same-cycle-different-parameters",
           "title": "Same Cycle, Different Parameters",
-          "desc": "Run one matter three ways — litigation, transactional, regulatory — and see how the default question type, first source, and closure test change.",
+          "desc": "One matter, three chairs — litigation, transactional, regulatory. Switch seats and watch the same cycle re-parameterize: question types, first sources, and what closure requires.",
           "will": [
             "Default question type by practice context",
             "Where each context starts its research",
-            "Closure criteria that differ by practice",
+            "Closure by context — analytical vs. practical, and why practice-specific research closes practically more often",
             "Specialized databases for each setting"
-          ],
-          "type": "orientation"
+          ]
+        },
+        {
+          "status": "plan",
+          "type": "practice",
+          "slug": "pick-the-parameters",
+          "title": "Pick the Parameters",
+          "desc": "A matter and a chair: choose the first question's type, the first source, and what closure requires — then see the same matter from the other two chairs.",
+          "will": [
+            "First question, first source, closure standard — per chair",
+            "Fact-finding and constructive application reps",
+            "The same matter, three ways"
+          ]
         }
       ]
     },
@@ -533,6 +599,18 @@ window.REGISTRY = {
             "The professional-responsibility limits on AI use"
           ],
           "type": "practice"
+        },
+        {
+          "status": "plan",
+          "type": "practice",
+          "slug": "right-tool-right-question",
+          "title": "Right Tool, Right Question",
+          "desc": "Ten research questions — for each, the best-fit tool: terms-and-connectors, database-integrated AI, general-purpose AI with verification, or no AI at all.",
+          "will": [
+            "Where each tool is strong",
+            "Where each fails",
+            "The verification tax every AI answer carries"
+          ]
         }
       ]
     },
@@ -545,16 +623,28 @@ window.REGISTRY = {
       "modules": [
         {
           "status": "plan",
-          "slug": "five-named-skills",
-          "title": "The Five Named Skills",
-          "desc": "Drill the five NextGen research competencies — ambiguity spotting, source ranking, dispositive-fact identification, gap identification, and closure — under timed conditions.",
+          "type": "orientation",
+          "slug": "five-skills-mapped",
+          "title": "The Five Skills, Mapped",
+          "desc": "The five NextGen research competencies as an explorable map — what each is, how the exam presents it, and which textbook chapter built it — plus the anatomy of an exam research task.",
           "will": [
-            "The five named NextGen research skills",
-            "Work from a provided, closed set of sources",
-            "Reach closure under time pressure",
-            "Map exam tasks back to the textbook chapters"
-          ],
-          "type": "practice"
+            "The five skills, one by one",
+            "Tap a skill; the chapters that trained it light up",
+            "The anatomy of an exam research task"
+          ]
+        },
+        {
+          "status": "plan",
+          "type": "practice",
+          "slug": "the-closed-universe",
+          "title": "The Closed Universe",
+          "desc": "An exam-shaped exercise in the released NextGen format — fact pattern, provided sources, research Q&A only — drilling the five skills, with a timer that is offered, never imposed.",
+          "will": [
+            "Work only from the provided sources",
+            "Spot the ambiguity, rank the authority, state what's missing",
+            "Original questions modeled on the released sample's format — research tasks only, no writing component",
+            "Timed, extended, or untimed — your choice, recorded without penalty"
+          ]
         }
       ]
     },
@@ -564,21 +654,29 @@ window.REGISTRY = {
       "slug": "scholarship",
       "title": "Research for Legal Scholarship",
       "desc": "Preemption checks, building a literature base, and the deeper, broader research that scholarly writing demands.",
-      "modules": [
-        {
-          "status": "plan",
-          "slug": "run-a-preemption-check",
-          "title": "Run a Preemption Check",
-          "desc": "Search the scholarly landscape to confirm your idea has not been done — and build the literature base around it.",
-          "will": [
-            "Run a preemption check",
-            "Build and organize a literature base",
-            "Use interdisciplinary and historical sources",
-            "SSRN, working papers, and citing secondary sources in scholarship"
-          ],
-          "type": "orientation"
+      "modules": [],
+      "overview": {
+        "kicker": "This chapter works differently",
+        "paras": [
+          "Scholarship asks something different of your research. In practice you find the controlling law and apply it to a client's facts; in scholarship you are adding an original argument to an ongoing conversation — which means thorough doctrinal research plus a survey of the scholarly landscape: who has written, what has been argued, and where genuine controversy or underdevelopment lives. The chapter itself drops the source-chapter template on purpose, and so does this page: scholarship is a context, not a source, so instead of modules you get the chapter's working method as a checklist you can run when the seminar paper, note, or comment actually arrives.",
+          "In method terms, nothing here is new. Choosing a topic is choosing the project's first research question; the narrowing you have practiced all book long — area to question to claim — is the same move at a larger scale; and the paper itself becomes a chain of questions (what is the framework, what is the problem, why does the framework fail, what is the fix), each researched the way you have researched everything in this book: one at a time, to closure. Your law library's research guides collect topic-finding strategies and preemption checklists built for exactly this moment — use them."
+        ],
+        "checklist": {
+          "title": "The Scholarship Research Checklist",
+          "items": [
+            "Run a cursory preemption check before anything else — an hour, not a week. Search your claim's distinctive terms in HeinOnline, Westlaw or Lexis, SSRN, and Google Scholar, and read the closest abstracts. If someone has written your paper, know it before the outline exists.",
+            "Choose a question, not a subject area. A subject area is a shelf to browse, not a paper to write; the topic resolves into the question your thesis will answer.",
+            "Map the scholarly landscape: positions staked out, points of agreement and disagreement, genuine gaps. Read the closest matches for actual overlap — an article in the same area is not preemption; an article making your argument is.",
+            "Run the full preemption protocol when the thesis firms up. If the argument exists, differentiate your contribution or refocus — a fully preempted contribution is not a contribution.",
+            "Write the contribution sentence: what you add beyond a summary of what everyone else has said. A literature summary is not a contribution.",
+            "Research and draft one question at a time — framework, problem, why the framework fails, the fix — each section's question to closure.",
+            "Reach past the law reviews when the issue does — but integrate interdisciplinary sources as support, not decoration. If your paper argues the system needs fixing, the paper needs the repair, not just the diagnosis.",
+            "Mind working papers. SSRN puts you at the front of the conversation, but an un-peer-reviewed paper can change before publication — rely on it with that caveat.",
+            "Run the final preemption sweep before submission — a preempting article can land while you are writing.",
+            "Restock the question inventory as you read. The working question finishes this paper; the inventory starts the next."
+          ]
         }
-      ]
+      }
     }
   ],
   "appendices": {
