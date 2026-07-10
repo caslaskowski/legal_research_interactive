@@ -178,7 +178,7 @@ window.REGISTRY = {
           "href": "ch-4/reading-secondary/index.html",
           "note": "Appendix A",
           "title": "How to Read a Secondary Source",
-          "desc": "Walk the anatomy of a secondary source — finding aids, narrative text, footnotes, the currency line, and the editorial apparatus — clicking each part to learn what it does and how the Question Method reads it."
+          "desc": "A secondary source as a database renders it — navigable table of contents, narrative, footnotes, currency line, editorial apparatus — then the core move, three times: hold a question, find the sentence that answers it, and pull the citation from that sentence's footnote."
         },
         {
           "status": "live",
