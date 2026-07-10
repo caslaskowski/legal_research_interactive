@@ -11,13 +11,43 @@ window.HOME = {
   },
   "atAGlance": {
     "caption": "Types of authority compared",
-    "columns": ["Authority", "Primary or secondary?", "Can it bind?", "What determines whether it binds"],
+    "columns": [
+      "Authority",
+      "Primary or secondary?",
+      "Can it bind?",
+      "What determines whether it binds"
+    ],
     "rows": [
-      ["Constitution", "Primary", "Yes — supreme", "Sits above every other law in its jurisdiction; no lower authority may conflict"],
-      ["Statute", "Primary", "Yes", "Binds within its jurisdiction; outranks regulations and common law on the same subject"],
-      ["Regulation", "Primary", "Yes", "Binds if validly issued under an authorizing statute; yields to the statute itself"],
-      ["Case (judicial opinion)", "Primary", "Yes — conditionally", "Binds only if from a higher court in the same system for the same jurisdiction"],
-      ["Treatise, encyclopedia, law review, Restatement", "Secondary", "No", "Always persuasive at most — used to find and understand the law, never to settle it"]
+      [
+        "Constitution",
+        "Primary",
+        "Yes — supreme",
+        "Sits above every other law in its jurisdiction; no lower authority may conflict"
+      ],
+      [
+        "Statute",
+        "Primary",
+        "Yes",
+        "Binds within its jurisdiction; outranks regulations and common law on the same subject"
+      ],
+      [
+        "Regulation",
+        "Primary",
+        "Yes",
+        "Binds if validly issued under an authorizing statute; yields to the statute itself"
+      ],
+      [
+        "Case (judicial opinion)",
+        "Primary",
+        "Yes — conditionally",
+        "Binds only if from a higher court in the same system for the same jurisdiction"
+      ],
+      [
+        "Treatise, encyclopedia, law review, Restatement",
+        "Secondary",
+        "No",
+        "Always persuasive at most — used to find and understand the law, never to settle it"
+      ]
     ]
   },
   "nav": [
@@ -27,13 +57,6 @@ window.HOME = {
       "page": "hierarchy.html",
       "kicker": "Explore",
       "blurb": "An interactive map of how authority layers — how higher law controls lower law, and why the same case can bind in one courtroom and only persuade in another."
-    },
-    {
-      "id": "quiz",
-      "label": "Knowledge Check",
-      "page": "quiz.html",
-      "kicker": "Assessment",
-      "blurb": "Eight questions covering the hierarchy, primary vs. secondary, binding vs. persuasive, statute vs. common law, and court systems — with full feedback on every choice."
     }
   ],
   "companion": {
@@ -41,20 +64,6 @@ window.HOME = {
     "description": "A fill-in-the-blanks worksheet. Work through it alongside the module — completed, it becomes a one-page reference for weighing authority on any research problem.",
     "buttonText": "Download Companion Notes (.txt)"
   }
-};
-
-window.PRACTICE = {
-  "title": "Applying the Hierarchy",
-  "subtitle": "Drills and applied exercises to test your command of legal authority.",
-  "eyebrow": "Chapter 1 · Practice",
-  "intro": "You have mapped the hierarchy. Now test your grip on it. These exercises move from quick classification drills to full-scenario ranking — sorting every authority in a real legal problem by binding effect, and placing a court in its system with your Bluebook in hand.",
-  "nav": [
-    { "id": "primary-secondary", "label": "Primary vs. Secondary", "page": "drill.html?type=primary-secondary", "kicker": "Drill", "blurb": "Sort sources into the law itself versus the tools that help you find it." },
-    { "id": "binding-persuasive", "label": "Binding vs. Persuasive", "page": "drill.html?type=binding-persuasive", "kicker": "Drill", "blurb": "For a stated court, decide what it must follow and what it may merely consider." },
-    { "id": "statute-common", "label": "Statute vs. Common Law", "page": "drill.html?type=statute-common", "kicker": "Drill", "blurb": "Decide which governs when an enacted statute and a judge-made rule meet on the same subject." },
-    { "id": "rank", "label": "Rank the Stack", "page": "rank.html", "kicker": "Apply", "blurb": "Take a real legal problem in one jurisdiction and sort every authority into tiers by binding effect." },
-    { "id": "courts", "label": "Court Up / Court Down", "page": "courts.html", "kicker": "Apply", "blurb": "Place a court in its system: name the court directly above it and below it. Bluebook in hand." }
-  ]
 };
 
 window.HIERARCHY = {
@@ -122,13 +131,22 @@ window.HIERARCHY = {
       "heading": "The same source can bind — or not",
       "lede": "Whether a primary authority binds depends on which court is deciding and what kind of question is before it. Switch between the two Arizona courts below and watch how the same decisions change weight.",
       "forums": [
-        { "id": "az_sup", "label": "Arizona Superior Court (an Arizona-law question)" },
-        { "id": "az_supreme_con", "label": "Arizona Supreme Court (a federal constitutional question)" }
+        {
+          "id": "az_sup",
+          "label": "Arizona Superior Court (an Arizona-law question)"
+        },
+        {
+          "id": "az_supreme_con",
+          "label": "Arizona Supreme Court (a federal constitutional question)"
+        }
       ],
       "authorities": [
         {
           "label": "Arizona Supreme Court decision (on Arizona law)",
-          "weight": { "az_sup": "binding", "az_supreme_con": "persuasive" },
+          "weight": {
+            "az_sup": "binding",
+            "az_supreme_con": "persuasive"
+          },
           "why": {
             "az_sup": "The Arizona Supreme Court is the highest court in the state system. Its decisions bind every Arizona court below it.",
             "az_supreme_con": "A court is not bound by its own prior decisions — it retains the power to overrule itself. Prior Arizona Supreme Court decisions are powerfully persuasive but the court may depart from them."
@@ -136,7 +154,10 @@ window.HIERARCHY = {
         },
         {
           "label": "Arizona Court of Appeals decision",
-          "weight": { "az_sup": "binding", "az_supreme_con": "persuasive" },
+          "weight": {
+            "az_sup": "binding",
+            "az_supreme_con": "persuasive"
+          },
           "why": {
             "az_sup": "The Arizona Court of Appeals sits directly above the Arizona Superior Court in the same system. Its published decisions bind the trial court below.",
             "az_supreme_con": "Binding force runs from higher courts to lower courts, never upward. The Arizona Supreme Court is above the Court of Appeals; a lower court cannot bind the court above it."
@@ -144,7 +165,10 @@ window.HIERARCHY = {
         },
         {
           "label": "U.S. Court of Appeals for the Ninth Circuit (a federal question)",
-          "weight": { "az_sup": "persuasive", "az_supreme_con": "persuasive" },
+          "weight": {
+            "az_sup": "persuasive",
+            "az_supreme_con": "persuasive"
+          },
           "why": {
             "az_sup": "Federal circuit courts do not bind state courts. On an Arizona-law question, the Ninth Circuit’s views are informative but not mandatory.",
             "az_supreme_con": "State courts follow the U.S. Supreme Court on the meaning of the federal Constitution — not the circuit courts. The Ninth Circuit’s constitutional reasoning may inform the Arizona Supreme Court but does not control it."
@@ -152,7 +176,10 @@ window.HIERARCHY = {
         },
         {
           "label": "U.S. District Court for a District in California (a federal question)",
-          "weight": { "az_sup": "persuasive", "az_supreme_con": "persuasive" },
+          "weight": {
+            "az_sup": "persuasive",
+            "az_supreme_con": "persuasive"
+          },
           "why": {
             "az_sup": "A federal trial court in another state has no authority in Arizona’s system. Its decisions are persuasive at most and rarely carried this far.",
             "az_supreme_con": "Federal district court decisions are not binding precedent even within the federal system. For the Arizona Supreme Court, a California district court decision is at best a persuasive data point."
@@ -165,13 +192,22 @@ window.HIERARCHY = {
       "heading": "Now switch the question — and the court",
       "lede": "Here the same authorities appear before two very different courts: one applying state law, one applying a federal regulation. Some sources bind both courts; most bind only one. Watch which flip and which hold steady.",
       "forums": [
-        { "id": "tx_state", "label": "Texas state trial court (a Texas-law question)" },
-        { "id": "ga_app", "label": "Georgia Court of Appeals (applying a federal regulation)" }
+        {
+          "id": "tx_state",
+          "label": "Texas state trial court (a Texas-law question)"
+        },
+        {
+          "id": "ga_app",
+          "label": "Georgia Court of Appeals (applying a federal regulation)"
+        }
       ],
       "authorities": [
         {
           "label": "Texas Supreme Court decision (on Texas law)",
-          "weight": { "tx_state": "binding", "ga_app": "persuasive" },
+          "weight": {
+            "tx_state": "binding",
+            "ga_app": "persuasive"
+          },
           "why": {
             "tx_state": "The Texas Supreme Court is the highest civil court in Texas. Its decisions bind all Texas courts below it on Texas-law questions.",
             "ga_app": "Texas precedent carries no authority in Georgia. A Georgia court applying federal regulation looks to federal courts and Georgia’s own courts — not another state’s supreme court."
@@ -179,7 +215,10 @@ window.HIERARCHY = {
         },
         {
           "label": "U.S. Court of Appeals for the Fifth Circuit (interpreting the federal regulation)",
-          "weight": { "tx_state": "persuasive", "ga_app": "persuasive" },
+          "weight": {
+            "tx_state": "persuasive",
+            "ga_app": "persuasive"
+          },
           "why": {
             "tx_state": "The Fifth Circuit governs federal courts in Texas — not state courts deciding state-law questions. Federal circuit precedent does not bind Texas state courts.",
             "ga_app": "Georgia sits in the Eleventh Circuit, not the Fifth. A sister circuit’s interpretation of a federal regulation is often persuasive and worth citing, but it carries no mandatory weight outside its own circuit."
@@ -187,7 +226,10 @@ window.HIERARCHY = {
         },
         {
           "label": "U.S. Court of Appeals for the Eleventh Circuit (interpreting the federal regulation)",
-          "weight": { "tx_state": "persuasive", "ga_app": "binding" },
+          "weight": {
+            "tx_state": "persuasive",
+            "ga_app": "binding"
+          },
           "why": {
             "tx_state": "The Eleventh Circuit covers Georgia, Alabama, and Florida — not Texas. Its regulatory interpretations carry no binding authority in the Texas state system.",
             "ga_app": "When a Georgia court applies a federal regulation, the Eleventh Circuit’s interpretation of that regulation is the authoritative federal word within this jurisdiction. Georgia courts treat it as binding on the federal question."
@@ -195,7 +237,10 @@ window.HIERARCHY = {
         },
         {
           "label": "U.S. Supreme Court decision (interpreting the same federal regulation)",
-          "weight": { "tx_state": "binding", "ga_app": "binding" },
+          "weight": {
+            "tx_state": "binding",
+            "ga_app": "binding"
+          },
           "why": {
             "tx_state": "On questions of federal law — including federal regulations — the U.S. Supreme Court is the final authority. Every court in the country, state and federal, must follow its interpretations.",
             "ga_app": "The U.S. Supreme Court settles federal questions for all courts everywhere. Its interpretation of a federal regulation ends the inquiry in any courtroom in the country."
@@ -203,7 +248,10 @@ window.HIERARCHY = {
         },
         {
           "label": "Georgia Supreme Court decision",
-          "weight": { "tx_state": "persuasive", "ga_app": "binding" },
+          "weight": {
+            "tx_state": "persuasive",
+            "ga_app": "binding"
+          },
           "why": {
             "tx_state": "Another state’s supreme court has no authority in Texas. Georgia decisions are persuasive references, nothing more.",
             "ga_app": "The Georgia Supreme Court is Georgia’s highest court. Its decisions bind all Georgia courts below it, including the Court of Appeals — even when the issue before the lower court involves federal regulation."
@@ -1297,200 +1345,15 @@ window.COMPANION = {
   "footer": "Tip: if you can fill this in without looking, you can rank any stack of authorities on sight."
 };
 
-window.QUIZ = {
-  "instructions": "Choose the best answer. After you answer, you'll get an explanation — including why each wrong choice is wrong. Aim to understand the feedback, not just to get a score.",
-  "questions": [
-    {
-      "id": "q1",
-      "topic": "hierarchy",
-      "prompt": "A state agency issues a regulation on a subject that an existing state statute already addresses — and the two give different answers. Which controls?",
-      "options": [
-        { "id": "a", "text": "The regulation — it is more recently issued and more specific" },
-        { "id": "b", "text": "The statute — enacted law outranks a regulation on the same subject" },
-        { "id": "c", "text": "Whichever the court finds more reasonable" },
-        { "id": "d", "text": "Both apply; the regulation fills in detail the statute omitted" }
-      ],
-      "correct": "b",
-      "feedback": {
-        "correct": "Right. Statutes outrank regulations in the hierarchy. An agency issues regulations only under authority a statute delegates to it — so where the two conflict, the statute controls.",
-        "a": "Recency and specificity do not determine rank. A regulation is issued under authority granted by a statute; where they conflict, the statute wins regardless of which came later.",
-        "c": "This is not a matter of reasonableness. The hierarchy decides: the statute outranks the regulation. The court applies the rule, not chooses between two options.",
-        "d": "A regulation that directly conflicts with a statute on the same subject does not supplement it — it loses. Supplementing is different from conflicting."
-      }
-    },
-    {
-      "id": "q2",
-      "topic": "hierarchy",
-      "prompt": "Congress enacts a statute that fully occupies a regulatory field. An Arizona statute then tries to regulate the same conduct differently. Before an Arizona court, which applies?",
-      "options": [
-        { "id": "a", "text": "The Arizona statute — states govern their own residents" },
-        { "id": "b", "text": "The federal statute — the Supremacy Clause makes federal law supreme where Congress has acted" },
-        { "id": "c", "text": "Both, unless they directly and irreconcilably contradict each other" },
-        { "id": "d", "text": "The Arizona statute, because it was enacted by elected state legislators" }
-      ],
-      "correct": "b",
-      "feedback": {
-        "correct": "Right. The Supremacy Clause places federal law above state law. When Congress occupies a regulatory field, it preempts state law in that field — even where the state law is not a direct word-for-word contradiction.",
-        "a": "States do not control the question once Congress has occupied the field. The Supremacy Clause displaces state law that conflicts with — or is preempted by — federal law.",
-        "c": "Field preemption is broader than conflict preemption. When Congress occupies a field, state law in that field is displaced even without a head-to-head contradiction between specific provisions.",
-        "d": "Democratic enactment at the state level does not override the constitutional hierarchy. Federal law is also democratically enacted and ranks higher under the Supremacy Clause."
-      }
-    },
-    {
-      "id": "q3",
-      "topic": "primary-secondary",
-      "prompt": "An opposing brief cites a section of the Restatement (Third) of Torts and calls it 'binding authority.' How do you respond?",
-      "options": [
-        { "id": "a", "text": "It is binding — the American Law Institute has statutory authority to publish Restatements" },
-        { "id": "b", "text": "It is binding only in states that have formally adopted it by statute" },
-        { "id": "c", "text": "It is secondary authority — written by scholars, not enacted or decided by a court, so it cannot bind" },
-        { "id": "d", "text": "It is primary authority because it is an official, published compilation of law" }
-      ],
-      "correct": "c",
-      "feedback": {
-        "correct": "Right. A Restatement is a secondary source. The ALI drafts it to describe and synthesize the law — it is not enacted by a legislature or decided by a court. A court may be persuaded by it, but it is never required to follow it.",
-        "a": "The ALI has no lawmaking power. Restatements carry no force of law. Only a legislature enacting a statute or a court deciding a case creates binding authority.",
-        "b": "Even when a legislature uses Restatement language in a statute, the binding source is the statute, not the Restatement. The Restatement itself remains secondary regardless of its influence.",
-        "d": "Being published or official does not make a source primary. Primary authority is the law itself — constitutions, statutes, regulations, cases. A Restatement analyzes and synthesizes the law; it is secondary."
-      }
-    },
-    {
-      "id": "q4",
-      "topic": "binding",
-      "prompt": "An Arizona trial court (Superior Court) must decide a contract issue. The Arizona Supreme Court decided the exact same issue on point last term. That decision is:",
-      "options": [
-        { "id": "a", "text": "Binding — the Arizona Supreme Court is a higher court in the same system" },
-        { "id": "b", "text": "Persuasive — the trial court has the right to reach its own conclusion" },
-        { "id": "c", "text": "Binding only if the issue involves a statute rather than common law" },
-        { "id": "d", "text": "Persuasive — courts at any level may disagree with prior decisions" }
-      ],
-      "correct": "a",
-      "feedback": {
-        "correct": "Right. The Arizona Supreme Court is the highest court in Arizona's system. Its decisions bind all lower courts in that system, including the Arizona Superior Court. That is what 'binding' means — must follow, not may consider.",
-        "b": "A trial court does not have discretion to reach a different conclusion when a higher court in the same system has spoken. If the rule needs changing, only the Supreme Court can change it.",
-        "c": "Binding effect does not turn on whether the issue involves a statute or common law. A higher court in the same system binds a lower court on any question the higher court has decided.",
-        "d": "Lower courts in the same system do not have discretion to disagree with a higher court's precedent. That is the difference between binding and persuasive authority."
-      }
-    },
-    {
-      "id": "q5",
-      "topic": "binding",
-      "prompt": "A U.S. District Court sitting in the Ninth Circuit faces a federal statutory question. An on-point Sixth Circuit decision reaches a clear conclusion. That Sixth Circuit ruling is:",
-      "options": [
-        { "id": "a", "text": "Binding — all federal circuits must follow each other on questions of federal law" },
-        { "id": "b", "text": "Binding — because the Ninth Circuit has not yet decided the question" },
-        { "id": "c", "text": "Persuasive — a sister circuit's decisions are not mandatory authority in another circuit" },
-        { "id": "d", "text": "Irrelevant — district courts may only rely on their own circuit's authority" }
-      ],
-      "correct": "c",
-      "feedback": {
-        "correct": "Right. The Ninth Circuit binds district courts in its circuit; the Sixth Circuit does not. A sister circuit's ruling is often useful and the court will want to consider it — but the court is not required to follow it.",
-        "a": "The circuits are coordinate courts — siblings, not parents of each other. None binds another. Only the Supreme Court of the United States binds all the circuits.",
-        "b": "A gap in Ninth Circuit precedent means the district court must decide the question itself; it does not make another circuit binding. Binding effect depends on court hierarchy, not on which court got there first.",
-        "d": "District courts regularly look to other circuits for guidance — especially when their own circuit has not addressed a question. The ruling is relevant and worth citing; it is just not binding."
-      }
-    },
-    {
-      "id": "q6",
-      "topic": "statute-common-law",
-      "prompt": "Under state common law, a landlord owes a duty of reasonable care to guests. The state legislature then enacts a statute addressing the same situation but setting a narrower duty. Which rule governs going forward?",
-      "options": [
-        { "id": "a", "text": "The common-law rule — it has governed the field longer and courts created it" },
-        { "id": "b", "text": "The statute — where enacted law addresses a subject, it controls over inconsistent common law" },
-        { "id": "c", "text": "Whichever the court finds more consistent with public policy" },
-        { "id": "d", "text": "The common-law rule, unless the statute explicitly states it repeals the common law" }
-      ],
-      "correct": "b",
-      "feedback": {
-        "correct": "Right. The legislature can displace or modify common-law rules. Where a statute directly addresses the subject and gives a different answer, the statute controls. That is one of the legislature's core functions.",
-        "a": "Longevity does not determine rank. The legislature can change common-law rules by statute — and when it does, the statute governs going forward.",
-        "c": "Public policy is not the deciding factor once the legislature has spoken. The court applies the statute; it does not substitute its judgment for the legislature's on the question of which rule should govern.",
-        "d": "A statute need not explicitly repeal a common-law rule to displace it. When a statute addresses the same subject and gives a different answer, it controls over the inconsistent common-law rule even without express repeal language."
-      }
-    },
-    {
-      "id": "q7",
-      "topic": "primary-secondary",
-      "prompt": "You are beginning research on an unfamiliar area of federal environmental regulation. Where is the best place to start — and why?",
-      "options": [
-        { "id": "a", "text": "The Code of Federal Regulations — it contains the binding regulations, so go to the top of the hierarchy first" },
-        { "id": "b", "text": "A treatise on environmental law — secondary sources orient you to the field and point you to the primary authority you need" },
-        { "id": "c", "text": "The most recent Supreme Court opinion — courts have the last word, so start there" },
-        { "id": "d", "text": "A law review article — law reviews cover the cutting edge and are the most current" }
-      ],
-      "correct": "b",
-      "feedback": {
-        "correct": "Right. Secondary sources are the map; primary authority is the road. A treatise gives you the landscape of an unfamiliar field, explains which regulations matter, and points you to the statutes and cases that govern — so you can read primary authority purposefully rather than blindly.",
-        "a": "Opening the CFR without a map is rarely efficient when you do not yet know which agency, which title, or which section addresses your question. A secondary source tells you where to look before you start looking.",
-        "c": "The Supreme Court does not address most regulatory questions. Starting there misses most of the field. Secondary sources identify the right level of authority before you go looking for specific primary sources.",
-        "d": "Law review articles are valuable but vary widely in coverage and currency. For unfamiliar regulatory terrain, a treatise is usually the better starting point — comprehensive, organized, and regularly updated."
-      }
-    },
-    {
-      "id": "q8",
-      "topic": "binding",
-      "prompt": "Before the Arizona Court of Appeals, a party cites a Ninth Circuit decision on a question of Arizona contract law (the case arose under diversity jurisdiction). That Ninth Circuit ruling is:",
-      "options": [
-        { "id": "a", "text": "Binding — Arizona sits in the Ninth Circuit" },
-        { "id": "b", "text": "Persuasive — federal circuit courts do not bind state courts on questions of state law" },
-        { "id": "c", "text": "Binding — the Ninth Circuit sits above the Arizona Court of Appeals in the federal-state hierarchy" },
-        { "id": "d", "text": "Not relevant — federal courts cannot decide state-law questions" }
-      ],
-      "correct": "b",
-      "feedback": {
-        "correct": "Right. The Ninth Circuit and the Arizona state courts are two separate systems. The circuit's geographic boundaries determine which federal district courts it binds — not which state courts. On a question of Arizona law, the Arizona Supreme Court is the authoritative court.",
-        "a": "Being in the same geographic region does not create a hierarchical relationship between systems. Federal circuit courts bind federal district courts in their circuit; they do not bind state courts in those same states.",
-        "c": "There is no federal-state hierarchy of that kind. Federal and state court systems are parallel, not stacked on top of each other. On state-law questions, the state hierarchy governs.",
-        "d": "Federal courts routinely apply state law under diversity jurisdiction. The Ninth Circuit's reading of Arizona contract law is substantively relevant and worth citing — it is just not binding on Arizona's own courts."
-      }
-    }
-  ]
-};
-
 window.NAV = [
   {
     "id": "home",
-    "label": "Hierarchy of Authorities",
+    "label": "Home",
     "page": "index.html"
   },
   {
     "id": "hierarchy",
-    "label": "The Hierarchy",
+    "label": "The Hierarchy of Authority",
     "page": "hierarchy.html"
-  },
-  {
-    "id": "quiz",
-    "label": "Knowledge Check",
-    "page": "quiz.html"
-  },
-  {
-    "id": "practice",
-    "label": "Applying the Hierarchy",
-    "page": "practice.html"
-  },
-  {
-    "id": "primary-secondary",
-    "label": "Primary vs. Secondary",
-    "page": "drill.html?type=primary-secondary"
-  },
-  {
-    "id": "binding-persuasive",
-    "label": "Binding vs. Persuasive",
-    "page": "drill.html?type=binding-persuasive"
-  },
-  {
-    "id": "statute-common",
-    "label": "Statute vs. Common Law",
-    "page": "drill.html?type=statute-common"
-  },
-  {
-    "id": "rank",
-    "label": "Rank the Stack",
-    "page": "rank.html"
-  },
-  {
-    "id": "courts",
-    "label": "Court Up / Court Down",
-    "page": "courts.html"
   }
 ];

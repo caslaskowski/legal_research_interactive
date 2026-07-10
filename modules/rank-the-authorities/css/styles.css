@@ -1,3 +1,25 @@
+
+/* Self-hosted fonts (no third-party requests) ------------------------------ */
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../../../assets/fonts/archivo-400.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("../../../assets/fonts/archivo-500.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:600; font-display:swap;
+  src:url("../../../assets/fonts/archivo-600.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("../../../assets/fonts/archivo-700.woff2") format("woff2"); }
+@font-face{ font-family:"Archivo"; font-style:normal; font-weight:800; font-display:swap;
+  src:url("../../../assets/fonts/archivo-800.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../../../assets/fonts/ibm-plex-mono-400.woff2") format("woff2"); }
+@font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("../../../assets/fonts/ibm-plex-mono-500.woff2") format("woff2"); }
+@font-face{ font-family:"Newsreader"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("../../../assets/fonts/newsreader-400.woff2") format("woff2"); }
+@font-face{ font-family:"Newsreader"; font-style:normal; font-weight:500; font-display:swap;
+  src:url("../../../assets/fonts/newsreader-500.woff2") format("woff2"); }
+@font-face{ font-family:"Newsreader"; font-style:italic; font-weight:400; font-display:swap;
+  src:url("../../../assets/fonts/newsreader-400-italic.woff2") format("woff2"); }
 /* =========================================================================
    Rank the Authorities — module stylesheet
    Chapter 1 · Foundations of Legal Authority
@@ -16,7 +38,7 @@
   --paper-3:    #dcdcdc;
   --ink:        #262622;
   --ink-soft:   #54534d;
-  --ink-faint:  #86857d;
+  --ink-faint:  #6b6a62;
   --rule:       #cfcfcf;
   --rule-soft:  #dcdcdc;
 
@@ -35,7 +57,7 @@
   --regulation-tint: #dde9e2;
   --case:      #28406b;
   --case-tint: #dde2ed;
-  --bronze:    #9a6b1f;
+  --bronze:    #7a5416;
   --bronze-tint: #efe5d2;
 
   --neutral:      #3a3a36;
@@ -44,7 +66,7 @@
   /* binding-effect tiers (Rank the Stack). Each pairs a hue with a TEXT
      label and shape in markup, so colour is never the only cue. */
   --tier-controls:        #a72d2a;  --tier-controls-tint:        #f1dedd;
-  --tier-binding-sub:     #9a6b1f;  --tier-binding-sub-tint:     #efe5d2;
+  --tier-binding-sub:     #7a5416;  --tier-binding-sub-tint:     #efe5d2;
   --tier-persuasive:      #28406b;  --tier-persuasive-tint:      #dde2ed;
   --tier-secondary:       #6f6e66;  --tier-secondary-tint:       #e4e3df;
 

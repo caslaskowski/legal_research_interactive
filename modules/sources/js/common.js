@@ -86,8 +86,8 @@
     var modulesIds = ["workflow", "quiz", "connections"]; // how each source is made, knowledge check, bringing it together
 
     var topnav = el("nav", { class: "topnav", "aria-label": "Primary" }, [
-      el("a", { class: "navlink", href: "../../index.html" }, ["Home Page"]),
-      el("a", { class: "navlink", href: "../../chapter.html?ch=1" }, ["Ch. 1 \u00b7 Foundations"]),
+      el("a", { class: "navlink", href: "../../index.html" }, ["Home"]),
+      el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch. 1 \u00b7 Foundations"]),
       el("a", { class: "navlink", href: "index.html", "aria-current": activeId === "home" ? "page" : null }, ["How Law Is Made"]),
       buildDropdown("Sources", sourcesIds, activeId, "nav-sub"),
       buildDropdown("Modules", modulesIds, activeId, "nav-sub")
@@ -114,9 +114,9 @@
     return el("header", { class: "masthead" }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "masthead-inner" }, [
-          el("a", { class: "brand", href: "index.html" }, [
-            el("span", { class: "mark" }, ["How Law Is Made"]),
-            el("span", { class: "sub" }, ["A 1L Primer"])
+          el("a", { class: "brand", href: "../../index.html" }, [
+            el("span", { class: "mark" }, ["The Question Method of Legal Research"]),
+            el("span", { class: "sub" }, ["Interactive Legal Research Modules"])
           ]),
           toggle,
           navArea

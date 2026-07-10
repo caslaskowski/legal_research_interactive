@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Read a Secondary Source — Ch. 4 · Secondary Sources Research</title>
+<meta name="description" content="Walk the anatomy of a secondary source — finding aids, narrative text, footnotes, currency line, and editorial apparatus — and learn how the Question Method reads each part.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{max-width:var(--maxw);margin:0 auto;padding:26px 28px 10px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);max-width:70ch;margin:6px 0 14px;}
+  .howto{background:var(--panel);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;max-width:74ch;margin:0 0 26px;}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:26px;align-items:start;}
+  @media (max-width:880px){.grid{grid-template-columns:1fr;}}
+
+  /* ---- the faux encyclopedia page ---- */
+  .src{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);overflow:hidden;}
+  .src-tag{display:block;background:var(--panel);border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:7px 18px;}
+  .src-body{padding:20px 22px 24px;font-family:"Newsreader",Georgia,"Times New Roman",serif;font-size:1rem;line-height:1.62;color:#222;}
+  .src-body p{margin:0 0 12px;}
+  .hot{display:inline;font:inherit;color:inherit;text-align:left;background:linear-gradient(transparent 62%, rgba(199,62,29,.18) 62%);border:0;border-bottom:2px solid var(--flame);padding:0 1px;cursor:pointer;}
+  .hot:hover{background:linear-gradient(transparent 40%, rgba(199,62,29,.22) 40%);}
+  .hot:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .hot.block{display:block;width:100%;}
+  .hot[aria-expanded="true"]{background:rgba(199,62,29,.14);}
+  .toc-line{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:var(--ink-soft);margin:0 0 4px;}
+  .sec-head{font-weight:600;font-size:1.12rem;margin:2px 0 12px;}
+  .fnblock{border-top:1px solid var(--rule);margin-top:16px;padding-top:10px;font-size:.85rem;line-height:1.55;color:#393934;}
+  .fnblock p{margin:0 0 6px;}
+  .fn-no{font-size:.72em;vertical-align:super;color:var(--flame);font-weight:700;}
+  .currency{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--ink-soft);border-top:1px dashed var(--rule-strong);margin-top:14px;padding-top:9px;}
+  .apparatus{background:var(--panel);border:1px solid var(--rule);border-radius:7px;padding:10px 13px;font-size:.85rem;margin:14px 0 0;}
+  .apparatus b{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:4px;}
+
+  /* ---- the explainer column ---- */
+  .explain{position:sticky;top:16px;background:var(--panel);border:1px solid var(--rule-strong);border-radius:10px;padding:18px 20px;min-height:180px;}
+  @media (max-width:880px){.explain{position:static;}}
+  .explain h2{font-size:.78rem;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+  .explain .body{font-size:.95rem;line-height:1.6;color:var(--ink);}
+  .explain .body p{margin:0 0 10px;}
+  .seen{margin:14px 0 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-soft);}
+
+  /* ---- engage section ---- */
+  .engage{margin:34px 0 8px;}
+  .engage h2{font-size:1.25rem;margin:0 0 6px;}
+  .engage ol{max-width:74ch;padding-left:22px;line-height:1.6;}
+  .engage li{margin:0 0 10px;}
+  .kc{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:18px 20px;max-width:74ch;margin:22px 0;}
+  .kc .q{font-weight:600;margin:0 0 12px;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.85;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .kc .fb{margin:12px 0 0;font-size:.93rem;line-height:1.55;color:var(--ink-soft);}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../modules/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../modules/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/reading-secondary/index.html" aria-current="page">How to Read a Secondary Source</a></li>
+                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../modules/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../modules/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../modules/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../modules/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../modules/reading-secondary/index.html" aria-current="page"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../modules/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../modules/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../modules/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../modules/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-4/" style="color:var(--flame)">Ch.&nbsp;4</a> / Appendix&nbsp;A</p>
+    <h1>How to Read a Secondary Source</h1>
+    <p class="lede">A secondary source talks <em>about</em> the law rather than being the law. It is a map, not the territory: you use it to find and understand primary authority, and with rare exceptions you do not cite it as the law itself. Reading one well is the Question Method applied to a page — every part of the page exists to answer a certain kind of question.</p>
+    <div class="howto"><b>How to use this:</b> the page below is a demonstration encyclopedia entry (fictional, on the tenant-heat problem you have met in other modules). Click each highlighted part to learn what it is and how a researcher reads it. Then work the engagement steps and the knowledge check underneath.</div>
+
+    <div class="grid">
+      <article class="src" aria-label="Demonstration encyclopedia entry (fictional)">
+        <span class="src-tag">Demonstration — fictional encyclopedia entry</span>
+        <div class="src-body">
+          <button class="hot block" data-part="finding" type="button" aria-expanded="false">
+            <span class="toc-line">Landlord and Tenant &rsaquo; Duties of the Landlord &rsaquo; Habitability &rsaquo; § 412</span>
+            <span class="sec-head">§ 412. Duty to Provide Heat; Time to Repair</span>
+          </button>
+
+          <button class="hot block" data-part="narrative" type="button" aria-expanded="false">
+            <p>In most jurisdictions, a residential landlord owes the tenant a duty to keep the premises fit for habitation, and the supply of heat during the cold months is among the conditions courts treat as essential to fitness.<span class="fn-no">1</span> Where heat fails, the landlord is generally required to restore it within a reasonable time; what is reasonable turns on the severity of the season, the notice the landlord received, and the availability of repair.<span class="fn-no">2</span> A minority of jurisdictions fix the obligation by statute or housing code, specifying minimum temperatures the premises must maintain.<span class="fn-no">3</span></p>
+          </button>
+
+          <button class="hot block" data-part="footnotes" type="button" aria-expanded="false">
+            <div class="fnblock">
+              <p><span class="fn-no">1</span> See, e.g., <i>Marsh v. Golden Rentals</i> (recognizing heat as an essential service under the duty of habitability) (fictional).</p>
+              <p><span class="fn-no">2</span> <i>Tinsley v. Vista Prop. Mgmt.</i> (reasonable time measured from notice to the landlord) (fictional).</p>
+              <p><span class="fn-no">3</span> See the minimum-temperature housing codes collected in the annotation cited below.</p>
+            </div>
+          </button>
+
+          <button class="hot block" data-part="currency" type="button" aria-expanded="false">
+            <p class="currency">Current through the 2025 supplement · updated annually · check the pocket part in print</p>
+          </button>
+
+          <button class="hot block" data-part="apparatus" type="button" aria-expanded="false">
+            <div class="apparatus"><b>Research references</b>
+              Cross-reference: § 418 (Tenant remedies for breach). See also the ALR annotation, <i>Landlord's Failure to Provide Heat</i>, collecting authority by jurisdiction; Restatement (Second) of Property: Landlord &amp; Tenant.
+            </div>
+          </button>
+        </div>
+      </article>
+
+      <aside class="explain" aria-label="Explanation">
+        <h2 id="ex-title">Click a part of the entry</h2>
+        <div class="body" id="ex-body" role="status" aria-live="polite">
+          <p>Each highlighted region of the entry is one of the five components every secondary source shares. Click one — or Tab to it and press Enter — to see what it does and how the method reads it.</p>
+        </div>
+        <p class="seen" id="ex-seen">Explored 0 of 5 components</p>
+      </aside>
+    </div>
+
+    <section class="engage" aria-labelledby="engage-h">
+      <h2 id="engage-h">How to engage with the source</h2>
+      <ol>
+        <li><b>Match the source type to your question type.</b> A no-clue exploratory question wants an encyclopedia; a foundational question wants a treatise; a survey question across jurisdictions wants an ALR annotation, a Restatement, or a 50-state survey. Choosing the right secondary source for the question you are holding is the first efficiency the method buys you.</li>
+        <li><b>Navigate — do not read end to end.</b> Use the table of contents and index to jump to the section that answers your <em>current</em> question.</li>
+        <li><b>Mine the footnotes in the order your question dictates.</b> When a passage's footnotes point to half a dozen cases, read the one that answers the question you are holding right now, and log the rest as later questions with their citations noted.</li>
+        <li><b>Confirm against primary authority, and check currency.</b> A secondary source can be out of date, can oversimplify, or can be wrong. Go read the primary authority it points to, and note the "current through" date.</li>
+        <li><b>Cite primary authority, not the secondary source.</b> With narrow exceptions, you build the argument on the authority the source led you to.</li>
+      </ol>
+
+      <div class="kc">
+        <p class="q">Your question is: <i>"How do the fifty states handle a landlord's duty to provide heat?"</i> Which secondary source does that question point to?</p>
+        <div class="opts" id="kc-opts" role="group" aria-label="Pick the source that matches the question"></div>
+        <div class="fb" id="kc-fb" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-4/">Ch. 4 · Secondary Sources Research</a></p>
+  <div class="modnav-links">
+    <span></span>
+    <a class="modnav-link next" href="../../modules/secondary-types/index.html"><span class="dir">Next →</span><span class="t">The Types of Secondary Sources</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var PARTS = {
+    finding: ["Finding aids", "<p>The table of contents path and the section heading are how you locate the right discussion inside a long work. Learning to navigate them quickly is half the skill of using treatises and encyclopedias well — you jump to the section your question needs, you do not read from page one.</p>"],
+    narrative: ["The narrative text", "<p>The author's explanation of the doctrine: how the area is structured, what the elements and tests are, where the debates lie, and which terms of art you need. This is what orients you and supplies the vocabulary your later questions will require. Notice what this passage just handed you: the phrase <i>duty of habitability</i> and the <i>reasonable time</i> standard — terms you could not have put in a question before reading it.</p>"],
+    footnotes: ["Footnotes and citations", "<p>The most valuable part for a researcher. The footnotes point to the primary authority the narrative is describing — a single well-placed footnote can hand you the leading case on your issue. Read the one that answers the question you are holding <em>now</em>; log the rest as later questions with their citations noted.</p>"],
+    currency: ["Currency and supplementation", "<p>Print treatises and encyclopedias update through pocket parts and supplements; online versions show a &ldquo;current through&rdquo; date. Knowing how a source updates — and when it last did — tells you how far to trust it before you verify against primary authority.</p>"],
+    apparatus: ["Editorial apparatus", "<p>Cross-references to related sections, research references to other secondary sources, and (in annotated works like ALR) summaries organized by jurisdiction or factual scenario. This is the machinery that turns one useful section into a doorway to the rest of the landscape — including the remedies section your <em>next</em> question will need.</p>"]
+  };
+  var seen = {}, total = 5;
+  var title = document.getElementById("ex-title"),
+      body  = document.getElementById("ex-body"),
+      count = document.getElementById("ex-seen");
+
+  document.querySelectorAll(".hot[data-part]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll(".hot[data-part]").forEach(function(x){ x.setAttribute("aria-expanded","false"); });
+      b.setAttribute("aria-expanded","true");
+      var k = b.getAttribute("data-part"), P = PARTS[k];
+      title.textContent = P[0];
+      body.innerHTML = P[1];
+      if (!seen[k]) {
+        seen[k] = true;
+        if (window.ExportReflect) ExportReflect.log("Explored component", P[0]);
+      }
+      count.textContent = "Explored " + Object.keys(seen).length + " of " + total + " components";
+      if (Object.keys(seen).length === total && window.ExportReflect)
+        ExportReflect.log("Anatomy complete", "all five components explored");
+    });
+  });
+
+  /* knowledge check: match source type to question type */
+  var OPTS = [
+    { t: "A legal encyclopedia", good: false,
+      fb: "An encyclopedia orients a no-clue exploratory question — what the landscape looks like. This question already has the landscape; it asks how many jurisdictions do what. Reach for the survey tools." },
+    { t: "An ALR annotation or 50-state survey", good: true,
+      fb: "Right. A jurisdiction-by-jurisdiction question is a survey question, and ALR annotations, Restatements, and 50-state surveys are built to answer exactly that shape of question." },
+    { t: "A treatise on landlord–tenant law", good: false,
+      fb: "A treatise answers a foundational question — the structure of an area you already know you are in. It will discuss the duty, but it is not organized to count jurisdictions. The survey tools are." },
+    { t: "A law review article", good: false,
+      fb: "A law review article argues a thesis; it may collect authority along the way, but it is not built to survey jurisdictions systematically. ALR annotations and 50-state surveys are." }
+  ];
+  var wrap = document.getElementById("kc-opts"), fb = document.getElementById("kc-fb"), done = false;
+  OPTS.forEach(function(o){
+    var b = QM.el("button", { class: "opt", type: "button" }, [o.t]);
+    b.addEventListener("click", function(){
+      if (done) return;
+      done = true;
+      wrap.querySelectorAll(".opt").forEach(function(x){ x.disabled = true; });
+      b.classList.add(o.good ? "good" : "bad");
+      if (!o.good) wrap.querySelectorAll(".opt").forEach(function(x, i){ if (OPTS[i].good) x.classList.add("good"); });
+      QM.announce(fb, o.fb);
+      if (window.ExportReflect) ExportReflect.log("Knowledge check: survey question source",
+        (o.good ? "correct" : "incorrect \u2014 chose " + o.t));
+    });
+    wrap.appendChild(b);
+  });
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "How to Read a Secondary Source (Appendix A)",
+    chapter: "Chapter 4 \u2014 Secondary Sources / Appendix A",
+    intro: "Your exploration is collected locally as you click. Add a reflection and download the record to submit.",
+    prompts: [
+      "Which component of a secondary source do you expect to lean on most in your next research problem, and why?",
+      "The narrative handed you two terms of art you did not bring to the page. Write the next research question those terms make possible."
+    ]
+  });
+})();
+</script>
+</body>
+</html>

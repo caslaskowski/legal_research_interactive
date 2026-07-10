@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mixed Review — The Diagnostic Moves — Ch. 9 · Narrowing and Closing Out Your Research</title>
+<meta name="description" content="Interleaved review across Chapters 1–9: classify the question, pick the source, rank the authority, spot the compound answer — shuffled so each item asks you to first recognize which skill it needs.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{max-width:820px;margin:0 auto;padding:26px 28px 10px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);max-width:70ch;margin:6px 0 14px;}
+  .howto{background:var(--panel);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;max-width:74ch;margin:0 0 22px;}
+  .scorebar{display:flex;align-items:center;gap:14px;margin:0 0 18px;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft);}
+  .prog{flex:1;height:6px;background:var(--paper-2);border-radius:3px;overflow:hidden;}
+  .prog span{display:block;height:100%;width:0;background:var(--flame);transition:width .3s;}
+  .reshuffle{font:inherit;font-size:.78rem;background:var(--panel);border:1px solid var(--rule-strong);border-radius:6px;padding:5px 10px;cursor:pointer;color:var(--ink);}
+  .reshuffle:hover{border-color:var(--flame);}
+  .reshuffle:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+
+  .card{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px;}
+  .card .qno{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .card .skill{color:var(--flame);}
+  .card .q{font-size:1rem;line-height:1.55;margin:0 0 12px;}
+  .card .q i{font-family:"Newsreader",Georgia,serif;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;font-size:.92rem;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:9px 13px;cursor:pointer;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.9;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .fb{margin:10px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 12px;}
+  .fb.good{border-left-color:#2e6b34;}
+  .fb.bad{border-left-color:var(--flame);}
+  .donebox{background:var(--panel);border:1px solid var(--rule-strong);border-radius:10px;padding:20px 22px;margin:6px 0 20px;display:none;}
+  .donebox.show{display:block;}
+  .donebox .big{font-family:var(--mono);font-size:1.4rem;color:var(--flame);margin:2px 0 8px;}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../modules/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../modules/type-the-question/index.html">Type the Question</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../modules/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../modules/statute-practice/index.html">Statutes Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../modules/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
+                  <li><a href="../../modules/across-sources-practice/index.html">Across Sources Practice</a></li>
+                </ul>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
+                <ul class="modmenu-mods">
+                  <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../modules/mixed-review/index.html" aria-current="page">Mixed Review — The Diagnostic Moves</a></li>
+                </ul>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
+              </li>
+              <li class="modmenu-chap">
+                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a href="../../modules/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a href="../../modules/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a href="../../modules/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a href="../../modules/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a href="../../modules/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-9/" style="color:var(--flame)">Ch.&nbsp;9</a> / Mixed Review</p>
+    <h1>Mixed Review — The Diagnostic Moves</h1>
+    <p class="lede">Chapter drills tell you which skill to use before you start; practice never does. This deck interleaves the Part I diagnostic moves — classify the question, pick the source, rank the authority, spot the compound answer, fix the search — shuffled, so the first thing each item asks of you is recognizing <em>which move it needs</em>.</p>
+    <div class="howto"><b>How to use this:</b> the skill tag on each card stays hidden until you answer. The deck reshuffles on every visit; come back for spaced passes. Miss one? Its feedback names the chapter to revisit.</div>
+
+    <div class="scorebar"><span id="score">0 answered</span><div class="prog"><span id="progfill"></span></div><span id="tally"></span><button class="reshuffle" id="reshuffle" type="button">Reshuffle deck</button></div>
+    <div id="deck"></div>
+    <div class="donebox" id="done" role="status" aria-live="polite"></div>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-9/">Ch. 9 · Narrowing and Closing Out Your Research</a></p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../modules/diagnose-the-broken-search/index.html"><span class="dir">← Previous</span><span class="t">Diagnose the Broken Search</span></a>
+    <a class="modnav-link next" href="../../ch-10/"><span class="dir">Next chapter →</span><span class="t">Ch. 10 · Ethics and Professional Responsibility in Legal Research</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/research-log.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var el = QM.el;
+
+  /* skill: shown only after answering — interleaving means recognizing the move.
+     ch: the chapter to revisit, named in feedback. */
+  var BANK = [
+    { skill: "Classify the question \u00b7 Ch. 3",
+      q: "<i>\u201cWhat does \u2018easement\u2019 mean?\u201d</i> \u2014 what type of question is this?",
+      opts: [
+        { t: "Definitional", good: true, fb: "\u201cWhat does X mean\u201d is the definitional tell. A dictionary supplies the working definition and the vocabulary for the next question. (Ch. 3)" },
+        { t: "Exploratory", good: false, fb: "Exploratory asks what the landscape looks like; this asks what one word means \u2014 definitional. (Ch. 3)" },
+        { t: "Focusing", good: false, fb: "Focusing asks for the governing rule or test. No rule is in play yet \u2014 just a word. (Ch. 3)" },
+        { t: "Application", good: false, fb: "No facts, no rule to apply \u2014 the question is about a word's meaning. (Ch. 3)" } ] },
+    { skill: "Classify the question \u00b7 Ch. 3",
+      q: "<i>\u201cDoes leaving a ladder against the house overnight satisfy the statute's requirement to \u2018secure\u2019 equipment?\u201d</i> \u2014 what type?",
+      opts: [
+        { t: "Application", good: true, fb: "A known requirement plus specific facts (a ladder, overnight, against the house) \u2014 rule-meets-facts is the application tell. (Ch. 3)" },
+        { t: "Definitional", good: false, fb: "Close \u2014 \u2018secure\u2019 needs meaning \u2014 but the question as written asks whether these facts satisfy it: application, which may spawn a definitional sub-question. (Ch. 3)" },
+        { t: "Exploratory", good: false, fb: "The landscape is already known: a statute with a requirement. The question is how it operates on facts. (Ch. 3)" },
+        { t: "Focusing", good: false, fb: "The rule is in hand; the open issue is these facts. (Ch. 3)" } ] },
+    { skill: "Pick the source \u00b7 Ch. 3\u20134",
+      q: "You know nothing about water rights and need to get oriented. First source?",
+      opts: [
+        { t: "A legal encyclopedia or a general search", good: true, fb: "No-clue exploratory questions start at the encyclopedia: the landscape plus the terms of art your later questions will need. (Ch. 3\u20134)" },
+        { t: "The state's water code, read front to back", good: false, fb: "Primary authority is where you are headed, not where a no-clue question starts \u2014 you don't yet have the vocabulary to search it. (Ch. 4)" },
+        { t: "A citator", good: false, fb: "A citator checks the treatment of an authority you already have. You have none yet. (Ch. 5)" },
+        { t: "A 50-state survey", good: false, fb: "Survey tools answer how-many-jurisdictions questions. Yours is orientation. (Ch. 4)" } ] },
+    { skill: "Pick the source \u00b7 Ch. 4",
+      q: "You know the area well and need the leading treatment of its structure \u2014 elements, tests, and where the debates lie. Which source?",
+      opts: [
+        { t: "A treatise", good: true, fb: "Foundational exploratory questions want the treatise: the source organized to give a field's structure. (Ch. 4)" },
+        { t: "An encyclopedia", good: false, fb: "The encyclopedia orients a no-clue question; you are past orientation and need depth and structure. (Ch. 4)" },
+        { t: "A headnote", good: false, fb: "A headnote summarizes one point in one opinion \u2014 a finding tool, not a map of the field. (Ch. 5)" },
+        { t: "The Federal Register", good: false, fb: "The FR is the daily record of rulemaking \u2014 wrong shelf entirely for doctrinal structure. (Ch. 7)" } ] },
+    { skill: "Rank the authority \u00b7 Ch. 1",
+      q: "Your matter is in your state's trial court. Which of these must that court follow?",
+      opts: [
+        { t: "A decision of your state's highest court", good: true, fb: "Binding authority: decisions of higher courts in the court's own system. The rest is at most persuasive. (Ch. 1)" },
+        { t: "A decision of a neighboring state's highest court", good: false, fb: "Another sovereign's law \u2014 persuasive, never binding, however eminent the court. (Ch. 1)" },
+        { t: "A Restatement section", good: false, fb: "Among the most persuasive secondary authorities \u2014 but secondary: it becomes binding only if your courts adopt it. (Ch. 1)" },
+        { t: "A treatise passage the judge once cited", good: false, fb: "Persuasive at most. A citation in one opinion does not convert a secondary source into law. (Ch. 1)" } ] },
+    { skill: "Rank the authority \u00b7 Ch. 1 / Ch. 5",
+      q: "An opinion resolves the appeal on one ground, then adds: \u201cwe note that had the contract been oral, the result would likely differ.\u201d What is that added sentence?",
+      opts: [
+        { t: "Dictum \u2014 persuasive at most, never binding", good: true, fb: "A statement not necessary to the decision is dictum. Only the holding \u2014 the resolution necessary to the judgment \u2014 carries precedential weight. (Ch. 1, Ch. 5)" },
+        { t: "The holding", good: false, fb: "The holding is the court's resolution of the issue necessary to its decision; a had-it-been-otherwise aside is not necessary to anything. (Ch. 5)" },
+        { t: "A headnote", good: false, fb: "Headnotes are editor-written summaries added by the publisher \u2014 this sentence is the court's own text, just non-essential. (Ch. 5)" },
+        { t: "Binding authority on oral contracts", good: false, fb: "Exactly the trap: it reads like a rule, but it decided nothing and binds no one. (Ch. 5)" } ] },
+    { skill: "Statutes first \u00b7 Ch. 6",
+      q: "A friend insists \u201cthe common law governs this, just find cases.\u201d Before case-hunting, the disciplined first check is:",
+      opts: [
+        { t: "Whether a statute has occupied or modified the area", good: true, fb: "Legislatures overwrite common law constantly. Checking the code first prevents building an analysis on rules a statute has displaced. (Ch. 6)" },
+        { t: "Whether any case is less than five years old", good: false, fb: "Recency matters later; the threshold question is which body of law governs at all. (Ch. 6)" },
+        { t: "Whether a law review article agrees", good: false, fb: "Commentary can't settle what governs \u2014 the code can. (Ch. 6)" },
+        { t: "Whether the jurisdiction publishes an annotated code", good: false, fb: "It almost certainly does \u2014 and that's the tool for the real first check: has a statute spoken? (Ch. 6)" } ] },
+    { skill: "Scoped answers \u00b7 Ch. 3",
+      q: "Your question: <i>\u201cDoes our state require drivers to report accidents to the police?\u201d</i> Which recorded answer is properly scoped to it?",
+      opts: [
+        { t: "\u201cYes \u2014 the vehicle code requires a report when damage or injury passes a threshold.\u201d", good: true, fb: "Scoped: it answers the question asked and nothing more. The exceptions, deadlines, and penalties are the next questions, not this answer. (Ch. 3)" },
+        { t: "\u201cYes \u2014 and the deadline is short, penalties include license suspension, insurers must also be notified, and there's an exception for private property.\u201d", good: false, fb: "A compound answer \u2014 it reaches past its question into four later ones. Each of those items should enter the log when its own question is asked. (Ch. 3)" },
+        { t: "\u201cAccident law is complicated and fact-dependent.\u201d", good: false, fb: "Not an answer at all \u2014 no source, no rule, nothing the outline can hold. (Ch. 3)" },
+        { t: "\u201cProbably \u2014 most states do.\u201d", good: false, fb: "The question asked about your state; a most-states answer is a survey answer to a different question. (Ch. 3)" } ] },
+    { skill: "Next question \u00b7 Ch. 3",
+      q: "Logged answer: <i>\u201cThe statute requires landlords to return the deposit within a reasonable time.\u201d</i> Which next question follows from that answer?",
+      opts: [
+        { t: "\u201cHow is \u2018a reasonable time\u2019 measured under this statute?\u201d", good: true, fb: "The answer surfaced an undefined standard; the next question interrogates it. Answer-driven chaining is the method's engine. (Ch. 3)" },
+        { t: "\u201cWhat damages can the tenant get for retaliatory eviction?\u201d", good: false, fb: "A leap \u2014 nothing in the logged answer raised retaliation. Compression skips the questions in between. (Ch. 3)" },
+        { t: "\u201cIs the deposit-return rule preempted by federal banking law?\u201d", good: false, fb: "A term (preemption) and a doctrine the research hasn't surfaced \u2014 asked out of discovery order. (Ch. 3)" },
+        { t: "\u201cHow much was this tenant's deposit?\u201d", good: false, fb: "A factual/investigative question for the client file, not a research question the law answers. (Ch. 3)" } ] },
+    { skill: "Read the source \u00b7 Ch. 4 / App. A",
+      q: "A treatise paragraph nails your issue, and its footnote lists six cases. The method's move is:",
+      opts: [
+        { t: "Read the one case that answers the question you are holding; log the rest as later questions with citations noted", good: true, fb: "Footnotes are mined in the order your questions dictate \u2014 one case now, five logged for their own turns. (Ch. 4, App. A)" },
+        { t: "Read all six before continuing", good: false, fb: "Reading six cases to answer one question is how afternoons vanish. The question sets the reading order. (App. A)" },
+        { t: "Cite the treatise itself and move on", good: false, fb: "With narrow exceptions you cite the primary authority the treatise points to, not the treatise. (Ch. 4)" },
+        { t: "Ignore the footnote \u2014 the narrative already answered the question", good: false, fb: "The narrative tells you what the law is; the footnotes tell you where to confirm it. Verification is not optional. (App. A)" } ] },
+    { skill: "Regulations \u00b7 Ch. 7",
+      q: "The CFR section's bare text won't tell you <em>why</em> the agency chose its rule. The thread to pull is:",
+      opts: [
+        { t: "The source note \u2014 it cites the Federal Register document whose preamble explains the rule", good: true, fb: "The source note names the FR document that created or last amended the part; its preamble is the regulatory equivalent of legislative history. (Ch. 7)" },
+        { t: "The authority note", good: false, fb: "The authority note cites the empowering statute \u2014 essential for a stays-within-the-grant question, but not the agency's reasoning. (Ch. 7)" },
+        { t: "The LSA", good: false, fb: "The LSA tracks which sections changed since the annual edition \u2014 currency, not reasoning. (Ch. 7)" },
+        { t: "The table of contents of the CFR title", good: false, fb: "A finding aid for locating text, not for explaining it. (Ch. 7)" } ] },
+    { skill: "Citators \u00b7 Ch. 5",
+      q: "Your key case comes back from the citator with a negative-treatment flag. The professional response is:",
+      opts: [
+        { t: "Read the citing opinion and ask whether the treatment touches the point you're citing for", good: true, fb: "A flag is a prompt to investigate, not a verdict. A case can be overruled on one point and perfectly good on yours. (Ch. 5)" },
+        { t: "Drop the case immediately", good: false, fb: "Overreaction \u2014 flags mark treatment somewhere in the case, not necessarily on your point. Read first. (Ch. 5)" },
+        { t: "Cite it anyway; flags are editorial noise", good: false, fb: "The opposite failure \u2014 citing negatively-treated authority unexamined is the classic verification error. (Ch. 5)" },
+        { t: "Find a newer case with the same headnote number", good: false, fb: "Headnote-matching without reading repeats the same gamble with a different case. (Ch. 5)" } ] },
+    { skill: "Fix the search \u00b7 Ch. 9",
+      q: "<i>\u201cslip AND fall AND store\u201d</i> returns 6,200 results. The correction is:",
+      opts: [
+        { t: "Bind concepts with proximity, add the concept that makes your question specific, filter jurisdiction", good: true, fb: "The narrowing sequence: proximity connectors, a third concept, jurisdiction and date filters \u2014 aimed at your question, not the topic. (Ch. 9)" },
+        { t: "Add more OR synonyms", good: false, fb: "OR-expansion broadens \u2014 the prescription for zero results, not 6,200. (Ch. 9)" },
+        { t: "Read the first page and stop", good: false, fb: "Relevance ranking on a broad query is a popularity contest among the words, not an answer to your question. (Ch. 9)" },
+        { t: "Switch databases and rerun it unchanged", good: false, fb: "The same broad string is broad everywhere. (Ch. 9)" } ] },
+    { skill: "No results vs. no law \u00b7 Ch. 8\u20139",
+      q: "One search returned nothing, and the memo draft now says \u201cthere is no law on this point.\u201d What's wrong?",
+      opts: [
+        { t: "The no-law call isn't defensible until alternative terms, loosened constraints, persuasive jurisdictions, and secondary sources are exhausted \u2014 and documented", good: true, fb: "\u201cThere is no law\u201d is a powerful argument; \u201cI could not find any law\u201d is a confession. One search establishes only the second. (Ch. 8\u20139)" },
+        { t: "Nothing \u2014 zero results means zero law", good: false, fb: "Zero results means one of two things, and only exhausting the alternatives tells you which. (Ch. 9)" },
+        { t: "The draft should say the law is \u2018unclear\u2019 instead", good: false, fb: "Hedged wording doesn't fix undone research \u2014 the alternatives still have to be run and recorded. (Ch. 9)" },
+        { t: "The search should be rerun in the same form to confirm", good: false, fb: "Repeating the identical search confirms only that the same string still fails. Vary it. (Ch. 9)" } ] },
+    { skill: "The log \u00b7 Ch. 3 / Ch. 9",
+      q: "Two records run side by side through a project. The Research Log tracks the questions and answers; the search log tracks:",
+      opts: [
+        { t: "Each exact search string, the database, the result count, and whether it was productive", good: true, fb: "The search log is the query-level record \u2014 it keeps you from repeating yourself and it is the evidence your closure documentation stands on. (Ch. 9)" },
+        { t: "Your billable time per task", good: false, fb: "Worth tracking, but it's a practice-management record, not a research one. (Ch. 9)" },
+        { t: "The full text of every result you opened", good: false, fb: "That's a filing cabinet, not a log \u2014 the log records the queries and their yield. (Ch. 9)" },
+        { t: "Only the searches that worked", good: false, fb: "The unproductive strings are half the value: they prove comprehensiveness and stop you rerunning them. (Ch. 9)" } ] }
+  ];
+
+  var deck = document.getElementById("deck"),
+      score = document.getElementById("score"),
+      tally = document.getElementById("tally"),
+      fill = document.getElementById("progfill"),
+      doneBox = document.getElementById("done");
+  var answered = 0, right = 0;
+
+  function shuffle(a) {
+    var arr = a.slice();
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function render() {
+    deck.innerHTML = "";
+    doneBox.classList.remove("show");
+    answered = 0; right = 0;
+    score.textContent = "0 of " + BANK.length + " answered";
+    tally.textContent = "";
+    fill.style.width = "0";
+    shuffle(BANK).forEach(function (item, n) {
+      var skillTag = el("span", { class: "skill" }, ["Skill: hidden until you answer"]);
+      var card = el("div", { class: "card" }, [
+        el("p", { class: "qno" }, [el("span", {}, ["Item " + (n + 1) + " of " + BANK.length]), skillTag]),
+        el("p", { class: "q", html: item.q })
+      ]);
+      var wrap = el("div", { class: "opts", role: "group", "aria-label": "Answer choices" });
+      var fb = QM.live(el("div", { class: "fb" }));
+      fb.hidden = true;
+      var done = false;
+      shuffle(item.opts).forEach(function (o) {
+        var b = el("button", { class: "opt", type: "button" }, [o.t]);
+        b.addEventListener("click", function () {
+          if (done) return;
+          done = true;
+          wrap.querySelectorAll(".opt").forEach(function (x) {
+            x.disabled = true;
+            if (x.textContent === o.t && !o.good) x.classList.add("bad");
+          });
+          wrap.querySelectorAll(".opt").forEach(function (x) {
+            item.opts.forEach(function (oo) { if (oo.good && x.textContent === oo.t) x.classList.add("good"); });
+          });
+          skillTag.textContent = item.skill;
+          fb.hidden = false;
+          fb.classList.add(o.good ? "good" : "bad");
+          QM.announce(fb, (o.good ? "Right. " : "Not quite. ") + o.fb);
+          answered++; if (o.good) right++;
+          score.textContent = answered + " of " + BANK.length + " answered";
+          tally.textContent = right + " correct";
+          fill.style.width = Math.round(answered / BANK.length * 100) + "%";
+          if (window.ExportReflect) ExportReflect.log(item.skill,
+            o.good ? "correct" : "incorrect \u2014 chose: " + o.t);
+          if (answered === BANK.length) {
+            var pct = Math.round(right / BANK.length * 100);
+            doneBox.innerHTML = "<p class=\"qno\">Pass complete</p><div class=\"big\">" + right + " / " + BANK.length + " (" + pct + "%)</div>" +
+              "<p>Interleaving is spaced practice's partner: come back in a few days and the deck will be reshuffled. The feedback on anything you missed names the chapter to revisit.</p>";
+            doneBox.classList.add("show");
+            if (window.ExportReflect) ExportReflect.log("Pass complete", right + " / " + BANK.length);
+          }
+        });
+        wrap.appendChild(b);
+      });
+      card.appendChild(wrap); card.appendChild(fb);
+      deck.appendChild(card);
+    });
+  }
+  document.getElementById("reshuffle").addEventListener("click", function () {
+    if (answered === 0 || answered === BANK.length ||
+        window.confirm("Reshuffle now? Your progress on this pass resets (answers already logged stay in your record).")) render();
+  });
+  render();
+
+  /* the shared Research Log follows the student between modules */
+  if (window.ResearchLog) ResearchLog.mount({ parent: document.getElementById("export-slot").parentNode,
+    before: document.getElementById("export-slot") });
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "Mixed Review \u2014 The Diagnostic Moves",
+    chapter: "Chapter 9 \u2014 Narrowing and Closing Out Your Research (cumulative, Ch. 1\u20139)",
+    intro: "Every answer is collected locally, including across reshuffles. Add a reflection and download the record to submit.",
+    prompts: [
+      "Which skill's items did you recognize slowest, and which chapter will you revisit first?",
+      "Interleaving forces you to name the move before making it. Where in a real research project does that same recognition step happen?"
+    ]
+  });
+})();
+</script>
+</body>
+</html>

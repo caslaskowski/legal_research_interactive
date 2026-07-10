@@ -1,6 +1,6 @@
 /* Firebrand home page — renders the chapter index from window.REGISTRY.
    Classic script (no modules, no fetch) so opening index.html locally works.
-   Each chapter links to its own page (chapter.html?ch=N), which lists that
+   Each chapter links to its static page (ch-N/), which lists that
    chapter's modules. */
 (function () {
   "use strict";
@@ -99,7 +99,7 @@
 
       ledger.appendChild(el("a", {
         class: "entry" + (liveN ? " is-live" : " is-plan"),
-        href: "chapter.html?ch=" + c.ch,
+        href: "ch-" + c.ch + "/",
         "aria-label": "Chapter " + c.ch + " \u2014 " + c.title +
           " (" + countTxt + availTxt + ")"
       }, [
@@ -124,4 +124,35 @@
       ledger
     ]));
   });
+
+  /* ---- appendices & glossary ---- */
+  var ap = R.appendices;
+  if (ap && ap.items && ap.items.length) {
+    var ledgerA = el("div", { class: "ledger" });
+    ap.items.forEach(function (a) {
+      ledgerA.appendChild(el("a", {
+        class: "entry is-live",
+        href: a.href,
+        "aria-label": a.id + " \u2014 " + a.title
+      }, [
+        el("div", { class: "ch-no", "aria-hidden": "true" }, [String(a.id)]),
+        el("div", { class: "ch-body" }, [
+          el("p", { class: "ch-title" }, [a.title]),
+          el("p", { class: "ch-desc" }, [a.also || ""])
+        ]),
+        el("div", { class: "ch-meta" }, [
+          el("span", { class: "pill live" }, ["Available"]),
+          el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
+        ])
+      ]));
+    });
+    app.appendChild(el("section", { class: "part reveal d4" }, [
+      el("div", { class: "part-head" }, [
+        el("span", { class: "pnum" }, ["Appendices"]),
+        el("h2", {}, [ap.eyebrow || "Appendices & Glossary"])
+      ]),
+      ap.intro ? el("p", { class: "part-blurb" }, [ap.intro]) : null,
+      ledgerA
+    ]));
+  }
 })();

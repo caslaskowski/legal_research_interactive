@@ -1,0 +1,2915 @@
+diff --git a/README.md b/README.md
+index d819c62..ac8c0a3 100644
+--- a/README.md
++++ b/README.md
+@@ -44,7 +44,9 @@ over every page on every push.
+ │   ├── registry.js          ← generated mirror of registry.json (do not hand-edit)
+ │   ├── portal.js            ← renders the home page from the registry
+ │   ├── lib.js               ← shared helpers: el(), live regions, storage notice
+-│   └── export-reflect.js    ← download-your-own-record submission component
++│   ├── export-reflect.js    ← download-your-own-record submission component
++│   └── research-log.js      ← the book's eight-field Research Log; ONE log,
++│                              shared across every module that mounts it
+ ├── build.py                 ← ONE entry point: registry → site → validation checks
+ ├── build_registry.py        ← regenerates js/registry.js from data/registry.json
+ ├── build_site.py            ← assembles the shell, generates /ch-N/, injects module nav
+@@ -90,9 +92,12 @@ generations diverged because these conventions were implicit; now they're the la
+    in the registry `note` badge, never the title.
+ 5. **Zero external requests.** Fonts come from `assets/fonts/`; the build fails
+    otherwise.
+-6. **Submission path**: mount `ExportReflect` (or a richer bespoke export in its
+-   spirit — meaningful decisions and reflections, not click tracking) with at least
+-   one reflection prompt.
++6. **Submission path — every module has a meaningful downloadable record** a
++   student can turn in: mount `ExportReflect` (or a richer bespoke export in its
++   spirit — decisions, scores, and reflections, not click tracking) with at least
++   one reflection prompt. Chain-style modules should also mount `ResearchLog`
++   (`js/research-log.js`): one shared log that follows the student between
++   modules, matching the book's eight-field template.
+ 7. **Storage disclosure**: if the module persists anything, mount
+    `QM.storageNotice(...)` from `js/lib.js`.
+ 8. **Feedback is audible**: every dynamic right/wrong container carries
+diff --git a/about.html b/about.html
+index 3fe820c..5ef5860 100644
+--- a/about.html
++++ b/about.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-1/index.html b/ch-1/index.html
+index f998ee2..06f179d 100644
+--- a/ch-1/index.html
++++ b/ch-1/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-10/index.html b/ch-10/index.html
+index f11a478..1bf8604 100644
+--- a/ch-10/index.html
++++ b/ch-10/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-11/index.html b/ch-11/index.html
+index 559cae0..ac843b7 100644
+--- a/ch-11/index.html
++++ b/ch-11/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-12/index.html b/ch-12/index.html
+index 53b4897..a111d05 100644
+--- a/ch-12/index.html
++++ b/ch-12/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-13/index.html b/ch-13/index.html
+index 47f4116..fbf5194 100644
+--- a/ch-13/index.html
++++ b/ch-13/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-14/index.html b/ch-14/index.html
+index be65969..75ddc76 100644
+--- a/ch-14/index.html
++++ b/ch-14/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-15/index.html b/ch-15/index.html
+index 269c515..2328e7d 100644
+--- a/ch-15/index.html
++++ b/ch-15/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-16/index.html b/ch-16/index.html
+index 56e3e93..1b4315b 100644
+--- a/ch-16/index.html
++++ b/ch-16/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-17/index.html b/ch-17/index.html
+index 3b0a06d..8ecabf9 100644
+--- a/ch-17/index.html
++++ b/ch-17/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-2/index.html b/ch-2/index.html
+index d293d78..3f04fe1 100644
+--- a/ch-2/index.html
++++ b/ch-2/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-3/index.html b/ch-3/index.html
+index 8054abd..9b82be9 100644
+--- a/ch-3/index.html
++++ b/ch-3/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-4/index.html b/ch-4/index.html
+index d5ae9a4..fa1316c 100644
+--- a/ch-4/index.html
++++ b/ch-4/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-5/index.html b/ch-5/index.html
+index 287fe2b..9c19692 100644
+--- a/ch-5/index.html
++++ b/ch-5/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-6/index.html b/ch-6/index.html
+index d0fb699..162eb52 100644
+--- a/ch-6/index.html
++++ b/ch-6/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-7/index.html b/ch-7/index.html
+index 01746d0..ad7021a 100644
+--- a/ch-7/index.html
++++ b/ch-7/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+@@ -164,12 +167,12 @@
+   <div class="mod-section">
+     <div class="mod-sectionhead"><h2>Orientation</h2><span class="mod-count">Explore the concepts from this chapter</span></div>
+     <div class="mod-list">
+-    <div class="mod-card is-plan">
+-      <div class="mod-head"><h3 class="mod-title">How to Find a Regulation</h3><span class="pill plan">Planned</span></div>
++    <a class="mod-card is-live" href="../modules/finding-regulations/index.html" aria-label="Open module: How to Find a Regulation">
++      <div class="mod-head"><h3 class="mod-title">How to Find a Regulation</h3><span class="pill live">Available</span></div>
+       <p class="mod-desc">Follow a rule from the Federal Register into the CFR and back — the pipeline every regulatory researcher runs.</p>
+       <div class="mod-willwrap"><p class="mod-willhead">What this module will let you do</p><ul class="mod-will"><li>Follow a rule from the Federal Register into the CFR</li><li>Navigate the eCFR by title, chapter, part, and section</li><li>Pull the preamble through the source note</li><li>Check currency with the List of CFR Sections Affected</li></ul></div>
+-      <p class="mod-note">This module is planned. The chapter exists in the textbook; the interactive version is on the way.</p>
+-    </div>
++      <span class="mod-open" aria-hidden="true">Open module →</span>
++    </a>
+     <a class="mod-card is-live" href="../modules/reading-regulations/index.html" aria-label="Open module: How to Read a Regulation">
+       <div class="mod-head"><h3 class="mod-title">How to Read a Regulation</h3><span class="pill live">Available</span></div>
+       <p class="mod-desc">Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters.</p>
+diff --git a/ch-8/index.html b/ch-8/index.html
+index 3169e98..0036e81 100644
+--- a/ch-8/index.html
++++ b/ch-8/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/ch-9/index.html b/ch-9/index.html
+index d1c2095..31f7d3c 100644
+--- a/ch-9/index.html
++++ b/ch-9/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+@@ -179,18 +182,18 @@
+   <div class="mod-section">
+     <div class="mod-sectionhead"><h2>Practice</h2><span class="mod-count">Apply what you’ve learned</span></div>
+     <div class="mod-list">
+-    <div class="mod-card is-plan">
+-      <div class="mod-head"><h3 class="mod-title">Diagnose the Broken Search</h3><span class="pill plan">Planned</span></div>
++    <a class="mod-card is-live" href="../modules/diagnose-the-broken-search/index.html" aria-label="Open module: Diagnose the Broken Search">
++      <div class="mod-head"><h3 class="mod-title">Diagnose the Broken Search</h3><span class="pill live">Available</span></div>
+       <p class="mod-desc">Zero results is a symptom, not a diagnosis. Practice telling ‘no results’ from ‘no law,’ finding what went wrong, and documenting closure.</p>
+       <div class="mod-willwrap"><p class="mod-willhead">What this module will let you do</p><ul class="mod-will"><li>Tell ‘no results’ from ‘no law’</li><li>Diagnose the common ways a search goes wrong</li><li>Build and read a search log</li><li>Run the closing-out protocol as a checklist</li></ul></div>
+-      <p class="mod-note">This module is planned. The chapter exists in the textbook; the interactive version is on the way.</p>
+-    </div>
+-    <div class="mod-card is-plan">
+-      <div class="mod-head"><h3 class="mod-title">Mixed Review — The Diagnostic Moves</h3><span class="pill plan">Planned</span></div>
++      <span class="mod-open" aria-hidden="true">Open module →</span>
++    </a>
++    <a class="mod-card is-live" href="../modules/mixed-review/index.html" aria-label="Open module: Mixed Review — The Diagnostic Moves">
++      <div class="mod-head"><h3 class="mod-title">Mixed Review — The Diagnostic Moves</h3><span class="pill live">Available</span></div>
+       <p class="mod-desc">Interleaved review across Chapters 1–9: classify the question, pick the source, and spot answers that reach past their question.</p>
+       <div class="mod-willwrap"><p class="mod-willhead">What this module will let you do</p><ul class="mod-will"><li>Classify question types across source families</li><li>Match each question to the source most likely to answer it</li><li>Spot compound answers that reach past their question</li><li>Cumulative, shuffled review of the Part I diagnostic skills</li></ul></div>
+-      <p class="mod-note">This module is planned. The chapter exists in the textbook; the interactive version is on the way.</p>
+-    </div>
++      <span class="mod-open" aria-hidden="true">Open module →</span>
++    </a>
+     </div>
+   </div>
+ 
+diff --git a/data/registry.json b/data/registry.json
+index 223ed47..8f20a68 100644
+--- a/data/registry.json
++++ b/data/registry.json
+@@ -279,7 +279,7 @@
+       "desc": "Tracing a regulation from its enabling statute to the CFR and the Federal Register — and confirming it is still in force.",
+       "modules": [
+         {
+-          "status": "plan",
++          "status": "live",
+           "type": "orientation",
+           "slug": "finding-regulations",
+           "title": "How to Find a Regulation",
+@@ -289,7 +289,9 @@
+             "Navigate the eCFR by title, chapter, part, and section",
+             "Pull the preamble through the source note",
+             "Check currency with the List of CFR Sections Affected"
+-          ]
++          ],
++          "href": "modules/finding-regulations/index.html",
++          "note": "New"
+         },
+         {
+           "status": "live",
+@@ -368,7 +370,7 @@
+           "desc": "Run the closing-out protocol, tell 'no results' from 'no law,' diagnose a stuck search, and draft an exportable research-closure note."
+         },
+         {
+-          "status": "plan",
++          "status": "live",
+           "type": "practice",
+           "slug": "diagnose-the-broken-search",
+           "title": "Diagnose the Broken Search",
+@@ -378,10 +380,12 @@
+             "Diagnose the common ways a search goes wrong",
+             "Build and read a search log",
+             "Run the closing-out protocol as a checklist"
+-          ]
++          ],
++          "href": "modules/diagnose-the-broken-search/index.html",
++          "note": "New"
+         },
+         {
+-          "status": "plan",
++          "status": "live",
+           "type": "practice",
+           "slug": "mixed-review",
+           "title": "Mixed Review — The Diagnostic Moves",
+@@ -391,7 +395,9 @@
+             "Match each question to the source most likely to answer it",
+             "Spot compound answers that reach past their question",
+             "Cumulative, shuffled review of the Part I diagnostic skills"
+-          ]
++          ],
++          "href": "modules/mixed-review/index.html",
++          "note": "Cumulative"
+         }
+       ]
+     },
+diff --git a/index.html b/index.html
+index 9f87626..ea5684f 100644
+--- a/index.html
++++ b/index.html
+@@ -84,6 +84,7 @@
+               <li class="modmenu-chap">
+                 <a href="ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -101,6 +102,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/js/registry.js b/js/registry.js
+index d2f35de..18f6992 100644
+--- a/js/registry.js
++++ b/js/registry.js
+@@ -281,7 +281,7 @@ window.REGISTRY = {
+       "desc": "Tracing a regulation from its enabling statute to the CFR and the Federal Register — and confirming it is still in force.",
+       "modules": [
+         {
+-          "status": "plan",
++          "status": "live",
+           "type": "orientation",
+           "slug": "finding-regulations",
+           "title": "How to Find a Regulation",
+@@ -291,7 +291,9 @@ window.REGISTRY = {
+             "Navigate the eCFR by title, chapter, part, and section",
+             "Pull the preamble through the source note",
+             "Check currency with the List of CFR Sections Affected"
+-          ]
++          ],
++          "href": "modules/finding-regulations/index.html",
++          "note": "New"
+         },
+         {
+           "status": "live",
+@@ -370,7 +372,7 @@ window.REGISTRY = {
+           "desc": "Run the closing-out protocol, tell 'no results' from 'no law,' diagnose a stuck search, and draft an exportable research-closure note."
+         },
+         {
+-          "status": "plan",
++          "status": "live",
+           "type": "practice",
+           "slug": "diagnose-the-broken-search",
+           "title": "Diagnose the Broken Search",
+@@ -380,10 +382,12 @@ window.REGISTRY = {
+             "Diagnose the common ways a search goes wrong",
+             "Build and read a search log",
+             "Run the closing-out protocol as a checklist"
+-          ]
++          ],
++          "href": "modules/diagnose-the-broken-search/index.html",
++          "note": "New"
+         },
+         {
+-          "status": "plan",
++          "status": "live",
+           "type": "practice",
+           "slug": "mixed-review",
+           "title": "Mixed Review — The Diagnostic Moves",
+@@ -393,7 +397,9 @@ window.REGISTRY = {
+             "Match each question to the source most likely to answer it",
+             "Spot compound answers that reach past their question",
+             "Cumulative, shuffled review of the Part I diagnostic skills"
+-          ]
++          ],
++          "href": "modules/mixed-review/index.html",
++          "note": "Cumulative"
+         }
+       ]
+     },
+diff --git a/js/research-log.js b/js/research-log.js
+new file mode 100644
+index 0000000..e669454
+--- /dev/null
++++ b/js/research-log.js
+@@ -0,0 +1,228 @@
++/* =============================================================================
++   research-log.js — the textbook's Research Log as a mountable widget.
++
++   One log, shared across every module that mounts it (a single localStorage
++   key), exactly as the book instructs: "keep a Research Log for every drill,
++   the same one you will keep in practice." Eight fields per entry, matching
++   the book's template:
++
++     Question · Type · Source · What I Found · How This Answers My Question ·
++     Citation · Next Question · Notes
++
++   Usage (classic script; load js/lib.js first):
++     <script src="../../js/lib.js"></script>
++     <script src="../../js/research-log.js"></script>
++     <script>ResearchLog.mount({ parent: node, before: optionalSibling });</script>
++
++   FERPA: entries live only in this browser's localStorage; the student can
++   export the whole log as a formatted .txt and clear it at any time.
++   ========================================================================== */
++(function () {
++  "use strict";
++  var KEY = "qm_research_log_v1";
++  var el = window.QM ? QM.el : null;
++  if (!el) return; /* lib.js is required */
++
++  var FIELDS = [
++    ["question", "Question", "text", "The single question you are researching right now"],
++    ["type", "Type", "select", ["Definitional", "Exploratory", "Focusing", "Application"]],
++    ["source", "Source", "text", "What you consulted (e.g., state encyclopedia; annotated code)"],
++    ["found", "What I Found", "textarea", "The answer, scoped to the question \u2014 no more"],
++    ["answers", "How This Answers My Question", "textarea", "Fully, partially, or not \u2014 and why"],
++    ["citation", "Citation", "text", "Where a reader could verify it"],
++    ["next", "Next Question", "text", "The question this answer produces (deepen or go lateral)"],
++    ["notes", "Notes", "text", "Anything else future-you needs"]
++  ];
++
++  function load() {
++    try {
++      var raw = localStorage.getItem(KEY);
++      if (raw) { var s = JSON.parse(raw); if (s && Array.isArray(s.entries)) return s; }
++    } catch (e) {}
++    return { v: 1, entries: [] };
++  }
++  function save(state) {
++    state.saved = new Date().toISOString();
++    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
++  }
++
++  function css() {
++    if (document.getElementById("rlog-css")) return;
++    var s = document.createElement("style");
++    s.id = "rlog-css";
++    s.textContent =
++      ".rlog{max-width:860px;margin:34px auto 0;border:1.5px solid var(--rule-strong,#b6b6b6);border-radius:10px;background:var(--panel,#f6f6f4);}" +
++      ".rlog>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}" +
++      ".rlog>summary::-webkit-details-marker{display:none;}" +
++      ".rlog>summary:focus-visible{outline:3px solid var(--flame,#c73e1d);outline-offset:2px;}" +
++      ".rlog-title{font-weight:700;font-size:1rem;}" +
++      ".rlog-count{font-family:var(--mono,monospace);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft,#54534d);}" +
++      ".rlog-chev{margin-left:auto;color:var(--flame,#c73e1d);}" +
++      ".rlog-body{padding:4px 18px 18px;}" +
++      ".rlog-blurb{font-size:.88rem;color:var(--ink-soft,#54534d);line-height:1.55;margin:0 0 14px;}" +
++      ".rlog-form{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;}" +
++      "@media(max-width:700px){.rlog-form{grid-template-columns:1fr;}}" +
++      ".rlog-field{display:flex;flex-direction:column;gap:3px;}" +
++      ".rlog-field.wide{grid-column:1/-1;}" +
++      ".rlog-field label{font-family:var(--mono,monospace);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft,#54534d);}" +
++      ".rlog-field input,.rlog-field select,.rlog-field textarea{font:inherit;font-size:.9rem;padding:8px 10px;border:1px solid var(--rule-strong,#b6b6b6);border-radius:7px;background:#fff;color:var(--ink,#262622);}" +
++      ".rlog-field :focus-visible{outline:3px solid var(--flame,#c73e1d);outline-offset:2px;}" +
++      ".rlog-actions{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}" +
++      ".rlog-btn{font:inherit;font-size:.86rem;font-weight:600;background:#fff;border:1.5px solid var(--rule-strong,#b6b6b6);border-radius:8px;padding:8px 14px;cursor:pointer;color:var(--ink,#262622);}" +
++      ".rlog-btn:hover{border-color:var(--flame,#c73e1d);}" +
++      ".rlog-btn:focus-visible{outline:3px solid var(--flame,#c73e1d);outline-offset:2px;}" +
++      ".rlog-btn.accent{border-color:var(--flame,#c73e1d);color:var(--flame,#c73e1d);}" +
++      ".rlog-entries{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;}" +
++      ".rlog-entry{background:#fff;border:1px solid var(--rule,#cfcfcf);border-radius:8px;padding:12px 14px;}" +
++      ".rlog-ehead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;}" +
++      ".rlog-eno{font-family:var(--mono,monospace);font-size:.7rem;color:var(--flame,#c73e1d);}" +
++      ".rlog-eq{font-weight:600;font-size:.92rem;}" +
++      ".rlog-etype{font-family:var(--mono,monospace);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft,#54534d);border:1px solid var(--rule-strong,#b6b6b6);border-radius:99px;padding:1px 8px;}" +
++      ".rlog-edel{margin-left:auto;font:inherit;font-size:.72rem;background:none;border:0;color:var(--ink-soft,#54534d);cursor:pointer;text-decoration:underline;}" +
++      ".rlog-edel:focus-visible{outline:3px solid var(--flame,#c73e1d);outline-offset:2px;}" +
++      ".rlog-edl{display:grid;grid-template-columns:max-content 1fr;gap:2px 12px;margin:8px 0 0;font-size:.85rem;line-height:1.5;}" +
++      ".rlog-edl dt{font-family:var(--mono,monospace);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft,#54534d);padding-top:2px;}" +
++      ".rlog-edl dd{margin:0;}" +
++      ".rlog-note{font-size:.8rem;color:var(--ink-soft,#54534d);margin:12px 0 0;}";
++    document.head.appendChild(s);
++  }
++
++  function fmt(state) {
++    var bar = new Array(63).join("=");
++    var L = [bar, "RESEARCH LOG", bar,
++      "Exported: " + new Date().toLocaleString(),
++      "Entries: " + state.entries.length, ""];
++    state.entries.forEach(function (e, i) {
++      L.push("ENTRY " + (i + 1) + (e.when ? "  (" + e.when + ")" : ""));
++      L.push(new Array(43).join("-"));
++      FIELDS.forEach(function (f) {
++        var v = (e[f[0]] || "").trim();
++        L.push(f[1] + ": " + (v || "\u2014"));
++      });
++      L.push("");
++    });
++    L.push("Generated locally in the student's browser \u2014 no data was sent anywhere.");
++    return L.join("\n");
++  }
++
++  function mount(opts) {
++    opts = opts || {};
++    css();
++    var state = load();
++    var status = QM.live(el("span", { class: "rlog-count" }));
++
++    /* ---- entry form ---- */
++    var inputs = {};
++    var form = el("div", { class: "rlog-form" });
++    FIELDS.forEach(function (f) {
++      var id = "rlog-" + f[0];
++      var input;
++      if (f[2] === "select") {
++        input = el("select", { id: id }, []);
++        input.appendChild(el("option", { value: "" }, ["\u2014 pick the type \u2014"]));
++        f[3].forEach(function (o) { input.appendChild(el("option", { value: o }, [o])); });
++      } else if (f[2] === "textarea") {
++        input = el("textarea", { id: id, rows: "2", placeholder: f[3] });
++      } else {
++        input = el("input", { id: id, type: "text", placeholder: f[3] });
++      }
++      inputs[f[0]] = input;
++      var wide = (f[2] === "textarea" || f[0] === "question");
++      form.appendChild(el("div", { class: "rlog-field" + (wide ? " wide" : "") }, [
++        el("label", { for: id }, [f[1]]), input
++      ]));
++    });
++
++    var list = el("ul", { class: "rlog-entries" });
++    function renderEntries() {
++      list.innerHTML = "";
++      state.entries.forEach(function (e, i) {
++        var dl = el("dl", { class: "rlog-edl" });
++        FIELDS.slice(2).forEach(function (f) {
++          var v = (e[f[0]] || "").trim();
++          if (!v) return;
++          dl.appendChild(el("dt", {}, [f[1]]));
++          dl.appendChild(el("dd", {}, [v]));
++        });
++        list.appendChild(el("li", { class: "rlog-entry" }, [
++          el("div", { class: "rlog-ehead" }, [
++            el("span", { class: "rlog-eno" }, ["#" + (i + 1)]),
++            el("span", { class: "rlog-eq" }, [e.question || "(no question recorded)"]),
++            e.type ? el("span", { class: "rlog-etype" }, [e.type]) : null,
++            el("button", { class: "rlog-edel", type: "button", onclick: function () {
++              if (!window.confirm("Delete entry #" + (i + 1) + "?")) return;
++              state.entries.splice(i, 1); save(state); renderEntries(); updateCount("Entry deleted.");
++            } }, ["delete"])
++          ]),
++          dl
++        ]));
++      });
++    }
++    function updateCount(msg) {
++      var n = state.entries.length;
++      countEl.textContent = n + (n === 1 ? " entry" : " entries");
++      if (msg) QM.announce(status, msg);
++    }
++
++    function addEntry() {
++      if (!inputs.question.value.trim()) {
++        QM.announce(status, "Add the question first \u2014 the log runs on questions.");
++        inputs.question.focus();
++        return;
++      }
++      var e = { when: new Date().toLocaleDateString() };
++      FIELDS.forEach(function (f) { e[f[0]] = inputs[f[0]].value; });
++      state.entries.push(e);
++      save(state);
++      FIELDS.forEach(function (f) { inputs[f[0]].value = ""; });
++      renderEntries();
++      updateCount("Entry " + state.entries.length + " logged.");
++      inputs.question.focus();
++    }
++
++    var actions = el("div", { class: "rlog-actions" }, [
++      el("button", { class: "rlog-btn accent", type: "button", onclick: addEntry }, ["+ Log this entry"]),
++      el("button", { class: "rlog-btn", type: "button", onclick: function () {
++        if (!state.entries.length) { QM.announce(status, "Nothing to export yet."); return; }
++        var blob = new Blob([fmt(state)], { type: "text/plain" });
++        var a = document.createElement("a");
++        a.href = URL.createObjectURL(blob);
++        a.download = "research-log.txt";
++        document.body.appendChild(a); a.click();
++        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
++        QM.announce(status, "Research log downloaded.");
++      } }, ["\u2193 Download the log (.txt)"]),
++      el("button", { class: "rlog-btn", type: "button", onclick: function () {
++        if (!window.confirm("Clear the entire Research Log from this browser? Download it first if you need it.")) return;
++        state = { v: 1, entries: [] }; save(state); renderEntries(); updateCount("Log cleared.");
++      } }, ["Clear the log"]),
++      status
++    ]);
++
++    var countEl = el("span", { class: "rlog-count" });
++    var box = el("details", { class: "rlog" }, [
++      el("summary", {}, [
++        el("span", { class: "rlog-title" }, ["Research Log"]),
++        countEl,
++        el("span", { class: "rlog-chev", "aria-hidden": "true" }, ["\u25be"])
++      ]),
++      el("div", { class: "rlog-body" }, [
++        el("p", { class: "rlog-blurb" }, [
++          "The same log follows you between modules \u2014 one running record, exactly as in practice. " +
++          "Eight fields per entry: the question, its type, the source, what you found (scoped to the question), " +
++          "how it answers, the citation, the next question, and notes. Saved only in this browser; " +
++          "download it any time."]),
++        form, actions, list
++      ])
++    ]);
++
++    var parent = opts.parent || document.body;
++    if (opts.before) parent.insertBefore(box, opts.before);
++    else parent.appendChild(box);
++    renderEntries();
++    updateCount();
++    return box;
++  }
++
++  window.ResearchLog = { mount: mount, KEY: KEY };
++})();
+diff --git a/modules/across-sources-practice/index.html b/modules/across-sources-practice/index.html
+index 1692134..b3a9f2a 100644
+--- a/modules/across-sources-practice/index.html
++++ b/modules/across-sources-practice/index.html
+@@ -124,6 +124,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -141,6 +142,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/case-graph/index.html b/modules/case-graph/index.html
+index 71b3fa9..fa5eeda 100644
+--- a/modules/case-graph/index.html
++++ b/modules/case-graph/index.html
+@@ -157,6 +157,7 @@ svg.graph{width:100%;height:auto;display:block;}
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -174,6 +175,8 @@ svg.graph{width:100%;height:auto;display:block;}
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/case-practice/index.html b/modules/case-practice/index.html
+index cc3170b..a8455e6 100644
+--- a/modules/case-practice/index.html
++++ b/modules/case-practice/index.html
+@@ -150,6 +150,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -167,6 +168,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/closing-out/index.html b/modules/closing-out/index.html
+index ef1096a..d668514 100644
+--- a/modules/closing-out/index.html
++++ b/modules/closing-out/index.html
+@@ -155,6 +155,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -172,6 +173,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html" aria-current="page">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+@@ -293,7 +296,7 @@
+   <p class="modnav-crumb">Part of <a href="../../ch-9/">Ch. 9 · Narrowing and Closing Out Your Research</a></p>
+   <div class="modnav-links">
+     <a class="modnav-link prev" href="../../modules/precision-search/index.html"><span class="dir">← Previous</span><span class="t">Building a Precision Search</span></a>
+-    <a class="modnav-link next" href="../../ch-10/"><span class="dir">Next chapter →</span><span class="t">Ch. 10 · Ethics and Professional Responsibility in Legal Research</span></a>
++    <a class="modnav-link next" href="../../modules/diagnose-the-broken-search/index.html"><span class="dir">Next →</span><span class="t">Diagnose the Broken Search</span></a>
+   </div>
+ </nav>
+ <!--shell:modnav:end-->
+diff --git a/modules/database-interface/index.html b/modules/database-interface/index.html
+index dc7e64c..fc4e18d 100644
+--- a/modules/database-interface/index.html
++++ b/modules/database-interface/index.html
+@@ -192,6 +192,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -209,6 +210,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/database-interface/results.html b/modules/database-interface/results.html
+index d0ddc56..cbc239b 100644
+--- a/modules/database-interface/results.html
++++ b/modules/database-interface/results.html
+@@ -172,6 +172,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -189,6 +190,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/database-practice/index.html b/modules/database-practice/index.html
+index 61fd69c..bd2b2c5 100644
+--- a/modules/database-practice/index.html
++++ b/modules/database-practice/index.html
+@@ -155,6 +155,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -172,6 +173,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/diagnose-the-broken-search/index.html b/modules/diagnose-the-broken-search/index.html
+new file mode 100644
+index 0000000..370a99c
+--- /dev/null
++++ b/modules/diagnose-the-broken-search/index.html
+@@ -0,0 +1,512 @@
++<!doctype html>
++<html lang="en">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>Diagnose the Broken Search — Ch. 9 · Narrowing and Closing Out Your Research</title>
++<meta name="description" content="Zero results is a symptom, not a diagnosis. Read the search log, name what went wrong, pick the correction — then run the closing-out protocol and make the closure call.">
++<!--shell:head:start-->
++<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="stylesheet" href="../../assets/firebrand.css">
++<!--shell:head:end-->
++<style>
++  .pagewrap{max-width:860px;margin:0 auto;padding:26px 28px 10px;}
++  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);max-width:70ch;margin:6px 0 14px;}
++  .howto{background:var(--panel);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;max-width:74ch;margin:0 0 26px;}
++  h2{font-size:1.25rem;margin:34px 0 8px;}
++  .secdesc{color:var(--ink-soft);max-width:70ch;margin:0 0 16px;line-height:1.6;}
++  .scoreline{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 14px;}
++
++  .card{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:18px 20px;margin:0 0 18px;}
++  .card .qno{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;}
++  .slog{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:.8rem;line-height:1.7;margin:0 0 12px;overflow-x:auto;}
++  .slog b{color:var(--flame);font-weight:600;}
++  .card .q{font-size:1rem;line-height:1.55;margin:0 0 12px;}
++  .stagehead{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 8px;}
++  .opts{display:flex;flex-direction:column;gap:8px;}
++  .opt{font:inherit;font-size:.92rem;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:9px 13px;cursor:pointer;}
++  .opt:hover{border-color:var(--flame);}
++  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
++  .opt[disabled]{cursor:default;opacity:.9;}
++  .opt.good{border-color:#2e6b34;background:#e5efe0;}
++  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
++  .fb{margin:10px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 12px;}
++  .fb.good{border-left-color:#2e6b34;}
++  .fb.bad{border-left-color:var(--flame);}
++
++  /* closing-out protocol */
++  .proto{counter-reset:step;display:flex;flex-direction:column;gap:8px;margin:0 0 14px;}
++  .pstep{font:inherit;text-align:left;background:#fff;border:1px solid var(--rule-strong);border-radius:9px;padding:12px 15px;cursor:pointer;}
++  .pstep:hover{border-color:var(--flame);}
++  .pstep:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
++  .pstep b{display:block;font-size:.95rem;}
++  .pstep b::before{counter-increment:step;content:counter(step) " · ";font-family:var(--mono);color:var(--flame);font-size:.8rem;}
++  .pstep .pd{display:none;font-size:.9rem;line-height:1.55;color:var(--ink-soft);margin-top:7px;}
++  .pstep[aria-expanded="true"]{background:rgba(199,62,29,.06);}
++  .pstep[aria-expanded="true"] .pd{display:block;}
++  .donebox{background:var(--panel);border:1px solid var(--rule-strong);border-radius:10px;padding:18px 20px;margin:8px 0 20px;display:none;}
++  .donebox.show{display:block;}
++  .donebox .big{font-family:var(--mono);font-size:1.3rem;color:var(--flame);margin:2px 0 8px;}
++  @media (prefers-reduced-motion: reduce){
++    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
++  }
++</style>
++</head>
++<body class="shell">
++<!--shell:masthead:start-->
++<a class="skip" href="#main">Skip to content</a>
++
++<header class="masthead">
++  <div class="wrap">
++    <div class="masthead-inner">
++      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
++        <span class="mark">The Question Method of Legal Research</span>
++        <span class="sub">Interactive Legal Research Modules</span>
++      </a>
++      <nav class="topnav" aria-label="Primary">
++        <a href="../../index.html">Home</a>
++        <details class="modmenu">
++          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
++          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
++            <div class="modmenu-cols">
++            <section class="modmenu-part">
++              <h2>Part I &middot; Foundational Legal Research</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap">
++                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
++                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
++                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
++                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
++                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
++                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
++                  <li><a href="../../modules/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
++                  <li><a href="../../modules/type-the-question/index.html">Type the Question</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/reading-secondary/index.html">How to Read a Secondary Source</a></li>
++                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
++                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
++                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/case-graph/index.html">Cases as a Web of Answers</a></li>
++                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
++                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/reading-statutes/index.html">How to Read a Statute</a></li>
++                  <li><a href="../../modules/finding-statutes/index.html">How to Find a Statute</a></li>
++                  <li><a href="../../modules/statute-practice/index.html">Statutes Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
++                  <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
++                  <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
++                  <li><a href="../../modules/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
++                  <li><a href="../../modules/across-sources-practice/index.html">Across Sources Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
++                  <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html" aria-current="page">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
++                </ul>
++              </li>
++              </ul>
++            </section>
++            <section class="modmenu-part">
++              <h2>Part II &middot; Advanced Legal Research</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap">
++                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
++              </li>
++              </ul>
++            </section>
++            <section class="modmenu-part">
++              <h2>Appendices &amp; Glossary</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap"><a href="../../modules/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
++              <li class="modmenu-chap"><a href="../../modules/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
++              </ul>
++            </section>
++            </div>
++          </div>
++        </details>
++        <a href="../../about.html">About</a>
++      </nav>
++    </div>
++  </div>
++</header>
++<!--shell:masthead:end-->
++
++<main id="main">
++  <div class="pagewrap">
++    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-9/" style="color:var(--flame)">Ch.&nbsp;9</a> / Diagnose the Broken Search</p>
++    <h1>Diagnose the Broken Search</h1>
++    <p class="lede">Every researcher hits moments when the research is not working. What sets competent researchers apart is that they diagnose the problem accurately and apply a specific correction — instead of just searching harder. Each case below shows a search log. Read the symptom, name the diagnosis, pick the fix.</p>
++    <div class="howto"><b>How to use this:</b> two moves per case — diagnose, then correct. The searches use generic terms-and-connectors syntax; exact operators vary by platform (see <a href="../precision-search/index.html">Precision Search</a>). Finish with the closing-out protocol and make the closure call.</div>
++
++    <p class="scoreline" id="tally"></p>
++    <div id="cases"></div>
++
++    <h2>The closing-out protocol</h2>
++    <p class="secdesc">Narrowing finds the right things; closing out confirms you have not missed anything important. These are different jobs. Click each step, then make the closure calls below. If you cannot document why you stopped, you have not closed — you have just stopped.</p>
++    <div class="proto" id="proto" role="group" aria-label="The five closing-out steps"></div>
++    <p class="scoreline" id="pseen">Read 0 of 5 steps</p>
++
++    <div id="calls"></div>
++    <div class="donebox" id="done" role="status" aria-live="polite"></div>
++
++    <div id="export-slot"></div>
++  </div>
++</main>
++
++<!--shell:modnav:start-->
++<nav class="modnav" aria-label="Module navigation">
++  <p class="modnav-crumb">Part of <a href="../../ch-9/">Ch. 9 · Narrowing and Closing Out Your Research</a></p>
++  <div class="modnav-links">
++    <a class="modnav-link prev" href="../../modules/closing-out/index.html"><span class="dir">← Previous</span><span class="t">Knowing When to Stop</span></a>
++    <a class="modnav-link next" href="../../modules/mixed-review/index.html"><span class="dir">Next →</span><span class="t">Mixed Review — The Diagnostic Moves</span></a>
++  </div>
++</nav>
++<!--shell:modnav:end-->
++
++<!--shell:footer:start-->
++<footer class="foot">
++  <div class="wrap">
++    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
++    <span>Constantly in beta · built by Cas Laskowski</span>
++  </div>
++</footer>
++<!--shell:footer:end-->
++
++<script src="../../js/lib.js"></script>
++<script src="../../js/research-log.js"></script>
++<script src="../../js/export-reflect.js"></script>
++<script>
++(function(){
++  "use strict";
++  var el = QM.el;
++  var right = 0, answered = 0, total = 0;
++  var tally = document.getElementById("tally");
++  function bump(ok) {
++    answered++; if (ok) right++;
++    tally.textContent = answered + " of " + total + " answered \u00b7 " + right + " correct";
++    if (answered === total) {
++      var box = document.getElementById("done");
++      box.innerHTML = "<p class=\"qno\">Module complete</p><div class=\"big\">" + right + " / " + total + "</div>" +
++        "<p>The pattern to keep: symptom \u2192 diagnosis \u2192 specific correction. \u201cSearch harder\u201d is never the correction. Add a reflection below and download your record.</p>";
++      box.classList.add("show");
++      if (window.ExportReflect) ExportReflect.log("Final score", right + " / " + total);
++    }
++  }
++
++  /* two-stage case card: diagnose, then correct */
++  function caseCard(host, item, n, of) {
++    var card = el("div", { class: "card" }, [
++      el("p", { class: "qno" }, ["Case " + n + " of " + of]),
++      el("div", { class: "slog", html: item.log }),
++      el("p", { class: "q", html: item.q })
++    ]);
++    function stage(label, opts, logLabel, after) {
++      var head = el("p", { class: "stagehead" }, [label]);
++      var wrap = el("div", { class: "opts", role: "group", "aria-label": label });
++      var fb = QM.live(el("div", { class: "fb" }));
++      fb.hidden = true;
++      var done = false;
++      opts.forEach(function (o, i) {
++        var b = el("button", { class: "opt", type: "button" }, [o.t]);
++        b.addEventListener("click", function () {
++          if (done) return;
++          done = true;
++          wrap.querySelectorAll(".opt").forEach(function (x, xi) {
++            x.disabled = true;
++            if (opts[xi].good) x.classList.add("good");
++            else if (xi === i) x.classList.add("bad");
++          });
++          fb.hidden = false;
++          fb.classList.add(o.good ? "good" : "bad");
++          QM.announce(fb, (o.good ? "Right. " : "Not quite. ") + o.fb);
++          if (window.ExportReflect) ExportReflect.log(logLabel, o.good ? "correct" : "incorrect \u2014 chose: " + o.t);
++          bump(o.good);
++          if (after) after();
++        });
++        wrap.appendChild(b);
++      });
++      card.appendChild(head); card.appendChild(wrap); card.appendChild(fb);
++    }
++    stage("First move \u2014 the diagnosis", item.diag, "Case " + n + " diagnosis", function () {
++      stage("Second move \u2014 the correction", item.fix, "Case " + n + " correction");
++    });
++    host.appendChild(card);
++  }
++
++  var CASES = [
++    { log: "Q: Must a gym warn members about defective equipment?<br>DB: State cases &middot; your state only<br>SEARCH: <b>\u201cdefective exercise treadmill\u201d /2 \u201cfailure to warn\u201d /2 \u201chealth club membership agreement\u201d</b><br>RESULTS: <b>0</b>",
++      q: "Three searches like this, three zeros. What is going on?",
++      diag: [
++        { t: "The terms are too specific \u2014 long quoted phrases bound by tight proximity", good: true,
++          fb: "Quoted multi-word phrases demand exact matches, and /2 stacks tight proximity on top. Almost no opinion will say it exactly this way. The symptom is zero results; the diagnosis is over-specification." },
++        { t: "There is no law on this point", good: false,
++          fb: "Far too early for that call. \u201cNo results\u201d and \u201cno law\u201d are different conclusions \u2014 and the second is only defensible after the alternatives are exhausted." },
++        { t: "The database is missing cases", good: false,
++          fb: "Possible in theory, but the first suspect is always the search itself \u2014 three exact-phrase, tight-proximity strings are the classic over-specification pattern." },
++        { t: "The jurisdiction filter is wrong", good: false,
++          fb: "The filter matches the question (your state's duty). The strings themselves are the problem: exact phrases plus /2 proximity." } ],
++      fix: [
++        { t: "Broaden: synonyms joined with OR, loosen or drop the proximity connectors, fewer required concepts", good: true,
++          fb: "That is the prescription for over-specification: gather synonyms with OR (treadmill OR \u201cexercise equipment\u201d), relax /2 toward /p or drop it, and require fewer concepts per search." },
++        { t: "Run the identical search in a second database", good: false,
++          fb: "The same over-specified string fails everywhere. Fix the string before changing venues." },
++        { t: "Conclude the law is silent and note it in the memo", good: false,
++          fb: "\u201cThere is no law\u201d is a powerful argument; \u201cI could not find any law\u201d is a confession. Exhaust alternatives first." },
++        { t: "Add a date restriction to focus the search", good: false,
++          fb: "Zero results cannot be narrowed further \u2014 a date filter shrinks a set you do not have. Broaden." } ] },
++
++    { log: "Q: Can our client terminate the franchise agreement for late payments?<br>DB: State cases &middot; all jurisdictions<br>SEARCH: <b>franchise AND termination</b><br>RESULTS: <b>4,812</b>",
++      q: "Nobody reads 4,812 results. Diagnosis?",
++      diag: [
++        { t: "The search is too broad \u2014 two common words joined with AND, no jurisdiction filter", good: true,
++          fb: "Two high-frequency words anywhere in the same document, across every jurisdiction. The set is enormous because the search asks for almost nothing." },
++        { t: "This area of law is simply too large to research", good: false,
++          fb: "The area is fine; the search is undercooked. You are looking for the answer to a specific question, not every possibly relevant document." },
++        { t: "The database ranks results poorly", good: false,
++          fb: "Ranking cannot rescue a query this broad. Precision is the researcher's job, not the algorithm's." },
++        { t: "The terms are too specific", good: false,
++          fb: "The opposite: two common words with the loosest possible connector." } ],
++      fix: [
++        { t: "Bind the concepts with a proximity connector, add the third concept (late payment), and filter to your jurisdiction", good: true,
++          fb: "Exactly the narrowing sequence: franchise /s terminat! /p \u201clate payment\u201d, jurisdiction filtered \u2014 each move shrinks the set toward the documents that answer your question." },
++        { t: "Read the first fifty results and hope", good: false,
++          fb: "Relevance ranking on a broad query surfaces the most-cited documents about the words, not the answer to your question. Narrow the query." },
++        { t: "Switch to a natural-language search of the same words", good: false,
++          fb: "Natural language on the same two concepts produces a differently-ordered version of the same haystack. Add concepts and proximity instead." },
++        { t: "Remove the AND so more results appear", good: false,
++          fb: "That direction leads away from the answer \u2014 the set is already 4,812 too big." } ] },
++
++    { log: "Q: What remedies does a commercial tenant have for a landlord's failure to maintain?<br>DB: State cases<br>LOG: <b>9 straight case-database entries</b> &middot; same three cases keep citing each other &middot; question still only partly answered",
++      q: "Nine entries, one source type, a circular trail. Diagnosis?",
++      diag: [
++        { t: "The single-source trap \u2014 a long run in one source type with the question still open", good: true,
++          fb: "That is the log-visible signal: many consecutive entries in one source type while the question stays only partly answered. The circular citations confirm you have exhausted what cases alone will give." },
++        { t: "The three cases are the entire body of law", good: false,
++          fb: "Circularity means you have exhausted a pocket of case law, not the law. The statute or a secondary source likely holds the missing structure." },
++        { t: "The searches were too broad", good: false,
++          fb: "Breadth is not the symptom \u2014 the searches found relevant cases. The problem is staying in one source type past its usefulness." },
++        { t: "The question was badly framed", good: false,
++          fb: "The question is fine. The log shows a source-selection problem: nine consecutive case searches." } ],
++      fix: [
++        { t: "Return to a secondary source to get the area's structure, then re-enter primary authority where it points", good: true,
++          fb: "The correction for the single-source trap: step back out to a treatise or encyclopedia, let it map the remedies (and cite the statute you may be missing), then come back in." },
++        { t: "Run the same case searches with new synonyms", good: false,
++          fb: "A tenth case search extends the run. The log is telling you to change source types, not vocabulary." },
++        { t: "Cite the three cases and close the research", good: false,
++          fb: "Closing with the question only partly answered fails the protocol \u2014 the outline would show the gap." },
++        { t: "Move to a different case-law database", good: false,
++          fb: "Same source type, different wrapper. The trap is the type, not the vendor." } ] },
++
++    { log: "Q: Is a liability waiver enforceable against a minor's claim?<br>DB: State cases &middot; your state<br>FOUND: two appellate decisions enforcing waivers &middot; two refusing to \u2014 <b>different districts, similar facts</b>",
++      q: "The authorities disagree. Diagnosis?",
++      diag: [
++        { t: "Conflicting authority \u2014 diagnose the conflict's type before anything else", good: true,
++          fb: "First name what kind of conflict it is: jurisdictional, factual, temporal, or doctrinal. Here, coordinate appellate districts genuinely split \u2014 a jurisdictional/doctrinal conflict, not a research failure." },
++        { t: "One pair of cases must be bad law \u2014 the search malfunctioned", good: false,
++          fb: "Nothing malfunctioned. Real conflicts exist; finding one is the research working." },
++        { t: "The searches were too broad", good: false,
++          fb: "Four on-point appellate decisions is a good result set. The split is a finding, not a symptom." },
++        { t: "The question should be abandoned as unanswerable", good: false,
++          fb: "A split is answerable \u2014 it changes the shape of the answer, not its existence." } ],
++      fix: [
++        { t: "Apply the hierarchy of authority, check treatment with a citator, and address the split honestly in the analysis", good: true,
++          fb: "Rank what binds your court, citator-check each line for later treatment (has the high court weighed in?), and report the split \u2014 a genuine split is itself a research finding, not something to hide." },
++        { t: "Cite only the line that favors the client", good: false,
++          fb: "Concealing adverse authority is both an ethics problem and a malpractice-shaped one. Address the conflict honestly." },
++        { t: "Keep searching until the conflict disappears", good: false,
++          fb: "More searching will not un-split the districts. Diagnose, rank, verify treatment, and analyze." },
++        { t: "Treat the newest case as automatically controlling", good: false,
++          fb: "Recency does not resolve a coordinate split \u2014 hierarchy and treatment do." } ] },
++
++    { log: "Q: Does the state's data-privacy statute cover biometric data collected by a drone?<br>TRIED: alternative terms with OR &middot; proximity dropped &middot; persuasive authority from other states checked &middot; secondary sources consulted (they flag the question as open)<br>RESULTS: <b>no authority on point, anywhere</b>",
++      q: "Every alternative is exhausted and documented. What call can you now make?",
++      diag: [
++        { t: "A defensible \u201cno law\u201d conclusion \u2014 the issue is genuinely novel", good: true,
++          fb: "This is the line between \u201cno results\u201d and \u201cno law.\u201d Only after alternative terms, loosened constraints, persuasive jurisdictions, and secondary sources is the no-law call defensible \u2014 and here the secondary sources confirm the question is open." },
++        { t: "\u201cNo results\u201d \u2014 keep rewriting the search", good: false,
++          fb: "The alternatives are exhausted and the secondary literature flags the question as open. Past this point, more searching is motion without progress." },
++        { t: "The single-source trap", good: false,
++          fb: "The log shows the opposite: multiple source types consulted. This is exhaustion, not tunnel vision." },
++        { t: "The database coverage is inadequate", good: false,
++          fb: "Secondary sources discussing the issue as open is strong evidence the gap is in the law, not the database." } ],
++      fix: [
++        { t: "Build the analysis from analogous authority and the secondary framework, and document the closure decision", good: true,
++          fb: "A genuinely open question is answered constructively: reason from the nearest analogous authority, use the secondary literature's framework, and record what was searched so the no-law conclusion is demonstrable \u2014 \u201cthere is no law\u201d is a powerful argument precisely because you can prove you looked." },
++        { t: "Write \u201cno law exists\u201d with no further support", good: false,
++          fb: "The conclusion needs its documentation: the databases, strings, and dates that make it defensible \u2014 plus the analogous-authority analysis the client still needs." },
++        { t: "Wait for a court to decide the issue", good: false,
++          fb: "The client's question is due now. Open questions are analyzed constructively, not deferred." },
++        { t: "Present a persuasive out-of-state case as binding", good: false,
++          fb: "Persuasive authority informs the constructive analysis \u2014 mislabeling it as binding is a different and worse problem." } ] }
++  ];
++  total = CASES.length * 2 + 2; /* two moves per case + two closure calls */
++  var host = document.getElementById("cases");
++  CASES.forEach(function (c, i) { caseCard(host, c, i + 1, CASES.length); });
++
++  /* ---- closing-out protocol steps ---- */
++  var PROTO = [
++    ["Run a final sweep", "Before declaring research complete, run at least one more search using different terms than the ones that produced your best results. Even if it turns up nothing new, it creates a documented record that you searched comprehensively."],
++    ["Update every case and statute", "Run KeyCite or Shepard's on every primary authority you plan to cite. Cases: check for negative treatment in your jurisdiction. Statutes: pending amendments and recent session laws. Regulations: the eCFR effective date and the LSA."],
++    ["Check the currency of secondary sources", "Verify the edition you used is current \u2014 major treatise updates sometimes lag significant case law, so consult pocket parts or annual supplements."],
++    ["Evaluate the outline for gaps", "Every legal proposition should be supported by primary authority, and every ambiguous term should have a source addressing it. A gap is either a remaining research question or a genuine uncertainty your analysis must acknowledge."],
++    ["Document the closure decision", "Record that you completed the protocol: the databases searched, the final search strings, the dates you verified authorities, and any open questions. If your research is ever questioned, you can show exactly what you did and why it was enough."]
++  ];
++  var proto = document.getElementById("proto"), pseen = document.getElementById("pseen"), pRead = {};
++  PROTO.forEach(function (p, i) {
++    var b = el("button", { class: "pstep", type: "button", "aria-expanded": "false" }, [
++      el("b", {}, [p[0]]),
++      el("span", { class: "pd" }, [p[1]])
++    ]);
++    b.addEventListener("click", function () {
++      var open = b.getAttribute("aria-expanded") === "true";
++      b.setAttribute("aria-expanded", String(!open));
++      if (!open && !pRead[i]) {
++        pRead[i] = true;
++        pseen.textContent = "Read " + Object.keys(pRead).length + " of 5 steps";
++        if (window.ExportReflect) ExportReflect.log("Read protocol step", p[0]);
++      }
++    });
++    proto.appendChild(b);
++  });
++
++  /* ---- closure calls ---- */
++  var CALLS = [
++    { head: "Closure call", q: "Memo due tomorrow. Final sweep run; every authority citator-checked and clean; secondary sources current. But the outline shows one proposition supported <b>only by a treatise</b> \u2014 no primary authority behind it. Can you close?",
++      opts: [
++        { t: "Not yet \u2014 the outline has a gap; that proposition is a remaining research question", good: true,
++          fb: "Step four exists for exactly this: every legal proposition needs primary authority behind it (or an acknowledged, genuine uncertainty). One targeted question \u2014 find the authority the treatise's footnotes point to \u2014 and then close." },
++        { t: "Yes \u2014 four of five steps passed is close enough", good: false,
++          fb: "The protocol is not a scorecard; the gap step failed, and it failed on a proposition the memo will assert." },
++        { t: "Yes \u2014 a current treatise is reliable enough to cite as the law", good: false,
++          fb: "A secondary source finds and explains the law; with rare exceptions it is not cited as the law. The footnotes will hand you the primary authority \u2014 go get it." },
++        { t: "Not yet \u2014 rerun every search from the whole project first", good: false,
++          fb: "Over-correction. The protocol asks for one final sweep with alternate terms, not a full replay. The actual failure is the outline gap." } ] },
++    { head: "Closure call", q: "Same memo, next day: the proposition now has primary authority; every step of the protocol passes. The deadline arrives with one question you have identified as <b>genuinely open</b> in this jurisdiction. What kind of closure is this, and what does it require?",
++      opts: [
++        { t: "Analytical closure is unavailable on that point \u2014 document the open question and close practically on the deadline", good: true,
++          fb: "Right. Closure comes in two forms: analytical (every question answered or identified as genuinely open) and practical (an external limit forces the stop). Here the deadline forces practical closure \u2014 and the protocol's documentation step is what makes it professional: record what remains open and what you searched." },
++        { t: "Analytical closure \u2014 the protocol passed, so the research is complete", good: false,
++          fb: "The protocol passing is necessary, not sufficient \u2014 an identified open question means analytical closure includes acknowledging it, and the deadline is what actually stops the work." },
++        { t: "No closure is possible \u2014 keep researching past the deadline", good: false,
++          fb: "Deadlines are real; the profession runs on practical closure. What matters is documenting the stop, not pretending it away." },
++        { t: "Delete the open question from the outline so the research looks finished", good: false,
++          fb: "That converts a defensible closure into an indefensible one. Open questions are recorded, not erased." } ] }
++  ];
++  var callsHost = document.getElementById("calls");
++  CALLS.forEach(function (item, i) {
++    var card = el("div", { class: "card" }, [
++      el("p", { class: "qno" }, [item.head + " " + (i + 1) + " of " + CALLS.length]),
++      el("p", { class: "q", html: item.q })
++    ]);
++    var wrap = el("div", { class: "opts", role: "group", "aria-label": "Answer choices" });
++    var fb = QM.live(el("div", { class: "fb" }));
++    fb.hidden = true;
++    var done = false;
++    item.opts.forEach(function (o, oi) {
++      var b = el("button", { class: "opt", type: "button" }, [o.t]);
++      b.addEventListener("click", function () {
++        if (done) return;
++        done = true;
++        wrap.querySelectorAll(".opt").forEach(function (x, xi) {
++          x.disabled = true;
++          if (item.opts[xi].good) x.classList.add("good");
++          else if (xi === oi) x.classList.add("bad");
++        });
++        fb.hidden = false;
++        fb.classList.add(o.good ? "good" : "bad");
++        QM.announce(fb, (o.good ? "Right. " : "Not quite. ") + o.fb);
++        if (window.ExportReflect) ExportReflect.log("Closure call " + (i + 1),
++          o.good ? "correct" : "incorrect \u2014 chose: " + o.t);
++        bump(o.good);
++      });
++      wrap.appendChild(b);
++    });
++    card.appendChild(wrap); card.appendChild(fb);
++    callsHost.appendChild(card);
++  });
++
++  /* the shared Research Log follows the student between modules */
++  if (window.ResearchLog) ResearchLog.mount({ parent: document.getElementById("export-slot").parentNode,
++    before: document.getElementById("export-slot") });
++
++  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
++    module: "Diagnose the Broken Search",
++    chapter: "Chapter 9 \u2014 Narrowing and Closing Out Your Research",
++    intro: "Your diagnoses and closure calls are collected locally as you work. Add a reflection and download the record to submit.",
++    prompts: [
++      "Which diagnosis did you find hardest to distinguish from its neighbors, and what will you check in your own search log to tell them apart?",
++      "The book says: if you cannot document why you stopped, you have not closed \u2014 you have just stopped. Describe what your closure documentation will contain on your next project."
++    ]
++  });
++})();
++</script>
++</body>
++</html>
+diff --git a/modules/finding-regulations/index.html b/modules/finding-regulations/index.html
+new file mode 100644
+index 0000000..8331545
+--- /dev/null
++++ b/modules/finding-regulations/index.html
+@@ -0,0 +1,474 @@
++<!doctype html>
++<html lang="en">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>How to Find a Regulation — Ch. 7 · Basic Regulations and Administrative Research</title>
++<meta name="description" content="Follow a rule from the Federal Register into the CFR: the rulemaking pipeline, the three entry routes into regulatory research, and the five-step currency checklist.">
++<!--shell:head:start-->
++<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="stylesheet" href="../../assets/firebrand.css">
++<!--shell:head:end-->
++<style>
++  .pagewrap{max-width:860px;margin:0 auto;padding:26px 28px 10px;}
++  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);max-width:70ch;margin:6px 0 14px;}
++  .howto{background:var(--panel);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;max-width:74ch;margin:0 0 26px;}
++  h2{font-size:1.25rem;margin:34px 0 8px;}
++  .secdesc{color:var(--ink-soft);max-width:70ch;margin:0 0 16px;line-height:1.6;}
++
++  /* pipeline */
++  .pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:stage;margin:0 0 10px;}
++  @media (max-width:720px){.pipe{grid-template-columns:1fr;}}
++  .stage{position:relative;font:inherit;text-align:left;background:#fff;border:1px solid var(--rule-strong);padding:14px 14px 12px;cursor:pointer;}
++  .stage:first-child{border-radius:10px 0 0 10px;}
++  .stage:last-child{border-radius:0 10px 10px 0;}
++  @media (max-width:720px){.stage:first-child,.stage:last-child{border-radius:10px;}}
++  .stage+.stage{border-left:0;}
++  @media (max-width:720px){.stage+.stage{border-left:1px solid var(--rule-strong);margin-top:8px;}}
++  .stage:hover{border-color:var(--flame);}
++  .stage:hover+.stage{border-left-color:var(--flame);}
++  .stage:focus-visible{outline:3px solid var(--flame);outline-offset:2px;z-index:1;}
++  .stage[aria-expanded="true"]{background:rgba(199,62,29,.08);}
++  .stage .sn{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);display:block;margin:0 0 4px;}
++  .stage b{font-size:.95rem;display:block;}
++  .stage .gives{font-size:.78rem;color:var(--ink-soft);display:block;margin-top:4px;}
++  .pipe-explain{background:var(--panel);border:1px solid var(--rule-strong);border-radius:10px;padding:16px 20px;min-height:96px;margin:10px 0 4px;}
++  .pipe-explain h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 7px;}
++  .pipe-explain p{margin:0 0 9px;font-size:.94rem;line-height:1.6;}
++  .short{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;color:var(--ink-soft);margin:10px 0 0;}
++  .seen{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-soft);margin:6px 0 0;}
++
++  /* cite anatomy strip */
++  .citebar{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:0 0 6px;}
++  .citebar .cite{font-family:"Newsreader",Georgia,serif;font-size:1.35rem;display:flex;flex-wrap:wrap;gap:2px 6px;align-items:baseline;}
++  .citebit{font:inherit;background:linear-gradient(transparent 64%, rgba(199,62,29,.16) 64%);border:0;border-bottom:2px solid var(--flame);padding:0 2px;cursor:pointer;}
++  .citebit:hover{background:rgba(199,62,29,.14);}
++  .citebit:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
++  .citefb{font-size:.92rem;line-height:1.55;color:var(--ink-soft);margin:12px 0 0;min-height:40px;}
++
++  /* generic check cards */
++  .card{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px;}
++  .card .qno{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px;}
++  .card .q{font-size:1.02rem;line-height:1.55;margin:0 0 12px;}
++  .card .q i{font-family:"Newsreader",Georgia,serif;}
++  .opts{display:flex;flex-direction:column;gap:8px;}
++  .opt{font:inherit;font-size:.92rem;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:9px 13px;cursor:pointer;}
++  .opt:hover{border-color:var(--flame);}
++  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
++  .opt[disabled]{cursor:default;opacity:.9;}
++  .opt.good{border-color:#2e6b34;background:#e5efe0;}
++  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
++  .fb{margin:10px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 12px;}
++  .fb.good{border-left-color:#2e6b34;}
++  .fb.bad{border-left-color:var(--flame);}
++  .scoreline{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 14px;}
++  @media (prefers-reduced-motion: reduce){
++    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
++  }
++</style>
++</head>
++<body class="shell">
++<!--shell:masthead:start-->
++<a class="skip" href="#main">Skip to content</a>
++
++<header class="masthead">
++  <div class="wrap">
++    <div class="masthead-inner">
++      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
++        <span class="mark">The Question Method of Legal Research</span>
++        <span class="sub">Interactive Legal Research Modules</span>
++      </a>
++      <nav class="topnav" aria-label="Primary">
++        <a href="../../index.html">Home</a>
++        <details class="modmenu">
++          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
++          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
++            <div class="modmenu-cols">
++            <section class="modmenu-part">
++              <h2>Part I &middot; Foundational Legal Research</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap">
++                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
++                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
++                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
++                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
++                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
++                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
++                  <li><a href="../../modules/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
++                  <li><a href="../../modules/type-the-question/index.html">Type the Question</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/reading-secondary/index.html">How to Read a Secondary Source</a></li>
++                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
++                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
++                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/case-graph/index.html">Cases as a Web of Answers</a></li>
++                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
++                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/reading-statutes/index.html">How to Read a Statute</a></li>
++                  <li><a href="../../modules/finding-statutes/index.html">How to Find a Statute</a></li>
++                  <li><a href="../../modules/statute-practice/index.html">Statutes Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html" aria-current="page">How to Find a Regulation</a></li>
++                  <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
++                  <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
++                  <li><a href="../../modules/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
++                  <li><a href="../../modules/across-sources-practice/index.html">Across Sources Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
++                  <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
++                </ul>
++              </li>
++              </ul>
++            </section>
++            <section class="modmenu-part">
++              <h2>Part II &middot; Advanced Legal Research</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap">
++                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
++              </li>
++              </ul>
++            </section>
++            <section class="modmenu-part">
++              <h2>Appendices &amp; Glossary</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap"><a href="../../modules/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
++              <li class="modmenu-chap"><a href="../../modules/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
++              </ul>
++            </section>
++            </div>
++          </div>
++        </details>
++        <a href="../../about.html">About</a>
++      </nav>
++    </div>
++  </div>
++</header>
++<!--shell:masthead:end-->
++
++<main id="main">
++  <div class="pagewrap">
++    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-7/" style="color:var(--flame)">Ch.&nbsp;7</a> / How to Find a Regulation</p>
++    <h1>How to Find a Regulation</h1>
++    <p class="lede">The most reliable route into regulatory research is rarely a cold search of the CFR. This module builds the map: how a rule is made (and the documents each stage leaves for you), the entry routes your question type points to, and the checklist that confirms the text you found is still the law.</p>
++    <div class="howto"><b>How to use this:</b> three short sections — explore the pipeline, choose the entry route for three research questions, then match each currency tool to what it catches. Your work is collected locally for the record you can download at the end. <a href="../reading-regulations/index.html">How to Read a Regulation</a> is the companion: this module finds the text; that one reads it.</div>
++
++    <h2>1 · The rulemaking pipeline — every stage leaves you a document</h2>
++    <p class="secdesc">Click each stage. The shorthand to keep: <b>NPRM = intent · comments = objections · final-rule preamble = the agency's answers.</b></p>
++    <div class="pipe" role="group" aria-label="The four stages of rulemaking">
++      <button class="stage" data-stage="nprm" type="button" aria-expanded="false"><span class="sn">Stage 1 · Federal Register</span><b>Notice of Proposed Rulemaking</b><span class="gives">gives you: original intent</span></button>
++      <button class="stage" data-stage="comment" type="button" aria-expanded="false"><span class="sn">Stage 2</span><b>Public Comment</b><span class="gives">gives you: the objections</span></button>
++      <button class="stage" data-stage="final" type="button" aria-expanded="false"><span class="sn">Stage 3 · Federal Register</span><b>Final Rule</b><span class="gives">gives you: the agency's answers</span></button>
++      <button class="stage" data-stage="cfr" type="button" aria-expanded="false"><span class="sn">Stage 4 · CFR</span><b>Codification</b><span class="gives">gives you: the operative text</span></button>
++    </div>
++    <div class="pipe-explain">
++      <h3 id="pipe-title">Click a stage</h3>
++      <div id="pipe-body" role="status" aria-live="polite"><p>Each stage of rulemaking produces documents a researcher can use. Click through all four.</p></div>
++      <p class="seen" id="pipe-seen">Explored 0 of 4 stages</p>
++    </div>
++
++    <h2>2 · Reading the address — how a CFR citation is organized</h2>
++    <p class="secdesc">The CFR is organized into 50 subject titles. Click each piece of the book's example citation.</p>
++    <div class="citebar">
++      <p class="cite" aria-label="40 C.F.R. section 50.8, shown piece by piece">
++        <button class="citebit" data-bit="title" type="button">40</button>
++        <span>C.F.R.</span>
++        <button class="citebit" data-bit="part" type="button">§&nbsp;50</button>
++        <button class="citebit" data-bit="sec" type="button">.8</button>
++      </p>
++      <p class="citefb" id="citefb" role="status" aria-live="polite">Click a highlighted piece of the citation.</p>
++    </div>
++    <p class="secdesc" style="font-size:.9rem;">Between title and part sits the <b>chapter</b>, which identifies the agency. Two features of every CFR part matter later: the <b>authority note</b> (the statute empowering the agency) and the <b>source note</b> (the Federal Register document that created or last amended the part — the thread you pull to reach the preamble). See them in context in <a href="../reading-regulations/index.html">How to Read a Regulation</a>.</p>
++
++    <h2>3 · Pick the entry route</h2>
++    <p class="secdesc">Your question type points to the door. For each research question, choose the most reliable way in.</p>
++    <div id="routes"></div>
++
++    <h2>4 · The currency checklist — match the tool to what it catches</h2>
++    <p class="secdesc">A regulation you found is not a regulation you can rely on until you confirm it is current. Five tools, five different failure modes. Match them.</p>
++    <p class="scoreline" id="tally2"></p>
++    <div id="currency"></div>
++
++    <div id="export-slot"></div>
++  </div>
++</main>
++
++<!--shell:modnav:start-->
++<nav class="modnav" aria-label="Module navigation">
++  <p class="modnav-crumb">Part of <a href="../../ch-7/">Ch. 7 · Basic Regulations and Administrative Research</a></p>
++  <div class="modnav-links">
++    <span></span>
++    <a class="modnav-link next" href="../../modules/reading-regulations/index.html"><span class="dir">Next →</span><span class="t">How to Read a Regulation</span></a>
++  </div>
++</nav>
++<!--shell:modnav:end-->
++
++<!--shell:footer:start-->
++<footer class="foot">
++  <div class="wrap">
++    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
++    <span>Constantly in beta · built by Cas Laskowski</span>
++  </div>
++</footer>
++<!--shell:footer:end-->
++
++<script src="../../js/lib.js"></script>
++<script src="../../js/export-reflect.js"></script>
++<script>
++(function(){
++  "use strict";
++  var el = QM.el;
++
++  /* ---- 1: pipeline ---- */
++  var STAGES = {
++    nprm: ["Notice of Proposed Rulemaking (NPRM)",
++      "<p>The agency publishes a proposed rule in the Federal Register, explaining what it intends to do and why \u2014 the proposed text plus a preamble laying out the agency's reasoning.</p><p><b>For the researcher:</b> the NPRM shows original intent, and it opens the public comment period.</p>"],
++    comment: ["Public comment",
++      "<p>Stakeholders file comments on the proposal. The agency must consider them before finalizing.</p><p><b>For the researcher:</b> the comments show what the regulated world objected to \u2014 useful for understanding why the final rule reads the way it does.</p>"],
++    final: ["Final rule",
++      "<p>The agency publishes the final rule in the Federal Register: binding text, an effective date, and a detailed preamble responding to significant comments.</p><p><b>For the researcher:</b> that preamble is often your single best interpretive resource \u2014 the regulatory equivalent of legislative history. Overlooking it is the most common way researchers misread what a regulation requires.</p>"],
++    cfr: ["Codification",
++      "<p>The final rule is codified into the Code of Federal Regulations, organized by subject into 50 titles.</p><p><b>For the researcher:</b> the CFR (and the daily-updated eCFR) is the official home of the operative text \u2014 but the text alone often cannot answer your question. The part's source note cites the Federal Register document behind it: pull that thread to reach the preamble.</p>"]
++  };
++  var pSeen = {}, pTitle = document.getElementById("pipe-title"),
++      pBody = document.getElementById("pipe-body"), pCount = document.getElementById("pipe-seen");
++  document.querySelectorAll(".stage").forEach(function (b) {
++    b.addEventListener("click", function () {
++      document.querySelectorAll(".stage").forEach(function (x) { x.setAttribute("aria-expanded", "false"); });
++      b.setAttribute("aria-expanded", "true");
++      var k = b.getAttribute("data-stage"), S = STAGES[k];
++      pTitle.textContent = S[0];
++      pBody.innerHTML = S[1];
++      if (!pSeen[k]) {
++        pSeen[k] = true;
++        if (window.ExportReflect) ExportReflect.log("Explored pipeline stage", S[0]);
++      }
++      pCount.textContent = "Explored " + Object.keys(pSeen).length + " of 4 stages";
++    });
++  });
++
++  /* ---- 2: citation anatomy ---- */
++  var BITS = {
++    title: "\u201c40\u201d is the title \u2014 one of 50 subject titles. Title 40 is Protection of Environment, the EPA's home.",
++    part:  "\u201cPart 50\u201d groups related sections \u2014 here, the National Ambient Air Quality Standards. Between title and part, the chapter identifies the agency.",
++    sec:   "\u201c.8\u201d is the section \u2014 the operative rule itself (here, the carbon monoxide standards). Sections are what you cite."
++  };
++  var citefb = document.getElementById("citefb"), citeSeen = {};
++  document.querySelectorAll(".citebit").forEach(function (b) {
++    b.addEventListener("click", function () {
++      var k = b.getAttribute("data-bit");
++      QM.announce(citefb, BITS[k]);
++      if (!citeSeen[k]) {
++        citeSeen[k] = true;
++        if (window.ExportReflect) ExportReflect.log("Read the citation", k);
++      }
++    });
++  });
++
++  /* ---- shared check-card engine ---- */
++  function checkCard(host, item, n, of, logLabel, onDone) {
++    var card = el("div", { class: "card" }, [
++      el("p", { class: "qno" }, [item.head + " " + n + " of " + of]),
++      el("p", { class: "q", html: item.q })
++    ]);
++    var wrap = el("div", { class: "opts", role: "group", "aria-label": "Answer choices" });
++    var fb = QM.live(el("div", { class: "fb" }));
++    fb.hidden = true;
++    var done = false;
++    item.opts.forEach(function (o, i) {
++      var b = el("button", { class: "opt", type: "button" }, [o.t]);
++      b.addEventListener("click", function () {
++        if (done) return;
++        done = true;
++        wrap.querySelectorAll(".opt").forEach(function (x, xi) {
++          x.disabled = true;
++          if (item.opts[xi].good) x.classList.add("good");
++          else if (xi === i) x.classList.add("bad");
++        });
++        fb.hidden = false;
++        fb.classList.add(o.good ? "good" : "bad");
++        QM.announce(fb, (o.good ? "Right. " : "Not quite. ") + o.fb);
++        if (window.ExportReflect) ExportReflect.log(logLabel + " " + n,
++          o.good ? "correct" : "incorrect \u2014 chose: " + o.t);
++        if (onDone) onDone(o.good);
++      });
++      wrap.appendChild(b);
++    });
++    card.appendChild(wrap); card.appendChild(fb);
++    host.appendChild(card);
++  }
++
++  /* ---- 3: entry routes ---- */
++  var ROUTES = [
++    { head: "Question", q: "<i>\u201cThe statute requires \u2018reasonable accommodation\u2019 \u2014 what does compliance actually look like?\u201d</i> You have the annotated statute open in front of you. What is the most reliable way into the regulations?",
++      opts: [
++        { t: "Follow the annotated code's \u201cImplementing Regulations\u201d note to the CFR part", good: true,
++          fb: "A focusing question that begins with a statute is answered by following the annotation straight to the relevant CFR part \u2014 no cold search required." },
++        { t: "Run a keyword search across the whole CFR", good: false,
++          fb: "A cold CFR search is the least reliable route when you already hold the statute \u2014 the annotated code has already made the connection for you." },
++        { t: "Read today's Federal Register", good: false,
++          fb: "The daily Federal Register is for recent and proposed action, not for locating the existing rules that implement a statute you hold." },
++        { t: "Browse the agency's press releases", good: false,
++          fb: "Agency sites can help, but press releases are not the regulations. The annotation takes you to the operative text directly." } ] },
++    { head: "Question", q: "<i>\u201cWhat does the agency mean by \u2018service animal\u2019?\u201d</i> \u2014 a term the statute delegated to the agency to define. Where does the answer live?",
++      opts: [
++        { t: "The regulation's definitions section, in the relevant CFR part", good: true,
++          fb: "When a statute delegates a term to an agency, the agency's regulatory definition controls. A definitional question about a delegated term is answered by the regulation's definitions section." },
++        { t: "A legal dictionary", good: false,
++          fb: "A dictionary gives a working definition \u2014 fine for orientation, but here precision is critical and the agency's own definition is the law." },
++        { t: "The daily Federal Register", good: false,
++          fb: "The FR is where the definition was once proposed and adopted, but the current operative definition is codified in the CFR part's definitions section." },
++        { t: "A treatise on administrative law", good: false,
++          fb: "A treatise explains the field's structure; it does not supply the controlling text of a delegated definition. Go to the regulation." } ] },
++    { head: "Question", q: "<i>\u201cIs the agency planning to change this rule?\u201d</i> You have the current CFR text. Where do you look for what is coming?",
++      opts: [
++        { t: "The Federal Register (and the Unified Regulatory Agenda)", good: true,
++          fb: "Proposed rules, interim final rules, and the twice-yearly Unified Regulatory Agenda live in the Federal Register world \u2014 that is where regulatory futures are announced." },
++        { t: "The annual print CFR", good: false,
++          fb: "The annual CFR is a snapshot of what is codified \u2014 it cannot show you what is merely proposed." },
++        { t: "The List of CFR Sections Affected", good: false,
++          fb: "The LSA records changes already made to CFR sections since the annual edition \u2014 it looks backward from the codification, not forward to proposals." },
++        { t: "A citator (KeyCite or Shepard's)", good: false,
++          fb: "Citators track how courts have treated the regulation \u2014 invaluable for validity, but not where proposed changes are announced." } ] }
++  ];
++  var routesHost = document.getElementById("routes");
++  ROUTES.forEach(function (item, i) { checkCard(routesHost, item, i + 1, ROUTES.length, "Entry route"); });
++
++  /* ---- 4: currency checklist matching ---- */
++  var TOOLS = ["The eCFR", "The List of CFR Sections Affected (LSA)", "The Federal Register",
++               "A citator (KeyCite or Shepard's)", "The agency's website"];
++  function toolOpts(goodIdx, fbGood, fbWrong) {
++    return TOOLS.map(function (t, i) {
++      return { t: t, good: i === goodIdx, fb: i === goodIdx ? fbGood : fbWrong[i] };
++    });
++  }
++  var CURRENCY = [
++    { head: "Catch", q: "You are working from the annual print CFR edition. <b>Which tool catches amendments made since that edition went to press?</b>",
++      opts: toolOpts(1,
++        "The LSA is the monthly record of exactly that: which CFR sections have changed since the last annual update.",
++        ["The eCFR would work if you were online \u2014 but the tool built to reconcile a print annual edition is the LSA.",
++         "", "The FR holds the amending documents, but the LSA is the index that tells you which sections were touched.",
++         "A citator tracks court treatment, not intervening amendments.",
++         "Agency sites are inconsistent about amendment history; the LSA is the systematic record."]) },
++    { head: "Catch", q: "A regulation still appears, word for word, in the CFR text \u2014 but a court struck it down last year. <b>Which tool catches that?</b>",
++      opts: toolOpts(3,
++        "Only a citator surfaces judicial treatment. A regulation invalidated by a court is no longer enforceable even though it still appears in the CFR text \u2014 this is the trap the citator exists to catch.",
++        ["The eCFR shows current codified text \u2014 and an invalidated rule can still sit in it.",
++         "The LSA tracks amendments to the text, not court decisions about it.",
++         "The FR would show an agency's response, if any \u2014 but the invalidation itself lives in case law.",
++         "", "The agency may note it eventually, but the systematic check is the citator."]) },
++    { head: "Catch", q: "You need the most current codified text available for free, with a note showing the date it is updated through. <b>Which tool?</b>",
++      opts: toolOpts(0,
++        "The eCFR is updated daily and carries an updated-through date on each title \u2014 the most current freely available source of codified text.",
++        ["", "The LSA supplements the annual edition; the eCFR simply is current.",
++         "The FR is the daily stream of documents, not consolidated codified text.",
++         "Citators judge validity, not currency of text.",
++         "Agency postings vary; the eCFR is the systematic current text."]) },
++    { head: "Catch", q: "The rule's text has not changed, but the agency has posted a compliance bulletin that changes how it enforces the rule in practice. <b>Which tool catches that?</b>",
++      opts: toolOpts(4,
++        "Agency websites carry the guidance, bulletins, and enforcement-policy changes that can shift how a regulation operates before its text is formally amended.",
++        ["The eCFR only shows the text \u2014 which, here, has not changed.",
++         "The LSA tracks text changes; there are none.",
++         "Some guidance appears in the FR, but compliance bulletins typically live on the agency's own site.",
++         "A citator tracks courts, not agency practice.", ""]) },
++    { head: "Catch", q: "You want to know whether a proposed or interim rule is already in motion that would affect your section. <b>Which tool?</b>",
++      opts: toolOpts(2,
++        "The Federal Register carries proposed rules, interim final rules, and final rules \u2014 plus the Unified Regulatory Agenda listing what agencies plan to do.",
++        ["The eCFR shows what is codified now, not what is proposed.",
++         "The LSA looks backward at completed changes.",
++         "", "Citators track courts, not rulemaking in motion.",
++         "The agency site may mention it, but the official record of proposals is the FR."]) }
++  ];
++  var curHost = document.getElementById("currency"),
++      tally2 = document.getElementById("tally2"),
++      cRight = 0, cDone = 0;
++  CURRENCY.forEach(function (item, i) {
++    checkCard(curHost, item, i + 1, CURRENCY.length, "Currency tool", function (ok) {
++      cDone++; if (ok) cRight++;
++      tally2.textContent = cDone + " of " + CURRENCY.length + " matched \u00b7 " + cRight + " correct";
++      if (cDone === CURRENCY.length && window.ExportReflect)
++        ExportReflect.log("Currency checklist final", cRight + " / " + CURRENCY.length);
++    });
++  });
++
++  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
++    module: "How to Find a Regulation",
++    chapter: "Chapter 7 \u2014 Basic Regulations and Administrative Research",
++    intro: "Your exploration and answers are collected locally as you work. Add a reflection and download the record to submit.",
++    prompts: [
++      "The book's shorthand is: NPRM = intent, comments = objections, final-rule preamble = the agency's answers. Which of the three do you expect to reach for first, and why?",
++      "Write the research question that would send you to the source note of a CFR part."
++    ]
++  });
++})();
++</script>
++</body>
++</html>
+diff --git a/modules/finding-statutes/index.html b/modules/finding-statutes/index.html
+index 9724c58..41f7f70 100644
+--- a/modules/finding-statutes/index.html
++++ b/modules/finding-statutes/index.html
+@@ -130,6 +130,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -147,6 +148,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/glossary-flashcards/index.html b/modules/glossary-flashcards/index.html
+index cf0b488..5342a16 100644
+--- a/modules/glossary-flashcards/index.html
++++ b/modules/glossary-flashcards/index.html
+@@ -120,6 +120,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -137,6 +138,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+@@ -216,6 +219,13 @@
+     </div>
+     <p class="kbd">Keyboard: <kbd>Space</kbd> flip &middot; <kbd>&larr;</kbd> again &middot; <kbd>&rarr;</kbd> got it</p>
+ 
++    <div class="filerow" style="border-top:1px dashed var(--rule-strong);flex-direction:column;align-items:stretch;">
++      <label for="fc-reflect" style="font-weight:600;font-size:.9rem;">Reflection (for your study record)</label>
++      <textarea id="fc-reflect" rows="3" style="font:inherit;font-size:.9rem;padding:9px 11px;border:1.5px solid var(--rule-strong);border-radius:8px;background:#fff;" placeholder="Which terms keep coming back, and where in the book will you revisit them?"></textarea>
++      <div><button class="btn" id="recordBtn" type="button">&#8595; Download study record (.txt) &mdash; submit this</button></div>
++      <span class="filenote">The study record is a readable summary of your work &mdash; retired terms, the terms you marked &ldquo;Again&rdquo; most, and your reflection &mdash; generated on your device for you to turn in.</span>
++    </div>
++
+     <div class="filerow">
+       <button class="btn" id="exportBtn" type="button">&#8595; Download progress (.json)</button>
+       <label class="btn" for="importFile">&#8593; Load a progress file<input type="file" id="importFile" accept=".json,application/json"></label>
+@@ -294,7 +304,7 @@
+     if (shuffled) for (var i = order.length - 1; i > 0; i--) {
+       var j = Math.floor(Math.random() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t;
+     }
+-    return { v: 1, order: order, pos: 0, got: {}, again: {}, saved: new Date().toISOString() };
++    return { v: 1, order: order, pos: 0, got: {}, again: {}, restarts: 0, saved: new Date().toISOString() };
+   }
+   function load() {
+     try {
+@@ -382,8 +392,41 @@
+     state.pos = 0; showingDef = false; save(); render("Deck shuffled \u2014 " + rem.length + " cards remaining");
+   });
+   document.getElementById("restartBtn").addEventListener("click", function () {
+-    if (!window.confirm("Restart the deck? Your got-it marks will be cleared (the Again counts are kept in your downloaded files only).")) return;
+-    state = freshState(true); showingDef = false; save(); render("Deck restarted");
++    if (!window.confirm("Restart the deck? Your got-it marks will be cleared. Again counts and the restart tally are kept for your study record.")) return;
++    var keepAgain = state.again, restarts = (state.restarts || 0) + 1;
++    state = freshState(true); state.again = keepAgain; state.restarts = restarts;
++    showingDef = false; save(); render("Deck restarted");
++  });
++
++  /* ---- the turn-in study record (.txt) ---- */
++  document.getElementById("recordBtn").addEventListener("click", function () {
++    var bar = new Array(63).join("=");
++    var gotN = Object.keys(state.got).length;
++    var hard = Object.keys(state.again).map(function (k) {
++      return { t: TERMS[+k][0], n: state.again[k] };
++    }).sort(function (a, b) { return b.n - a.n; }).slice(0, 8);
++    var L = [bar, "GLOSSARY FLASHCARDS \u2014 STUDY RECORD", bar,
++      "Date: " + new Date().toLocaleString(), "",
++      "Terms retired this pass: " + gotN + " of " + TERMS.length,
++      "Deck restarts (additional passes): " + (state.restarts || 0), ""];
++    L.push("TERMS MARKED \u201cAGAIN\u201d MOST (revisit these in the chapters)");
++    L.push(new Array(43).join("-"));
++    if (!hard.length) L.push("  (none \u2014 every term retired on first sight)");
++    hard.forEach(function (h) { L.push("  " + h.t + "  \u2014 marked Again " + h.n + (h.n === 1 ? " time" : " times")); });
++    L.push("");
++    var refl = document.getElementById("fc-reflect").value.trim();
++    L.push("REFLECTION");
++    L.push(new Array(43).join("-"));
++    L.push(refl ? refl : "  (no reflection entered)");
++    L.push("");
++    L.push("Generated locally in the student's browser \u2014 no data was sent anywhere.");
++    var blob = new Blob([L.join("\n")], { type: "text/plain" });
++    var a = document.createElement("a");
++    a.href = URL.createObjectURL(blob);
++    a.download = "glossary-study-record.txt";
++    document.body.appendChild(a); a.click();
++    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 0);
++    QM.announce(announce, "Study record downloaded");
+   });
+ 
+   /* ---- download / re-load progress (survives cleared browser data) ---- */
+diff --git a/modules/mixed-review/index.html b/modules/mixed-review/index.html
+new file mode 100644
+index 0000000..6a194fa
+--- /dev/null
++++ b/modules/mixed-review/index.html
+@@ -0,0 +1,435 @@
++<!doctype html>
++<html lang="en">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<title>Mixed Review — The Diagnostic Moves — Ch. 9 · Narrowing and Closing Out Your Research</title>
++<meta name="description" content="Interleaved review across Chapters 1–9: classify the question, pick the source, rank the authority, spot the compound answer — shuffled so each item asks you to first recognize which skill it needs.">
++<!--shell:head:start-->
++<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="stylesheet" href="../../assets/firebrand.css">
++<!--shell:head:end-->
++<style>
++  .pagewrap{max-width:820px;margin:0 auto;padding:26px 28px 10px;}
++  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);max-width:70ch;margin:6px 0 14px;}
++  .howto{background:var(--panel);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;max-width:74ch;margin:0 0 22px;}
++  .scorebar{display:flex;align-items:center;gap:14px;margin:0 0 18px;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft);}
++  .prog{flex:1;height:6px;background:var(--paper-2);border-radius:3px;overflow:hidden;}
++  .prog span{display:block;height:100%;width:0;background:var(--flame);transition:width .3s;}
++  .reshuffle{font:inherit;font-size:.78rem;background:var(--panel);border:1px solid var(--rule-strong);border-radius:6px;padding:5px 10px;cursor:pointer;color:var(--ink);}
++  .reshuffle:hover{border-color:var(--flame);}
++  .reshuffle:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
++
++  .card{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:18px 20px;margin:0 0 16px;}
++  .card .qno{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 6px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
++  .card .skill{color:var(--flame);}
++  .card .q{font-size:1rem;line-height:1.55;margin:0 0 12px;}
++  .card .q i{font-family:"Newsreader",Georgia,serif;}
++  .opts{display:flex;flex-direction:column;gap:8px;}
++  .opt{font:inherit;font-size:.92rem;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:9px 13px;cursor:pointer;}
++  .opt:hover{border-color:var(--flame);}
++  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
++  .opt[disabled]{cursor:default;opacity:.9;}
++  .opt.good{border-color:#2e6b34;background:#e5efe0;}
++  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
++  .fb{margin:10px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 12px;}
++  .fb.good{border-left-color:#2e6b34;}
++  .fb.bad{border-left-color:var(--flame);}
++  .donebox{background:var(--panel);border:1px solid var(--rule-strong);border-radius:10px;padding:20px 22px;margin:6px 0 20px;display:none;}
++  .donebox.show{display:block;}
++  .donebox .big{font-family:var(--mono);font-size:1.4rem;color:var(--flame);margin:2px 0 8px;}
++  @media (prefers-reduced-motion: reduce){
++    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
++  }
++</style>
++</head>
++<body class="shell">
++<!--shell:masthead:start-->
++<a class="skip" href="#main">Skip to content</a>
++
++<header class="masthead">
++  <div class="wrap">
++    <div class="masthead-inner">
++      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
++        <span class="mark">The Question Method of Legal Research</span>
++        <span class="sub">Interactive Legal Research Modules</span>
++      </a>
++      <nav class="topnav" aria-label="Primary">
++        <a href="../../index.html">Home</a>
++        <details class="modmenu">
++          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
++          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
++            <div class="modmenu-cols">
++            <section class="modmenu-part">
++              <h2>Part I &middot; Foundational Legal Research</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap">
++                <a href="../../ch-1/"><span class="cn">1</span> Foundations of Legal Authority</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/sources/index.html">How Law Is Made — A 1L Primer</a></li>
++                  <li><a href="../../modules/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
++                  <li><a href="../../modules/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-2/"><span class="cn">2</span> Introduction to Legal Research Platforms</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/database-interface/index.html">Database Interface Explorer</a></li>
++                  <li><a href="../../modules/using-databases/index.html">Using Databases for Legal Research</a></li>
++                  <li><a href="../../modules/database-practice/index.html">Database Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-3/"><span class="cn">3</span> The Question Method of Legal Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/question-transformation/index.html">Reverse-Engineering the Question</a></li>
++                  <li><a href="../../modules/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
++                  <li><a href="../../modules/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
++                  <li><a href="../../modules/type-the-question/index.html">Type the Question</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-4/"><span class="cn">4</span> Secondary Sources Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/reading-secondary/index.html">How to Read a Secondary Source</a></li>
++                  <li><a href="../../modules/secondary-types/index.html">The Types of Secondary Sources</a></li>
++                  <li><a href="../../modules/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
++                  <li><a href="../../modules/secondary-practice/index.html">Secondary Sources Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-5/"><span class="cn">5</span> Case Law Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/case-graph/index.html">Cases as a Web of Answers</a></li>
++                  <li><a href="../../modules/reading-cases/index.html">How to Read a Case</a></li>
++                  <li><a href="../../modules/case-practice/index.html">Case Law Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-6/"><span class="cn">6</span> Statutes Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/reading-statutes/index.html">How to Read a Statute</a></li>
++                  <li><a href="../../modules/finding-statutes/index.html">How to Find a Statute</a></li>
++                  <li><a href="../../modules/statute-practice/index.html">Statutes Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
++                  <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
++                  <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-8/"><span class="cn">8</span> Researching Across Sources</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
++                  <li><a href="../../modules/research-hypothesis/index.html">Following a Research Hypothesis</a></li>
++                  <li><a href="../../modules/across-sources-practice/index.html">Across Sources Practice</a></li>
++                </ul>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-9/"><span class="cn">9</span> Narrowing and Closing Out Your Research</a>
++                <ul class="modmenu-mods">
++                  <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
++                  <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html" aria-current="page">Mixed Review — The Diagnostic Moves</a></li>
++                </ul>
++              </li>
++              </ul>
++            </section>
++            <section class="modmenu-part">
++              <h2>Part II &middot; Advanced Legal Research</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap">
++                <a href="../../ch-10/"><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-11/"><span class="cn">11</span> Dockets and Court Document Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-12/"><span class="cn">12</span> Legislative History Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-13/"><span class="cn">13</span> Advanced Administrative Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-14/"><span class="cn">14</span> Practice-Specific Research Strategies</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-15/"><span class="cn">15</span> GenAI and Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-16/"><span class="cn">16</span> The NextGen Bar Exam and Legal Research</a>
++              </li>
++              <li class="modmenu-chap">
++                <a href="../../ch-17/"><span class="cn">17</span> Research for Legal Scholarship</a>
++              </li>
++              </ul>
++            </section>
++            <section class="modmenu-part">
++              <h2>Appendices &amp; Glossary</h2>
++              <ul class="modmenu-chaps">
++              <li class="modmenu-chap"><a href="../../modules/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
++              <li class="modmenu-chap"><a href="../../modules/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
++              <li class="modmenu-chap"><a href="../../modules/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
++              </ul>
++            </section>
++            </div>
++          </div>
++        </details>
++        <a href="../../about.html">About</a>
++      </nav>
++    </div>
++  </div>
++</header>
++<!--shell:masthead:end-->
++
++<main id="main">
++  <div class="pagewrap">
++    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-9/" style="color:var(--flame)">Ch.&nbsp;9</a> / Mixed Review</p>
++    <h1>Mixed Review — The Diagnostic Moves</h1>
++    <p class="lede">Chapter drills tell you which skill to use before you start; practice never does. This deck interleaves the Part I diagnostic moves — classify the question, pick the source, rank the authority, spot the compound answer, fix the search — shuffled, so the first thing each item asks of you is recognizing <em>which move it needs</em>.</p>
++    <div class="howto"><b>How to use this:</b> the skill tag on each card stays hidden until you answer. The deck reshuffles on every visit; come back for spaced passes. Miss one? Its feedback names the chapter to revisit.</div>
++
++    <div class="scorebar"><span id="score">0 answered</span><div class="prog"><span id="progfill"></span></div><span id="tally"></span><button class="reshuffle" id="reshuffle" type="button">Reshuffle deck</button></div>
++    <div id="deck"></div>
++    <div class="donebox" id="done" role="status" aria-live="polite"></div>
++
++    <div id="export-slot"></div>
++  </div>
++</main>
++
++<!--shell:modnav:start-->
++<nav class="modnav" aria-label="Module navigation">
++  <p class="modnav-crumb">Part of <a href="../../ch-9/">Ch. 9 · Narrowing and Closing Out Your Research</a></p>
++  <div class="modnav-links">
++    <a class="modnav-link prev" href="../../modules/diagnose-the-broken-search/index.html"><span class="dir">← Previous</span><span class="t">Diagnose the Broken Search</span></a>
++    <a class="modnav-link next" href="../../ch-10/"><span class="dir">Next chapter →</span><span class="t">Ch. 10 · Ethics and Professional Responsibility in Legal Research</span></a>
++  </div>
++</nav>
++<!--shell:modnav:end-->
++
++<!--shell:footer:start-->
++<footer class="foot">
++  <div class="wrap">
++    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
++    <span>Constantly in beta · built by Cas Laskowski</span>
++  </div>
++</footer>
++<!--shell:footer:end-->
++
++<script src="../../js/lib.js"></script>
++<script src="../../js/research-log.js"></script>
++<script src="../../js/export-reflect.js"></script>
++<script>
++(function(){
++  "use strict";
++  var el = QM.el;
++
++  /* skill: shown only after answering — interleaving means recognizing the move.
++     ch: the chapter to revisit, named in feedback. */
++  var BANK = [
++    { skill: "Classify the question \u00b7 Ch. 3",
++      q: "<i>\u201cWhat does \u2018easement\u2019 mean?\u201d</i> \u2014 what type of question is this?",
++      opts: [
++        { t: "Definitional", good: true, fb: "\u201cWhat does X mean\u201d is the definitional tell. A dictionary supplies the working definition and the vocabulary for the next question. (Ch. 3)" },
++        { t: "Exploratory", good: false, fb: "Exploratory asks what the landscape looks like; this asks what one word means \u2014 definitional. (Ch. 3)" },
++        { t: "Focusing", good: false, fb: "Focusing asks for the governing rule or test. No rule is in play yet \u2014 just a word. (Ch. 3)" },
++        { t: "Application", good: false, fb: "No facts, no rule to apply \u2014 the question is about a word's meaning. (Ch. 3)" } ] },
++    { skill: "Classify the question \u00b7 Ch. 3",
++      q: "<i>\u201cDoes leaving a ladder against the house overnight satisfy the statute's requirement to \u2018secure\u2019 equipment?\u201d</i> \u2014 what type?",
++      opts: [
++        { t: "Application", good: true, fb: "A known requirement plus specific facts (a ladder, overnight, against the house) \u2014 rule-meets-facts is the application tell. (Ch. 3)" },
++        { t: "Definitional", good: false, fb: "Close \u2014 \u2018secure\u2019 needs meaning \u2014 but the question as written asks whether these facts satisfy it: application, which may spawn a definitional sub-question. (Ch. 3)" },
++        { t: "Exploratory", good: false, fb: "The landscape is already known: a statute with a requirement. The question is how it operates on facts. (Ch. 3)" },
++        { t: "Focusing", good: false, fb: "The rule is in hand; the open issue is these facts. (Ch. 3)" } ] },
++    { skill: "Pick the source \u00b7 Ch. 3\u20134",
++      q: "You know nothing about water rights and need to get oriented. First source?",
++      opts: [
++        { t: "A legal encyclopedia or a general search", good: true, fb: "No-clue exploratory questions start at the encyclopedia: the landscape plus the terms of art your later questions will need. (Ch. 3\u20134)" },
++        { t: "The state's water code, read front to back", good: false, fb: "Primary authority is where you are headed, not where a no-clue question starts \u2014 you don't yet have the vocabulary to search it. (Ch. 4)" },
++        { t: "A citator", good: false, fb: "A citator checks the treatment of an authority you already have. You have none yet. (Ch. 5)" },
++        { t: "A 50-state survey", good: false, fb: "Survey tools answer how-many-jurisdictions questions. Yours is orientation. (Ch. 4)" } ] },
++    { skill: "Pick the source \u00b7 Ch. 4",
++      q: "You know the area well and need the leading treatment of its structure \u2014 elements, tests, and where the debates lie. Which source?",
++      opts: [
++        { t: "A treatise", good: true, fb: "Foundational exploratory questions want the treatise: the source organized to give a field's structure. (Ch. 4)" },
++        { t: "An encyclopedia", good: false, fb: "The encyclopedia orients a no-clue question; you are past orientation and need depth and structure. (Ch. 4)" },
++        { t: "A headnote", good: false, fb: "A headnote summarizes one point in one opinion \u2014 a finding tool, not a map of the field. (Ch. 5)" },
++        { t: "The Federal Register", good: false, fb: "The FR is the daily record of rulemaking \u2014 wrong shelf entirely for doctrinal structure. (Ch. 7)" } ] },
++    { skill: "Rank the authority \u00b7 Ch. 1",
++      q: "Your matter is in your state's trial court. Which of these must that court follow?",
++      opts: [
++        { t: "A decision of your state's highest court", good: true, fb: "Binding authority: decisions of higher courts in the court's own system. The rest is at most persuasive. (Ch. 1)" },
++        { t: "A decision of a neighboring state's highest court", good: false, fb: "Another sovereign's law \u2014 persuasive, never binding, however eminent the court. (Ch. 1)" },
++        { t: "A Restatement section", good: false, fb: "Among the most persuasive secondary authorities \u2014 but secondary: it becomes binding only if your courts adopt it. (Ch. 1)" },
++        { t: "A treatise passage the judge once cited", good: false, fb: "Persuasive at most. A citation in one opinion does not convert a secondary source into law. (Ch. 1)" } ] },
++    { skill: "Rank the authority \u00b7 Ch. 1 / Ch. 5",
++      q: "An opinion resolves the appeal on one ground, then adds: \u201cwe note that had the contract been oral, the result would likely differ.\u201d What is that added sentence?",
++      opts: [
++        { t: "Dictum \u2014 persuasive at most, never binding", good: true, fb: "A statement not necessary to the decision is dictum. Only the holding \u2014 the resolution necessary to the judgment \u2014 carries precedential weight. (Ch. 1, Ch. 5)" },
++        { t: "The holding", good: false, fb: "The holding is the court's resolution of the issue necessary to its decision; a had-it-been-otherwise aside is not necessary to anything. (Ch. 5)" },
++        { t: "A headnote", good: false, fb: "Headnotes are editor-written summaries added by the publisher \u2014 this sentence is the court's own text, just non-essential. (Ch. 5)" },
++        { t: "Binding authority on oral contracts", good: false, fb: "Exactly the trap: it reads like a rule, but it decided nothing and binds no one. (Ch. 5)" } ] },
++    { skill: "Statutes first \u00b7 Ch. 6",
++      q: "A friend insists \u201cthe common law governs this, just find cases.\u201d Before case-hunting, the disciplined first check is:",
++      opts: [
++        { t: "Whether a statute has occupied or modified the area", good: true, fb: "Legislatures overwrite common law constantly. Checking the code first prevents building an analysis on rules a statute has displaced. (Ch. 6)" },
++        { t: "Whether any case is less than five years old", good: false, fb: "Recency matters later; the threshold question is which body of law governs at all. (Ch. 6)" },
++        { t: "Whether a law review article agrees", good: false, fb: "Commentary can't settle what governs \u2014 the code can. (Ch. 6)" },
++        { t: "Whether the jurisdiction publishes an annotated code", good: false, fb: "It almost certainly does \u2014 and that's the tool for the real first check: has a statute spoken? (Ch. 6)" } ] },
++    { skill: "Scoped answers \u00b7 Ch. 3",
++      q: "Your question: <i>\u201cDoes our state require drivers to report accidents to the police?\u201d</i> Which recorded answer is properly scoped to it?",
++      opts: [
++        { t: "\u201cYes \u2014 the vehicle code requires a report when damage or injury passes a threshold.\u201d", good: true, fb: "Scoped: it answers the question asked and nothing more. The exceptions, deadlines, and penalties are the next questions, not this answer. (Ch. 3)" },
++        { t: "\u201cYes \u2014 and the deadline is short, penalties include license suspension, insurers must also be notified, and there's an exception for private property.\u201d", good: false, fb: "A compound answer \u2014 it reaches past its question into four later ones. Each of those items should enter the log when its own question is asked. (Ch. 3)" },
++        { t: "\u201cAccident law is complicated and fact-dependent.\u201d", good: false, fb: "Not an answer at all \u2014 no source, no rule, nothing the outline can hold. (Ch. 3)" },
++        { t: "\u201cProbably \u2014 most states do.\u201d", good: false, fb: "The question asked about your state; a most-states answer is a survey answer to a different question. (Ch. 3)" } ] },
++    { skill: "Next question \u00b7 Ch. 3",
++      q: "Logged answer: <i>\u201cThe statute requires landlords to return the deposit within a reasonable time.\u201d</i> Which next question follows from that answer?",
++      opts: [
++        { t: "\u201cHow is \u2018a reasonable time\u2019 measured under this statute?\u201d", good: true, fb: "The answer surfaced an undefined standard; the next question interrogates it. Answer-driven chaining is the method's engine. (Ch. 3)" },
++        { t: "\u201cWhat damages can the tenant get for retaliatory eviction?\u201d", good: false, fb: "A leap \u2014 nothing in the logged answer raised retaliation. Compression skips the questions in between. (Ch. 3)" },
++        { t: "\u201cIs the deposit-return rule preempted by federal banking law?\u201d", good: false, fb: "A term (preemption) and a doctrine the research hasn't surfaced \u2014 asked out of discovery order. (Ch. 3)" },
++        { t: "\u201cHow much was this tenant's deposit?\u201d", good: false, fb: "A factual/investigative question for the client file, not a research question the law answers. (Ch. 3)" } ] },
++    { skill: "Read the source \u00b7 Ch. 4 / App. A",
++      q: "A treatise paragraph nails your issue, and its footnote lists six cases. The method's move is:",
++      opts: [
++        { t: "Read the one case that answers the question you are holding; log the rest as later questions with citations noted", good: true, fb: "Footnotes are mined in the order your questions dictate \u2014 one case now, five logged for their own turns. (Ch. 4, App. A)" },
++        { t: "Read all six before continuing", good: false, fb: "Reading six cases to answer one question is how afternoons vanish. The question sets the reading order. (App. A)" },
++        { t: "Cite the treatise itself and move on", good: false, fb: "With narrow exceptions you cite the primary authority the treatise points to, not the treatise. (Ch. 4)" },
++        { t: "Ignore the footnote \u2014 the narrative already answered the question", good: false, fb: "The narrative tells you what the law is; the footnotes tell you where to confirm it. Verification is not optional. (App. A)" } ] },
++    { skill: "Regulations \u00b7 Ch. 7",
++      q: "The CFR section's bare text won't tell you <em>why</em> the agency chose its rule. The thread to pull is:",
++      opts: [
++        { t: "The source note \u2014 it cites the Federal Register document whose preamble explains the rule", good: true, fb: "The source note names the FR document that created or last amended the part; its preamble is the regulatory equivalent of legislative history. (Ch. 7)" },
++        { t: "The authority note", good: false, fb: "The authority note cites the empowering statute \u2014 essential for a stays-within-the-grant question, but not the agency's reasoning. (Ch. 7)" },
++        { t: "The LSA", good: false, fb: "The LSA tracks which sections changed since the annual edition \u2014 currency, not reasoning. (Ch. 7)" },
++        { t: "The table of contents of the CFR title", good: false, fb: "A finding aid for locating text, not for explaining it. (Ch. 7)" } ] },
++    { skill: "Citators \u00b7 Ch. 5",
++      q: "Your key case comes back from the citator with a negative-treatment flag. The professional response is:",
++      opts: [
++        { t: "Read the citing opinion and ask whether the treatment touches the point you're citing for", good: true, fb: "A flag is a prompt to investigate, not a verdict. A case can be overruled on one point and perfectly good on yours. (Ch. 5)" },
++        { t: "Drop the case immediately", good: false, fb: "Overreaction \u2014 flags mark treatment somewhere in the case, not necessarily on your point. Read first. (Ch. 5)" },
++        { t: "Cite it anyway; flags are editorial noise", good: false, fb: "The opposite failure \u2014 citing negatively-treated authority unexamined is the classic verification error. (Ch. 5)" },
++        { t: "Find a newer case with the same headnote number", good: false, fb: "Headnote-matching without reading repeats the same gamble with a different case. (Ch. 5)" } ] },
++    { skill: "Fix the search \u00b7 Ch. 9",
++      q: "<i>\u201cslip AND fall AND store\u201d</i> returns 6,200 results. The correction is:",
++      opts: [
++        { t: "Bind concepts with proximity, add the concept that makes your question specific, filter jurisdiction", good: true, fb: "The narrowing sequence: proximity connectors, a third concept, jurisdiction and date filters \u2014 aimed at your question, not the topic. (Ch. 9)" },
++        { t: "Add more OR synonyms", good: false, fb: "OR-expansion broadens \u2014 the prescription for zero results, not 6,200. (Ch. 9)" },
++        { t: "Read the first page and stop", good: false, fb: "Relevance ranking on a broad query is a popularity contest among the words, not an answer to your question. (Ch. 9)" },
++        { t: "Switch databases and rerun it unchanged", good: false, fb: "The same broad string is broad everywhere. (Ch. 9)" } ] },
++    { skill: "No results vs. no law \u00b7 Ch. 8\u20139",
++      q: "One search returned nothing, and the memo draft now says \u201cthere is no law on this point.\u201d What's wrong?",
++      opts: [
++        { t: "The no-law call isn't defensible until alternative terms, loosened constraints, persuasive jurisdictions, and secondary sources are exhausted \u2014 and documented", good: true, fb: "\u201cThere is no law\u201d is a powerful argument; \u201cI could not find any law\u201d is a confession. One search establishes only the second. (Ch. 8\u20139)" },
++        { t: "Nothing \u2014 zero results means zero law", good: false, fb: "Zero results means one of two things, and only exhausting the alternatives tells you which. (Ch. 9)" },
++        { t: "The draft should say the law is \u2018unclear\u2019 instead", good: false, fb: "Hedged wording doesn't fix undone research \u2014 the alternatives still have to be run and recorded. (Ch. 9)" },
++        { t: "The search should be rerun in the same form to confirm", good: false, fb: "Repeating the identical search confirms only that the same string still fails. Vary it. (Ch. 9)" } ] },
++    { skill: "The log \u00b7 Ch. 3 / Ch. 9",
++      q: "Two records run side by side through a project. The Research Log tracks the questions and answers; the search log tracks:",
++      opts: [
++        { t: "Each exact search string, the database, the result count, and whether it was productive", good: true, fb: "The search log is the query-level record \u2014 it keeps you from repeating yourself and it is the evidence your closure documentation stands on. (Ch. 9)" },
++        { t: "Your billable time per task", good: false, fb: "Worth tracking, but it's a practice-management record, not a research one. (Ch. 9)" },
++        { t: "The full text of every result you opened", good: false, fb: "That's a filing cabinet, not a log \u2014 the log records the queries and their yield. (Ch. 9)" },
++        { t: "Only the searches that worked", good: false, fb: "The unproductive strings are half the value: they prove comprehensiveness and stop you rerunning them. (Ch. 9)" } ] }
++  ];
++
++  var deck = document.getElementById("deck"),
++      score = document.getElementById("score"),
++      tally = document.getElementById("tally"),
++      fill = document.getElementById("progfill"),
++      doneBox = document.getElementById("done");
++  var answered = 0, right = 0;
++
++  function shuffle(a) {
++    var arr = a.slice();
++    for (var i = arr.length - 1; i > 0; i--) {
++      var j = Math.floor(Math.random() * (i + 1)), t = arr[i]; arr[i] = arr[j]; arr[j] = t;
++    }
++    return arr;
++  }
++
++  function render() {
++    deck.innerHTML = "";
++    doneBox.classList.remove("show");
++    answered = 0; right = 0;
++    score.textContent = "0 of " + BANK.length + " answered";
++    tally.textContent = "";
++    fill.style.width = "0";
++    shuffle(BANK).forEach(function (item, n) {
++      var skillTag = el("span", { class: "skill" }, ["Skill: hidden until you answer"]);
++      var card = el("div", { class: "card" }, [
++        el("p", { class: "qno" }, [el("span", {}, ["Item " + (n + 1) + " of " + BANK.length]), skillTag]),
++        el("p", { class: "q", html: item.q })
++      ]);
++      var wrap = el("div", { class: "opts", role: "group", "aria-label": "Answer choices" });
++      var fb = QM.live(el("div", { class: "fb" }));
++      fb.hidden = true;
++      var done = false;
++      shuffle(item.opts).forEach(function (o) {
++        var b = el("button", { class: "opt", type: "button" }, [o.t]);
++        b.addEventListener("click", function () {
++          if (done) return;
++          done = true;
++          wrap.querySelectorAll(".opt").forEach(function (x) {
++            x.disabled = true;
++            if (x.textContent === o.t && !o.good) x.classList.add("bad");
++          });
++          wrap.querySelectorAll(".opt").forEach(function (x) {
++            item.opts.forEach(function (oo) { if (oo.good && x.textContent === oo.t) x.classList.add("good"); });
++          });
++          skillTag.textContent = item.skill;
++          fb.hidden = false;
++          fb.classList.add(o.good ? "good" : "bad");
++          QM.announce(fb, (o.good ? "Right. " : "Not quite. ") + o.fb);
++          answered++; if (o.good) right++;
++          score.textContent = answered + " of " + BANK.length + " answered";
++          tally.textContent = right + " correct";
++          fill.style.width = Math.round(answered / BANK.length * 100) + "%";
++          if (window.ExportReflect) ExportReflect.log(item.skill,
++            o.good ? "correct" : "incorrect \u2014 chose: " + o.t);
++          if (answered === BANK.length) {
++            var pct = Math.round(right / BANK.length * 100);
++            doneBox.innerHTML = "<p class=\"qno\">Pass complete</p><div class=\"big\">" + right + " / " + BANK.length + " (" + pct + "%)</div>" +
++              "<p>Interleaving is spaced practice's partner: come back in a few days and the deck will be reshuffled. The feedback on anything you missed names the chapter to revisit.</p>";
++            doneBox.classList.add("show");
++            if (window.ExportReflect) ExportReflect.log("Pass complete", right + " / " + BANK.length);
++          }
++        });
++        wrap.appendChild(b);
++      });
++      card.appendChild(wrap); card.appendChild(fb);
++      deck.appendChild(card);
++    });
++  }
++  document.getElementById("reshuffle").addEventListener("click", function () {
++    if (answered === 0 || answered === BANK.length ||
++        window.confirm("Reshuffle now? Your progress on this pass resets (answers already logged stay in your record).")) render();
++  });
++  render();
++
++  /* the shared Research Log follows the student between modules */
++  if (window.ResearchLog) ResearchLog.mount({ parent: document.getElementById("export-slot").parentNode,
++    before: document.getElementById("export-slot") });
++
++  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
++    module: "Mixed Review \u2014 The Diagnostic Moves",
++    chapter: "Chapter 9 \u2014 Narrowing and Closing Out Your Research (cumulative, Ch. 1\u20139)",
++    intro: "Every answer is collected locally, including across reshuffles. Add a reflection and download the record to submit.",
++    prompts: [
++      "Which skill's items did you recognize slowest, and which chapter will you revisit first?",
++      "Interleaving forces you to name the move before making it. Where in a real research project does that same recognition step happen?"
++    ]
++  });
++})();
++</script>
++</body>
++</html>
+diff --git a/modules/precision-search/index.html b/modules/precision-search/index.html
+index 3e2167f..6f68cf4 100644
+--- a/modules/precision-search/index.html
++++ b/modules/precision-search/index.html
+@@ -142,6 +142,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -159,6 +160,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html" aria-current="page">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/question-chain/index.html b/modules/question-chain/index.html
+index f6c630b..b52724f 100644
+--- a/modules/question-chain/index.html
++++ b/modules/question-chain/index.html
+@@ -244,6 +244,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -261,6 +262,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/question-method/index.html b/modules/question-method/index.html
+index 9a816be..c632c27 100644
+--- a/modules/question-method/index.html
++++ b/modules/question-method/index.html
+@@ -274,6 +274,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -291,6 +292,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/question-transformation/index.html b/modules/question-transformation/index.html
+index 71ddd49..66849eb 100644
+--- a/modules/question-transformation/index.html
++++ b/modules/question-transformation/index.html
+@@ -223,6 +223,7 @@ section[hidden]{display:none;}
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -240,6 +241,8 @@ section[hidden]{display:none;}
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/reading-cases/index.html b/modules/reading-cases/index.html
+index 9cc0cfd..f44af0f 100644
+--- a/modules/reading-cases/index.html
++++ b/modules/reading-cases/index.html
+@@ -133,6 +133,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -150,6 +151,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/reading-regulations/index.html b/modules/reading-regulations/index.html
+index 6787dc5..713ba9f 100644
+--- a/modules/reading-regulations/index.html
++++ b/modules/reading-regulations/index.html
+@@ -169,6 +169,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html" aria-current="page">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -186,6 +187,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+@@ -269,7 +272,7 @@
+ <nav class="modnav" aria-label="Module navigation">
+   <p class="modnav-crumb">Part of <a href="../../ch-7/">Ch. 7 · Basic Regulations and Administrative Research</a></p>
+   <div class="modnav-links">
+-    <span></span>
++    <a class="modnav-link prev" href="../../modules/finding-regulations/index.html"><span class="dir">← Previous</span><span class="t">How to Find a Regulation</span></a>
+     <a class="modnav-link next" href="../../modules/regulation-practice/index.html"><span class="dir">Next →</span><span class="t">Regulations Practice</span></a>
+   </div>
+ </nav>
+diff --git a/modules/reading-secondary/index.html b/modules/reading-secondary/index.html
+index e56005b..662e1f9 100644
+--- a/modules/reading-secondary/index.html
++++ b/modules/reading-secondary/index.html
+@@ -138,6 +138,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -155,6 +156,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/reading-statutes/index.html b/modules/reading-statutes/index.html
+index 73740ce..5ea250b 100644
+--- a/modules/reading-statutes/index.html
++++ b/modules/reading-statutes/index.html
+@@ -156,6 +156,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -173,6 +174,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/regulation-practice/index.html b/modules/regulation-practice/index.html
+index 69be4ed..1f8f3df 100644
+--- a/modules/regulation-practice/index.html
++++ b/modules/regulation-practice/index.html
+@@ -131,6 +131,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html" aria-current="page">Regulations Practice</a></li>
+                 </ul>
+@@ -148,6 +149,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/research-hypothesis/index.html b/modules/research-hypothesis/index.html
+index 7633d45..cd3007d 100644
+--- a/modules/research-hypothesis/index.html
++++ b/modules/research-hypothesis/index.html
+@@ -120,6 +120,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -137,6 +138,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/secondary-practice/index.html b/modules/secondary-practice/index.html
+index 186f509..ccd963e 100644
+--- a/modules/secondary-practice/index.html
++++ b/modules/secondary-practice/index.html
+@@ -155,6 +155,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -172,6 +173,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/secondary-types/index.html b/modules/secondary-types/index.html
+index 4e82f29..3c72790 100644
+--- a/modules/secondary-types/index.html
++++ b/modules/secondary-types/index.html
+@@ -181,6 +181,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -198,6 +199,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/statute-practice/index.html b/modules/statute-practice/index.html
+index 774fd94..ab58b09 100644
+--- a/modules/statute-practice/index.html
++++ b/modules/statute-practice/index.html
+@@ -129,6 +129,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -146,6 +147,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/tracing-sources/index.html b/modules/tracing-sources/index.html
+index 2bcd82b..6cf56bb 100644
+--- a/modules/tracing-sources/index.html
++++ b/modules/tracing-sources/index.html
+@@ -126,6 +126,7 @@ svg.swim{display:block;width:100%;min-width:560px;height:auto;}
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -143,6 +144,8 @@ svg.swim{display:block;width:100%;min-width:560px;height:auto;}
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/type-the-question/index.html b/modules/type-the-question/index.html
+index 40ad3a1..234186f 100644
+--- a/modules/type-the-question/index.html
++++ b/modules/type-the-question/index.html
+@@ -118,6 +118,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -135,6 +136,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+@@ -230,6 +233,7 @@
+ <!--shell:footer:end-->
+ 
+ <script src="../../js/lib.js"></script>
++<script src="../../js/research-log.js"></script>
+ <script src="../../js/export-reflect.js"></script>
+ <script>
+ (function(){
+@@ -382,6 +386,10 @@
+     deck.appendChild(card);
+   });
+ 
++  /* the shared Research Log follows the student between modules */
++  if (window.ResearchLog) ResearchLog.mount({ parent: document.getElementById("export-slot").parentNode,
++    before: document.getElementById("export-slot") });
++
+   if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+     module: "Type the Question",
+     chapter: "Chapter 3 \u2014 The Question Method",
+diff --git a/modules/using-databases/index.html b/modules/using-databases/index.html
+index 3a84ca0..1940ad8 100644
+--- a/modules/using-databases/index.html
++++ b/modules/using-databases/index.html
+@@ -171,6 +171,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -188,6 +189,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>
+diff --git a/modules/using-secondary-sources/index.html b/modules/using-secondary-sources/index.html
+index 0e10fe8..9377b4a 100644
+--- a/modules/using-secondary-sources/index.html
++++ b/modules/using-secondary-sources/index.html
+@@ -139,6 +139,7 @@
+               <li class="modmenu-chap">
+                 <a href="../../ch-7/"><span class="cn">7</span> Basic Regulations and Administrative Research</a>
+                 <ul class="modmenu-mods">
++                  <li><a href="../../modules/finding-regulations/index.html">How to Find a Regulation</a></li>
+                   <li><a href="../../modules/reading-regulations/index.html">How to Read a Regulation</a></li>
+                   <li><a href="../../modules/regulation-practice/index.html">Regulations Practice</a></li>
+                 </ul>
+@@ -156,6 +157,8 @@
+                 <ul class="modmenu-mods">
+                   <li><a href="../../modules/precision-search/index.html">Building a Precision Search</a></li>
+                   <li><a href="../../modules/closing-out/index.html">Knowing When to Stop</a></li>
++                  <li><a href="../../modules/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
++                  <li><a href="../../modules/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                 </ul>
+               </li>
+               </ul>

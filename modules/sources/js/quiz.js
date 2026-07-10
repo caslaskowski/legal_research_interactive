@@ -55,7 +55,7 @@
     });
     card.appendChild(opts);
 
-    var fb = el("div", { class: "fb" });
+    var fb = el("div", { class: "fb", role: "status", "aria-live": "polite" });
     card.appendChild(fb);
     card._optButtons = optButtons;
     return card;
@@ -65,6 +65,9 @@
     if (Object.keys(optButtons).some(function (k) { return optButtons[k].disabled; })) return; // locked
     var isRight = chosen === q.correct;
     answered++; if (isRight) correct++;
+    if (window.ExportReflect) ExportReflect.log(
+      "Answered: " + (q.prompt || q.q || ("question " + answered)),
+      isRight ? "correct" : "incorrect \u2014 chose " + chosen);
 
     Object.keys(optButtons).forEach(function (k) {
       var b = optButtons[k];
@@ -87,6 +90,8 @@
 
   function update() {
     scoreEl.textContent = correct + " / " + total;
+    if (answered === total && window.ExportReflect)
+      ExportReflect.log("Knowledge check final score", correct + " / " + total);
     prog.style.width = Math.round((answered / total) * 100) + "%";
     if (answered === total) showEnd();
   }

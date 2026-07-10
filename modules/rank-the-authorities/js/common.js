@@ -99,8 +99,8 @@
     var isPractice = practiceIds.indexOf(activeId) !== -1;
 
     var links = [
-      el("a", { class: "navlink", href: "../../index.html" }, ["Home Page"]),
-      el("a", { class: "navlink", href: "../../chapter.html?ch=1" }, ["Ch.\u00a01 \u00b7 Foundations"])
+      el("a", { class: "navlink", href: "../../index.html" }, ["Home"]),
+      el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch.\u00a01 \u00b7 Foundations"])
     ];
 
     if (isPractice) {
@@ -134,9 +134,9 @@
     return el("header", { class: "masthead" }, [
       el("div", { class: "wrap" }, [
         el("div", { class: "masthead-inner" }, [
-          el("a", { class: "brand", href: "index.html" }, [
-            el("span", { class: "mark" }, ["Hierarchy of Authorities"]),
-            el("span", { class: "sub" }, ["Foundations of Authority"])
+          el("a", { class: "brand", href: "../../index.html" }, [
+            el("span", { class: "mark" }, ["The Question Method of Legal Research"]),
+            el("span", { class: "sub" }, ["Interactive Legal Research Modules"])
           ]),
           toggle,
           navArea
@@ -160,6 +160,12 @@
     document.body.insertBefore(skip, document.body.firstChild);
     document.body.insertBefore(buildHeader(activeId), main);
     document.body.appendChild(buildFooter());
+    /* FERPA disclosure: these pages persist answers in this browser only */
+    var storing = ["practice", "primary-secondary", "binding-persuasive",
+                   "statute-common", "rank", "courts"];
+    if (window.QM && storing.indexOf(activeId) !== -1) {
+      QM.storageNotice({ prefix: "rta_", parent: main });
+    }
   }
 
   /* ---- companion notes -> downloadable .txt (generated locally) ---- */
