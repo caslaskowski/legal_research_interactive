@@ -146,8 +146,13 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "practice",
+<<<<<<< HEAD
           "slug": "question-chain",
           "href": "modules/question-chain/index.html",
+=======
+          "slug": "question_chain",
+          "href": "modules/question_chain/index.html",
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
           "note": "Draft",
           "title": "Working the Chain — Forward & Reverse",
           "desc": "Build a chain of research questions forward from a fact pattern, then reverse-engineer the questions behind a finished analysis.",
@@ -174,6 +179,7 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "orientation",
+<<<<<<< HEAD
           "slug": "reading-secondary",
           "href": "modules/reading-secondary/index.html",
           "note": "Appendix A",
@@ -183,6 +189,8 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "orientation",
+=======
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
           "slug": "secondary-types",
           "href": "modules/secondary-types/index.html",
           "title": "The Types of Secondary Sources",
@@ -227,8 +235,12 @@ window.REGISTRY = {
           "slug": "reading-cases",
           "href": "modules/reading-cases/index.html",
           "title": "How to Read a Case",
+<<<<<<< HEAD
           "desc": "The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1.",
           "verified": "2026-07-09"
+=======
+          "desc": "The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1."
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
         },
         {
           "status": "live",
@@ -283,6 +295,7 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "orientation",
+<<<<<<< HEAD
           "slug": "finding-regulations",
           "title": "How to Find a Regulation",
           "desc": "Follow a rule from the Federal Register into the CFR and back — the pipeline every regulatory researcher runs.",
@@ -298,6 +311,8 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "orientation",
+=======
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
           "slug": "reading-regulations",
           "href": "modules/reading-regulations/index.html",
           "title": "How to Read a Regulation",
@@ -309,8 +324,12 @@ window.REGISTRY = {
           "slug": "regulation-practice",
           "href": "modules/regulation-practice/index.html",
           "title": "Regulations Practice",
+<<<<<<< HEAD
           "desc": "Navigate the CFR, choose between the CFR and the Federal Register, read shall/must/may/should, and check whether a regulation is still good law.",
           "verified": "2026-07-09"
+=======
+          "desc": "Navigate the CFR, choose between the CFR and the Federal Register, read shall/must/may/should, and check whether a regulation is still good law."
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
         }
       ]
     },
@@ -327,8 +346,12 @@ window.REGISTRY = {
           "slug": "tracing-sources",
           "href": "modules/tracing-sources/index.html",
           "title": "Tracing the Law Across Sources",
+<<<<<<< HEAD
           "desc": "Three real chains — Rowan, Schechter Poultry, and Arizona's Voter Protection Act — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution.",
           "verified": "2026-07-09"
+=======
+          "desc": "Three real chains — Rowan, Schechter Poultry, and Arizona's Voter Protection Act — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution."
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
         },
         {
           "status": "live",
@@ -370,6 +393,7 @@ window.REGISTRY = {
           "href": "modules/closing-out/index.html",
           "title": "Knowing When to Stop",
           "desc": "Run the closing-out protocol, tell 'no results' from 'no law,' diagnose a stuck search, and draft an exportable research-closure note."
+<<<<<<< HEAD
         },
         {
           "status": "live",
@@ -400,6 +424,8 @@ window.REGISTRY = {
           ],
           "href": "modules/mixed-review/index.html",
           "note": "Cumulative"
+=======
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
         }
       ]
     },

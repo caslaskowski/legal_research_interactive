@@ -6,17 +6,28 @@
 <title>Reading a Results Page — Database Interface Explorer</title>
 <meta name="description" content="Learn to skim a legal search results page — court, date, jurisdiction, and snippet — and to use the filter rail to narrow your results.">
 <style>
+<<<<<<< HEAD
 :root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
+=======
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#86857d;
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
 --rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;
 --statute:#8a0100;--regulation:#2f6d56;--case:#28406b;--case-tint:#dde2ed;--radius:4px;
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
 --shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
 </style>
+<<<<<<< HEAD
 <!--shell:head:start-->
 <link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <!--shell:head:end-->
+=======
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/firebrand.css">
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
 <style>
 .lede{font-size:1.1rem;color:var(--ink-soft);max-width:64ch;}
 .howto{margin:16px 0 22px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--flame-tint);
@@ -35,12 +46,16 @@
 .db-fauxtag{margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);}
 .db-searchstrip{display:flex;gap:8px;padding:14px 16px;border-bottom:1px solid var(--rule);align-items:center;flex-wrap:wrap;}
 .db-searchstrip .q{flex:1 1 280px;border:2px solid var(--ink);border-radius:8px;padding:11px 13px;font-family:var(--mono);font-size:.92rem;color:var(--ink);background:#fff;}
+<<<<<<< HEAD
 .withinbox{margin:0 0 16px;padding:0 0 14px;border-bottom:1px solid var(--rule);}
 .within-lab{display:block;font-family:var(--display);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px;font-weight:700;}
 .within-row{display:flex;gap:6px;}
 .within-input{flex:1 1 auto;min-width:0;font:inherit;font-size:.88rem;padding:8px 10px;border:1.5px solid var(--rule-strong);border-radius:7px;background:#fff;color:var(--ink);}
 .within-input:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
 .rail .within-go{display:inline-flex;align-items:center;justify-content:center;width:38px;flex:0 0 auto;margin:0;padding:0;border:1.5px solid var(--rule-strong);border-radius:7px;background:#fff;font-weight:700;color:var(--flame);font-size:1rem;}
+=======
+.db-searchstrip .within{flex:0 0 auto;}
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
 
 .results-grid{display:grid;grid-template-columns:248px 1fr;}
 @media (max-width:740px){.results-grid{grid-template-columns:1fr;}}
@@ -100,6 +115,7 @@
 </style>
 </head>
 <body class="shell">
+<<<<<<< HEAD
 <!--shell:masthead:start-->
 <a class="skip" href="#main">Skip to content</a>
 
@@ -248,6 +264,19 @@
 <main id="main">
   <div class="wrap ch-wrap">
     <p class="crumbs"><a href="../../index.html">Home</a> / <a href="../../ch-2/">Ch.&nbsp;2</a> / <a href="index.html">Database Interface Explorer</a></p>
+=======
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="wrap"><div class="masthead-inner">
+    <a class="brand" href="../../index.html" aria-label="Firebrand — module hub">
+      <span><span class="mark">Firebrand<span class="dot">.</span></span><span class="sub">Legal Research Modules</span></span></a>
+    <nav class="topnav" aria-label="Primary"><a href="../../index.html">Hub</a><a href="index.html">Interface</a></nav>
+  </div></div>
+</header>
+
+<main id="main">
+  <div class="wrap ch-wrap">
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
     <a class="cs-back" href="index.html">&larr; Back to the interface</a>
     <p class="ch-eyebrow">Chapter 2 · Educational</p>
     <h1>Reading a Results Page</h1>
@@ -262,11 +291,16 @@
       </div>
       <div class="db-searchstrip">
         <span class="q">(landlord OR lessor) AND habitability AND heat</span>
+<<<<<<< HEAD
+=======
+        <span class="within"><button class="hot" data-hot="within" type="button" style="border:1.5px solid var(--rule-strong);background:#fff;font-weight:700;color:var(--flame);padding:9px 13px;border-radius:8px;">Search within results</button></span>
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
       </div>
 
       <div class="results-grid">
         <!-- filter rail -->
         <nav class="rail" aria-label="Narrow your results">
+<<<<<<< HEAD
           <div class="withinbox">
             <label class="within-lab" for="within-q">Search within results</label>
             <div class="within-row">
@@ -274,6 +308,8 @@
               <button class="hot within-go" data-hot="within" type="button" aria-label="Run search within results (demonstration — explains this feature)">&rarr;</button>
             </div>
           </div>
+=======
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
           <h2>Narrow results</h2>
           <button class="hot" data-hot="f-jur" type="button">Jurisdiction <span class="cnt">4</span></button>
           <button class="hot" data-hot="f-court" type="button">Court level <span class="cnt">3</span></button>
@@ -398,6 +434,7 @@
   });
   document.querySelectorAll("[data-hot]").forEach(function(b){b.setAttribute("aria-haspopup","dialog");});
 
+<<<<<<< HEAD
   /* the within-results entry box: Enter runs the same explainer as the button */
   var withinQ = document.getElementById("within-q");
   if (withinQ) withinQ.addEventListener("keydown", function(e){
@@ -408,6 +445,8 @@
     }
   });
 
+=======
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
   /* ---- decision beat: which filter narrows the cluster ---- */
   var OPTS=[
     {t:"Jurisdiction", good:true,  fb:"Right. The cluster spans four sovereigns; the Jurisdiction filter is what isolates the one whose law can bind an Arizona court. Reach for it first."},
@@ -419,7 +458,11 @@
   OPTS.forEach(function(o,i){
     var b=document.createElement("button");
     b.className="opt"; b.type="button"; b.setAttribute("aria-pressed","false"); b.textContent=o.t;
+<<<<<<< HEAD
     var fb=document.createElement("div"); fb.className="fb "+(o.good?"good":"meh"); fb.setAttribute("role","status"); fb.setAttribute("aria-live","polite"); fb.textContent=o.fb; fb.id="fb"+i;
+=======
+    var fb=document.createElement("div"); fb.className="fb "+(o.good?"good":"meh"); fb.textContent=o.fb; fb.id="fb"+i;
+>>>>>>> 7e1d4adcdc89e16d225da68c32e374438f25a374
     b.setAttribute("aria-describedby", fb.id);
     b.addEventListener("click",function(){
       // reveal rationale for EVERY option (learning, not grading)
