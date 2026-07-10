@@ -157,14 +157,24 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .modmenu[open] > summary .mm-label-open{ display:inline; }
 .modmenu-panel{
   position: absolute; right: 0; top: calc(100% + 12px); z-index: 60;
-  width: min(92vw, 880px); max-height: 72vh; overflow-y: auto;
+  width: min(92vw, 880px); max-height: calc(100vh - 96px); overflow-y: auto;
   background: var(--panel); border: 1px solid var(--rule-strong); border-radius: 8px;
   box-shadow: var(--shadow-lg); padding: 22px 24px; }
 .modmenu-cols{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .modmenu-part > h2{ font-family: var(--sans); font-size:.66rem; font-weight:700;
   letter-spacing:.14em; text-transform: uppercase; color: var(--ink-faint);
   margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
-.modmenu-chaps{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+.modmenu-chaps{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
+.modmenu-stack{ display:flex; flex-direction:column; gap:24px; }
+.mm-ch > summary{ list-style:none; cursor:pointer; display:flex; gap:.55em; align-items:baseline;
+  font-family: var(--sans); font-weight:700; font-size:.9rem; color: var(--ink); }
+.mm-ch > summary::-webkit-details-marker{ display:none; }
+.mm-ch > summary::after{ content:"\25BE"; font-size:.68em; color: var(--ink-faint);
+  margin-left:auto; transition: transform .15s ease; }
+.mm-ch[open] > summary::after{ transform: rotate(180deg); }
+.mm-ch > summary:hover, .mm-ch[open] > summary{ color: var(--flame); }
+.mm-ch > summary:focus-visible{ outline:3px solid var(--flame); outline-offset:2px; border-radius:4px; }
+.mm-chlink{ font-style: italic; }
 .modmenu-chap > a{ font-family: var(--sans); font-weight:700; font-size:.9rem; color: var(--ink);
   text-decoration:none; display:flex; gap:.5em; }
 .modmenu-chap > a:hover{ color: var(--flame); }
@@ -418,3 +428,8 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .modpager .dir{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--flame); }
 .modpager .t{ font-weight:600; font-size:.92rem; }
 .modpager .spacer{ flex:1; }
+
+/* ---- footer contact ---- */
+.foot-contact{ display:block; margin-top:6px; }
+.foot-contact a{ color:var(--flame); font-weight:600; }
+.foot-contact small{ display:block; opacity:.8; margin-top:2px; }

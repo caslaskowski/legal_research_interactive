@@ -156,4 +156,35 @@
       ledgerA
     ]));
   }
+
+  /* ---- toolkit & resources ---- */
+  var tk = R.toolkit;
+  if (tk && tk.items && tk.items.length) {
+    var ledgerT = el("div", { class: "ledger" });
+    tk.items.forEach(function (a) {
+      ledgerT.appendChild(el("a", {
+        class: "entry is-live",
+        href: a.href,
+        "aria-label": a.id + " \u2014 " + a.title
+      }, [
+        el("div", { class: "ch-no", "aria-hidden": "true" }, [String(a.id)]),
+        el("div", { class: "ch-body" }, [
+          el("p", { class: "ch-title" }, [a.title]),
+          el("p", { class: "ch-desc" }, [a.also || ""])
+        ]),
+        el("div", { class: "ch-meta" }, [
+          el("span", { class: "pill live" }, ["Available"]),
+          el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
+        ])
+      ]));
+    });
+    app.appendChild(el("section", { class: "part reveal d4" }, [
+      el("div", { class: "part-head" }, [
+        el("span", { class: "pnum" }, ["Toolkit"]),
+        el("h2", {}, [tk.eyebrow || "Toolkit & Resources"])
+      ]),
+      tk.intro ? el("p", { class: "part-blurb" }, [tk.intro]) : null,
+      ledgerT
+    ]));
+  }
 })();

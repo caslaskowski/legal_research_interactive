@@ -248,6 +248,16 @@
         {
           "status": "live",
           "type": "orientation",
+          "slug": "life-of-a-statute",
+          "href": "ch-6/life-of-a-statute/index.html",
+          "note": "New",
+          "verified": "2026-07-10",
+          "title": "The Life of a Statute",
+          "desc": "One statute’s journey from enactment through slip law and session laws to the code — and the comparison that decides where research happens: bare text versus the annotated code’s research hub."
+        },
+        {
+          "status": "live",
+          "type": "orientation",
           "slug": "finding-statutes",
           "href": "ch-6/finding-statutes/index.html",
           "title": "How to Find a Statute",
@@ -410,17 +420,20 @@
       "desc": "The duty of competent research, candor to the tribunal, and the supervision and verification obligations that ride along with every search.",
       "modules": [
         {
-          "status": "plan",
+          "status": "live",
           "type": "orientation",
           "slug": "duties-behind-the-research",
-          "title": "The Duties Behind the Research",
-          "desc": "The chapter's spine as an explorable: competence (Rule 1.1), candor (Rule 3.3), and supervision (Rules 5.1/5.3) — what each requires of research, what triggers it, and what breach looks like.",
+          "title": "Duties Behind the Research",
+          "desc": "Competence, candor, confidentiality, supervision — the four Model Rules duties mapped to the exact research moments where each one bites, plus a six-moment matching exercise.",
           "will": [
             "The three duties, panel by panel",
             "The consequences ladder — lost credibility to discipline",
             "Build verification into the research workflow",
             "Where AI use meets each duty"
-          ]
+          ],
+          "href": "ch-10/duties-behind-the-research/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         },
         {
           "status": "live",
@@ -433,17 +446,20 @@
           "desc": "A short brief, eight citations, one closed database. Retrieve each authority — or discover it does not exist — then classify it: supports, does not support, negatively treated, or fabricated. Feedback names the verification step that catches each failure."
         },
         {
-          "status": "plan",
+          "status": "live",
           "type": "practice",
           "slug": "the-duty-calls",
           "title": "The Duty Calls",
-          "desc": "Six scenarios where research — or its absence — triggers a professional duty. Pick the required move; the feedback walks the rule's logic.",
+          "desc": "Eight fictional scenarios where the pressured move and the required move come apart — midnight citators, adverse authority, public AI tools, and a partner’s bad citation. Reasoning under every option.",
           "will": [
             "Adverse binding authority the night before filing",
             "Relying on unverified AI output",
             "‘I didn't have time to update the cases’",
             "Supervising another researcher's work"
-          ]
+          ],
+          "href": "ch-10/the-duty-calls/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         }
       ]
     },
@@ -455,29 +471,35 @@
       "desc": "Finding briefs, motions, and docket entries — and what court filings can tell you that opinions cannot.",
       "modules": [
         {
-          "status": "plan",
+          "status": "live",
           "type": "orientation",
           "slug": "read-the-docket",
           "title": "Read the Docket",
-          "desc": "The interactive anatomy of a docket sheet plus the life of a filing — complaint to judgment — including the parts that trip new readers.",
+          "desc": "A fictional federal docket, entry by entry — including the two genuinely unintuitive features: newest-first ordering and the multi-part entry where one motion hides five documents.",
           "will": [
             "What lives in a docket, part by part",
             "Reverse chronology — the newest entries come first",
             "Multi-part entries for a single filing",
             "The life of a filing: complaint → answer → motions → briefs → orders → judgment"
-          ]
+          ],
+          "href": "ch-11/read-the-docket/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         },
         {
-          "status": "plan",
+          "status": "live",
           "type": "practice",
           "slug": "pull-the-right-paper",
           "title": "Pull the Right Paper",
-          "desc": "Match the research need to the court document — and never mistake a brief for authority.",
+          "desc": "Eight research needs, eight court documents — complaint, memo, order, transcript, docket itself — and the chapter’s first discipline: documents are research tools, not authority.",
           "will": [
             "Complaint, brief, or order — which answers your question",
             "A brief is advocacy, not authority",
             "PACER and the free alternatives"
-          ]
+          ],
+          "href": "ch-11/pull-the-right-paper/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         }
       ]
     },
@@ -498,16 +520,18 @@
           "desc": "The legislative process as a pipeline you can walk, with a deep-dive page for each history source — what it is, the weight it carries, the questions it answers — plus the anatomy of a committee report and the route-and-cautions checks. A short multi-page module; start on the overview."
         },
         {
-          "status": "plan",
+          "status": "live",
           "type": "practice",
           "slug": "weigh-the-history",
           "title": "Weigh the History",
-          "desc": "Rank five history documents by interpretive weight, then make the judgment calls — including the textualism caution.",
+          "desc": "Seven conflicts between legislative history sources, built on the fictional bill from the lesson — which document wins, and when the answer is ‘the text, and none of them.’",
           "will": [
             "Committee report at the top — and why",
             "Sponsor statements, hearings, and post-enactment history in their places",
             "History persuades some judges and repels others — know your court"
-          ]
+          ],
+          "href": "ch-12/weigh-the-history/index.html",
+          "note": "New"
         }
       ]
     },
@@ -519,28 +543,34 @@
       "desc": "Deeper agency work — guidance documents, policy statements, opinion letters, and adjudications — and recording exactly how much weight each carries after Loper Bright.",
       "modules": [
         {
-          "status": "plan",
+          "status": "live",
           "type": "orientation",
           "slug": "beyond-the-rule",
           "title": "Beyond the Rule",
-          "desc": "Rulemaking, guidance, and adjudication as a clickable comparison — how each is made, where each lives, what each binds — and the deference story from Chevron to Loper Bright to Skidmore as a timeline you walk.",
+          "desc": "Guidance documents, opinion letters, and administrative adjudications — what binds, what persuades, and the research discipline of logging an authority level with every finding.",
           "will": [
             "The three families of agency material",
             "What binds and what persuades",
             "The deference timeline, post-Loper Bright"
-          ]
+          ],
+          "href": "ch-13/beyond-the-rule/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         },
         {
-          "status": "plan",
+          "status": "live",
           "type": "practice",
           "slug": "weigh-the-agency-materials",
           "title": "Weigh the Agency Materials",
-          "desc": "One question, a stack of agency materials: assign each an authority level and log why — the record is the chapter's professional artifact.",
+          "desc": "Seven client situations turning on which agency material controls: regulation versus FAQ, the binding-or-guidance test, and the answer that starts with naming the document type.",
           "will": [
             "Rule vs. guidance vs. adjudication, in the ranking",
             "Record an authority level for every finding",
             "The Skidmore persuasion factors, applied"
-          ]
+          ],
+          "href": "ch-13/weigh-the-agency-materials/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         }
       ]
     },
@@ -552,29 +582,33 @@
       "desc": "How the research cycle’s parameters shift across litigation, transactional, and regulatory practice — the question types, first sources, and closure criteria each demands.",
       "modules": [
         {
-          "status": "plan",
+          "status": "live",
           "type": "orientation",
           "slug": "same-cycle-different-parameters",
           "title": "Same Cycle, Different Parameters",
-          "desc": "One matter, three chairs — litigation, transactional, regulatory. Switch seats and watch the same cycle re-parameterize: question types, first sources, and what closure requires.",
+          "desc": "Litigation, transactional, and compliance research run the same cycle with three parameters swapped — question type, first source, closure criterion — plus practical closure as professional judgment, not failure.",
           "will": [
             "Default question type by practice context",
             "Where each context starts its research",
             "Closure by context — analytical vs. practical, and why practice-specific research closes practically more often",
             "Specialized databases for each setting"
-          ]
+          ],
+          "href": "ch-14/same-cycle-different-parameters/index.html",
+          "note": "New"
         },
         {
-          "status": "plan",
+          "status": "live",
           "type": "practice",
           "slug": "pick-the-parameters",
           "title": "Pick the Parameters",
-          "desc": "A matter and a chair: choose the first question's type, the first source, and what closure requires — then see the same matter from the other two chairs.",
+          "desc": "Seven practice scenarios — set the right question type, first source, or closure call for each. The Pins Place client returns for deal work.",
           "will": [
             "First question, first source, closure standard — per chair",
             "Fact-finding and constructive application reps",
             "The same matter, three ways"
-          ]
+          ],
+          "href": "ch-14/pick-the-parameters/index.html",
+          "note": "New"
         }
       ]
     },
@@ -625,29 +659,35 @@
       "desc": "How research skills are tested on the NextGen bar exam, and how the Question Method prepares you for each of the five named competencies.",
       "modules": [
         {
-          "status": "plan",
+          "status": "live",
           "type": "orientation",
           "slug": "five-skills-mapped",
-          "title": "The Five Skills, Mapped",
-          "desc": "The five NextGen research competencies as an explorable map — what each is, how the exam presents it, and which textbook chapter built it — plus the anatomy of an exam research task.",
+          "title": "Five Skills, Mapped",
+          "desc": "The five research skills tested in the NextGen Bar Exam’s Foundational Skills Group C, each mapped to the chapters that built it — with a name-that-skill exercise.",
           "will": [
             "The five skills, one by one",
             "Tap a skill; the chapters that trained it light up",
             "The anatomy of an exam research task"
-          ]
+          ],
+          "href": "ch-16/five-skills-mapped/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         },
         {
-          "status": "plan",
+          "status": "live",
           "type": "practice",
           "slug": "the-closed-universe",
           "title": "The Closed Universe",
-          "desc": "An exam-shaped exercise in the released NextGen format — fact pattern, provided sources, research Q&A only — drilling the five skills, with a timer that is offered, never imposed.",
+          "desc": "A fictional statute and three fictional cases — six exam-style questions answerable only from the provided sources, including the one the universe cannot answer. Format modeled on released exam materials; all content original.",
           "will": [
             "Work only from the provided sources",
             "Spot the ambiguity, rank the authority, state what's missing",
             "Original questions modeled on the released sample's format — research tasks only, no writing component",
             "Timed, extended, or untimed — your choice, recorded without penalty"
-          ]
+          ],
+          "href": "ch-16/the-closed-universe/index.html",
+          "note": "New",
+          "verified": "2026-07-10"
         }
       ]
     },
@@ -715,6 +755,17 @@
         "title": "Glossary — Flashcards",
         "href": "appendices/glossary-flashcards/index.html",
         "also": "Every defined term in the book"
+      }
+    ]
+  },
+  "toolkit": {
+    "eyebrow": "Toolkit & Resources",
+    "intro": "The book's working tools as fill-in templates and checklists — view them here, download them as plain text, keep them beside every research task.",
+    "items": [
+      {
+        "id": "T",
+        "title": "Toolkit & Resources — Templates & Checklists",
+        "href": "toolkit/index.html"
       }
     ]
   }

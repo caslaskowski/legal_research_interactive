@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duties Behind the Research — Ch. 10 · Ethics of Legal Research</title>
+<meta name="description" content="Competence, candor, confidentiality, supervision — each duty mapped to the research moment where it bites, plus a matching exercise.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1150px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
+  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 24px;}
+  h2.sec{font-size:1.3rem;margin:28px 0 4px;}
+  .secdesc{color:var(--ink-soft);margin:0 0 14px;line-height:1.6;}
+  .duties{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;margin:0 0 10px;}
+  .duty{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:14px 17px;}
+  .duty .r{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);display:block;margin:0 0 4px;}
+  .duty h3{font-size:1.02rem;margin:0 0 6px;}
+  .duty p{font-size:.88rem;line-height:1.6;color:var(--ink-soft);margin:0 0 8px;}
+  .duty .bite{font-size:.86rem;line-height:1.55;border-top:1px dashed var(--rule-strong);padding-top:7px;margin:0;}
+  .duty .bite b{color:var(--flame);}
+  .mtask{border:1px solid var(--rule-strong);border-radius:9px;background:#fff;padding:12px 14px;margin:0 0 10px;}
+  .mtask .t{font-size:.94rem;margin:0 0 9px;}
+  .mtask .choices{display:flex;gap:7px;flex-wrap:wrap;}
+  .mch{font:inherit;font-size:.79rem;font-weight:600;background:var(--panel);border:1px solid var(--rule-strong);border-radius:99px;padding:5px 12px;cursor:pointer;}
+  .mch:hover{border-color:var(--flame);}
+  .mch:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .mch[disabled]{cursor:default;}
+  .mch.good{border-color:#2e6b34;background:#e5efe0;}
+  .mch.bad{border-color:var(--flame);background:#f6e2dc;}
+  .mtask .mfb{font-size:.85rem;line-height:1.55;color:var(--ink-soft);margin:8px 0 0;}
+  .tally{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);margin:4px 0 0;}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">4</span> Secondary Sources Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">5</span> Case Law Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">6</span> Statutes Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">8</span> Researching Across Sources</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch" open>
+                  <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html" aria-current="page">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">12</span> Legislative History Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">13</span> Advanced Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">15</span> GenAI and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">17</span> Research for Legal Scholarship</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-17/">Chapter overview →</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <div class="modmenu-stack">
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Toolkit &amp; Resources</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              </ul>
+            </section>
+            </div>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-10/" style="color:var(--flame)">Ch.&nbsp;10</a> / Duties Behind the Research</p>
+    <h1>Duties Behind the Research</h1>
+    <p class="lede">Research quality is not just craft &mdash; it is professional obligation. Four duties from the Model Rules stand behind every research decision you will make, and each one has a specific moment in the research cycle where it bites. Learn the four, then match the moments.</p>
+    <div class="howto"><b>How to use this:</b> read the four duty cards &mdash; especially the &ldquo;where it bites&rdquo; line on each &mdash; then work the matching exercise below. The practice modules in this chapter put these duties under deadline pressure.</div>
+
+    <h2 class="sec">The four duties</h2>
+    <div class="duties">
+      <div class="duty">
+        <span class="r">Model Rule 1.1</span>
+        <h3>Competence</h3>
+        <p>A lawyer must provide competent representation &mdash; the legal knowledge, skill, thoroughness, and preparation the matter requires. Comment 8 extends it to technology: keeping abreast of the benefits and risks of the tools of practice.</p>
+        <p class="bite"><b>Where it bites in research:</b> thoroughness is a research duty. Skipping the citator, stopping before the question is answered, or using an AI tool without understanding how it fails are all competence problems before they are anything else.</p>
+      </div>
+      <div class="duty">
+        <span class="r">Model Rule 3.3</span>
+        <h3>Candor to the tribunal</h3>
+        <p>A lawyer may not knowingly make a false statement of law to a court, and must disclose controlling authority directly adverse to the client&rsquo;s position if opposing counsel has not.</p>
+        <p class="bite"><b>Where it bites in research:</b> twice. A citation you never verified can make you the one presenting false authority &mdash; and the adverse case your research surfaces is not optional to deal with. Finding it created the duty.</p>
+      </div>
+      <div class="duty">
+        <span class="r">Model Rule 1.6</span>
+        <h3>Confidentiality</h3>
+        <p>A lawyer must not reveal information relating to the representation, and must make reasonable efforts to prevent unauthorized disclosure.</p>
+        <p class="bite"><b>Where it bites in research:</b> the tools. Client facts typed into a free public AI tool, a search history on a shared account, a docket request that telegraphs a deal &mdash; research inputs can be disclosures.</p>
+      </div>
+      <div class="duty">
+        <span class="r">Model Rules 5.1 &amp; 5.3</span>
+        <h3>Supervision</h3>
+        <p>Lawyers with supervisory authority must make reasonable efforts to ensure that subordinate lawyers&rsquo; and nonlawyers&rsquo; work conforms to professional obligations.</p>
+        <p class="bite"><b>Where it bites in research:</b> the sign-off. A supervisor who files a junior&rsquo;s unverified memo owns the failure &mdash; and &ldquo;the associate did the research&rdquo; (or &ldquo;the AI did&rdquo;) has never been a defense.</p>
+      </div>
+    </div>
+
+    <h2 class="sec">Match the moment to the duty</h2>
+    <p class="secdesc">Six research moments. For each, name the duty most directly on the line.</p>
+    <div id="match"></div>
+    <p class="tally" id="tally"></p>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-10/">Ch. 10 · Ethics and Professional Responsibility in Legal Research</a></p>
+  <p class="modnav-verified">Authorities verified as of 2026-07-10. The law changes — run the method, don’t trust the module.</p>
+  <div class="modnav-links">
+    <span></span>
+    <a class="modnav-link next" href="../../ch-10/catch-the-fabricated-citation/index.html"><span class="dir">Next →</span><span class="t">Catch the Fabricated Citation</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+    <span class="foot-contact">Found a problem, or wish a module existed?
+      <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>
+      <small>(opens GitHub in a new tab &mdash; nothing is sent from this site)</small></span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var el = QM.el;
+  var DUTIES = ["Competence", "Candor", "Confidentiality", "Supervision"];
+  var TASKS = [
+    { t:"The deadline is tonight, and you decide to skip running the citator on your lead case.",
+      a:0, fb:"Competence (1.1). Thoroughness and preparation are the rule's own words \u2014 and validating your authorities is the floor of thoroughness. (If the case turns out bad and gets filed anyway, candor arrives next.)" },
+    { t:"Your research surfaces a controlling case squarely against your client \u2014 and opposing counsel clearly hasn't found it.",
+      a:1, fb:"Candor (3.3). Controlling, directly adverse, undisclosed by the other side: the rule requires you to disclose it. Your research created the duty \u2014 which is exactly why thorough research and candor travel together." },
+    { t:"To save time, you paste the client's interview notes \u2014 names, dates, admissions \u2014 into a free public chatbot to summarize.",
+      a:2, fb:"Confidentiality (1.6). The inputs are the disclosure: a public tool that may retain or train on what you typed is an unauthorized-disclosure risk. The task was fine; the tool wasn't." },
+    { t:"A partner files the brief a first-year drafted without checking whether any of its citations were verified.",
+      a:3, fb:"Supervision (5.1). The supervisor's duty is reasonable efforts to ensure the work conforms \u2014 signing without asking how the authorities were verified is the failure itself." },
+    { t:"You take on a matter in an area of law you have never touched, with no plan to get up to speed or associate with someone who knows it.",
+      a:0, fb:"Competence (1.1). The rule doesn't forbid new areas \u2014 it requires acquiring the necessary knowledge or bringing in someone who has it. Research is usually how you acquire it." },
+    { t:"A paralegal's AI-drafted research summary goes to the client with no lawyer review.",
+      a:3, fb:"Supervision (5.3). Nonlawyer assistance \u2014 human or machine \u2014 is the supervising lawyer's responsibility. Review before it leaves the building is the reasonable effort the rule demands." }
+  ];
+  var wrap = document.getElementById("match"), tally = document.getElementById("tally");
+  var done = 0, right = 0;
+  TASKS.forEach(function (T, i) {
+    var card = el("div", { class: "mtask" });
+    card.appendChild(el("p", { class: "t" }, [(i + 1) + ". " + T.t]));
+    var row = el("div", { class: "choices", role: "group", "aria-label": "Duty choices for moment " + (i + 1) });
+    var fb = el("div", { class: "mfb", role: "status", "aria-live": "polite" });
+    var locked = false;
+    DUTIES.forEach(function (d, di) {
+      var b = el("button", { class: "mch", type: "button" }, [d]);
+      b.addEventListener("click", function () {
+        if (locked) return;
+        locked = true;
+        var ok = di === T.a;
+        row.querySelectorAll(".mch").forEach(function (x, xi) {
+          x.disabled = true;
+          if (xi === T.a) x.classList.add("good");
+          else if (x === b) x.classList.add("bad");
+        });
+        fb.textContent = "";
+        window.setTimeout(function(){ fb.textContent = (ok ? "Right. " : "Not quite \u2014 ") + T.fb; }, 30);
+        done++; if (ok) right++;
+        tally.textContent = done + " of " + TASKS.length + " matched \u00b7 " + right + " correct";
+        if (window.ExportReflect) ExportReflect.log("Moment " + (i + 1), (ok ? "correct: " : "chose " + d + "; answer: ") + DUTIES[T.a]);
+        if (done === TASKS.length && window.ExportReflect) ExportReflect.log("Matching complete", right + " / " + TASKS.length);
+      });
+      row.appendChild(b);
+    });
+    card.appendChild(row);
+    card.appendChild(fb);
+    wrap.appendChild(card);
+  });
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "Duties Behind the Research",
+    chapter: "Chapter 10 \u2014 The Ethics of Legal Research",
+    intro: "Your matches are collected locally. Add a reflection and download the record.",
+    prompts: [
+      "Which duty had you not connected to research before this chapter, and what moment makes the connection real for you?",
+      "Candor and competence often arrive in the same scenario. Describe one situation where thorough research is what makes candor possible."
+    ]
+  });
+})();
+</script>
+</body>
+</html>

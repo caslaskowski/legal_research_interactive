@@ -18,6 +18,8 @@ if (!pages.length) {
       }
   for (const a of (reg.appendices && reg.appendices.items) || [])
     if (a.href && a.href.endsWith(".html")) set.add(a.href);
+  for (const a of (reg.toolkit && reg.toolkit.items) || [])
+    if (a.href && a.href.endsWith(".html")) set.add(a.href);
   pages = [...set].sort();
 }
 let failures = 0;

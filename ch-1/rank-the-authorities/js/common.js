@@ -148,6 +148,13 @@
 
   function buildFooter() {
     return el("footer", { class: "foot" }, [
+      el("p", { class: "foot-contact" }, [
+        "Found a problem, or wish a module existed? ",
+        el("a", { href: "https://github.com/caslaskowski/legal_research_interactive/issues", target: "_blank", rel: "noopener" },
+          ["Report an issue or suggest a feature"]),
+        " (opens GitHub in a new tab \u2014 nothing is sent from this site)."
+      ]),
+
       el("span", {}, ["Hierarchy of Authorities \u2014 an interactive skill-builder for the Question Method of Legal Research."]),
       el("span", {}, ["Primary over secondary \u00b7 binding over persuasive \u00b7 higher court over lower"])
     ]);

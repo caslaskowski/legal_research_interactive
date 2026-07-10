@@ -55,42 +55,52 @@ def build_menu(base, current_rel):
             continue
         rows = []
         for c in ch_in:
-            live = [m for m in c.get("modules", [])
-                    if m.get("status") == "live" and m.get("href")]
-            mods_html = ""
-            if live:
-                lis = []
-                for m in live:
-                    href = m["href"]
-                    cur = ' aria-current="page"' if href == current_rel else ""
-                    lis.append('                  <li><a href="%s%s"%s>%s</a></li>'
-                               % (base, esc(href), cur, esc(m["title"])))
-                mods_html = ('\n                <ul class="modmenu-mods">\n'
-                             + "\n".join(lis) + '\n                </ul>')
+            live = [m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")]
+            in_ch = current_rel.startswith("ch-%d/" % c["ch"])
+            lis = ['                  <li><a class="mm-chlink" href="%s">Chapter overview \u2192</a></li>'
+                   % ch_url(base, c["ch"])]
+            for m in live:
+                href = m["href"]
+                cur = ' aria-current="page"' if href == current_rel else ""
+                lis.append('                  <li><a href="%s%s"%s>%s</a></li>'
+                           % (base, esc(href), cur, esc(m["title"])))
             rows.append('              <li class="modmenu-chap">\n'
-                        '                <a href="%s"><span class="cn">%d</span> %s</a>%s\n'
+                        '                <details class="mm-ch"%s>\n'
+                        '                  <summary><span class="cn">%d</span> %s</summary>\n'
+                        '                  <ul class="modmenu-mods">\n%s\n                  </ul>\n'
+                        '                </details>\n'
                         '              </li>'
-                        % (ch_url(base, c["ch"]), c["ch"], esc(c["title"]), mods_html))
+                        % (" open" if in_ch else "", c["ch"], esc(c["title"]), "\n".join(lis)))
         cols.append('            <section class="modmenu-part">\n'
                     '              <h2>Part %s &middot; %s</h2>\n'
                     '              <ul class="modmenu-chaps">\n'
                     % (esc(part["id"]), esc(part.get("name", "")))
                     + "\n".join(rows)
                     + '\n              </ul>\n            </section>')
-    ap = R.get("appendices")
-    if ap and ap.get("items"):
+
+    def flat_section(sec, default_head):
         lis = []
-        for a in ap["items"]:
+        for a in sec["items"]:
             cur = ' aria-current="page"' if a.get("href") == current_rel else ""
-            lis.append('              <li class="modmenu-chap"><a href="%s%s"%s>'
+            lis.append('              <li class="modmenu-chap"><a class="mm-flat" href="%s%s"%s>'
                        '<span class="cn">%s</span> %s</a></li>'
                        % (base, esc(a.get("href", "")), cur, esc(a["id"]), esc(a["title"])))
-        cols.append('            <section class="modmenu-part">\n'
-                    '              <h2>%s</h2>\n'
-                    '              <ul class="modmenu-chaps">\n'
-                    % esc(ap.get("eyebrow", "Appendices"))
-                    + "\n".join(lis)
-                    + '\n              </ul>\n            </section>')
+        return ('            <section class="modmenu-part">\n'
+                '              <h2>%s</h2>\n'
+                '              <ul class="modmenu-chaps">\n'
+                % esc(sec.get("eyebrow", default_head))
+                + "\n".join(lis)
+                + '\n              </ul>\n            </section>')
+
+    stack = []
+    ap = R.get("appendices")
+    if ap and ap.get("items"):
+        stack.append(flat_section(ap, "Appendices"))
+    tk = R.get("toolkit")
+    if tk and tk.get("items"):
+        stack.append(flat_section(tk, "Toolkit"))
+    if stack:
+        cols.append('            <div class="modmenu-stack">\n' + "\n".join(stack) + '\n            </div>')
     return "\n".join(cols)
 
 # ---- static chapter pages ---------------------------------------------------

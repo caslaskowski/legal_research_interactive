@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weigh the History — Ch. 12 · Legislative History</title>
+<meta name="description" content="Seven conflicts between legislative history sources — decide which wins, and how much any of it is worth. Fictional bill, real weighing rules.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1100px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
+  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 18px;}
+  h2.sec{font-size:1.3rem;margin:26px 0 4px;}
+  .secdesc{color:var(--ink-soft);margin:0 0 14px;line-height:1.6;}
+  .tally{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 16px;}
+  .card{background:#fff;border:1.5px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:0 0 16px;}
+  .card .num{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 5px;}
+  .card .task{font-weight:600;font-size:1rem;line-height:1.55;margin:0 0 12px;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;line-height:1.5;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.92;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .why{display:block;font-weight:400;font-size:.85rem;color:var(--ink-soft);margin-top:5px;line-height:1.5;}
+  .fb{margin:12px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 11px;}
+  .panel{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:14px 18px;margin:0 0 14px;}
+  .panel h3{font-size:1.02rem;margin:0 0 4px;}
+  .panel .w{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:1px 8px;border:1px solid;margin:0 0 8px;}
+  .wb{color:#2e6b34;border-color:#2e6b34;background:#e5efe0;}
+  .wp{color:#7a5a00;border-color:#c9a84c;background:#f7efd8;}
+  .panel p{font-size:.9rem;line-height:1.62;margin:0 0 8px;}
+  .panel .use{font-size:.86rem;line-height:1.55;border-top:1px dashed var(--rule-strong);padding-top:7px;margin:0;}
+  .panel .use b{color:var(--flame);}
+  .uni{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);overflow:hidden;margin:0 0 14px;}
+  .uni .utag{display:block;background:var(--flame);border-bottom:1px solid var(--flame-deep);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:7px 16px;}
+  .uni .ubody{padding:14px 18px;}
+  .uni h3{font-size:.98rem;margin:0 0 4px;}
+  .uni .ucite{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);display:block;margin:0 0 6px;}
+  .uni .uex{font-family:"Newsreader",Georgia,serif;font-size:.92rem;line-height:1.65;background:var(--panel);border-radius:7px;padding:10px 13px;margin:0 0 14px;}
+  .ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:0 0 14px;}
+  .ctxcard{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:14px 17px;}
+  .ctxcard h3{font-size:1rem;margin:0 0 8px;}
+  .ctxcard dl{margin:0;font-size:.86rem;line-height:1.55;}
+  .ctxcard dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--flame);margin:8px 0 2px;}
+  .ctxcard dd{margin:0;color:var(--ink-soft);}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">4</span> Secondary Sources Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">5</span> Case Law Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">6</span> Statutes Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">8</span> Researching Across Sources</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch" open>
+                  <summary><span class="cn">12</span> Legislative History Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html" aria-current="page">Weigh the History</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">13</span> Advanced Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">15</span> GenAI and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">17</span> Research for Legal Scholarship</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-17/">Chapter overview →</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <div class="modmenu-stack">
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Toolkit &amp; Resources</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              </ul>
+            </section>
+            </div>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-12/" style="color:var(--flame)">Ch.&nbsp;12</a> / Weigh the History</p>
+    <h1>Weigh the History</h1>
+    <p class="lede">You traced the bill; now the documents disagree. Seven conflicts below, all built on the fictional Residential Heating Assurance Act from the lesson. For each, decide what wins — and notice the recurring answer underneath all of them: enacted text first, and history only as persuasion.</p>
+    <div class="howto"><b>How to use this:</b> make the call, then read the reasoning under every option. The bill and all documents are fictional; the weighing principles are the chapter's.</div>
+
+    <h2 class="sec">Seven conflicts</h2>
+    <p class="tally" id="tally">0 of 7 answered</p>
+    <div id="deck"></div>
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-12/">Ch. 12 · Legislative History Research</a></p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-12/trace-the-bill/index.html"><span class="dir">← Previous</span><span class="t">Trace the Bill</span></a>
+    <a class="modnav-link next" href="../../ch-13/"><span class="dir">Next chapter →</span><span class="t">Ch. 13 · Advanced Administrative Research</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+    <span class="foot-contact">Found a problem, or wish a module existed?
+      <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>
+      <small>(opens GitHub in a new tab &mdash; nothing is sent from this site)</small></span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var el = QM.el;
+  var CARDS = [
+  {
+    "task": "The committee report's section-by-section analysis says “heating season” follows local code. A sponsor's op-ed published two years after enactment says it means October through April everywhere. Which carries more weight?",
+    "opts": [
+      {
+        "t": "The section-by-section analysis",
+        "why": "Pre-passage, institutional, addressed to the voting chamber — against a post-enactment statement, the weakest history there is. The enacting legislature had already spoken before the op-ed existed.",
+        "good": true
+      },
+      {
+        "t": "The op-ed — the sponsor knows what was meant",
+        "why": "Authorship doesn't rescue timing: post-enactment statements are routinely rejected because they couldn't have informed anyone's vote."
+      },
+      {
+        "t": "They cancel out",
+        "why": "They aren't peers — one sits at the top of the weight bands, the other at the bottom."
+      }
+    ]
+  },
+  {
+    "task": "The House committee report describes Section 4 one way. The conference report — after the section was amended in conference — describes it differently. Which controls your reading?",
+    "opts": [
+      {
+        "t": "The conference report",
+        "why": "It is the only document describing the text that actually passed. When language changes late, the conference report trumps earlier committee reports on the final wording.",
+        "good": true
+      },
+      {
+        "t": "The House report — committee reports are the most authoritative",
+        "why": "Most authoritative as a class — but a report describes the bill as it left committee. Your language changed after that."
+      },
+      {
+        "t": "Whichever is longer and more detailed",
+        "why": "Detail about superseded text is detail about nothing. Match the document to the version that became law."
+      }
+    ]
+  },
+  {
+    "task": "The floor manager explained the provision during debate. So did a member from a district with many rental properties, who voted yes. Whose statement matters more?",
+    "opts": [
+      {
+        "t": "The floor manager's",
+        "why": "Sponsor and floor-manager statements are the moderate band's core — they explained the bill to the chamber. A lone member's remarks are nearly worthless as evidence of collective intent.",
+        "good": true
+      },
+      {
+        "t": "The member's — their district gave them real expertise",
+        "why": "Expertise isn't the measure; evidence of what the body collectively understood is. One vote's motives don't speak for the chamber."
+      },
+      {
+        "t": "Both equally — each cast one vote",
+        "why": "Weight follows role in the process, not vote count."
+      }
+    ]
+  },
+  {
+    "task": "An agency official testified at the hearings that the bill would require 68 degrees in common areas too. The enacted text says “covered units.” A litigant offers the testimony as proof of what Congress intended. Does it work?",
+    "opts": [
+      {
+        "t": "No — witnesses are not the legislature, and the text controls",
+        "why": "Hearing testimony illuminates the problem Congress studied; it is not congressional intent, and it certainly cannot enlarge enacted text.",
+        "good": true
+      },
+      {
+        "t": "Yes — the agency would have to administer it, so its reading counts",
+        "why": "The agency's later, formal interpretations may matter in their own right — but its wish list at a hearing says nothing about what Congress adopted."
+      },
+      {
+        "t": "Yes, if no one contradicted it at the hearing",
+        "why": "Silence at a hearing binds no one; most testimony draws no response at all."
+      }
+    ]
+  },
+  {
+    "task": "The statute's text is clear, but the committee report suggests the committee expected something broader. Your client likes the report. What do you tell them?",
+    "opts": [
+      {
+        "t": "Clear text wins — history cannot override it",
+        "why": "The threshold rule of the whole chapter: legislative history is a tool for ambiguity. Where the text is clear, no report, however emphatic, displaces it.",
+        "good": true
+      },
+      {
+        "t": "The report wins — intent is what statutes are for",
+        "why": "A common instinct, but it reverses the order: the enacted words are the law; the history is, at best, evidence of their meaning when they're unclear. (Review the threshold rule in Trace the Bill.)"
+      },
+      {
+        "t": "Argue both and let the court choose",
+        "why": "Offering history against clear text invites the response the chapter warned about — and damages your credibility for the arguments that matter."
+      }
+    ]
+  },
+  {
+    "task": "Your judge is a committed textualist. Your best material is a strong section-by-section analysis. How do you use it?",
+    "opts": [
+      {
+        "t": "Lead with text and structure; offer the history as confirmation, briefly and with candor",
+        "why": "Know your court: before a textualist, history argued as confirmation of a textual reading can survive; history argued as an independent source of meaning will be discounted or worse.",
+        "good": true
+      },
+      {
+        "t": "Lead with the report — it's your strongest document",
+        "why": "Strongest to you; potentially worthless to this judge. The audience is part of the weighing."
+      },
+      {
+        "t": "Don't research history at all for this judge",
+        "why": "You still need to know what's in it — not least because the other side will use it, and because it may confirm the textual argument you lead with."
+      }
+    ]
+  },
+  {
+    "task": "You have the statute's Public Law number and need its history. Your first move?",
+    "opts": [
+      {
+        "t": "Look for a compiled legislative history keyed to that number",
+        "why": "The route from the lesson: check whether someone already assembled it — the major services and government sources publish compiled histories. Build your own trail only when none exists.",
+        "good": true
+      },
+      {
+        "t": "Start collecting documents stage by stage from the pipeline",
+        "why": "That's the fallback, not the first move — assembling by hand what a compiled history already contains."
+      },
+      {
+        "t": "Search the Congressional Record for the bill number",
+        "why": "One source among five, found more reliably through a compiled history than by raw searching."
+      }
+    ]
+  }
+];
+
+  var deck = document.getElementById("deck"), tally = document.getElementById("tally");
+  var done = 0, right = 0;
+  CARDS.forEach(function (C, i) {
+    var card = el("div", { class: "card" });
+    card.appendChild(el("p", { class: "num" }, ["Conflict " + (i + 1) + " of " + CARDS.length]));
+    card.appendChild(el("p", { class: "task" }, [C.task]));
+    var wrap = el("div", { class: "opts", role: "group", "aria-label": "Choices for item " + (i + 1) });
+    var fb = el("div", { class: "fb", role: "status", "aria-live": "polite" });
+    var locked = false;
+    C.opts.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [o.t]);
+      b.addEventListener("click", function () {
+        if (locked) return;
+        locked = true;
+        wrap.querySelectorAll(".opt").forEach(function (x, xi) {
+          x.disabled = true;
+          var O = C.opts[xi];
+          if (O.good) x.classList.add("good");
+          else if (x === b) x.classList.add("bad");
+          x.appendChild(el("span", { class: "why" }, [O.why]));
+        });
+        var ok = !!o.good;
+        done++; if (ok) right++;
+        tally.textContent = done + " of " + CARDS.length + " answered \u00b7 " + right + " correct";
+        fb.textContent = "";
+        window.setTimeout(function(){ fb.textContent = ok
+          ? "Right. Read the other options \u2014 the near-misses teach the boundaries."
+          : "The best answer is marked in green \u2014 the reasoning under each option shows why."; }, 30);
+        if (window.ExportReflect) ExportReflect.log("Conflict " + (i + 1) + " \u2014 " + C.task.slice(0, 60),
+          (ok ? "correct" : "chose: " + o.t.slice(0, 50)));
+        if (done === CARDS.length && window.ExportReflect) ExportReflect.log("Deck complete", right + " / " + CARDS.length);
+      });
+      wrap.appendChild(b);
+    });
+    card.appendChild(wrap);
+    card.appendChild(fb);
+    deck.appendChild(card);
+  });
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "Weigh the History",
+    chapter: "Chapter 12 \u2014 Legislative History Research",
+    intro: "Your seven calls are collected locally. Add a reflection and download the record. All documents are fictional.",
+    prompts: [
+  "State the threshold rule — when does legislative history matter at all — and the weight order beneath it, from memory.",
+  "Which conflict's wrong answer tempted you most, and what principle settles it?"
+]
+  });
+})();
+</script>
+</body>
+</html>

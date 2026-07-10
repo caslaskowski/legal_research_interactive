@@ -127,6 +127,13 @@
 
   function buildFooter() {
     return el("footer", { class: "foot" }, [
+      el("p", { class: "foot-contact" }, [
+        "Found a problem, or wish a module existed? ",
+        el("a", { href: "https://github.com/caslaskowski/legal_research_interactive/issues", target: "_blank", rel: "noopener" },
+          ["Report an issue or suggest a feature"]),
+        " (opens GitHub in a new tab \u2014 nothing is sent from this site)."
+      ]),
+
       el("div", { class: "wrap", style: "display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%;" }, [
         el("span", {}, ["How Law Is Made \u2014 an interactive primer for first-year law students."]),
         el("span", {}, ["Sources of law: cases \u00b7 statutes \u00b7 regulations"])
