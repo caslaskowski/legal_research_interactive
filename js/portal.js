@@ -1,6 +1,6 @@
 /* Firebrand home page — renders the chapter index from window.REGISTRY.
    Classic script (no modules, no fetch) so opening index.html locally works.
-   Each chapter links to its own page (chapter.html?ch=N), which lists that
+   Each chapter links to its static page (ch-N/), which lists that
    chapter's modules. */
 (function () {
   "use strict";
@@ -88,18 +88,19 @@
       var mods = c.modules || [];
       var st = STATUS[chapterStatus(mods)] || STATUS.plan;
       var liveN = mods.filter(function (m) { return m.status === "live"; }).length;
+      var isGuide = !!c.overview && !liveN;
       var countTxt = mods.length + (mods.length === 1 ? " module" : " modules");
       var availTxt = liveN ? " \u00b7 " + liveN + " available" : "";
 
       var meta = el("div", { class: "ch-meta" }, [
         el("span", { class: "ch-note" }, [countTxt + availTxt]),
-        el("span", { class: "pill " + st.cls }, [st.label]),
+        el("span", { class: "pill " + (isGuide ? "live" : st.cls) }, [isGuide ? "Guide" : st.label]),
         el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
       ]);
 
       ledger.appendChild(el("a", {
-        class: "entry" + (liveN ? " is-live" : " is-plan"),
-        href: "chapter.html?ch=" + c.ch,
+        class: "entry" + ((liveN || isGuide) ? " is-live" : " is-plan"),
+        href: "ch-" + c.ch + "/",
         "aria-label": "Chapter " + c.ch + " \u2014 " + c.title +
           " (" + countTxt + availTxt + ")"
       }, [
@@ -124,4 +125,66 @@
       ledger
     ]));
   });
+
+  /* ---- appendices & glossary ---- */
+  var ap = R.appendices;
+  if (ap && ap.items && ap.items.length) {
+    var ledgerA = el("div", { class: "ledger" });
+    ap.items.forEach(function (a) {
+      ledgerA.appendChild(el("a", {
+        class: "entry is-live",
+        href: a.href,
+        "aria-label": a.id + " \u2014 " + a.title
+      }, [
+        el("div", { class: "ch-no", "aria-hidden": "true" }, [String(a.id)]),
+        el("div", { class: "ch-body" }, [
+          el("p", { class: "ch-title" }, [a.title]),
+          el("p", { class: "ch-desc" }, [a.also || ""])
+        ]),
+        el("div", { class: "ch-meta" }, [
+          el("span", { class: "pill live" }, ["Available"]),
+          el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
+        ])
+      ]));
+    });
+    app.appendChild(el("section", { class: "part reveal d4" }, [
+      el("div", { class: "part-head" }, [
+        el("span", { class: "pnum" }, ["Appendices"]),
+        el("h2", {}, [ap.eyebrow || "Appendices & Glossary"])
+      ]),
+      ap.intro ? el("p", { class: "part-blurb" }, [ap.intro]) : null,
+      ledgerA
+    ]));
+  }
+
+  /* ---- toolkit & resources ---- */
+  var tk = R.toolkit;
+  if (tk && tk.items && tk.items.length) {
+    var ledgerT = el("div", { class: "ledger" });
+    tk.items.forEach(function (a) {
+      ledgerT.appendChild(el("a", {
+        class: "entry is-live",
+        href: a.href,
+        "aria-label": a.id + " \u2014 " + a.title
+      }, [
+        el("div", { class: "ch-no", "aria-hidden": "true" }, [String(a.id)]),
+        el("div", { class: "ch-body" }, [
+          el("p", { class: "ch-title" }, [a.title]),
+          el("p", { class: "ch-desc" }, [a.also || ""])
+        ]),
+        el("div", { class: "ch-meta" }, [
+          el("span", { class: "pill live" }, ["Available"]),
+          el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
+        ])
+      ]));
+    });
+    app.appendChild(el("section", { class: "part reveal d4" }, [
+      el("div", { class: "part-head" }, [
+        el("span", { class: "pnum" }, ["Toolkit"]),
+        el("h2", {}, [tk.eyebrow || "Toolkit & Resources"])
+      ]),
+      tk.intro ? el("p", { class: "part-blurb" }, [tk.intro]) : null,
+      ledgerT
+    ]));
+  }
 })();

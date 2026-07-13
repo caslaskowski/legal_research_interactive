@@ -1,0 +1,43 @@
+# Part II Build Notes — approved queue & standing decisions
+*Working document for the module build-out. Updated 2026-07-10.*
+
+## Approved queue (from the marked v2 plan)
+Built: **10-P1 Catch the Fabricated Citation** · **12-L1 Trace the Bill** · **15-L1 How the Machine Guesses** · **15-P1 Verify the AI's Work** · **15-P2 Right Tool, Right Question** · Ch. 17 overview + Scholarship Research Checklist (chapter page, no modules — per rejection of 17-L1/17-P1).
+Remaining, in build order: 10-L1 Duties Behind the Research → 13-L1 + 13-P1 (one dating pass for deference content) → 11-L1 + 11-P1 → 16-L1 + 16-P1 → 14-L1 + 14-P1 → 10-P2.
+Ch. 15 fully approved 2026-07-10 and built the same day.
+
+## Her comments to honor at build time
+- **11-L1 Read the Docket:** surface the *unintuitive* parts — reverse chronology (newest entries first) and multi-part docket entries for a single filing (rare but real).
+- **12-L1 Trace the Bill:** modeled on Ch. 1 / the statute chapter — process overview *plus* a per-source deep dive naming the questions each source answers and when it is useful. (Built to this spec.)
+- **14-L1 Same Cycle:** reiterate the book's closure types — practice-specific research closes practically (non-analytically) more often than appellate work.
+- **16-P1 Closed Universe:** model original research-focused questions on the released NextGen sample's *format* — research Q&A and the gaps only; ignore its writing elements. **Never reproduce NCBE content — format only, original materials (copyright).**
+
+## Standing rules added this round
+- Reflection prompts must not assume prior experience with legal sources — students are presumed new to all of it. Ask what surprised them, what they'll do, how they decided — never how this compares to their past habits.
+- Callouts use the warm `--callout` parchment (#f5efe0), red border and red headers retained; the red tint is reserved for hover affordance and wrong-answer feedback.
+- "How to Read a …" modules: engage steps render as a numbered strip at the top (home-page style) and each carries a "Work the Page" exercise — hold a question, click the part that answers it. No "Your question is" framing anywhere.
+- Glossary flashcards filter by chapter (term→chapter derived from first appearance in the textbook).
+
+## Runtime-integrity round (2026-07-10, prompted by the flashcards loading failure)
+Three production bugs found and fixed by executing every live page in jsdom: the flashcards chapter filter ran before state loaded (init order); the rank suite's header requested nav ids the generator never emitted (crashed every suite page); and the suite's practice and quiz pages shipped without their data files (`practice.json`, `quiz.json` now authored, generator MAP extended, `navlink` guarded). Standing rule: **every new module must pass `node scripts/smoke.js` before it ships** — CI enforces it.
+
+## Module-structure standard (2026-07-10)
+- **Single-page is the default.** A module splits into multiple pages only when one page would carry too much (her call on Trace the Bill).
+- **Multi-page modules share one structure so students are never thrown:** the home page carries the intro, a **“Start the module →”** primary button (`.start-cta`), and a **Module contents** card list (`.modcontents`); every content page carries breadcrumbs back through the module home and a consistent **in-module pager** (`.modpager`); deep-dive material is reached by **“Learn more … →”** links from overview elements (the ch-1 sources pattern).
+- **One record per module:** contributing pages call `ExportReflect.collect({module, chapter, session})`; the final page mounts the download UI with the same session key, so the record accumulates across pages for the browser session.
+- CTA language standardized: sources home and rank home now also say “Start the module →”.
+
+## Orientation-lesson rule (2026-07-10)
+Every chapter that carries a “How to Read” appendix module lists a takeaway-reinforcing orientation lesson **above** it: ch-4 leads with The Types of Secondary Sources; ch-5 with Cases as a Web of Answers; ch-6 with How to Find a Statute; ch-7 with From Statute to Regulation. Part II chapters already follow this (each has a lesson before its practice modules). Standing rule for all future chapters.
+
+## Part II build-out complete (2026-07-10, round 2)
+All queued modules are now live: ch-6 gained its conceptual orientation (The Life of a Statute, listed first per the orientation-leads rule); ch-10 Duties Behind the Research + The Duty Calls; ch-11 Read the Docket (reverse chronology and multi-part entries called out as the two unintuitive features, per her request) + Pull the Right Paper; ch-12 Weigh the History (reuses the fictional Residential Heating Assurance Act); ch-13 Beyond the Rule + Weigh the Agency Materials (post-Loper Bright framing per the book; verified 2026-07-10); ch-14 Same Cycle, Different Parameters (three parameters + closure types revisited; practical closure framed as normal) + Pick the Parameters (Pins Place returns); ch-16 Five Skills, Mapped + The Closed Universe (NextGen format only — all sources fictional/original, flagged in a demo banner). Fictional universe reused across chapters for cohesion: the Marsh/Golden Rentals matter appears in the ch-11 docket and the ch-16 universe alongside Okafor and Delgado from the ch-10/15 database. Practice modules share one check-card template (generator kept outside the repo).
+
+## Quiz model + contact + toolkit (2026-07-10, round 3)
+- **Quiz-bank alignment (bank is REFERENCE ONLY — its questions are never used on the site).** Site questions now follow the bank's model: correct answers explicitly confirm the takeaway; wrong answers name the specific confusion kindly ("a natural thought, but…", "an understandable overcorrection…") and point to where to review; no judgmental openers. A tone sweep softened curt feedback in ch-4, ch-10, ch-12 (both modules), ch-14, and ch-15.
+- **No doctrine-detail quizzing.** Ch-13 rewritten on her instruction: the site notes only that agency materials persuade rather than bind and that their persuasive weight is weaker than it once was, then points students to their administrative law course for the framework. Skidmore/Chevron/Loper mechanics removed from panels and questions; the surviving research discipline is logging an authority level with every finding.
+- **Contact:** footer on every page now carries "Report an issue or suggest a feature" → GitHub Issues (new tab; nothing sent from the site). Swap in or add a mailto when she supplies the address.
+- **Toolkit & Resources:** new site part (registry `toolkit` key; menu section, home strip, smoke-covered). One hub page with six book-grounded tools, each viewable and downloadable as .txt generated client-side: the Research Log (the book's eight fields verbatim), Question Drafting checklist, Source Selection quick reference, Closure checklists (analytical indicators + the three practical-closure steps), Before You Rely validation, AI Output verification.
+
+## Glossary deck coverage (2026-07-10, round 4)
+Her catch: chapters 9, 10, 13, 14 (and 16) had zero flashcards. Two causes: (1) five terms were tagged to the wrong chapter under the book's first-definitional-appearance convention — retagged: citator 2→5, holding 1→5, legislative history 6→12, Restatement 1→4, secondary source 1→4; (2) the book's own glossary has no entries whose first appearance is in ch 9/10/13/14/16. Added 18 chapter-true cards with definitions drawn from chapter text (search connectors + closing-out protocol; the three Model Rules duties; adjudication/opinion letter/FOIA; the three context closure criteria near-verbatim; the five NextGen skills + closed universe). Deck intro updated to say "the book's glossary plus key terms Chapters 9–16 define in text." Every chapter now has at least one card (63 total). AUTHOR NOTE flagged to her: the book's glossary may want these entries in the final draft. Also fixed: array-junction missing comma made inserted entries parse as index-chaining (valid JS, undefined elements) — smoke caught it.

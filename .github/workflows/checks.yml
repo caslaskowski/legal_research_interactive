@@ -1,0 +1,71 @@
+# Static checks on every push and pull request. Everything runs on the runner;
+# no student data exists here and nothing leaves the job.
+name: site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the site and run repo checks
+        run: python3 build.py
+
+      - name: Fail if the build changed committed files
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Built output differs from what is committed. Run 'python3 build.py' locally and commit the result."
+            git diff --stat
+            exit 1
+          fi
+
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install pa11y-ci
+        run: npm install -g pa11y-ci http-server
+
+      - name: Serve the site
+        run: http-server -p 8080 . &
+
+      - name: Build the page list from the registry
+        run: |
+          python3 - << 'PY'
+          import json, glob
+          urls = ["http://localhost:8080/index.html", "http://localhost:8080/about.html"]
+          urls += ["http://localhost:8080/%s" % p.replace("\\", "/") for p in glob.glob("ch-*/index.html")]
+          R = json.load(open("data/registry.json"))
+          for c in R["chapters"]:
+              for m in c.get("modules", []):
+                  if m.get("status") == "live" and m.get("href"):
+                      urls.append("http://localhost:8080/" + m["href"])
+          for a in R.get("appendices", {}).get("items", []):
+              urls.append("http://localhost:8080/" + a["href"])
+          json.dump({"defaults": {"standard": "WCAG2AA", "timeout": 30000},
+                     "urls": sorted(set(urls))}, open(".pa11yci.json", "w"), indent=2)
+          PY
+
+      - name: Run pa11y (WCAG 2 AA) over every page
+        run: pa11y-ci --config .pa11yci.json
+
+      - name: Runtime smoke test (all live pages execute in jsdom)
+        run: |
+          npm install jsdom --no-save --silent
+          node scripts/smoke.js

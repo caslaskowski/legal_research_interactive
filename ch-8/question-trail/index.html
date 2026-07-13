@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Following the Question Trail — Ch. 8 · Researching Across Sources</title>
+<meta name="description" content="Hold one question and follow it across sources — from a secondary source to the statute, the regulation, and the case that answers it. Each answer produces the next question.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;--radius:4px;
+--q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
+--sec:#7a5bb0;--sec-tint:#ece4f5;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+</style>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);}
+.startbox{margin:18px 0 18px;border:1.5px solid var(--q1);background:var(--q1-tint);border-radius:10px;padding:14px 18px;}
+.startbox .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--q1);margin:0 0 5px;}
+.startbox p{margin:0;font-size:1rem;line-height:1.6;color:var(--ink);}
+.vq{border-left:3px solid var(--flame);background:var(--panel);border-radius:0 7px 7px 0;padding:9px 13px;margin:2px 0 12px;font-size:.96rem;line-height:1.55;font-style:italic;}
+.vq span{display:block;font-style:normal;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 3px;}
+.hypobox b{color:var(--flame-deep);}
+
+.trail{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;align-items:center;}
+.trail .stop{font-family:var(--sans);font-size:.74rem;font-weight:600;border-radius:999px;padding:4px 11px;border:1.5px solid var(--rule-strong);color:var(--ink-faint);background:#fff;}
+.trail .stop[aria-current="step"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+.trail .stop.done{color:var(--ink);border-color:var(--ink-soft);}
+.trail .sep{color:var(--ink-faint);}
+
+.viewer{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;box-shadow:var(--shadow);overflow:hidden;}
+.vtop{padding:8px 16px;color:#fff;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;}
+.vbody{padding:16px 18px 18px;}
+.vkick{font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;margin:0 0 3px;}
+.vtitle{font-family:var(--display);font-weight:700;font-size:1.18rem;margin:0 0 4px;line-height:1.25;}
+.vcite{font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);margin:0 0 12px;}
+.vtext{font-family:var(--serif);font-size:1.06rem;line-height:1.7;color:var(--ink);}
+.vtext p{margin:0 0 11px;}
+.fict{font-size:.82rem;color:#fff;font-style:italic;background:var(--flame);border-left:3px solid var(--flame-deep);border-radius:0 6px 6px 0;padding:8px 12px;margin:10px 0 0;}
+.why{font-size:.92rem;color:var(--ink);background:var(--panel);border-left:3px solid var(--flame);border-radius:0 6px 6px 0;padding:9px 13px;margin:12px 0 0;}
+.why b{color:var(--flame-deep);}
+.nav-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding-top:13px;border-top:1px dashed var(--rule-strong);}
+.goact{font:inherit;font-size:.88rem;font-weight:600;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;padding:9px 14px;cursor:pointer;}
+.goact.ghost{background:#fff;color:var(--ink);}
+.goact:hover{background:var(--flame);border-color:var(--flame);color:#fff;}
+.goact:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+#export-slot{margin-top:30px;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">4</span> Secondary Sources Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">5</span> Case Law Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">6</span> Statutes Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch" open>
+                  <summary><span class="cn">8</span> Researching Across Sources</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html" aria-current="page">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">12</span> Legislative History Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">13</span> Advanced Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">15</span> GenAI and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">17</span> Research for Legal Scholarship</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-17/">Chapter overview →</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <div class="modmenu-stack">
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Toolkit &amp; Resources</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              </ul>
+            </section>
+            </div>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 8 · Educational</p>
+    <h1>Following the Question Trail</h1>
+    <p class="lede">A good researcher rarely wanders &mdash; not because they have guessed the answer, but because they are holding a <em>question</em>. The moment you assume you know the answer is the moment you stop researching it: you start seeing only what confirms the guess. The method's protection is simple &mdash; carry one question at a time, let each source answer it, and let that answer produce the next question. Here you do exactly that for a real veterans-benefits problem, from a secondary source down to the case that answers your client's question.</p>
+
+    <div class="startbox">
+      <p class="k">The client &amp; the first question</p>
+      <p>A veteran filed for disability compensation and submitted a private physician&rsquo;s statement. The VA found it <b>&ldquo;inadequate for rating purposes.&rdquo;</b> The client disagrees and wants to push back. <br><br>You do not yet know what the law requires here &mdash; and you resist the urge to guess. The file itself supplies the first question, in its own words: <b>&ldquo;What must the VA do when it decides a veteran&rsquo;s disability claim &mdash; and can it reject the claim just by calling the evidence inadequate?&rdquo;</b> <em>Let&rsquo;s research it.</em></p>
+    </div>
+
+    <div class="trail" id="trail" aria-label="Research trail"></div>
+
+    <section class="viewer" aria-label="Research source viewer">
+      <div class="vtop" id="vtop"></div>
+      <div class="vbody" id="vbody" aria-live="polite"></div>
+    </section>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-8/">Ch. 8 · Researching Across Sources</a></p>
+  <p class="modnav-verified">Authorities verified as of 2026-07-10. The law changes — run the method, don’t trust the module.</p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-8/tracing-sources/index.html"><span class="dir">← Previous</span><span class="t">Tracing the Law Across Sources</span></a>
+    <a class="modnav-link next" href="../../ch-8/across-sources-practice/index.html"><span class="dir">Next →</span><span class="t">Across Sources Practice</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+    <span class="foot-contact">Found a problem, or wish a module existed?
+      <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>
+      <small>(opens GitHub in a new tab &mdash; nothing is sent from this site)</small></span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  // VA disability example. Statute/reg/case are real; the secondary source is fictional but faithful.
+  // The Guerrieri note is reworded in original prose (no publisher headnote or key number).
+  var STOPS=[
+    {key:"secondary", trail:"Secondary source", color:"var(--sec)", kick:"Secondary source \u00b7 orientation",
+     q:"What must the VA do when it decides a veteran\u2019s disability claim \u2014 and can it reject the claim just by calling the evidence inadequate?",
+     title:"Veterans Benefits Practice Guide \u2014 \u201cAdequacy of medical evidence for ratings\u201d",
+     cite:"Illustrative entry written for this lesson \u2014 not a real publication.",
+     body:["You start where you can get oriented fast. The practice guide lays out the landscape: a veteran is entitled to compensation for a service-connected disability; the VA has a duty to assist in developing the claim, which can include providing a medical examination; and the <em>weight</em> a medical opinion carries is judged by factors the courts have developed.",
+           "Crucially, it points you onward \u2014 to the governing statute, to the examination regulation at 38 C.F.R. \u00a7 3.326, and to the case law on the probative value of medical opinions."],
+     fict:"This secondary source is fictional, written for the exercise \u2014 but everything it states tracks the real law you\u2019re about to confirm.",
+     why:"<b>The answer, scoped to the question:</b> a right exists, the VA owes a duty to assist, and opinion adequacy is judged by court-made factors \u2014 and the guide names where each piece lives. That answer produces the next question: <em>what does the statute actually say about the right and the duty?</em> A secondary source is never the law; its job is to hand you the citations, so you go verify them.",
+     next:{label:"Go to the statute \u2192",to:"statute"}},
+    {key:"statute", trail:"Statute", color:"var(--q1)", kick:"Statute \u00b7 the right and the duty",
+     q:"What does the statute actually say about the veteran\u2019s entitlement \u2014 and about the VA\u2019s duty to help develop the claim?",
+     title:"38 U.S.C. \u00a7\u00a7 1110 / 1131 and \u00a7 5103A",
+     cite:"United States Code \u2014 verify the current text.",
+     body:["<strong>\u00a7 1110 (wartime) and \u00a7 1131 (peacetime)</strong> establish the basic entitlement: the United States pays compensation for disability resulting from a service-connected injury or disease. That\u2019s the <em>right</em> your client is asserting.",
+           "<strong>\u00a7 5103A</strong> imposes the VA\u2019s <em>duty to assist</em> \u2014 which includes providing a medical examination or obtaining a medical opinion when one is necessary to decide the claim. That\u2019s the <em>obligation</em> the \u201cinadequate\u201d finding may have triggered."],
+     why:"<b>The answer, scoped to the question:</b> the right exists (\u00a7\u00a7 1110/1131) and the duty to assist exists, including examinations when necessary (\u00a7 5103A). What the statute does <em>not</em> answer is the operational detail \u2014 so the answer produces the next question: <em>when and how must the VA examine, and what counts as \u201cadequate\u201d?</em> For that you drop to the regulation the statute authorizes.",
+     next:{label:"Go to the regulation \u2192",to:"regulation"}},
+    {key:"regulation", trail:"Regulation", color:"var(--q2)", kick:"Regulation \u00b7 the examination framework",
+     q:"When and how must the VA provide an examination \u2014 and what does \u201cadequate for rating purposes\u201d mean?",
+     title:"38 C.F.R. \u00a7 3.326 \u2014 Examinations",
+     cite:"Code of Federal Regulations \u2014 implements the duty to assist.",
+     body:["The regulation puts the statutory duty into practice: it governs when the VA will provide or authorize an examination and frames what it means for evidence or an examination to be adequate <em>for rating purposes</em> \u2014 the very phrase the VA used to reject your client\u2019s evidence.",
+           "So now you know the word \u201cadequate\u201d is doing real work. The next question is what makes a medical opinion adequate \u2014 and the regulation\u2019s text alone won\u2019t tell you. The annotations will."],
+     why:"<b>The answer, scoped to the question:</b> \u00a7 3.326 governs when the VA examines, and it frames adequacy \u201cfor rating purposes\u201d \u2014 the VA\u2019s exact phrase. But the text alone does not say how an opinion\u2019s weight is judged, so the answer produces the next question: <em>how do courts judge the weight of a medical opinion?</em> The Notes of Decision collect the cases that answer it.",
+     next:{label:"Open the Notes of Decision \u2192",to:"notes"}},
+    {key:"notes", trail:"Notes of Decision", color:"var(--q4)", kick:"Notes of Decision \u00b7 the trail to a case",
+     q:"How do courts judge the weight of a medical opinion?",
+     title:"Notes of Decision \u2014 probative value of medical opinions",
+     cite:"Annotations collected with the regulation; holdings reworded here.",
+     body:["The annotations surface a recurring rule from the case law: how much weight a medical opinion carries depends on whether the expert <em>personally examined</em> the patient, the expert\u2019s <em>skill in analyzing</em> the findings, and the <em>soundness of the conclusion</em> reached.",
+           "One case is the anchor for that proposition \u2014 the one you\u2019ll actually cite."],
+     why:"<b>The answer, scoped to the question:</b> the case law judges an opinion by the examination, the analysis, and the conclusion \u2014 and one case anchors the rule. An annotation is a signpost, not authority, so the same question rides forward one more step: you read the case and get the rule in the court\u2019s own words.",
+     next:{label:"Read the case \u2192",to:"case"}},
+    {key:"case", trail:"Case", color:"var(--q3)", kick:"Case \u00b7 the standard you\u2019ll argue",
+     q:"What is the rule, in the court\u2019s own words?",
+     title:"Guerrieri v. Brown",
+     cite:"4 Vet. App. 467 (1993). Holding reworded in plain language.",
+     body:["The Court of Veterans Appeals explained that the probative value of a medical opinion turns on the physician\u2019s personal examination of the patient, the physician\u2019s knowledge and skill in analyzing the data, and the medical conclusion the physician reaches.",
+           "That is the standard your client\u2019s evidence should be measured against \u2014 not a bare label of \u201cinadequate.\u201d"],
+     why:"<b>The question is answered \u2014 and the answer is the argument.</b> Your client\u2019s evidence must be measured against the <em>Guerrieri</em> factors, not dismissed with a bare label. And notice what your Research Log is now holding: the statute\u2019s answer at step 2 raised a sibling question \u2014 <em>did the VA satisfy its \u00a7 5103A duty before denying on adequacy grounds?</em> \u2014 that gets its own cycle next. Nothing here was assumed in advance; every piece was earned by a question.",
+     next:{label:"See the whole trail \u2192",to:"recap"}},
+    {key:"recap", trail:"Recap", color:"var(--ink)", kick:"The path you walked",
+     title:"From question to authority",
+     cite:"",
+     body:["A <strong>secondary source</strong> oriented you and named the primary law. The <strong>statute</strong> supplied the right and the VA\u2019s duty. The <strong>regulation</strong> supplied the examination framework and the loaded word \u201cadequate.\u201d The <strong>Notes of Decision</strong> pointed to a case, and the <strong>case</strong> gave you the standard you\u2019ll argue.",
+           "No single source answered the question. Each one was a step that raised the next \u2014 which is exactly what researching across sources looks like."],
+     why:"<b>The move to keep:</b> let each source hand you the next question, and don\u2019t stop until you reach authority you can actually cite. And the move to refuse: deciding the answer before the sources speak. A researcher who has already \u201cconcluded\u201d reads every source for confirmation \u2014 and misses the one that disagrees.",
+     next:null}
+  ];
+  var IDX={}; STOPS.forEach(function(s,i){ IDX[s.key]=i; });
+
+  var trailEl=document.getElementById("trail"), vtop=document.getElementById("vtop"), vbody=document.getElementById("vbody");
+
+  function renderTrail(cur){
+    trailEl.innerHTML=STOPS.map(function(s,i){
+      var cls="stop"+(i<cur?" done":"");
+      var attr=i===cur?' aria-current="step"':'';
+      return '<span class="'+cls+'"'+attr+'>'+s.trail+'</span>'+(i<STOPS.length-1?'<span class="sep">\u203a</span>':'');
+    }).join("");
+  }
+  function load(key,fromUser){
+    var i=IDX[key], s=STOPS[i];
+    renderTrail(i);
+    vtop.style.background=s.color;
+    vtop.textContent=s.trail+" \u00b7 step "+(i+1)+" of "+STOPS.length;
+    var html='<p class="vkick" style="color:'+s.color+'">'+s.kick+'</p>'+
+      (s.q?'<p class="vq"><span>The question you\u2019re holding:</span> '+s.q+'</p>':'')+
+      '<h2 class="vtitle">'+s.title+'</h2>'+
+      (s.cite?'<p class="vcite">'+s.cite+'</p>':'')+'<div class="vtext">'+s.body.map(function(p){return '<p>'+p+'</p>';}).join("")+'</div>'+
+      (s.fict?'<p class="fict">'+s.fict+'</p>':'')+
+      (s.why?'<p class="why">'+s.why+'</p>':'')+
+      '<div class="nav-actions">'+
+        (i>0?'<button class="goact ghost" data-go="'+STOPS[i-1].key+'">\u2190 Back</button>':'')+
+        (s.next?'<button class="goact" data-go="'+s.next.to+'">'+s.next.label+'</button>':'')+
+      '</div>';
+    vbody.innerHTML=html;
+    vbody.querySelectorAll("[data-go]").forEach(function(b){ b.addEventListener("click",function(){ load(b.dataset.go,true); }); });
+    if(fromUser){ document.querySelector(".viewer").scrollIntoView({behavior:"smooth",block:"nearest"});
+      if(window.ExportReflect) ExportReflect.log("Research trail \u2014 reached", s.trail+": "+s.title); }
+  }
+  load("secondary",false);
+
+  if(window.ExportReflect){
+    ExportReflect.mount(document.getElementById("export-slot"),{
+      module:"Following the Question Trail",
+      chapter:"Chapter 8 — Researching Across Sources",
+      intro:"You carried one question at a time from a secondary source down to the case that answered it \u2014 each answer producing the next question.",
+      prompts:[
+        "Write the first question in your own words \u2014 then the question you were holding by the end. What did each source do to it?",
+        "The secondary source was the only fictional piece \u2014 and you never cited it. What was it actually for?",
+        "Where in this trail would a researcher who had already \u2018decided\u2019 the answer have gone wrong \u2014 and what would they have missed?"
+      ]
+    });
+  }
+})();
+</script>
+</body>
+</html>

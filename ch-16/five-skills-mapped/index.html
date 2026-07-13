@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five Skills, Mapped — Ch. 16 · The NextGen Bar & Research</title>
+<meta name="description" content="The five research skills the NextGen Bar Exam tests, mapped to where this book built them — with a name-that-skill exercise.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1100px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
+  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 18px;}
+  h2.sec{font-size:1.3rem;margin:26px 0 4px;}
+  .secdesc{color:var(--ink-soft);margin:0 0 14px;line-height:1.6;}
+  .tally{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 16px;}
+  .card{background:#fff;border:1.5px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:0 0 16px;}
+  .card .num{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 5px;}
+  .card .task{font-weight:600;font-size:1rem;line-height:1.55;margin:0 0 12px;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;line-height:1.5;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.92;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .why{display:block;font-weight:400;font-size:.85rem;color:var(--ink-soft);margin-top:5px;line-height:1.5;}
+  .fb{margin:12px 0 0;font-size:.92rem;line-height:1.55;color:var(--ink-soft);border-left:3px solid var(--rule-strong);padding:2px 0 2px 11px;}
+  .panel{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:14px 18px;margin:0 0 14px;}
+  .panel h3{font-size:1.02rem;margin:0 0 4px;}
+  .panel .w{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:1px 8px;border:1px solid;margin:0 0 8px;}
+  .wb{color:#2e6b34;border-color:#2e6b34;background:#e5efe0;}
+  .wp{color:#7a5a00;border-color:#c9a84c;background:#f7efd8;}
+  .panel p{font-size:.9rem;line-height:1.62;margin:0 0 8px;}
+  .panel .use{font-size:.86rem;line-height:1.55;border-top:1px dashed var(--rule-strong);padding-top:7px;margin:0;}
+  .panel .use b{color:var(--flame);}
+  .uni{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);overflow:hidden;margin:0 0 14px;}
+  .uni .utag{display:block;background:var(--flame);border-bottom:1px solid var(--flame-deep);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:7px 16px;}
+  .uni .ubody{padding:14px 18px;}
+  .uni h3{font-size:.98rem;margin:0 0 4px;}
+  .uni .ucite{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);display:block;margin:0 0 6px;}
+  .uni .uex{font-family:"Newsreader",Georgia,serif;font-size:.92rem;line-height:1.65;background:var(--panel);border-radius:7px;padding:10px 13px;margin:0 0 14px;}
+  .ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:0 0 14px;}
+  .ctxcard{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:14px 17px;}
+  .ctxcard h3{font-size:1rem;margin:0 0 8px;}
+  .ctxcard dl{margin:0;font-size:.86rem;line-height:1.55;}
+  .ctxcard dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--flame);margin:8px 0 2px;}
+  .ctxcard dd{margin:0;color:var(--ink-soft);}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">4</span> Secondary Sources Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">5</span> Case Law Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">6</span> Statutes Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">8</span> Researching Across Sources</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">12</span> Legislative History Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">13</span> Advanced Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">15</span> GenAI and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch" open>
+                  <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html" aria-current="page">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">17</span> Research for Legal Scholarship</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-17/">Chapter overview →</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <div class="modmenu-stack">
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Toolkit &amp; Resources</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              </ul>
+            </section>
+            </div>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-16/" style="color:var(--flame)">Ch.&nbsp;16</a> / Five Skills, Mapped</p>
+    <h1>Five Skills, Mapped</h1>
+    <p class="lede">The NextGen Bar Exam tests legal research in Foundational Skills Group C — and its competencies consolidate into five skills you have already been practicing all book long. The exam, in effect, hands you a closed universe of sources and asks you to run a compressed Question Method cycle over them. Nothing here is exam-prep bolted on; it is the method, named for the exam.</p>
+    <div class="howto"><b>How to use this:</b> read the five skill cards, then name the skill being exercised in each of the five tasks below. The practice module hands you an actual closed universe.</div>
+
+    <h2 class="sec">The five skills</h2>
+    <p class="secdesc">The NCBE competencies in Foundational Skills Group C consolidate into five skills &mdash; and every one is something this book already made you practice.</p>
+    <div class="panel"><h3>Skill 1 &middot; Ambiguity spotting</h3>
+      <p>Reading a legal text and identifying terms, phrases, or provisions whose meaning requires interpretive research &mdash; undefined terms, vague standards, terms of art, structural ambiguities, scope questions.</p>
+      <p class="use"><b>Where you built it:</b> Chapter 6 and Appendix C; applied in Chapters 5, 7, and 8.</p></div>
+    <div class="panel"><h3>Skill 2 &middot; Intra-jurisdiction source ranking</h3>
+      <p>Given authorities from a single jurisdiction, ranking them correctly by binding effect &mdash; a supreme court over a court of appeals; a statute over common law on the same subject.</p>
+      <p class="use"><b>Where you built it:</b> Chapter 1; applied throughout.</p></div>
+    <div class="panel"><h3>Skill 3 &middot; Dispositive fact identification</h3>
+      <p>Reading an opinion to identify the facts that, if changed, would change the outcome &mdash; then comparing those facts to a client&rsquo;s facts. The reasoning section is where this skill lives.</p>
+      <p class="use"><b>Where you built it:</b> Chapter 5 and Appendix B.</p></div>
+    <div class="panel"><h3>Skill 4 &middot; Research gap identification</h3>
+      <p>Recognizing when a source set does not fully answer the question and articulating what would fill the gap &mdash; distinguishing &ldquo;the law is genuinely unclear&rdquo; from &ldquo;I have not yet found the answer.&rdquo;</p>
+      <p class="use"><b>Where you built it:</b> Chapter 8 &mdash; the line Chapters 8 and 9 drilled.</p></div>
+    <div class="panel"><h3>Skill 5 &middot; Research sufficiency and closure</h3>
+      <p>Determining when research is complete &mdash; a professional judgment: all questions answered or identified as open, all authorities validated, the framework covered.</p>
+      <p class="use"><b>Where you built it:</b> Chapter 9; revisited in Chapter 14.</p></div>
+
+    <h2 class="sec">Name the skill</h2>
+    <p class="tally" id="tally">0 of 5 answered</p>
+    <div id="deck"></div>
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-16/">Ch. 16 · The NextGen Bar Exam and Legal Research</a></p>
+  <p class="modnav-verified">Authorities verified as of 2026-07-10. The law changes — run the method, don’t trust the module.</p>
+  <div class="modnav-links">
+    <span></span>
+    <a class="modnav-link next" href="../../ch-16/the-closed-universe/index.html"><span class="dir">Next →</span><span class="t">The Closed Universe</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+    <span class="foot-contact">Found a problem, or wish a module existed?
+      <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>
+      <small>(opens GitHub in a new tab &mdash; nothing is sent from this site)</small></span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var el = QM.el;
+  var CARDS = [
+  {
+    "task": "An exam item gives you a statute and asks which provision would require further interpretive research before advising a client.",
+    "opts": [
+      {
+        "t": "Skill 1 — Ambiguity spotting",
+        "why": "Identifying the term or provision whose meaning needs research is ambiguity spotting — the undefined term, the vague standard, the scope question.",
+        "good": true
+      },
+      {
+        "t": "Skill 5 — Sufficiency and closure",
+        "why": "Closure asks whether research is done; this item asks where research must begin."
+      },
+      {
+        "t": "Skill 3 — Dispositive facts",
+        "why": "That skill reads opinions for outcome-driving facts; this item reads a statute for interpretive gaps."
+      }
+    ]
+  },
+  {
+    "task": "You're handed five authorities from one state — supreme court, court of appeals, a statute, a regulation, a treatise — and asked which controls.",
+    "opts": [
+      {
+        "t": "Skill 2 — Intra-jurisdiction source ranking",
+        "why": "Rank by binding effect within the jurisdiction: the Chapter 1 hierarchy, tested directly.",
+        "good": true
+      },
+      {
+        "t": "Skill 4 — Gap identification",
+        "why": "No gap here — the set answers the question; the task is ordering it."
+      },
+      {
+        "t": "Skill 1 — Ambiguity spotting",
+        "why": "The authorities aren't ambiguous; they're unranked. Different skill."
+      }
+    ]
+  },
+  {
+    "task": "The provided opinion found no liability where the landlord lacked notice. Your client's landlord was notified twice. The item asks what that difference does.",
+    "opts": [
+      {
+        "t": "Skill 3 — Dispositive fact identification",
+        "why": "Notice is the fact that, changed, changes the outcome — identify it in the reasoning, then compare it to the client's facts. Chapter 5's core move.",
+        "good": true
+      },
+      {
+        "t": "Skill 2 — Source ranking",
+        "why": "One opinion, no ranking to do — the work is inside its reasoning."
+      },
+      {
+        "t": "Skill 5 — Closure",
+        "why": "You're mid-analysis, not deciding whether to stop."
+      }
+    ]
+  },
+  {
+    "task": "The provided sources establish the duty and the standard but say nothing about remedies. The item asks what a competent researcher does next.",
+    "opts": [
+      {
+        "t": "Skill 4 — Research gap identification",
+        "why": "Name the gap and what would fill it — and say honestly whether the law is unclear or merely absent from this set. The Chapter 8 line.",
+        "good": true
+      },
+      {
+        "t": "Skill 1 — Ambiguity spotting",
+        "why": "No ambiguous text is at issue; a topic is simply missing from the universe."
+      },
+      {
+        "t": "Skill 3 — Dispositive facts",
+        "why": "Facts aren't the problem; coverage is."
+      }
+    ]
+  },
+  {
+    "task": "After working the provided materials, the item asks whether the research is sufficient to advise the client, and why.",
+    "opts": [
+      {
+        "t": "Skill 5 — Research sufficiency and closure",
+        "why": "The professional judgment itself: every question answered or identified as open, authorities validated, framework covered. Chapter 9, on the exam.",
+        "good": true
+      },
+      {
+        "t": "Skill 4 — Gap identification",
+        "why": "Gap-spotting feeds the closure judgment, but the question asked is the judgment itself."
+      },
+      {
+        "t": "Skill 2 — Source ranking",
+        "why": "Ranking happened earlier; this is the stop-or-continue call."
+      }
+    ]
+  }
+];
+
+  var deck = document.getElementById("deck"), tally = document.getElementById("tally");
+  var done = 0, right = 0;
+  CARDS.forEach(function (C, i) {
+    var card = el("div", { class: "card" });
+    card.appendChild(el("p", { class: "num" }, ["Task " + (i + 1) + " of " + CARDS.length]));
+    card.appendChild(el("p", { class: "task" }, [C.task]));
+    var wrap = el("div", { class: "opts", role: "group", "aria-label": "Choices for item " + (i + 1) });
+    var fb = el("div", { class: "fb", role: "status", "aria-live": "polite" });
+    var locked = false;
+    C.opts.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [o.t]);
+      b.addEventListener("click", function () {
+        if (locked) return;
+        locked = true;
+        wrap.querySelectorAll(".opt").forEach(function (x, xi) {
+          x.disabled = true;
+          var O = C.opts[xi];
+          if (O.good) x.classList.add("good");
+          else if (x === b) x.classList.add("bad");
+          x.appendChild(el("span", { class: "why" }, [O.why]));
+        });
+        var ok = !!o.good;
+        done++; if (ok) right++;
+        tally.textContent = done + " of " + CARDS.length + " answered \u00b7 " + right + " correct";
+        fb.textContent = "";
+        window.setTimeout(function(){ fb.textContent = ok
+          ? "Right. Read the other options \u2014 the near-misses teach the boundaries."
+          : "The best answer is marked in green \u2014 the reasoning under each option shows why."; }, 30);
+        if (window.ExportReflect) ExportReflect.log("Task " + (i + 1) + " \u2014 " + C.task.slice(0, 60),
+          (ok ? "correct" : "chose: " + o.t.slice(0, 50)));
+        if (done === CARDS.length && window.ExportReflect) ExportReflect.log("Deck complete", right + " / " + CARDS.length);
+      });
+      wrap.appendChild(b);
+    });
+    card.appendChild(wrap);
+    card.appendChild(fb);
+    deck.appendChild(card);
+  });
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "Five Skills, Mapped",
+    chapter: "Chapter 16 \u2014 The NextGen Bar Exam and Legal Research",
+    intro: "Your skill calls are collected locally. Add a reflection and download the record.",
+    prompts: [
+  "Which of the five skills feels weakest to you right now, and which chapter would you revisit to strengthen it?",
+  "In your own words: why is the NextGen research section 'a compressed Question Method cycle' rather than a new task?"
+]
+  });
+})();
+</script>
+</body>
+</html>

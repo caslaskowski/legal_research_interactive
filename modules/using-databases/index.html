@@ -2,102 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Using Databases for Legal Research — Citations &amp; Searching</title>
-<meta name="description" content="Read a citation, retrieve a known source, and build live terms-and-connectors searches against a sample database to see how each connector changes your results.">
-<style>
-:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#86857d;
---rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;
---statute:#8a0100;--statute-tint:#f0dede;--regulation:#2f6d56;--case:#28406b;--case-tint:#dde2ed;--radius:4px;
---display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
---shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
-</style>
-<!--shell:head:start-->
-<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/firebrand.css">
-<!--shell:head:end-->
-<style>
-.lede{font-size:1.12rem;color:var(--ink-soft);max-width:none;}
-.stagenav{position:sticky;top:0;z-index:20;background:rgba(238,238,238,.92);backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--rule-strong);margin:0 -28px 22px;padding:10px 28px;display:flex;gap:6px;flex-wrap:wrap;}
-.stagenav a{font-size:.82rem;font-weight:700;color:var(--ink-soft);text-decoration:none;padding:6px 11px;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;}
-.stagenav a:hover{color:var(--flame);border-color:var(--flame);}
-.stage{margin:0 0 46px;scroll-margin-top:64px;}
-.stage h2{font-size:1.5rem;border-bottom:1.5px solid var(--ink);padding-bottom:7px;}
-.stage .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 4px;}
-.stage p{max-width:none;color:var(--ink-soft);}
-.stage p.body{color:var(--ink);}
-
-/* citation interactive */
-.citebox{background:#fff;border:1px solid var(--rule-strong);border-radius:8px;box-shadow:var(--shadow);padding:24px 22px;margin:14px 0;}
-.cite{font-family:var(--mono);font-size:clamp(1rem,2.6vw,1.4rem);line-height:2;color:var(--ink);}
-.cpart{border:1.5px dashed transparent;border-radius:5px;padding:2px 4px;cursor:pointer;font:inherit;background:transparent;color:inherit;}
-.cpart:hover{background:var(--flame-tint);border-color:var(--flame);}
-.cpart:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
-.cpart.lit{background:#fbe7a2;border-color:#d9b53a;}
-.citehint{font-size:.86rem;color:var(--ink-faint);margin-top:10px;}
-.staticcite{font-family:var(--mono);font-size:1.05rem;margin:6px 0 2px;color:var(--ink);}
-.lblrow{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.78rem;color:var(--ink-soft);margin:0 0 14px;}
-.lblrow b{color:var(--statute);}
-
-/* retrieval */
-.retrieve{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;}
-.retrieve .col{flex:1 1 280px;}
-.retbox{display:flex;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:#fff;margin:8px 0;}
-.retbox input{flex:1;border:0;font-family:var(--mono);font-size:1rem;padding:12px;color:var(--ink);background:transparent;}
-.retbox button{border:0;background:var(--ink);color:#fff;font:inherit;font-weight:700;padding:0 16px;cursor:pointer;}
-.dimpart{opacity:.32;text-decoration:line-through;}
-.keeppart{background:#cdeccd;border-radius:4px;padding:1px 4px;}
-
-/* search builder */
-.builder{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow-lg);overflow:hidden;margin:16px 0;}
-.builder-top{padding:16px 18px;border-bottom:1px solid var(--rule);}
-.qrow{display:flex;gap:8px;flex-wrap:wrap;}
-.qinput{flex:1 1 320px;font-family:var(--mono);font-size:1rem;padding:12px 13px;border:2px solid var(--ink);border-radius:8px;color:var(--ink);background:#fff;}
-.qinput:focus-visible{outline:3px solid var(--flame);outline-offset:1px;}
-.runbtn{border:0;background:var(--flame);color:#fff;font:inherit;font-weight:700;padding:0 22px;border-radius:8px;cursor:pointer;}
-.runbtn:hover{background:var(--flame-deep);}
-.connectors{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;align-items:center;}
-.connectors .lab{font-size:.74rem;color:var(--ink-faint);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-right:4px;}
-.cbtn{font-family:var(--mono);font-size:.84rem;font-weight:600;border:1px solid var(--rule-strong);background:var(--paper-2);
-  color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer;}
-.cbtn:hover{border-color:var(--flame);color:var(--flame);background:var(--flame-tint);}
-.cbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
-.presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
-.preset{font-family:var(--mono);font-size:.8rem;border:1px dashed var(--rule-strong);background:#fff;color:var(--ink-soft);border-radius:999px;padding:6px 12px;cursor:pointer;}
-.preset:hover{border-color:var(--flame);color:var(--flame);border-style:solid;}
-.preset b{color:var(--flame);}
-.cmprow{margin-top:12px;font-size:.88rem;}
-.cmprow label{cursor:pointer;user-select:none;}
-
-.builder-out{display:grid;grid-template-columns:1fr;gap:0;}
-.outhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:12px 18px;background:var(--panel);border-bottom:1px solid var(--rule);}
-.outhead .cnt{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--ink);}
-.outhead .cnt em{color:var(--flame);font-style:normal;}
-.outhead .mode{font-size:.76rem;font-family:var(--mono);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;}
-.docs{padding:6px 18px 16px;}
-.doc{border-bottom:1px solid var(--rule);padding:13px 0;}
-.doc .dn{font-family:var(--display);font-weight:700;color:var(--case);font-size:1rem;}
-.doc .dm{font-size:.78rem;color:var(--ink-faint);font-family:var(--mono);margin:2px 0 5px;}
-.doc .dt{font-size:.92rem;color:var(--ink-soft);line-height:1.55;}
-.doc .dt mark{background:#fbe7a2;color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600;}
-.doc .rank{display:inline-block;font-family:var(--mono);font-size:.72rem;color:var(--regulation);font-weight:700;margin-left:6px;}
-.empty{padding:22px 18px;color:var(--ink-faint);font-style:italic;}
-.cmp-note{padding:10px 18px;background:var(--flame-tint);border-bottom:1px solid var(--rule);font-size:.88rem;color:var(--ink);}
-.anchorcue{background:var(--flame-tint);border-left:4px solid var(--flame);padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:.93rem;margin:14px 0;color:var(--ink);}
-
-.pop{position:fixed;z-index:60;max-width:340px;width:calc(100vw - 32px);background:#fff;color:var(--ink);border:1px solid var(--ink);border-radius:10px;box-shadow:var(--shadow-lg);}
-.pop[hidden]{display:none;}
-.pop-head{display:flex;align-items:flex-start;gap:10px;padding:14px 16px 8px;}
-.pop-head h2{font-family:var(--display);font-size:1rem;margin:0;flex:1;line-height:1.2;}
-.pop-close{font:inherit;font-size:1.1rem;line-height:1;background:transparent;border:1px solid var(--rule-strong);border-radius:6px;width:30px;height:30px;cursor:pointer;color:var(--ink-soft);}
-.pop-close:hover{background:var(--paper-2);color:var(--flame);}
-.pop-close:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
-.pop-body{padding:0 16px 16px;font-size:.9rem;line-height:1.5;color:var(--ink-soft);}
-.pop-arrow{position:absolute;width:14px;height:14px;background:#fff;border-left:1px solid var(--ink);border-top:1px solid var(--ink);transform:rotate(45deg);}
-</style>
+<meta http-equiv="refresh" content="0; url=../../ch-2/using-databases/index.html">
+<link rel="canonical" href="../../ch-2/using-databases/index.html">
+<title>Moved — The Question Method of Legal Research</title>
 </head>
+<<<<<<< HEAD
 <body class="shell">
 <!--shell:masthead:start-->
 <a class="skip" href="#main">Skip to content</a>
@@ -542,5 +451,9 @@
   }
 })();
 </script>
+=======
+<body>
+<p>This module moved to a chapter-based address. <a href="../../ch-2/using-databases/index.html">Continue to the module</a>.</p>
+>>>>>>> 0fcdfe816c7fb7bd63a2c5d81276b5151bee3f23
 </body>
 </html>
