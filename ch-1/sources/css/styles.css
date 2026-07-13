@@ -454,11 +454,3 @@ body{
 }
 a{ text-underline-offset: 3px; }            /* brand links are underlined crimson (via --statute) */
 .eyebrow{ font-family: var(--serif-body); } /* sans eyebrows, not serif */
-
-/* ---- shared-shell integration ------------------------------------------
-   When the static site shell (baked by build_site.py) is on the page, the
-   module's own header renders with .module-subnav and acts as a secondary,
-   in-module navigation bar under the site masthead. */
-.masthead.module-subnav{ border-top: 1px solid var(--rule); box-shadow: none; }
-.masthead.module-subnav .brand .mark{ font-size: .98rem; }
-.masthead.module-subnav .brand .sub{ font-size: .56rem; }

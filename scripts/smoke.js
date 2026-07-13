@@ -20,6 +20,8 @@ if (!pages.length) {
     if (a.href && a.href.endsWith(".html")) set.add(a.href);
   for (const a of (reg.toolkit && reg.toolkit.items) || [])
     if (a.href && a.href.endsWith(".html")) set.add(a.href);
+  for (const a of (reg.spotlight && reg.spotlight.items) || [])
+    if (a.href && a.href.endsWith(".html")) set.add(a.href);
   pages = [...set].sort();
 }
 let failures = 0;

@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ride the Line — Ch. 3 · The Question Method</title>
+<meta name="description" content="Your research questions as a subway map: ride each chain to the end of the line, note the interchanges instead of chasing them, and watch a noted transfer pay for itself.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<style>
+  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1150px;}
+  .lede{font-size:1.06rem;line-height:1.65;color:var(--ink-soft);margin:6px 0 14px;}
+  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:12px 16px;font-size:.94rem;margin:0 0 20px;}
+  h2.sec{font-size:1.3rem;margin:26px 0 4px;}
+  .secdesc{color:var(--ink-soft);margin:0 0 14px;line-height:1.6;}
+  .mapbox{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);overflow:hidden;margin:0 0 14px;}
+  .maptag{display:block;background:var(--flame);border-bottom:1px solid var(--flame-deep);font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:7px 16px;}
+  .mapwrap{padding:10px 8px 2px;}
+  svg.tube{display:block;width:100%;height:auto;}
+  .tline{fill:none;stroke-width:7;stroke-linecap:round;}
+  .l1{stroke:#b3401f;}
+  .l2{stroke:#1f6f78;}
+  .xfer{fill:none;stroke:#8a7a4f;stroke-width:2.5;stroke-dasharray:6 5;opacity:0;transition:opacity .3s ease;}
+  .xfer.on{opacity:1;}
+  .stn{fill:#fff;stroke-width:3.5;}
+  .stn.s1{stroke:#b3401f;}
+  .stn.s2{stroke:#1f6f78;}
+  .stn.visited.s1{fill:#b3401f;}
+  .stn.visited.s2{fill:#1f6f78;}
+  .stn.stranded{opacity:.35;}
+  .stn.freebie{fill:#e5efe0;stroke:#2e6b34;}
+  .train{fill:none;stroke:var(--ink);stroke-width:2.5;transition:cx .45s ease, cy .45s ease;}
+  .slabel{font-family:var(--mono);font-size:11px;fill:var(--ink-soft);}
+  .lname{font-family:var(--sans);font-size:12px;font-weight:700;}
+  .lname.n1{fill:#b3401f;}
+  .lname.n2{fill:#1f6f78;}
+  .grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;align-items:start;}
+  @media (max-width:900px){.grid2{grid-template-columns:1fr;}}
+  .ride{background:#fff;border:1.5px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;}
+  .ride .where{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+  .ride .q{font-weight:700;font-size:1.02rem;line-height:1.5;margin:0 0 10px;}
+  .ride .a{font-size:.93rem;line-height:1.62;margin:0 0 10px;}
+  .ride .a b{color:var(--flame);}
+  .ride .event{background:#f7efd8;border:1.5px solid #c9a84c;border-radius:8px;padding:11px 14px;font-size:.92rem;line-height:1.6;margin:0 0 10px;}
+  .ride .derail{background:#f6e2dc;border:1.5px solid var(--flame);border-radius:8px;padding:11px 14px;font-size:.92rem;line-height:1.6;margin:0 0 10px;}
+  .ride .payoff{background:#e5efe0;border:1.5px solid #2e6b34;border-radius:8px;padding:11px 14px;font-size:.92rem;line-height:1.6;margin:0 0 10px;}
+  .btnrow{display:flex;gap:9px;flex-wrap:wrap;}
+  .go{font:inherit;font-size:.88rem;font-weight:700;background:var(--flame);color:#fff;border:2px solid var(--flame);border-radius:8px;padding:9px 16px;cursor:pointer;}
+  .go:hover{background:var(--flame-deep);border-color:var(--flame-deep);}
+  .go:focus-visible{outline:3px solid var(--flame);outline-offset:3px;}
+  .go.alt{background:#fff;color:var(--flame);}
+  .go.alt:hover{background:var(--callout);}
+  .logbox{background:var(--panel);border:1.5px solid var(--rule-strong);border-radius:10px;padding:13px 16px;}
+  .logbox h3{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+  .logbox ul{list-style:none;margin:0;padding:0;}
+  .logbox li{background:#fff;border:1px dashed var(--rule-strong);border-radius:7px;padding:8px 11px;font-size:.83rem;line-height:1.5;margin:0 0 7px;}
+  .logbox li.ticket{border-color:#8a7a4f;border-style:solid;}
+  .logbox li .tk{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#8a7a4f;display:block;margin:0 0 2px;}
+  .logbox .empty{color:var(--ink-soft);font-size:.83rem;font-style:italic;}
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:0 0 10px;}
+  .rule{background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:12px 15px;}
+  .rule .n{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);display:block;margin:0 0 4px;}
+  .rule b{display:block;font-size:.92rem;margin:0 0 4px;}
+  .rule span{font-size:.82rem;color:var(--ink-soft);line-height:1.5;display:block;}
+  .kc{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:14px 0;}
+  .kc .q{font-weight:600;margin:0 0 12px;}
+  .opts{display:flex;flex-direction:column;gap:8px;}
+  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;}
+  .opt:hover{border-color:var(--flame);}
+  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .opt[disabled]{cursor:default;opacity:.85;}
+  .opt.good{border-color:#2e6b34;background:#e5efe0;}
+  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
+  .kc .fb{margin:12px 0 0;font-size:.93rem;line-height:1.55;color:var(--ink-soft);}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+    .train{transition:none;}
+    .xfer{transition:none;}
+  }
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch" open>
+                  <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/ride-the-line/index.html" aria-current="page">Ride the Line</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">4</span> Secondary Sources Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">5</span> Case Law Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">6</span> Statutes Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">8</span> Researching Across Sources</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">12</span> Legislative History Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">13</span> Advanced Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">15</span> GenAI and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">17</span> Research for Legal Scholarship</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-17/">Chapter overview →</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <div class="modmenu-stack">
+            <section class="modmenu-part">
+              <h2>Why It Matters</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../when-research-fails/index.html"><span class="cn">§</span> When Research Fails</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Toolkit &amp; Resources</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              </ul>
+            </section>
+            </div>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="pagewrap">
+    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-3/" style="color:var(--flame)">Ch.&nbsp;3</a> / Ride the Line</p>
+    <h1>Ride the Line</h1>
+    <p class="lede">Think of your research questions as a subway map. Each chain of questions is a <b style="color:#b3401f">colored line</b>; each question&ndash;answer pair is a station; the end of the line is that thread&rsquo;s closure. The danger is the <b>interchange</b>: mid-ride, a source answers a question from a <i style="color:#1f6f78">different line</i> &mdash; and the tempting exit is exactly where research derails into cognitive overload. The discipline: note the transfer, stay on your line to the end, <i>then</i> teleport to the next line. This module lets you feel both choices.</p>
+    <div class="howto"><b>How to use this:</b> ride the map below station by station. At the interchange you&rsquo;ll face the real choice &mdash; pick either one; the wrong exit teaches as much as the right one. Watch the Research Log on the right: a noted transfer becomes a ticket, and tickets get spent later.</div>
+
+    <div class="mapbox">
+      <span class="maptag">Demonstration &mdash; fictional cases &amp; jurisdiction</span>
+      <div class="mapwrap">
+        <svg class="tube" viewBox="0 0 760 320" role="img" aria-label="Subway map with two research lines: the red Duty Line with four stations, the teal Remedies Line with four stations, and a dashed transfer between station 1.b and station 2.c">
+          <text class="lname n1" x="30" y="88">LINE 1 · THE DUTY LINE</text>
+          <path class="tline l1" d="M 70 110 H 640"/>
+          <text class="lname n2" x="30" y="208">LINE 2 · THE REMEDIES LINE</text>
+          <path class="tline l2" d="M 70 230 H 700"/>
+          <path class="xfer" id="xferpath" d="M 460 118 C 500 160, 560 190, 638 222"/>
+          <circle class="stn s1" id="st-0" cx="100" cy="110" r="11"/>
+          <circle class="stn s1" id="st-1" cx="280" cy="110" r="11"/>
+          <circle class="stn s1" id="st-2" cx="460" cy="110" r="11"/>
+          <circle class="stn s1" id="st-3" cx="620" cy="110" r="11"/>
+          <circle class="stn s2" id="st-4" cx="100" cy="230" r="11"/>
+          <circle class="stn s2" id="st-5" cx="280" cy="230" r="11"/>
+          <circle class="stn s2" id="st-6" cx="460" cy="230" r="11"/>
+          <circle class="stn s2" id="st-7" cx="640" cy="230" r="11"/>
+          <text class="slabel" x="100" y="145" text-anchor="middle">Q1</text>
+          <text class="slabel" x="280" y="145" text-anchor="middle">Q1.a</text>
+          <text class="slabel" x="460" y="145" text-anchor="middle">Q1.b ⇄</text>
+          <text class="slabel" x="620" y="145" text-anchor="middle">Q1.c · end</text>
+          <text class="slabel" x="100" y="265" text-anchor="middle">Q2</text>
+          <text class="slabel" x="280" y="265" text-anchor="middle">Q2.a</text>
+          <text class="slabel" x="460" y="265" text-anchor="middle">Q2.b</text>
+          <text class="slabel" x="640" y="265" text-anchor="middle">Q2.c · end</text>
+          <circle class="train" id="train" cx="100" cy="110" r="17"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="ride">
+        <p class="where" id="r-where">Before boarding</p>
+        <div id="r-body" role="status" aria-live="polite">
+          <p class="q">Your client&rsquo;s apartment has had almost no heat for three weeks. Two threads of questions have formed: <b style="color:#b3401f">Line 1 — does the landlord owe a duty, and what does it require?</b> and <b style="color:#1f6f78">Line 2 — what can the tenant do about it?</b></p>
+          <p class="a">Board Line 1. You&rsquo;ll ride it station by station &mdash; one question, one answer, next question &mdash; all the way to the end.</p>
+        </div>
+        <div class="btnrow" id="r-btns"></div>
+      </div>
+      <aside class="logbox" aria-label="Your Research Log — Notes field">
+        <h3>Research Log &mdash; Notes</h3>
+        <ul id="log-list"></ul>
+        <p class="empty" id="log-empty">Empty for now. Transfers you note will appear here as tickets.</p>
+      </aside>
+    </div>
+
+    <h2 class="sec">The subway rules</h2>
+    <p class="secdesc">What you just practiced, as rules you can carry.</p>
+    <div class="rules">
+      <div class="rule"><span class="n">Rule 1</span><b>Ride your line to the end</b><span>A thread is closed when its last question is answered &mdash; not when a shinier question appears.</span></div>
+      <div class="rule"><span class="n">Rule 2</span><b>Interchanges are gifts &mdash; if you log them</b><span>A source that answers another line&rsquo;s question costs you ten seconds to note and saves you a station later.</span></div>
+      <div class="rule"><span class="n">Rule 3</span><b>Never chase mid-line</b><span>Exiting early leaves open questions behind you and opens new ones ahead &mdash; that pile of half-ridden lines is what cognitive overload is.</span></div>
+      <div class="rule"><span class="n">Rule 4</span><b>Teleport only at a terminus</b><span>When a line closes, jump to the next line&rsquo;s first station and ride it fully &mdash; even where it crosses old track.</span></div>
+      <div class="rule"><span class="n">Rule 5</span><b>The log is your transfer ticket</b><span>The Notes field is external memory. What&rsquo;s written down doesn&rsquo;t have to be held in your head.</span></div>
+    </div>
+
+    <h2 class="sec">Two quick checks</h2>
+    <div class="kc">
+      <p class="q">Mid-chain on question 1.b, a case in your results squarely answers question 2.c from a different thread. The method&rsquo;s move?</p>
+      <div class="opts" id="kc1" role="group" aria-label="First knowledge check"></div>
+      <div class="fb" id="kc1fb" role="status" aria-live="polite"></div>
+    </div>
+    <div class="kc">
+      <p class="q">Why insist on riding a line all the way to its end before switching?</p>
+      <div class="opts" id="kc2" role="group" aria-label="Second knowledge check"></div>
+      <div class="fb" id="kc2fb" role="status" aria-live="polite"></div>
+    </div>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-3/">Ch. 3 · The Question Method of Legal Research</a></p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-3/question-method/index.html"><span class="dir">← Previous</span><span class="t">Notice of Claim — Research Sandbox</span></a>
+    <a class="modnav-link next" href="../../ch-3/question-chain/index.html"><span class="dir">Next →</span><span class="t">Working the Chain — Forward &amp; Reverse</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+    <span class="foot-contact">Found a problem, or wish a module existed?
+      <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>
+      <small>(opens GitHub in a new tab &mdash; nothing is sent from this site)</small></span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script>
+(function(){
+  "use strict";
+  var el = QM.el;
+
+  var ST = [
+    {x:100,y:110},{x:280,y:110},{x:460,y:110},{x:620,y:110},
+    {x:100,y:230},{x:280,y:230},{x:460,y:230},{x:640,y:230}
+  ];
+  var train = document.getElementById("train");
+  var where = document.getElementById("r-where");
+  var body = document.getElementById("r-body");
+  var btns = document.getElementById("r-btns");
+  var logList = document.getElementById("log-list");
+  var logEmpty = document.getElementById("log-empty");
+  var noted = false, derailed = false;
+
+  function stn(i){ return document.getElementById("st-" + i); }
+  function moveTrain(i){ train.setAttribute("cx", ST[i].x); train.setAttribute("cy", ST[i].y); }
+  function visit(i){ stn(i).classList.add("visited"); }
+  function setPanel(loc, html, buttons){
+    where.textContent = loc;
+    body.innerHTML = "";
+    window.setTimeout(function(){ body.innerHTML = html; }, 30);
+    btns.innerHTML = "";
+    buttons.forEach(function (bdef) {
+      var b = el("button", { class: "go" + (bdef.alt ? " alt" : ""), type: "button" }, [bdef.t]);
+      b.addEventListener("click", bdef.fn);
+      btns.appendChild(b);
+    });
+  }
+  function addTicket(kind, text){
+    logEmpty.style.display = "none";
+    var li = el("li", { class: kind === "ticket" ? "ticket" : "" });
+    if (kind === "ticket") li.appendChild(el("span", { class: "tk" }, ["Transfer noted"]));
+    li.appendChild(document.createTextNode(text));
+    logList.appendChild(li);
+  }
+
+  /* ---- the ride ---- */
+  function board(){
+    moveTrain(0);
+    setPanel("Line 1 \u00b7 Station Q1",
+      '<p class="q">Q1 \u2014 Does a residential landlord have a duty to provide heat?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(0);
+        setPanel("Line 1 \u00b7 Station Q1 \u2014 answered",
+          '<p class="q">Q1 \u2014 Does a residential landlord have a duty to provide heat?</p>'
+          + '<p class="a"><b>A1:</b> Yes \u2014 <i>Marsh v. Golden Rentals</i>: a rental must be kept fit to live in, and that duty includes adequate heat in the cold months. The duty exists; the answer hands you the next question \u2014 how fast must a failure be fixed?</p>',
+          [{t:"Next station \u2192", fn:s1a}]);
+        if (window.ExportReflect) ExportReflect.log("Station answered", "Q1 \u2014 duty exists (Marsh)");
+      }}]);
+  }
+  function s1a(){
+    moveTrain(1);
+    setPanel("Line 1 \u00b7 Station Q1.a",
+      '<p class="q">Q1.a \u2014 Once heat fails, how long does the landlord have to repair it?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(1);
+        setPanel("Line 1 \u00b7 Station Q1.a \u2014 answered",
+          '<p class="q">Q1.a \u2014 How long to repair?</p>'
+          + '<p class="a"><b>A1.a:</b> A reasonable time \u2014 <i>Tinsley v. Vista Property Management</i>: a standard, not a fixed number of days. A standard needs a trigger \u2014 does the clock start on its own, or must the tenant do something?</p>',
+          [{t:"Next station \u2192", fn:s1b}]);
+        if (window.ExportReflect) ExportReflect.log("Station answered", "Q1.a \u2014 reasonable time (Tinsley)");
+      }}]);
+  }
+  function s1b(){
+    moveTrain(2);
+    setPanel("Line 1 \u00b7 Station Q1.b \u2014 \u26a0 interchange",
+      '<p class="q">Q1.b \u2014 Must the tenant notify the landlord before the repair clock starts?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(2);
+        setPanel("Line 1 \u00b7 Station Q1.b \u2014 the interchange",
+          '<p class="q">Q1.b \u2014 Must the tenant notify the landlord?</p>'
+          + '<p class="a"><b>A1.b:</b> Yes \u2014 <i>Vann v. Copper Sky Management</i>: written notice starts the reasonable-time clock.</p>'
+          + '<p class="event"><b>\u26a0 Interchange.</b> Reading <i>Vann</i>, you notice its second half spends three paragraphs on something else entirely: <b style="color:#1f6f78">how damages for a habitability breach are measured</b>. That is Line 2\u2019s question 2.c \u2014 four stations away on a line you haven\u2019t boarded. It\u2019s right here, in your hands, and it feels wasteful to let it go\u2026</p>',
+          [{t:"Chase it \u2014 switch to Line 2 now", alt:true, fn:derail},
+           {t:"Note it in the log, stay on Line 1", fn:noteAndRide}]);
+      }}]);
+  }
+  function derail(){
+    derailed = true;
+    moveTrain(7);
+    stn(3).classList.add("stranded");
+    if (window.ExportReflect) ExportReflect.log("Interchange choice", "chased the transfer mid-line");
+    setPanel("Line 2 \u00b7 Station Q2.c \u2014 you jumped",
+      '<p class="derail"><b>Feel the load.</b> Count what\u2019s open right now: Q1.c sits unanswered behind you (is a <i>partial</i> heat failure covered?). You landed on Q2.c \u2014 but its answer only makes sense on top of Q2, Q2.a, and Q2.b, none of which you\u2019ve asked. That\u2019s four open questions on two lines, all held in your head at once, and no thread closed. This \u2014 exactly this \u2014 is cognitive overload: not too much information, but too many <i>open loops</i>.</p>'
+      + '<p class="a">The fix costs ten seconds: write the transfer down and get back on your line. Your log holds the loop so your head doesn\u2019t have to.</p>',
+      [{t:"Note it in the log \u2192 back to Line 1", fn:function(){
+        stn(3).classList.remove("stranded");
+        noteAndRide();
+      }}]);
+  }
+  function noteAndRide(){
+    noted = true;
+    document.getElementById("xferpath").classList.add("on");
+    addTicket("ticket", "Vann v. Copper Sky Mgmt. also analyzes the damages measure \u2192 answers Q2.c when I get there.");
+    if (window.ExportReflect) ExportReflect.log("Interchange choice", derailed ? "noted after experiencing the derail" : "noted the transfer, stayed on the line");
+    moveTrain(2);
+    setPanel("Line 1 \u00b7 Station Q1.b \u2014 transfer noted",
+      '<p class="a"><b>Ticket punched.</b> The dashed transfer now shows on the map, and the note sits safely in your log. Your head is carrying exactly one thing again: the next question on <i>this</i> line.</p>',
+      [{t:"Next station \u2192", fn:s1c}]);
+  }
+  function s1c(){
+    moveTrain(3);
+    setPanel("Line 1 \u00b7 Station Q1.c \u2014 end of the line",
+      '<p class="q">Q1.c \u2014 The apartment isn\u2019t at zero heat \u2014 it hovers around 60\u00b0. Does the duty cover a <i>partial</i> failure?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(3);
+        setPanel("Line 1 \u00b7 terminus",
+          '<p class="q">Q1.c \u2014 Does the duty cover a partial failure?</p>'
+          + '<p class="a"><b>A1.c:</b> Yes \u2014 the fit-to-live-in standard covers <i>inadequate</i> heat, not only its total absence. No new sub-question emerges.</p>'
+          + '<p class="payoff"><b>End of Line 1.</b> The duty thread is closed: duty exists, reasonable-time standard, notice trigger, partial failures covered. One whole thread, done and documented. <i>Now</i> you switch.</p>',
+          [{t:"Teleport to Line 2 \u2192", fn:s2}]);
+        if (window.ExportReflect) ExportReflect.log("Line closed", "Line 1 (duty) ridden to terminus");
+      }}]);
+  }
+  function s2(){
+    moveTrain(4);
+    setPanel("Line 2 \u00b7 Station Q2",
+      '<p class="q">Q2 \u2014 What can the tenant do if the landlord doesn\u2019t repair within a reasonable time?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(4);
+        setPanel("Line 2 \u00b7 Station Q2 \u2014 answered",
+          '<p class="q">Q2 \u2014 What can the tenant do?</p>'
+          + '<p class="a"><b>A2:</b> <i>Okafor v. Canyon Ridge Apartments</i>: remedies include repairing and deducting, and withholding rent. Remedies with conditions \u2014 what are they?</p>',
+          [{t:"Next station \u2192", fn:s2a}]);
+        if (window.ExportReflect) ExportReflect.log("Station answered", "Q2 \u2014 remedies exist (Okafor)");
+      }}]);
+  }
+  function s2a(){
+    moveTrain(5);
+    setPanel("Line 2 \u00b7 Station Q2.a",
+      '<p class="q">Q2.a \u2014 What conditions before a tenant may withhold rent?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(5);
+        setPanel("Line 2 \u00b7 Station Q2.a \u2014 answered",
+          '<p class="q">Q2.a \u2014 Conditions on withholding?</p>'
+          + '<p class="a"><b>A2.a:</b> Written notice and a reasonable opportunity to cure \u2014 <i>Okafor</i> again. (Notice doing double duty across both lines \u2014 the map\u2019s threads share track without sharing stations.)</p>',
+          [{t:"Next station \u2192", fn:s2b}]);
+        if (window.ExportReflect) ExportReflect.log("Station answered", "Q2.a \u2014 notice + cure (Okafor)");
+      }}]);
+  }
+  function s2b(){
+    moveTrain(6);
+    setPanel("Line 2 \u00b7 Station Q2.b",
+      '<p class="q">Q2.b \u2014 Beyond self-help, can the tenant recover money?</p>',
+      [{t:"Find the answer", fn:function(){
+        visit(6);
+        setPanel("Line 2 \u00b7 Station Q2.b \u2014 answered",
+          '<p class="q">Q2.b \u2014 Can the tenant recover money?</p>'
+          + '<p class="a"><b>A2.b:</b> Yes \u2014 damages are available for a habitability breach. Which raises the last station: measured how?</p>',
+          [{t:"Next station \u2192", fn:s2c}]);
+        if (window.ExportReflect) ExportReflect.log("Station answered", "Q2.b \u2014 damages available");
+      }}]);
+  }
+  function s2c(){
+    moveTrain(7);
+    stn(7).classList.add("freebie");
+    setPanel("Line 2 \u00b7 Station Q2.c \u2014 your ticket is valid here",
+      '<p class="q">Q2.c \u2014 How are damages measured?</p>'
+      + '<p class="payoff"><b>Pre-answered.</b> Your log already holds it: <i>Vann</i>\u2019s damages discussion, noted three stations before you needed it \u2014 and <i>Delgado v. Mesa Verde Rentals</i> confirms the measure: generally the loss in rental value. The ten-second note you made on Line 1 just paid your fare on Line 2.</p>',
+      [{t:"Close the line", fn:function(){
+        visit(7);
+        if (window.ExportReflect) ExportReflect.log("Line closed", "Line 2 (remedies) \u2014 Q2.c pre-answered from the noted transfer");
+        setPanel("Both lines closed",
+          '<p class="a"><b>The whole map, ridden.</b> Two threads, eight stations, every question answered in the order it arose \u2014 and the one moment of temptation handled the way the method asks: <b>noted, not chased.</b>'
+          + (derailed ? " You also felt the other choice \u2014 remember that pile of open loops. It\u2019s waiting at every interchange." : "")
+          + ' The rules below are what you just did.</p>',
+          []);
+      }}]);
+  }
+
+  btns.appendChild((function(){
+    var b = el("button", { class: "go", type: "button" }, ["Board Line 1 \u2192"]);
+    b.addEventListener("click", board);
+    return b;
+  })());
+
+  /* ---- checks ---- */
+  function kc(wrapId, fbId, logName, opts) {
+    var wrap = document.getElementById(wrapId), fb = document.getElementById(fbId), done = false;
+    opts.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [o.t]);
+      b.addEventListener("click", function () {
+        if (done) return;
+        done = true;
+        wrap.querySelectorAll(".opt").forEach(function (x, i) {
+          x.disabled = true;
+          if (opts[i].good) x.classList.add("good");
+          else if (x === b) x.classList.add("bad");
+        });
+        QM.announce(fb, o.fb);
+        if (window.ExportReflect) ExportReflect.log(logName, o.good ? "correct" : "incorrect \u2014 chose " + o.t);
+      });
+      wrap.appendChild(b);
+    });
+  }
+  kc("kc1", "kc1fb", "Check: the interchange move", [
+    { t: "Note the case and its target question in the log, then continue the current chain", good: true,
+      fb: "Correct \u2014 the transfer ticket. The find isn't lost; it's parked where you'll collect it. Your working memory stays on one open question, which is the whole point of the discipline." },
+    { t: "Answer 2.c immediately \u2014 the source is right there and re-finding it wastes time", good: false,
+      fb: "The most tempting wrong answer on the map, because it feels efficient. But 2.c's answer needs 2, 2.a, and 2.b underneath it to mean anything \u2014 and 1.c is still open behind you. The note costs ten seconds and loses nothing; the chase opens four loops at once." },
+    { t: "Ignore it entirely \u2014 it isn't the current question", good: false,
+      fb: "Half the discipline \u2014 you stayed on the line, but you threw away the gift. The interchange is valuable precisely because you'll be at 2.c later; the log turns the distraction into a head start." }
+  ]);
+  kc("kc2", "kc2fb", "Check: why ride to the terminus", [
+    { t: "Closing one thread at a time keeps open questions few, and each answer feeds the next question in its own chain", good: true,
+      fb: "Correct on both halves. The chain works because each answer produces the next question \u2014 breaking the chain breaks that engine. And a closed thread leaves nothing to hold in your head; five half-ridden lines is cognitive overload by definition." },
+    { t: "Because the first chain is always the most important one", good: false,
+      fb: "A reasonable guess, but importance isn't the reason \u2014 sibling threads can matter equally, and you'll ride them all. The reason is load: finish-then-switch keeps the set of open loops small." },
+    { t: "Because sources for one thread never help another", good: false,
+      fb: "The interchange proves the opposite \u2014 sources cross lines all the time, and that's a gift. The discipline isn't about sources staying in lanes; it's about your attention finishing what it opened." }
+  ]);
+
+  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
+    module: "Ride the Line",
+    chapter: "Chapter 3 \u2014 The Question Method of Legal Research",
+    intro: "Your ride \u2014 stations, the interchange choice, and the checks \u2014 is collected locally. Add a reflection and download the record. All cases are fictional.",
+    prompts: [
+      "Describe your interchange moment in your own research life: the last time a source tempted you off your question. What did you do?",
+      "The subway rules in one sentence each, from memory \u2014 then star the one you most need.",
+      "Why does writing a note down actually reduce mental load, rather than just moving the work around?"
+    ]
+  });
+})();
+</script>
+</body>
+</html>

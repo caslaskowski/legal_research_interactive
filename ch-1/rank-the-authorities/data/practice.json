@@ -1,48 +1,4 @@
 {
-<<<<<<< HEAD:modules/rank-the-authorities/data/practice.json
-  "title": "Applying the Hierarchy",
-  "subtitle": "Drills and applied exercises to test your command of legal authority.",
-  "eyebrow": "Chapter 1 · Practice",
-  "intro": "You have mapped the hierarchy. Now test your grip on it. These exercises move from quick classification drills to full-scenario ranking — sorting every authority in a real legal problem by binding effect, and placing a court in its system with your Bluebook in hand.",
-  "nav": [
-    {
-      "id": "primary-secondary",
-      "label": "Primary vs. Secondary",
-      "page": "drill.html?type=primary-secondary",
-      "kicker": "Drill",
-      "blurb": "Sort sources into the law itself versus the tools that help you find it."
-    },
-    {
-      "id": "binding-persuasive",
-      "label": "Binding vs. Persuasive",
-      "page": "drill.html?type=binding-persuasive",
-      "kicker": "Drill",
-      "blurb": "For a stated court, decide what it must follow and what it may merely consider."
-    },
-    {
-      "id": "statute-common",
-      "label": "Statute vs. Common Law",
-      "page": "drill.html?type=statute-common",
-      "kicker": "Drill",
-      "blurb": "Decide which governs when an enacted statute and a judge-made rule meet on the same subject."
-    },
-    {
-      "id": "rank",
-      "label": "Rank the Stack",
-      "page": "rank.html",
-      "kicker": "Apply",
-      "blurb": "Take a real legal problem in one jurisdiction and sort every authority into tiers by binding effect."
-    },
-    {
-      "id": "courts",
-      "label": "Court Up / Court Down",
-      "page": "courts.html",
-      "kicker": "Apply",
-      "blurb": "Place a court in its system: name the court directly above it and below it. Bluebook in hand."
-    }
-  ]
-}
-=======
   "eyebrow": "Chapter 1 · Foundations of Legal Authority",
   "title": "Applying the Hierarchy",
   "intro": "Knowing the structure is half the job; the other half is using it under pressure. Three quick drills sharpen the core distinctions, the ranking exercise makes you order a full stack of authorities, and the courts exercise tests whether you can place any court in its system. Your work on every page is collected locally; come back here to download one submission file.",
@@ -79,4 +35,3 @@
     }
   ]
 }
->>>>>>> 0fcdfe816c7fb7bd63a2c5d81276b5151bee3f23:ch-1/rank-the-authorities/data/practice.json

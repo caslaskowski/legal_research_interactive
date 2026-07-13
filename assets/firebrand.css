@@ -27,14 +27,6 @@
   src:url("fonts/ibm-plex-mono-400.woff2") format("woff2"); }
 @font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:500; font-display:swap;
   src:url("fonts/ibm-plex-mono-500.woff2") format("woff2"); }
-<<<<<<< HEAD
-/* Newsreader — self-hosted variable font (wght 200–800, opsz 6–72), SIL OFL.
-   Replaces the former Google Fonts request so no page makes a third-party call. */
-@font-face{ font-family:"Newsreader"; font-style:normal; font-weight:200 800; font-display:swap;
-  src:url("fonts/newsreader-var.woff2") format("woff2"); }
-@font-face{ font-family:"Newsreader"; font-style:italic; font-weight:200 800; font-display:swap;
-  src:url("fonts/newsreader-italic-var.woff2") format("woff2"); }
-=======
 @font-face{ font-family:"IBM Plex Mono"; font-style:normal; font-weight:600; font-display:swap;
   src:url("fonts/ibm-plex-mono-600.woff2") format("woff2"); }
 @font-face{ font-family:"Newsreader"; font-style:normal; font-weight:400; font-display:swap;
@@ -43,7 +35,6 @@
   src:url("fonts/newsreader-500.woff2") format("woff2"); }
 @font-face{ font-family:"Newsreader"; font-style:italic; font-weight:400; font-display:swap;
   src:url("fonts/newsreader-400-italic.woff2") format("woff2"); }
->>>>>>> 0fcdfe816c7fb7bd63a2c5d81276b5151bee3f23
 
 :root{
   /* ground + ink (sampled from the brand site) ---------------------------- */
@@ -170,7 +161,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
   background: var(--panel); border: 1px solid var(--rule-strong); border-radius: 8px;
   box-shadow: var(--shadow-lg); padding: 22px 24px; }
 .modmenu-cols{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-.modmenu-part > h2, .modmenu-part > .modmenu-ph{ font-family: var(--sans); font-size:.66rem; font-weight:700;
+.modmenu-part > h2{ font-family: var(--sans); font-size:.66rem; font-weight:700;
   letter-spacing:.14em; text-transform: uppercase; color: var(--ink-faint);
   margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
 .modmenu-chaps{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
@@ -201,13 +192,6 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .foot{ border-top: 1px solid var(--rule-strong);
   padding: 24px 0; color: var(--ink-faint); font-family: var(--mono); font-size:.74rem; letter-spacing:.02em; }
 .foot .wrap{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-.foot-privacy{ display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap; }
-.foot-clear{ font: inherit; color: var(--ink-soft); background: transparent;
-  border: 1px solid var(--rule-strong); border-radius: var(--radius);
-  padding: 2px 8px; cursor: pointer; }
-.foot-clear:hover{ color: var(--flame-deep); border-color: var(--flame-deep); }
-.foot-clear:focus-visible{ outline: 2px solid var(--flame); outline-offset: 2px; }
-.foot-clear[disabled]{ cursor: default; color: var(--ink-faint); border-color: var(--rule); }
 
 /* ---- buttons ---------------------------------------------------------- */
 .btn{ display:inline-flex; align-items:center; gap:.5em; font-family: var(--sans);
@@ -449,3 +433,16 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .foot-contact{ display:block; margin-top:6px; }
 .foot-contact a{ color:var(--flame); font-weight:600; }
 .foot-contact small{ display:block; opacity:.8; margin-top:2px; }
+
+/* ---- home spotlight band ---- */
+.spotlight{ margin: 6px 0 30px; }
+.spot-eyebrow{ font-family: var(--mono); font-size:.66rem; letter-spacing:.14em;
+  text-transform:uppercase; color: var(--flame); margin:0 0 8px; }
+.spot-card{ display:flex; align-items:center; gap:18px; text-decoration:none; color:var(--ink);
+  background:#fff; border:2px solid var(--flame); border-radius:12px;
+  box-shadow: var(--shadow); padding:18px 22px; }
+.spot-card:hover{ background: var(--callout); }
+.spot-card:focus-visible{ outline:3px solid var(--flame); outline-offset:3px; }
+.spot-body h2{ font-size:1.2rem; margin:0 0 5px; }
+.spot-body p{ margin:0; font-size:.92rem; line-height:1.6; color: var(--ink-soft); }
+.spot-go{ margin-left:auto; flex:0 0 auto; font-size:1.5rem; color: var(--flame); font-weight:700; }

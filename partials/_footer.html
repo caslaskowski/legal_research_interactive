@@ -1,13 +1,8 @@
 <!-- Shared footer. {{TAGLINE}} is baked from the registry at build time so it
-     shows on every page with no runtime JS. The privacy line and the
-     clear-progress button cover the modules that save progress in
-     localStorage; everything stays on the student's device (FERPA-safe). -->
+     shows on every page with no runtime JS. -->
 <footer class="foot">
   <div class="wrap">
     <span>The Question Method of Legal Research &mdash; interactive modules.</span>
-    <span class="foot-privacy">Your work is saved only in this browser &mdash; nothing is sent anywhere.
-      <button type="button" class="foot-clear" onclick="try{localStorage.clear();this.textContent='Saved progress cleared';this.disabled=true;}catch(e){}">Clear saved progress on this device</button>
-    </span>
     <span>{{TAGLINE}}</span>
     <span class="foot-contact">Found a problem, or wish a module existed?
       <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>

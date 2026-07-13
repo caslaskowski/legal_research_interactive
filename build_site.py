@@ -55,38 +55,6 @@ def build_menu(base, current_rel):
             continue
         rows = []
         for c in ch_in:
-<<<<<<< HEAD
-            live = [m for m in c.get("modules", [])
-                    if m.get("status") == "live" and m.get("href")]
-            mods_html = ""
-            if live:
-                lis = []
-                for m in live:
-                    href = m["href"]
-                    cur = ' aria-current="page"' if href == current_rel else ""
-                    lis.append(
-                        '                  <li><a href="%s%s"%s>%s</a></li>'
-                        % (base, esc(href), cur, esc(m["title"])))
-                mods_html = (
-                    '\n                <ul class="modmenu-mods">\n'
-                    + "\n".join(lis)
-                    + '\n                </ul>')
-            rows.append(
-                '              <li class="modmenu-chap">\n'
-                '                <a href="%schapter.html?ch=%d">'
-                '<span class="cn">%d</span> %s</a>%s\n'
-                '              </li>'
-                % (base, c["ch"], c["ch"], esc(c["title"]), mods_html))
-        cols.append(
-            '            <section class="modmenu-part" aria-label="Part %s — %s">\n'
-            '              <p class="modmenu-ph" aria-hidden="true">Part %s &middot; %s</p>\n'
-            '              <ul class="modmenu-chaps">\n'
-            % (esc(part["id"]), esc(part.get("name", "")),
-               esc(part["id"]), esc(part.get("name", "")))
-            + "\n".join(rows)
-            + '\n              </ul>\n'
-            '            </section>')
-=======
             live = [m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")]
             in_ch = current_rel.startswith("ch-%d/" % c["ch"])
             lis = ['                  <li><a class="mm-chlink" href="%s">Chapter overview \u2192</a></li>'
@@ -125,6 +93,9 @@ def build_menu(base, current_rel):
                 + '\n              </ul>\n            </section>')
 
     stack = []
+    sp = R.get("spotlight")
+    if sp and sp.get("items"):
+        stack.append(flat_section(sp, "Why It Matters"))
     ap = R.get("appendices")
     if ap and ap.get("items"):
         stack.append(flat_section(ap, "Appendices"))
@@ -133,7 +104,6 @@ def build_menu(base, current_rel):
         stack.append(flat_section(tk, "Toolkit"))
     if stack:
         cols.append('            <div class="modmenu-stack">\n' + "\n".join(stack) + '\n            </div>')
->>>>>>> 0fcdfe816c7fb7bd63a2c5d81276b5151bee3f23
     return "\n".join(cols)
 
 # ---- static chapter pages ---------------------------------------------------

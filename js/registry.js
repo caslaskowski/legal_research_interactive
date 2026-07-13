@@ -145,13 +145,18 @@ window.REGISTRY = {
         },
         {
           "status": "live",
+          "type": "orientation",
+          "slug": "ride-the-line",
+          "href": "ch-3/ride-the-line/index.html",
+          "note": "New",
+          "title": "Ride the Line",
+          "desc": "Your question chains as a subway map: ride each colored line station by station, face the interchange where a source answers another line's question — and feel both choices. Note the transfer and it pays your fare later; chase it and meet cognitive overload firsthand."
+        },
+        {
+          "status": "live",
           "type": "practice",
           "slug": "question-chain",
-<<<<<<< HEAD
-          "href": "modules/question-chain/index.html",
-=======
           "href": "ch-3/question-chain/index.html",
->>>>>>> 0fcdfe816c7fb7bd63a2c5d81276b5151bee3f23
           "note": "Draft",
           "title": "Working the Chain — Forward & Reverse",
           "desc": "Build a chain of research questions forward from a fact pattern, then reverse-engineer the questions behind a finished analysis.",
@@ -772,6 +777,19 @@ window.REGISTRY = {
         "id": "T",
         "title": "Toolkit & Resources — Templates & Checklists",
         "href": "toolkit/index.html"
+      }
+    ]
+  },
+  "spotlight": {
+    "eyebrow": "Why It Matters",
+    "intro": "Before the how, the why — six kinds of research failure and their price, in the courts' own words.",
+    "items": [
+      {
+        "id": "§",
+        "title": "When Research Fails",
+        "href": "when-research-fails/index.html",
+        "desc": "Real judges, real scoldings, real sanctions — the failure files, the ladder of consequences, and the countermove this site trains for each. Every quotation is from a real opinion or order.",
+        "verified": "2026-07-10"
       }
     ]
   }

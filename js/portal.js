@@ -71,6 +71,22 @@
     app.appendChild(el("section", { class: "method reveal d1", "aria-label": "The Question Method in brief" }, kids));
   }
 
+  /* ---- spotlight: why it matters ---- */
+  var sp = R.spotlight;
+  if (sp && sp.items && sp.items.length) {
+    var it = sp.items[0];
+    app.appendChild(el("section", { class: "spotlight reveal d1" }, [
+      el("p", { class: "spot-eyebrow" }, [sp.eyebrow || "Why It Matters"]),
+      el("a", { class: "spot-card", href: it.href }, [
+        el("div", { class: "spot-body" }, [
+          el("h2", {}, [it.title]),
+          el("p", {}, [it.desc || sp.intro || ""])
+        ]),
+        el("span", { class: "spot-go", "aria-hidden": "true" }, ["\u2192"])
+      ])
+    ]));
+  }
+
   /* ---- parts + chapter index ---- */
   var parts = R.parts || [];
   var chapters = R.chapters || [];
