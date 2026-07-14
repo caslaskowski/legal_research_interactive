@@ -146,8 +146,8 @@ window.REGISTRY = {
         {
           "status": "live",
           "type": "orientation",
-          "slug": "ride-the-line",
-          "href": "ch-3/ride-the-line/index.html",
+          "slug": "the-research-subway-map",
+          "href": "ch-3/the-research-subway-map/index.html",
           "note": "New",
           "title": "The Research Subway Map",
           "desc": "Your question chains as intersecting subway lines — a Duty Line, a Standard Line, and a Knowledge Line built on a common-areas premises problem. Ride each line to its terminus, face the true interchange where one case serves two lines, and feel both choices: the noted transfer that pays your fare later, or the mid-line chase that shows you what cognitive overload is."
