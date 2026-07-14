@@ -93,6 +93,9 @@ def build_menu(base, current_rel):
                 + '\n              </ul>\n            </section>')
 
     stack = []
+    sp = R.get("spotlight")
+    if sp and sp.get("items"):
+        stack.append(flat_section(sp, "Why It Matters"))
     ap = R.get("appendices")
     if ap and ap.get("items"):
         stack.append(flat_section(ap, "Appendices"))

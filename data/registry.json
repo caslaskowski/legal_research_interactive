@@ -143,6 +143,15 @@
         },
         {
           "status": "live",
+          "type": "orientation",
+          "slug": "ride-the-line",
+          "href": "ch-3/ride-the-line/index.html",
+          "note": "New",
+          "title": "The Research Subway Map",
+          "desc": "Your question chains as intersecting subway lines — a Duty Line, a Standard Line, and a Knowledge Line built on a common-areas premises problem. Ride each line to its terminus, face the true interchange where one case serves two lines, and feel both choices: the noted transfer that pays your fare later, or the mid-line chase that shows you what cognitive overload is."
+        },
+        {
+          "status": "live",
           "type": "practice",
           "slug": "question-chain",
           "href": "ch-3/question-chain/index.html",
@@ -766,6 +775,19 @@
         "id": "T",
         "title": "Toolkit & Resources — Templates & Checklists",
         "href": "toolkit/index.html"
+      }
+    ]
+  },
+  "spotlight": {
+    "eyebrow": "Why It Matters",
+    "intro": "Before the how, the why — six kinds of research failure and their price, in the courts' own words.",
+    "items": [
+      {
+        "id": "§",
+        "title": "When Research Fails",
+        "href": "when-research-fails/index.html",
+        "desc": "Real judges, real scoldings, real sanctions — the failure files, the ladder of consequences, and the countermove this site trains for each. Every quotation is from a real opinion or order.",
+        "verified": "2026-07-10"
       }
     ]
   }

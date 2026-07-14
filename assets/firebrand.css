@@ -433,3 +433,16 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .foot-contact{ display:block; margin-top:6px; }
 .foot-contact a{ color:var(--flame); font-weight:600; }
 .foot-contact small{ display:block; opacity:.8; margin-top:2px; }
+
+/* ---- home spotlight band ---- */
+.spotlight{ margin: 6px 0 30px; }
+.spot-eyebrow{ font-family: var(--mono); font-size:.66rem; letter-spacing:.14em;
+  text-transform:uppercase; color: var(--flame); margin:0 0 8px; }
+.spot-card{ display:flex; align-items:center; gap:18px; text-decoration:none; color:var(--ink);
+  background:#fff; border:2px solid var(--flame); border-radius:12px;
+  box-shadow: var(--shadow); padding:18px 22px; }
+.spot-card:hover{ background: var(--callout); }
+.spot-card:focus-visible{ outline:3px solid var(--flame); outline-offset:3px; }
+.spot-body h2{ font-size:1.2rem; margin:0 0 5px; }
+.spot-body p{ margin:0; font-size:.92rem; line-height:1.6; color: var(--ink-soft); }
+.spot-go{ margin-left:auto; flex:0 0 auto; font-size:1.5rem; color: var(--flame); font-weight:700; }
