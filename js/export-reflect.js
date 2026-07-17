@@ -163,32 +163,37 @@
       ".er-input:focus-visible{outline:3px solid var(--flame,#a72d2a);outline-offset:1px;border-color:var(--flame,#a72d2a);}" +
       ".er-area{resize:vertical;min-height:64px;line-height:1.5;}" +
       ".er-btn{margin-top:4px;}" +
-      ".er-status{margin:10px 0 0;font-size:.9rem;color:var(--regulation,#2f6d56);font-weight:600;min-height:1.2em;}";
+      ".er-status{margin:10px 0 0;font-size:.9rem;color:var(--regulation,#2f6d56);font-weight:600;min-height:1.2em;}" +
+      /* the finish callout that sits where the inline form used to be */
+      ".er-finish{margin-top:14px;border:1px solid var(--rule-strong,#b6b6b6);border-left:4px solid var(--flame,#a72d2a);" +
+      "border-radius:var(--radius,4px);background:var(--callout,#f5efe0);padding:16px 20px;display:flex;gap:16px;" +
+      "align-items:center;justify-content:space-between;flex-wrap:wrap;}" +
+      ".er-finish .er-eyebrow{margin:0 0 .2rem;}" +
+      ".er-finish h2{margin:0 0 .2em;font-size:1.1rem;}" +
+      ".er-finish p{margin:0;color:var(--ink-soft,#54534d);font-size:.92rem;}" +
+      /* the reflection as a full end-of-exercise page */
+      ".er-page{position:fixed;inset:0;z-index:1000;background:var(--paper,#eeeeee);overflow-y:auto;}" +
+      ".er-page-inner{max-width:760px;margin:0 auto;padding:34px 22px 60px;}" +
+      ".er-back{display:inline-block;margin:0 0 18px;font-size:.92rem;font-weight:600;color:var(--flame,#a72d2a);" +
+      "background:none;border:0;cursor:pointer;padding:0;font-family:inherit;}" +
+      ".er-back:hover{text-decoration:underline;}" +
+      "body.er-open{overflow:hidden;}";
     var s = document.createElement("style");
     s.id = "er-css";
     s.textContent = css;
     document.head.appendChild(s);
   }
 
-  function mount(node, cfg) {
-    if (cfg && cfg.session) hydrate(cfg.session);
-    if (!node) return;
-    injectCSS();
-    state.module = cfg.module || "Module";
-    state.chapter = cfg.chapter || "";
-    state.prompts = cfg.prompts || [];
-
-    node.innerHTML = "";
+  /* Render the full reflection form into `parent`. Shared by the end page. */
+  function buildForm(parent, cfg) {
     var sec = el("section", { class: "er", "aria-labelledby": "er-h" });
-
     sec.appendChild(el("p", { class: "er-eyebrow" }, "Submit your work"));
-    sec.appendChild(el("h2", { id: "er-h" }, "Reflect &amp; export"));
+    sec.appendChild(el("h2", { id: "er-h", tabindex: "-1" }, "Reflection &amp; Export"));
     sec.appendChild(el("p", { class: "er-intro" },
       (cfg.intro ? cfg.intro + " " : "") +
       "This builds a plain-text file in your browser only \u2014 nothing is sent or saved online. " +
       "Download it and submit it the way your professor asks."));
 
-    // name
     var nameWrap = el("div", { class: "er-field" });
     var nameId = "er-name";
     nameWrap.appendChild(el("label", { for: nameId }, "Your name (optional, stays on your device until you submit)"));
@@ -196,7 +201,6 @@
     nameWrap.appendChild(nameInput);
     sec.appendChild(nameWrap);
 
-    // prompts
     var areas = [];
     state.prompts.forEach(function (p, i) {
       var id = "er-r" + i;
@@ -219,7 +223,55 @@
       live.textContent = "Your file downloaded. Check your downloads folder, then submit it to your professor.";
     });
 
-    node.appendChild(sec);
+    parent.appendChild(sec);
+  }
+
+  /* The reflection is an end-of-exercise page (like the Notice of Claim
+     sandbox), not a form parked at the bottom of the module. mount() leaves a
+     "Finish" callout where the form used to sit; opening it covers the module
+     with a dedicated Reflection & Export page. */
+  function mount(node, cfg) {
+    if (cfg && cfg.session) hydrate(cfg.session);
+    if (!node) return;
+    injectCSS();
+    state.module = cfg.module || "Module";
+    state.chapter = cfg.chapter || "";
+    state.prompts = cfg.prompts || [];
+
+    node.innerHTML = "";
+    var finish = el("section", { class: "er-finish", "aria-labelledby": "er-fin-h" });
+    var txt = el("div", {});
+    txt.appendChild(el("p", { class: "er-eyebrow" }, "Finish"));
+    txt.appendChild(el("h2", { id: "er-fin-h" }, "Reflection &amp; Export"));
+    txt.appendChild(el("p", null, "Done with the exercise? Close it out: reflect, then download your record to submit."));
+    finish.appendChild(txt);
+    var openBtn = el("button", { type: "button", class: "btn" }, "Finish \u2192 Reflection &amp; Export");
+    finish.appendChild(openBtn);
+    node.appendChild(finish);
+
+    var page = null;
+    function close() {
+      if (!page) return;
+      document.body.classList.remove("er-open");
+      page.remove(); page = null;
+      openBtn.focus();
+    }
+    function open() {
+      log("Opened Reflection & Export", "");
+      page = el("div", { class: "er-page", role: "dialog", "aria-modal": "true", "aria-label": "Reflection and export" });
+      var inner = el("div", { class: "er-page-inner" });
+      var back = el("button", { type: "button", class: "er-back" }, "\u2190 Back to the exercise");
+      back.addEventListener("click", close);
+      inner.appendChild(back);
+      buildForm(inner, cfg);
+      page.appendChild(inner);
+      page.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+      document.body.appendChild(page);
+      document.body.classList.add("er-open");
+      var h = inner.querySelector("#er-h");
+      if (h) h.focus();
+    }
+    openBtn.addEventListener("click", open);
   }
 
   window.ExportReflect = { mount: mount, log: log, collect: collect };

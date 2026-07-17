@@ -23,8 +23,8 @@ window.HOME = {
   ],
   "companion": {
     "title": "Companion Notes",
-    "description": "A fill-in-the-blanks worksheet. Complete it as you move through the module \u2014 once it is filled in, it becomes your one-page cheat sheet.",
-    "buttonText": "Download Companion Notes (.txt)"
+    "description": "A fill-in-the-blanks Word worksheet. Complete it as you move through the module \u2014 once it is filled in, it becomes your one-page cheat sheet.",
+    "buttonText": "Download Companion Notes (Word)"
   },
   "atAGlance": {
     "columns": ["Source", "Made by", "What it does", "Best used when"],

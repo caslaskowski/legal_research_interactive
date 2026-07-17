@@ -27,6 +27,20 @@ Every page ships a skip link, semantic headings, visible focus states, a
 and `aria-live` regions on dynamic feedback. A GitHub Action runs pa11y (WCAG 2 AA)
 over every page on every push.
 
+## Companion notes (Word)
+
+Every module can ship a fill-in Word worksheet, generated from JSON and **committed
+to the repo** as `<module>/companion-notes.docx` — a plain static download, so the
+zero-external-requests / FERPA posture holds. Content lives in the module's own
+`data/companion.json`, or (for modules without a `data/` directory) in
+`data/companions/<name>.json` with a `"module"` field naming the destination.
+Regenerate after editing content:
+
+```
+pip install python-docx      # once
+python3 build_companions.py
+```
+
 ## Layout
 
 ```

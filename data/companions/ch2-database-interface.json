@@ -1,0 +1,69 @@
+{
+  "module": "ch-2/database-interface",
+  "title": "Database Interface Explorer — Companion Notes",
+  "subtitle": "Ch. 2 · Introduction to Legal Research Platforms",
+  "intro": "Fill this in as you click through the simulated platform. The goal is a map you can carry to Westlaw, Lexis, or any other database: every platform arranges the same furniture, just in different rooms.",
+  "sections": [
+    {
+      "heading": "The search box",
+      "fields": [
+        {
+          "label": "Plain-language search vs. terms and connectors — what does each control, and when would I use each?",
+          "lines": 3
+        }
+      ]
+    },
+    {
+      "heading": "Browsing the collections",
+      "fields": [
+        {
+          "label": "Browse by source type — when do I already know what kind of law I need?",
+          "lines": 2
+        },
+        {
+          "label": "Federal vs. state collections — what tells me which one governs my question?",
+          "lines": 2
+        },
+        {
+          "label": "Practice-area pages — what do they gather in one place, and when is that the right door in?",
+          "lines": 2
+        }
+      ]
+    },
+    {
+      "heading": "Research tools (not bodies of law)",
+      "fields": [
+        {
+          "label": "Litigation analytics — what can it tell me, and what should I stay skeptical about?",
+          "lines": 3
+        },
+        {
+          "label": "Legal writing assistant — what does it draft, and what do I still verify myself?",
+          "lines": 2
+        },
+        {
+          "label": "Other platforms in my subscription — which ones, and what is each one for?",
+          "lines": 2
+        }
+      ]
+    },
+    {
+      "heading": "Keeping my bearings",
+      "fields": [
+        {
+          "label": "Folders / workspace — how do I keep one matter's research together?",
+          "lines": 2
+        },
+        {
+          "label": "History — when will I need to retrace my steps?",
+          "lines": 2
+        },
+        {
+          "label": "Live chat and reference support — when is asking the fastest move?",
+          "lines": 2
+        }
+      ]
+    }
+  ],
+  "footer": "Every platform is the same house with the furniture moved. Learn the furniture, not the floor plan."
+}

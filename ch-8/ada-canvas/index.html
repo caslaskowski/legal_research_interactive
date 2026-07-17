@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The ADA Canvas — Ch. 8 · Researching Across Sources</title>
+<meta name="description" content="Pull statutes, regulations, and cases onto a canvas and follow the trail between them — the ADA's public-accommodation rules as a connected map.">
+<!--shell:head:start-->
+<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<!--shell:head:end-->
+<link rel="stylesheet" href="../../assets/firebrand.css">
+<style>
+.lede{font-size:1.12rem;color:var(--ink-soft);}
+.howbox{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:14px 18px;margin:16px 0;font-size:.93rem;color:var(--ink-soft);}
+.howbox b{color:var(--ink);}
+
+/* starter questions */
+.starter{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:0 0 14px;}
+.starter h2{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+.qbtns{display:flex;gap:10px;flex-wrap:wrap;}
+.qbtn{font:inherit;font-size:.9rem;font-weight:600;text-align:left;background:#fff;border:1.5px solid var(--rule-strong);border-radius:8px;padding:9px 13px;cursor:pointer;color:var(--ink);max-width:300px;}
+.qbtn:hover{border-color:var(--flame);}
+.qbtn[aria-pressed="true"]{border-color:var(--flame);background:var(--flame-tint,#f6e2e1);}
+.qpanel{margin-top:12px;display:none;}
+.qpanel.on{display:block;}
+.qpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:1rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
+.qpanel .hint{font-size:.88rem;color:var(--ink-soft);margin:0 0 8px;}
+.trail{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px;}
+.trail span{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule-strong);border-radius:999px;padding:3px 10px;background:#fff;color:var(--ink-faint);}
+.trail span.hit{background:#cdeccd;border-color:#5a9a5a;color:#2e5b34;font-weight:700;}
+.reveal-btn{font:inherit;font-size:.85rem;font-weight:700;background:var(--ink);color:#fff;border:0;border-radius:7px;padding:7px 12px;cursor:pointer;display:none;}
+.reveal-btn.on{display:inline-block;}
+.discussion{display:none;margin-top:10px;background:#fff;border:1px solid var(--rule-strong);border-radius:8px;padding:12px 15px;font-size:.92rem;line-height:1.6;}
+.discussion.on{display:block;}
+
+/* canvas */
+#stage{position:relative;height:72vh;min-height:460px;border:1.5px solid var(--rule-strong);border-radius:10px;background:
+  radial-gradient(circle at 1px 1px, rgba(38,38,34,.12) 1px, transparent 0) 0 0/22px 22px, var(--panel);
+  overflow:hidden;cursor:grab;box-shadow:var(--shadow);}
+#stage.panning{cursor:grabbing;}
+#world{position:absolute;left:0;top:0;width:6000px;height:4000px;transform:translate(0px,0px);}
+#edges{position:absolute;left:0;top:0;width:6000px;height:4000px;pointer-events:none;}
+#edges line{stroke:var(--flame);stroke-width:2;stroke-dasharray:5 4;opacity:.55;}
+.card{position:absolute;width:340px;background:#fff;border:1px solid var(--rule-strong);border-radius:9px;box-shadow:0 8px 26px rgba(20,20,18,.14);display:flex;flex-direction:column;max-height:420px;}
+.card.k-statute{border-top:4px solid var(--statute,#8a6d1a);}
+.card.k-regulation{border-top:4px solid var(--regulation,#2f6d56);}
+.card.k-case{border-top:4px solid var(--case,#28406b);}
+.card header{display:flex;align-items:flex-start;gap:8px;padding:9px 12px 7px;cursor:move;border-bottom:1px solid var(--rule);}
+.card header .kk{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;padding:1px 6px;color:#fff;flex:none;margin-top:2px;}
+.k-statute .kk{background:var(--statute,#8a6d1a);} .k-regulation .kk{background:var(--regulation,#2f6d56);} .k-case .kk{background:var(--case,#28406b);}
+.card header .t{font-family:var(--sans);font-weight:700;font-size:.86rem;line-height:1.3;flex:1;}
+.card header .cite{display:block;font-weight:400;font-size:.72rem;color:var(--ink-faint);}
+.card header .x{flex:none;border:0;background:none;font-size:1rem;line-height:1;cursor:pointer;color:var(--ink-faint);padding:2px 4px;}
+.card header .x:hover{color:var(--flame);}
+.card .bd{overflow-y:auto;padding:10px 14px;font-family:var(--serif);font-size:.86rem;line-height:1.55;}
+.card .bd .prov{margin:0 0 6px;padding-left:12px;}
+.card .bd .prov.d1{padding-left:24px;} .card .bd .prov.d2{padding-left:36px;} .card .bd .prov.d3,.card .bd .prov.d4{padding-left:46px;}
+.card .bd .pnum{font-weight:700;margin-right:5px;}
+.card .bd .phead{font-weight:700;font-style:italic;margin-right:5px;}
+.card .bd p{margin:0 0 6px;display:inline;} .card .bd .prov>p{display:block;}
+.card .bd .chapeau,.card .bd .cont{display:block;margin:0 0 6px;}
+.card .bd .excerpt{display:block;border-left:3px solid var(--rule-strong);padding-left:10px;margin:0 0 8px;}
+.card .bd .srcnote{display:block;font-family:var(--sans);font-size:.79rem;color:var(--ink-soft);background:var(--panel);border-radius:6px;padding:8px 10px;margin:8px 0 0;}
+.card .bd a.xref{color:var(--flame);font-weight:600;text-decoration:none;border-bottom:1.5px dashed var(--flame);cursor:pointer;}
+.card .bd a.xref:hover{background:var(--flame-tint,#f6e2e1);}
+.card.flash{outline:3px solid var(--flame);outline-offset:2px;}
+.stagehelp{position:absolute;left:14px;bottom:10px;font-family:var(--mono);font-size:.66rem;color:var(--ink-faint);background:rgba(255,255,255,.85);border-radius:6px;padding:4px 9px;pointer-events:none;}
+.stagebtns{position:absolute;right:12px;top:10px;display:flex;gap:8px;}
+.stagebtns button{font:inherit;font-size:.8rem;font-weight:600;background:#fff;border:1.5px solid var(--rule-strong);border-radius:7px;padding:5px 10px;cursor:pointer;}
+.stagebtns button:hover{border-color:var(--flame);}
+.provnote{margin:14px 0 0;font-size:.85rem;color:var(--ink-faint);}
+#export-slot{margin-top:30px;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+</style>
+</head>
+<body class="shell">
+<!--shell:masthead:start-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-inner">
+      <a class="brand" href="../../index.html" aria-label="The Question Method of Legal Research — home">
+        <span class="mark">The Question Method of Legal Research</span>
+        <span class="sub">Interactive Legal Research Modules</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../../index.html">Home</a>
+        <details class="modmenu">
+          <summary><span class="mm-label-default">Browse modules</span><span class="mm-label-open">Close menu</span></summary>
+          <div class="modmenu-panel" role="group" aria-label="All chapters and modules">
+            <div class="modmenu-cols">
+            <section class="modmenu-part">
+              <h2>Part I &middot; Foundational Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-3/the-research-subway-map/index.html">The Research Subway Map<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">4</span> Secondary Sources Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">5</span> Case Law Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">6</span> Statutes Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch" open>
+                  <summary><span class="cn">8</span> Researching Across Sources</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-8/ada-canvas/index.html" aria-current="page">The ADA Canvas<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Part II &middot; Advanced Legal Research</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">12</span> Legislative History Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">13</span> Advanced Administrative Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">15</span> GenAI and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped<span class="mm-kind orientation">orientation</span></a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe<span class="mm-kind practice">practice</span></a></li>
+                  </ul>
+                </details>
+              </li>
+              <li class="modmenu-chap">
+                <details class="mm-ch">
+                  <summary><span class="cn">17</span> Research for Legal Scholarship</summary>
+                  <ul class="modmenu-mods">
+                  <li><a class="mm-chlink" href="../../ch-17/">Chapter overview →</a></li>
+                  </ul>
+                </details>
+              </li>
+              </ul>
+            </section>
+            <div class="modmenu-stack">
+            <section class="modmenu-part">
+              <h2>Why It Matters</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../when-research-fails/index.html"><span class="cn">§</span> When Research Fails</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Appendices &amp; Glossary</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-4/reading-secondary/index.html"><span class="cn">A</span> How to Read a Secondary Source</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-5/reading-cases/index.html"><span class="cn">B</span> How to Read a Case</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-6/reading-statutes/index.html"><span class="cn">C</span> How to Read a Statute</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../ch-7/reading-regulations/index.html"><span class="cn">D</span> How to Read a Regulation</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../appendices/glossary-flashcards/index.html"><span class="cn">G</span> Glossary — Flashcards</a></li>
+              </ul>
+            </section>
+            <section class="modmenu-part">
+              <h2>Toolkit &amp; Resources</h2>
+              <ul class="modmenu-chaps">
+              <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              </ul>
+            </section>
+            </div>
+            </div>
+          </div>
+        </details>
+        <a href="../../about.html">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<!--shell:masthead:end-->
+
+<main id="main">
+  <div class="wrap ch-wrap">
+    <a class="cs-back" href="../../index.html">&larr; All modules</a>
+    <p class="ch-eyebrow">Chapter 8 · Practice</p>
+    <h1>The ADA Canvas</h1>
+    <p class="lede">One legal question rarely lives in one source. Here the ADA&rsquo;s public-accommodation rules are a connected map: pull a statute onto the canvas, click a cross-reference or a defined term, and watch the regulation and the cases that answer it appear beside it &mdash; edges and all.</p>
+
+    <div class="howbox"><b>How it works.</b> Pick a starter question below to place your first card. Inside any card, <b>click a dashed link</b> &mdash; a section cross-reference or a defined term &mdash; to open that source next to it, connected by an edge. <b>Drag cards</b> by their header to arrange your map; drag the background to pan. The chips under the question track the sources a careful researcher would open; find them all to unlock the discussion.</div>
+
+    <section class="starter" aria-label="Starter questions">
+      <h2>Start with a question</h2>
+      <div class="qbtns" id="qbtns"></div>
+      <div class="qpanel" id="qpanel">
+        <p class="wq" id="qtext"></p>
+        <p class="hint" id="qhint"></p>
+        <div class="trail" id="qtrail"></div>
+        <button class="reveal-btn" id="qreveal" type="button">All sources found &mdash; open the discussion &rarr;</button>
+        <div class="discussion" id="qdisc"></div>
+      </div>
+    </section>
+
+    <div id="stage">
+      <div id="world"><svg id="edges" xmlns="http://www.w3.org/2000/svg"></svg></div>
+      <div class="stagebtns">
+        <button type="button" id="arrange">Tidy up</button>
+        <button type="button" id="clear">Clear canvas</button>
+      </div>
+      <p class="stagehelp">drag background to pan &middot; drag a card&rsquo;s header to move it &middot; click dashed links to follow the trail</p>
+      <p class="sr-only" role="status" aria-live="polite" id="live"></p>
+    </div>
+
+    <p class="provnote">Statute text: 42 U.S.C. &sect;&sect; 12101&ndash;12103, 12181&ndash;12189, from the official USLM XML of Title 42. Regulation text: 28 C.F.R. Part 36 (eCFR), excerpted. Case text: public-domain court opinions, excerpted; the notes beneath them were written for this exercise. Authorities verified July 2026 &mdash; the law moves; run the method, don&rsquo;t trust the module.</p>
+
+    <div id="export-slot"></div>
+  </div>
+</main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-8/">Ch. 8 · Researching Across Sources</a></p>
+  <p class="modnav-verified">Authorities verified as of July 2026. The law changes — run the method, don’t trust the module.</p>
+  <div class="modnav-links">
+    <a class="modnav-link prev" href="../../ch-8/across-sources-practice/index.html"><span class="dir">← Previous</span><span class="t">Across Sources Practice</span></a>
+    <a class="modnav-link next" href="../../ch-9/"><span class="dir">Next chapter →</span><span class="t">Ch. 9 · Narrowing and Closing Out Your Research</span></a>
+  </div>
+</nav>
+<!--shell:modnav:end-->
+
+<!--shell:footer:start-->
+<footer class="foot">
+  <div class="wrap">
+    <span>The Question Method of Legal Research &mdash; interactive modules.</span>
+    <span>Constantly in beta · built by Cas Laskowski</span>
+    <span class="foot-contact">Found a problem, or wish a module existed?
+      <a href="https://github.com/caslaskowski/legal_research_interactive/issues" target="_blank" rel="noopener">Report an issue or suggest a feature</a>
+      <small>(opens GitHub in a new tab &mdash; nothing is sent from this site)</small></span>
+  </div>
+</footer>
+<!--shell:footer:end-->
+
+<script src="../../js/lib.js"></script>
+<script src="../../js/export-reflect.js"></script>
+<script src="data.js"></script>
+<script src="canvas.js"></script>
+</body>
+</html>

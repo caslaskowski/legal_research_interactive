@@ -364,6 +364,20 @@
           "href": "ch-8/across-sources-practice/index.html",
           "title": "Across Sources Practice",
           "desc": "Two problems — FMLA and Arizona workers' comp — each solved by pulling a statute, a regulation, and a case, with reveal-for-answer authority."
+        },
+        {
+          "slug": "ada-canvas",
+          "title": "The ADA Canvas",
+          "href": "ch-8/ada-canvas/index.html",
+          "status": "live",
+          "type": "practice",
+          "verified": "July 2026",
+          "desc": "The ADA's public-accommodation rules as a connected map. Pull § 12182 onto a canvas, click a defined term or cross-reference, and the definition, the DOJ regulation, or the case that answers it opens beside it — edges and all. Three starter questions guide the trail: one the Supreme Court answered (the golf cart), one still splitting the circuits (the website), and one that resolves inside the codes (the step at the door).",
+          "will": [
+            "Follow a defined term from a statute into its definition, the implementing regulation, and the cases construing it",
+            "Watch one question produce a circuit split — and one published answer get vacated",
+            "Recognize when a question resolves inside the codes and when it needs case law"
+          ]
         }
       ]
     },
@@ -734,37 +748,32 @@
   ],
   "appendices": {
     "eyebrow": "Appendices & Glossary",
-    "intro": "The book's how-to-read guides, as interactive anatomies — each is also listed under its chapter — plus the glossary as a flashcard deck.",
+    "intro": "The book's how-to-read guides, as interactive anatomies, plus the glossary as a flashcard deck. Each guide lives here — reach it from this list, not from the chapter pages.",
     "items": [
       {
         "id": "A",
         "title": "How to Read a Secondary Source",
-        "href": "ch-4/reading-secondary/index.html",
-        "also": "Also under Ch. 4"
+        "href": "ch-4/reading-secondary/index.html"
       },
       {
         "id": "B",
         "title": "How to Read a Case",
-        "href": "ch-5/reading-cases/index.html",
-        "also": "Also under Ch. 5"
+        "href": "ch-5/reading-cases/index.html"
       },
       {
         "id": "C",
         "title": "How to Read a Statute",
-        "href": "ch-6/reading-statutes/index.html",
-        "also": "Also under Ch. 6"
+        "href": "ch-6/reading-statutes/index.html"
       },
       {
         "id": "D",
         "title": "How to Read a Regulation",
-        "href": "ch-7/reading-regulations/index.html",
-        "also": "Also under Ch. 7"
+        "href": "ch-7/reading-regulations/index.html"
       },
       {
         "id": "G",
         "title": "Glossary — Flashcards",
-        "href": "appendices/glossary-flashcards/index.html",
-        "also": "Every defined term in the book"
+        "href": "appendices/glossary-flashcards/index.html"
       }
     ]
   },

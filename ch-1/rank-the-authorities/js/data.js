@@ -75,8 +75,8 @@ window.HOME = {
   ],
   "companion": {
     "title": "Companion Notes",
-    "description": "A fill-in-the-blanks worksheet. Work through it alongside the module — completed, it becomes a one-page reference for weighing authority on any research problem.",
-    "buttonText": "Download Companion Notes (.txt)"
+    "description": "A fill-in-the-blanks Word worksheet. Work through it alongside the module — completed, it becomes a one-page reference for weighing authority on any research problem.",
+    "buttonText": "Download Companion Notes (Word)"
   }
 };
 
@@ -1359,7 +1359,8 @@ window.COMPANION = {
       ]
     }
   ],
-  "footer": "Tip: if you can fill this in without looking, you can rank any stack of authorities on sight."
+  "footer": "Tip: if you can fill this in without looking, you can rank any stack of authorities on sight.",
+  "subtitle": "Ch. 1 · Foundations of Legal Authority — Hierarchy of Authorities"
 };
 
 window.PRACTICE = {

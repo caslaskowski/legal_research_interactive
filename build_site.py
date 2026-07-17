@@ -38,12 +38,25 @@ def esc(s): return html.escape(s or "", quote=True)
 def base_for(relpath): return "../" * relpath.replace("\\", "/").count("/")
 def ch_url(base, ch): return "%sch-%d/" % (base, ch)
 
+# ---- appendix items appear ONLY under Appendices (home + menu), never
+# duplicated on chapter pages or in the menu's chapter groups ----------------
+APPENDIX_ITEMS = (R.get("appendices") or {}).get("items", [])
+APPENDIX_HREFS = {a.get("href") for a in APPENDIX_ITEMS if a.get("href")}
+def not_appendix(mods):
+    return [m for m in mods if m.get("href") not in APPENDIX_HREFS]
+
 # ---- module ordering index (for prev/next nav) -----------------------------
 MOD_INDEX = {}   # href -> dict(chapter, i, mods)
 for c in CHAPTERS:
-    live = [m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")]
+    live = not_appendix([m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")])
     for i, m in enumerate(live):
         MOD_INDEX.setdefault(m["href"], {"chapter": c, "i": i, "mods": live, "mod": m})
+
+# appendix pages get their own prev/next chain, framed as appendices
+APPX_INDEX = {}  # href -> dict(i, items, item)
+for i, a in enumerate(APPENDIX_ITEMS):
+    if a.get("href"):
+        APPX_INDEX[a["href"]] = {"i": i, "items": APPENDIX_ITEMS, "item": a}
 
 # ---- browse-modules menu ---------------------------------------------------
 def build_menu(base, current_rel):
@@ -55,15 +68,17 @@ def build_menu(base, current_rel):
             continue
         rows = []
         for c in ch_in:
-            live = [m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")]
+            live = not_appendix([m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")])
             in_ch = current_rel.startswith("ch-%d/" % c["ch"])
             lis = ['                  <li><a class="mm-chlink" href="%s">Chapter overview \u2192</a></li>'
                    % ch_url(base, c["ch"])]
             for m in live:
                 href = m["href"]
                 cur = ' aria-current="page"' if href == current_rel else ""
-                lis.append('                  <li><a href="%s%s"%s>%s</a></li>'
-                           % (base, esc(href), cur, esc(m["title"])))
+                kind = m.get("type")
+                tag = ('<span class="mm-kind %s">%s</span>' % (kind, kind)) if kind else ""
+                lis.append('                  <li><a href="%s%s"%s>%s%s</a></li>'
+                           % (base, esc(href), cur, esc(m["title"]), tag))
             rows.append('              <li class="modmenu-chap">\n'
                         '                <details class="mm-ch"%s>\n'
                         '                  <summary><span class="cn">%d</span> %s</summary>\n'
@@ -144,7 +159,7 @@ def mod_section(heading, subhead, items, base):
 
 def chapter_page(c):
     base = "../"
-    mods = c.get("modules", [])
+    mods = not_appendix(c.get("modules", []))
     orient = [m for m in mods if m.get("type") == "orientation"]
     prac   = [m for m in mods if m.get("type") == "practice"]
     other  = [m for m in mods if not m.get("type")]
@@ -218,6 +233,28 @@ def emit_chapter_pages():
 
 # ---- modnav (module prev/next) ----------------------------------------------
 def build_modnav(rel, base):
+    ax = APPX_INDEX.get(rel)
+    if ax:
+        i, items, a = ax["i"], ax["items"], ax["item"]
+        parts = ['<nav class="modnav" aria-label="Module navigation">',
+                 '  <p class="modnav-crumb">Appendix %s \u00b7 <a href="%sindex.html#appendices">'
+                 'Appendices &amp; Glossary</a></p>' % (esc(a.get("id", "")), base)]
+        links = []
+        if i > 0 and items[i - 1].get("href"):
+            p = items[i - 1]
+            links.append('    <a class="modnav-link prev" href="%s%s"><span class="dir">\u2190 Previous</span>'
+                         '<span class="t">%s</span></a>' % (base, esc(p["href"]), esc(p["title"])))
+        else:
+            links.append('    <span></span>')
+        if i < len(items) - 1 and items[i + 1].get("href"):
+            n = items[i + 1]
+            links.append('    <a class="modnav-link next" href="%s%s"><span class="dir">Next \u2192</span>'
+                         '<span class="t">%s</span></a>' % (base, esc(n["href"]), esc(n["title"])))
+        else:
+            links.append('    <span></span>')
+        parts.append('  <div class="modnav-links">\n%s\n  </div>' % "\n".join(links))
+        parts.append('</nav>')
+        return "\n".join(parts)
     info = MOD_INDEX.get(rel)
     if not info:
         return None
