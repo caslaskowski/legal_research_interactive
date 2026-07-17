@@ -47,7 +47,9 @@
   app.appendChild(el("section", { class: "hero reveal" }, [
     el("p", { class: "eyebrow" }, ["Interactive companion to the textbook"]),
     el("h1", {}, [s.title || "The Question Method of Legal Research"]),
-    el("p", { class: "lede" }, [s.lede || ""])
+    s.ledeHtml
+      ? el("p", { class: "lede", html: s.ledeHtml })
+      : el("p", { class: "lede" }, [s.lede || ""])
   ]));
 
   /* ---- the method strip: five steps + a checkpoint ---- */

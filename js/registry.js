@@ -4,12 +4,13 @@ window.REGISTRY = {
   "suite": {
     "title": "The Question Method of Legal Research",
     "subtitle": "Interactive Modules",
-    "lede": "Hands-on companions to the textbook. Some drop you into a live research problem; others build a single skill the work depends on — reading a citation, navigating an annotated code, telling binding authority from persuasive. Together they map onto the book, chapter by chapter.",
-    "tagline": "Constantly in beta · built by Cas Laskowski"
+    "lede": "This is a hands-on companion to The Question Method of Legal Research textbook. Each module maps onto the book, chapter by chapter. Some modules drill the entire cycle; others build a single skill the cycle depends on. As the core of the Question Method is simply making explicit that which most researchers do intuitively, the majority of lessons can be used independently in any legal research class.",
+    "tagline": "Constantly in beta · built by Cas Laskowski",
+    "ledeHtml": "This is a hands-on companion to <a href=\"https://opentextbooks.library.arizona.edu/legalresearch/\" target=\"_blank\" rel=\"noopener\">The Question Method of Legal Research textbook</a>. Each module maps onto the book, chapter by chapter. Some modules drill the entire cycle; others build a single skill the cycle depends on. As the core of the Question Method is simply making explicit that which most researchers do intuitively, the majority of lessons can be used independently in any legal research class."
   },
   "method": {
     "eyebrow": "The Question Method, in brief",
-    "intro": "The method runs through the whole book — a repeating cycle of five steps and a checkpoint, recorded in two tools: the Research Log (where you have been) and the annotated outline (what you know). Some modules drill the entire cycle; others build a single skill the cycle depends on.",
+    "intro": "The Question Method is a repeating cycle of five steps and continuous reflection through checkpoints using the research log (tracking where you have been and intend to go) and the annotated outline (synthesizing question answers into a roadmap of your legal argument).",
     "steps": [
       {
         "t": "Write your research question",
@@ -34,7 +35,7 @@ window.REGISTRY = {
     ],
     "checkpoint": {
       "t": "Checkpoint — reflect and evaluate",
-      "d": "Before you close out, review your work: Are your sources current, authoritative, and from the right jurisdiction? Did your sequence of questions capture the full scope of the issue? It is a habit you build into every cycle and perform formally at the end."
+      "d": "Checkpoints happen regularly throughout the process. After you reach the end of a question thread, review your work to ensure there are no gaps and that you have fully synthesized your findings before moving on to the next question. And, before you close out your research, review your work: Are your sources current, authoritative, and from the right jurisdiction? Did your sequence of questions capture the full scope of the issue? It is a habit you build into every cycle and perform formally at the end."
     }
   },
   "parts": [

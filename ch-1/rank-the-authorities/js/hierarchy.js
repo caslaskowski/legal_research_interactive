@@ -56,53 +56,10 @@
     el("p", { class: "callout measure" }, [PS.callout])
   ]));
 
-  /* ---- binding vs persuasive: forum explorers ---- */
+  /* ---- binding vs persuasive: first forum explorer ----
+     (The second scenario — "Switch the Question — and the Court" — now lives on
+     its own page, switch.html, so each page carries one idea.) */
   (D.forumExplorers || []).forEach(function (F, fi) {
-    var section = el("section", { class: "reveal d3 block" }, [
-      el("p", { class: "eyebrow" }, [F.eyebrow]),
-      el("h2", {}, [F.heading]),
-      el("p", { class: "measure" }, [F.lede])
-    ]);
-
-    var selectId = "forum-select-" + fi;
-    var select = el("select", { id: selectId, class: "forum-select" },
-      F.forums.map(function (fm) { return el("option", { value: fm.id }, [fm.label]); }));
-    section.appendChild(el("div", { class: "forum-picker" }, [
-      el("label", { for: selectId }, ["Deciding court:"]),
-      select
-    ]));
-
-    var live = el("p", { class: "sr-only", role: "status", "aria-live": "polite" });
-    section.appendChild(live);
-
-    var rows = [];
-    var list = el("ul", { class: "weigh-list", "aria-label": "Authorities and their weight before the selected court" });
-    F.authorities.forEach(function (a) {
-      var badge = el("span", { class: "weigh-badge" });
-      var why = el("p", { class: "weigh-why" });
-      list.appendChild(el("li", { class: "weigh-row" }, [
-        el("div", { class: "weigh-main" }, [el("span", { class: "weigh-label" }, [a.label]), badge]),
-        why
-      ]));
-      rows.push({ a: a, badge: badge, why: why });
-    });
-    section.appendChild(list);
-    app.appendChild(section);
-
-    (function (F, select, rows, live) {
-      function paint(forumId) {
-        var fname = F.forums.filter(function (x) { return x.id === forumId; })[0].label;
-        rows.forEach(function (r) {
-          var w = r.a.weight[forumId];
-          r.badge.className = "weigh-badge " + w;
-          r.badge.textContent = w === "binding" ? "Binding" : "Persuasive";
-          r.badge.setAttribute("aria-label", (w === "binding" ? "Binding" : "Persuasive") + " before this court");
-          r.why.textContent = r.a.why[forumId];
-        });
-        live.textContent = "Showing how each authority weighs before the " + fname + ".";
-      }
-      select.addEventListener("change", function () { paint(select.value); });
-      paint(F.forums[0].id);
-    }(F, select, rows, live));
+    LP.renderForumExplorer(app, F, fi);
   });
 })();

@@ -42,7 +42,7 @@
   var openMenus = [];
   function buildDropdown(label, itemIds, activeId, extraClass) {
     var inSection = itemIds.indexOf(activeId) !== -1;
-    var listId = "menu-" + label.toLowerCase();
+    var listId = "menu-" + label.toLowerCase().replace(/\s+/g, "-");
     var btn = el("button", {
       class: "menu-btn" + (inSection ? " in-section" : ""), type: "button",
       "aria-haspopup": "true", "aria-expanded": "false", "aria-controls": listId
@@ -80,21 +80,30 @@
   }
   function closeAll() { openMenus.forEach(function (m) { m.close(); }); }
 
-  /* ---- masthead + nav ---- */
+  /* ---- masthead + nav ----
+     Header pattern (site-wide): Home · the chapter we are in · the module ·
+     "Module Pages" (every content page of this single module, in reading order) ·
+     "Learning Resources" (knowledge check, companion notes, reflection). */
   function buildHeader(activeId) {
-    var sourcesIds = ["statute", "regulation", "case"];
-    var modulesIds = ["workflow", "quiz", "connections"]; // how each source is made, knowledge check, bringing it together
+    var pageIds = ["workflow", "statute", "regulation", "case", "connections"];
+    var resourceIds = ["quiz"]; // knowledge check; companion notes is appended as an action below
+
+    var resources = buildDropdown("Learning Resources", resourceIds, activeId, "nav-sub");
+    // Companion Notes lives with the other learning resources rather than as a lone button.
+    var resList = resources.querySelector(".menu-list");
+    var dlLink = el("a", { role: "menuitem", href: "#" }, ["Companion Notes (download)"]);
+    dlLink.addEventListener("click", function (e) { e.preventDefault(); downloadCompanion(); });
+    resList.appendChild(el("li", { role: "none" }, [dlLink]));
 
     var topnav = el("nav", { class: "topnav", "aria-label": "Primary" }, [
       el("a", { class: "navlink", href: "../../index.html" }, ["Home"]),
       el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch. 1 \u00b7 Foundations"]),
       el("a", { class: "navlink", href: "index.html", "aria-current": activeId === "home" ? "page" : null }, ["How Law Is Made"]),
-      buildDropdown("Sources", sourcesIds, activeId, "nav-sub"),
-      buildDropdown("Modules", modulesIds, activeId, "nav-sub")
+      buildDropdown("Module Pages", pageIds, activeId, "nav-sub"),
+      resources
     ]);
 
-    var notesBtn = el("button", { class: "btn-notes", type: "button", onclick: downloadCompanion }, ["\u2193 Companion Notes"]);
-    var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav, notesBtn]);
+    var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav]);
 
     var toggle = el("button", {
       class: "nav-toggle", type: "button", "aria-expanded": "false",
@@ -141,6 +150,27 @@
     ]);
   }
 
+  /* ---- shared bottom pager: one reading order, same look on every page ----
+     Matches the navigation at the bottom of the Statutes / Cases / Regulations
+     pages, so moving through the module feels the same everywhere. */
+  var PAGE_ORDER = ["home", "workflow", "statute", "regulation", "case", "connections", "quiz"];
+  function pagerEntry(id) {
+    if (id === "home") return { label: "Module home", page: "index.html" };
+    var item = navItem(id);
+    return item ? { label: item.label.replace(" \u2014 Deep Dive", ""), page: item.page } : null;
+  }
+  function buildPager(activeId) {
+    var i = PAGE_ORDER.indexOf(activeId);
+    if (i === -1) return null;
+    var prev = i > 0 ? pagerEntry(PAGE_ORDER[i - 1]) : null;
+    var next = i < PAGE_ORDER.length - 1 ? pagerEntry(PAGE_ORDER[i + 1]) : null;
+    var kids = [];
+    kids.push(prev ? el("a", { href: prev.page }, ["\u2190 " + prev.label]) : el("span", {}, [""]));
+    if (activeId !== "home" && i > 0 && PAGE_ORDER[i - 1] !== "home") kids.push(el("a", { href: "index.html" }, ["Module home"]));
+    kids.push(next ? el("a", { href: next.page }, [next.label + " \u2192"]) : el("span", {}, [""]));
+    return el("nav", { class: "pager", "aria-label": "Module pages" }, kids);
+  }
+
   function mountChrome(activeId) {
     document.body.classList.add("shell");
     var main = document.querySelector("main");
@@ -148,6 +178,8 @@
     var skip = el("a", { class: "skip", href: "#main" }, ["Skip to content"]);
     document.body.insertBefore(skip, document.body.firstChild);
     document.body.insertBefore(buildHeader(activeId), main);
+    var pager = buildPager(activeId);
+    if (pager && main) main.appendChild(el("div", { class: "wrap" }, [pager]));
     document.body.appendChild(buildFooter());
   }
 

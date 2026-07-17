@@ -49,6 +49,16 @@
 .retbox button{border:0;background:var(--ink);color:#fff;font:inherit;font-weight:700;padding:0 16px;cursor:pointer;}
 .dimpart{opacity:.32;text-decoration:line-through;}
 .keeppart{background:#cdeccd;border-radius:4px;padding:1px 4px;}
+.retcite{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;padding:14px 16px;margin:14px 0;}
+.retkind{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:0 0 6px;}
+.rpart{border:1.5px dashed transparent;border-radius:5px;padding:2px 4px;cursor:pointer;font:inherit;background:transparent;color:inherit;}
+.rpart:hover{background:var(--flame-tint);border-color:var(--flame);}
+.rpart:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.rpart[aria-pressed="true"]{background:#fbe7a2;border-color:#d9b53a;}
+.retcite.checked .rpart[aria-pressed="true"][data-loc="1"]{background:#cdeccd;border-color:#5a9a5a;}
+.retcite.checked .rpart[aria-pressed="true"][data-loc="0"]{background:#f6d0cc;border-color:#c46a63;text-decoration:line-through;}
+.retcite.checked .rpart[aria-pressed="false"][data-loc="1"]{outline:2px dashed #5a9a5a;outline-offset:2px;}
+.retcheck{margin-top:8px;border:0;background:var(--ink);color:#fff;font:inherit;font-weight:700;font-size:.85rem;border-radius:6px;padding:7px 12px;cursor:pointer;}
 
 /* search builder */
 .builder{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow-lg);overflow:hidden;margin:16px 0;}
@@ -385,21 +395,40 @@
       <p class="kicker">Stage 2</p>
       <h2>Retrieve a known source</h2>
       <p class="body">When you already have a citation, you don't search &mdash; you retrieve. Enter only the <strong>location</strong> portions. The party names and the year are descriptive, not address: typing them in can actually interfere with a clean retrieval.</p>
-      <div class="retrieve">
-        <div class="col">
-          <p style="font-size:.85rem;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px;">The full citation</p>
-          <div class="cite" id="cite-retrieve" style="font-size:1.05rem;">
-            <span data-r="parties">Alvarez v. Northgate Property Mgmt.</span>,
-            <span data-r="loc">258 Ariz. 114</span>,
-            <span data-r="pin">137</span>
-            <span data-r="year">(Ct. App. 2023)</span>
-          </div>
+      <p class="body"><b>Highlight the address.</b> In each citation below, click the parts you would type into a database to pull the source up, then check your answer. One citation of each type &mdash; a case, a statute, and a regulation.</p>
+
+      <div class="retcite" data-kind="case">
+        <p class="retkind">Case</p>
+        <div class="cite" style="font-size:1.05rem;">
+          <button class="rpart" data-loc="0" type="button">Alvarez v. Northgate Property Mgmt.</button>,
+          <button class="rpart" data-loc="1" type="button">258 Ariz. 114</button>,
+          <button class="rpart" data-loc="0" type="button">137</button>
+          <button class="rpart" data-loc="0" type="button">(Ct. App. 2023)</button>
         </div>
-        <div class="col">
-          <p style="font-size:.85rem;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;margin:0 0 4px;">What you type to retrieve</p>
-          <div class="retbox"><input id="retfield" type="text" readonly aria-label="Retrieval string" value=""><button id="retbtn" type="button">Build it</button></div>
-          <p id="retmsg" class="citehint" role="status" aria-live="polite">Press &ldquo;Build it&rdquo; to see which parts you actually enter.</p>
+        <button class="retcheck" type="button">Check my highlights</button>
+        <p class="citehint retfb" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="retcite" data-kind="statute">
+        <p class="retkind">Statute</p>
+        <div class="cite" style="font-size:1.05rem;">
+          <button class="rpart" data-loc="0" type="button">Americans with Disabilities Act,</button>
+          <button class="rpart" data-loc="1" type="button">42 U.S.C. &sect; 12112(b)(5)(A)</button>
+          <button class="rpart" data-loc="0" type="button">(2018)</button>
         </div>
+        <button class="retcheck" type="button">Check my highlights</button>
+        <p class="citehint retfb" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="retcite" data-kind="regulation">
+        <p class="retkind">Regulation</p>
+        <div class="cite" style="font-size:1.05rem;">
+          <button class="rpart" data-loc="0" type="button">Reasonable accommodation,</button>
+          <button class="rpart" data-loc="1" type="button">29 C.F.R. &sect; 1630.2(o)</button>
+          <button class="rpart" data-loc="0" type="button">(2024)</button>
+        </div>
+        <button class="retcheck" type="button">Check my highlights</button>
+        <p class="citehint retfb" role="status" aria-live="polite"></p>
       </div>
     </section>
 
@@ -575,17 +604,33 @@
       if(window.ExportReflect)ExportReflect.log("Inspected citation part",CP[k][0].replace(/&amp;/g,"&"));});
   });
 
-  /* ===== stage 2: retrieval ===== */
-  var retDone=false;
-  document.getElementById("retbtn").addEventListener("click",function(){
-    var box=document.getElementById("cite-retrieve");
-    box.querySelector('[data-r="parties"]').className="dimpart";
-    box.querySelector('[data-r="pin"]').className="dimpart";
-    box.querySelector('[data-r="year"]').className="dimpart";
-    box.querySelector('[data-r="loc"]').className="keeppart";
-    document.getElementById("retfield").value="258 Ariz. 114";
-    document.getElementById("retmsg").textContent="Enter only the location: volume, reporter, first page. The struck-through parts are descriptive \u2014 leave them out.";
-    if(!retDone){retDone=true;if(window.ExportReflect)ExportReflect.log("Built a retrieval string","258 Ariz. 114 (location only)");}
+  /* ===== stage 2: retrieval — highlight the address ===== */
+  document.querySelectorAll(".retcite").forEach(function(card){
+    var kind=card.getAttribute("data-kind");
+    card.querySelectorAll(".rpart").forEach(function(b){
+      b.setAttribute("aria-pressed","false");
+      b.addEventListener("click",function(){
+        card.classList.remove("checked");
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")==="true" ? "false" : "true");
+        var fb=card.querySelector(".retfb"); if(fb) fb.textContent="";
+      });
+    });
+    card.querySelector(".retcheck").addEventListener("click",function(){
+      var parts=[].slice.call(card.querySelectorAll(".rpart"));
+      var right=parts.every(function(b){
+        var want=b.getAttribute("data-loc")==="1", got=b.getAttribute("aria-pressed")==="true";
+        return want===got;
+      });
+      card.classList.add("checked");
+      var fb=card.querySelector(".retfb");
+      if(right){
+        fb.textContent="Right \u2014 that is the address. Volume/title, reporter or code, and section or first page are all a database needs; everything else is descriptive.";
+        if(window.ExportReflect)ExportReflect.log("Highlighted retrieval address",kind);
+      }else{
+        fb.textContent="Not quite \u2014 green marks the address you should have highlighted; struck-through red marks descriptive parts you would leave out. Adjust and check again.";
+        if(window.ExportReflect)ExportReflect.log("Retrieval highlight miss",kind);
+      }
+    });
   });
 
   /* ===== stage 4: builder ===== */
@@ -621,7 +666,7 @@
   function run(logit){
     if(cmp.checked){
       cmpnote.hidden=false;
-      cmpnote.innerHTML="Natural language ranks <b>every</b> document that shares a word and never excludes \u2014 so it casts wider and fuzzier. Boolean returns only the set your logic defines. Untick to switch back.";
+      cmpnote.innerHTML="Natural language treats your words as clues, not commands: it scores each document for relevance and returns a <b>ranked</b> list, so a document can surface without matching every word, and the ordering \u2014 not your logic \u2014 decides what you see first. (Real platforms weigh more signals than this simulator: phrase proximity, term frequency, legal concepts.) Boolean is a filter: it returns exactly, and only, the set your logic defines. Untick to switch back.";
       renderNL();
     } else {
       cmpnote.hidden=true; renderBool();

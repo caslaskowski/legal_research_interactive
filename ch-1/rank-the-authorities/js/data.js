@@ -56,7 +56,21 @@ window.HOME = {
       "label": "The Hierarchy of Authority",
       "page": "hierarchy.html",
       "kicker": "Explore",
-      "blurb": "An interactive map of how authority layers — how higher law controls lower law, and why the same case can bind in one courtroom and only persuade in another."
+      "blurb": "An interactive map of how authority layers — how higher law controls lower law, and the line between primary and secondary sources."
+    },
+    {
+      "id": "switch",
+      "label": "Switch the Question — and the Court",
+      "page": "switch.html",
+      "kicker": "Explore",
+      "blurb": "The same authorities appear before two very different courts. Watch which flip between binding and persuasive, and which hold steady."
+    },
+    {
+      "id": "quiz",
+      "label": "Knowledge Check",
+      "page": "quiz.html",
+      "kicker": "Assessment",
+      "blurb": "Test yourself, with detailed feedback on every answer."
     }
   ],
   "companion": {
@@ -133,11 +147,11 @@ window.HIERARCHY = {
       "forums": [
         {
           "id": "az_sup",
-          "label": "Arizona Superior Court (an Arizona-law question)"
+          "label": "Arizona Superior Court deciding an Arizona-law question"
         },
         {
           "id": "az_supreme_con",
-          "label": "Arizona Supreme Court (a federal constitutional question)"
+          "label": "Arizona Supreme Court deciding a federal constitutional question"
         }
       ],
       "authorities": [
@@ -164,7 +178,7 @@ window.HIERARCHY = {
           }
         },
         {
-          "label": "U.S. Court of Appeals for the Ninth Circuit (a federal question)",
+          "label": "U.S. Court of Appeals for the Ninth Circuit decision (on a federal constitutional question)",
           "weight": {
             "az_sup": "persuasive",
             "az_supreme_con": "persuasive"
@@ -175,7 +189,7 @@ window.HIERARCHY = {
           }
         },
         {
-          "label": "U.S. District Court for a District in California (a federal question)",
+          "label": "U.S. District Court for a District in California decision (on a federal constitutional question)",
           "weight": {
             "az_sup": "persuasive",
             "az_supreme_con": "persuasive"
@@ -186,19 +200,22 @@ window.HIERARCHY = {
           }
         }
       ]
-    },
-    {
+    }
+  ],
+  "switchPage": {
+    "intro": "The first explorer held the court steady and changed the source. This page flips the frame: the same authorities appear before two very different courts — one applying state law, one applying a federal regulation. Some sources bind both courts; most bind only one. Watch which flip and which hold steady.",
+    "explorer": {
       "eyebrow": "Jurisdiction lines cut both ways",
       "heading": "Now switch the question — and the court",
       "lede": "Here the same authorities appear before two very different courts: one applying state law, one applying a federal regulation. Some sources bind both courts; most bind only one. Watch which flip and which hold steady.",
       "forums": [
         {
           "id": "tx_state",
-          "label": "Texas state trial court (a Texas-law question)"
+          "label": "Texas state trial court deciding a Texas-law question"
         },
         {
           "id": "ga_app",
-          "label": "Georgia Court of Appeals (applying a federal regulation)"
+          "label": "Georgia Court of Appeals applying a federal regulation"
         }
       ],
       "authorities": [
@@ -214,7 +231,7 @@ window.HIERARCHY = {
           }
         },
         {
-          "label": "U.S. Court of Appeals for the Fifth Circuit (interpreting the federal regulation)",
+          "label": "U.S. Court of Appeals for the Fifth Circuit decision (interpreting the federal regulation)",
           "weight": {
             "tx_state": "persuasive",
             "ga_app": "persuasive"
@@ -225,7 +242,7 @@ window.HIERARCHY = {
           }
         },
         {
-          "label": "U.S. Court of Appeals for the Eleventh Circuit (interpreting the federal regulation)",
+          "label": "U.S. Court of Appeals for the Eleventh Circuit decision (interpreting the federal regulation)",
           "weight": {
             "tx_state": "persuasive",
             "ga_app": "binding"
@@ -247,7 +264,7 @@ window.HIERARCHY = {
           }
         },
         {
-          "label": "Georgia Supreme Court decision",
+          "label": "Georgia Supreme Court decision (on Georgia law)",
           "weight": {
             "tx_state": "persuasive",
             "ga_app": "binding"
@@ -259,7 +276,7 @@ window.HIERARCHY = {
         }
       ]
     }
-  ]
+  }
 };
 
 window.DRILLS = {
@@ -1639,6 +1656,11 @@ window.NAV = [
     "id": "hierarchy",
     "label": "The Hierarchy of Authority",
     "page": "hierarchy.html"
+  },
+  {
+    "id": "switch",
+    "label": "Switch the Question — and the Court",
+    "page": "switch.html"
   },
   {
     "id": "quiz",

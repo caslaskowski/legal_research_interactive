@@ -71,9 +71,6 @@
     app.appendChild(section);
   });
 
-  app.appendChild(el("section", { class: "reveal d5", style: "margin-top:8px" }, [
-    el("div", { class: "rule-fancy" }, [el("span", {}, ["Next"])]),
-    el("p", { class: "measure" }, ["Seen how each one is built? The ", el("a", { href: "connections.html" }, ["Bringing It Together"]),
-      " page shows how the three sources shape, limit, and override one another."])
-  ]));
+  // Page-to-page movement is handled by the shared bottom pager (mountChrome),
+  // so every page advances the same way.
 })();
