@@ -185,10 +185,6 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .modmenu-mods a{ font-family: var(--sans); font-size:.84rem; font-weight:500;
   color: var(--ink-soft); text-decoration:none; display:block; padding:1px 0 1px 12px; }
 .modmenu-mods a:hover{ color: var(--flame); }
-.mm-kind{ font-family: var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
-  border-radius:3px; padding:1px 5px; margin-left:7px; vertical-align:1px; }
-.mm-kind.orientation{ color:#28406b; background:#dde2ed; }
-.mm-kind.practice{ color:#7c2d3a; background:#efe0df; }
 .modmenu-mods a[aria-current="page"]{ color: var(--flame); font-weight:600; }
 .modmenu-empty{ font-size:.78rem; color: var(--ink-faint); margin:3px 0 0 1.7em; padding-left:12px; }
 
@@ -450,3 +446,16 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .spot-body h2{ font-size:1.2rem; margin:0 0 5px; }
 .spot-body p{ margin:0; font-size:.92rem; line-height:1.6; color: var(--ink-soft); }
 .spot-go{ margin-left:auto; flex:0 0 auto; font-size:1.5rem; color: var(--flame); font-weight:700; }
+
+/* ---- in-module navigation bar: module pages + learning resources ---- */
+.modbar{ display:flex; gap:20px; flex-wrap:wrap; align-items:baseline;
+  background:#fff; border:1.5px solid var(--rule-strong); border-radius:10px;
+  padding:10px 16px; margin:10px 0 18px; }
+.modbar .grp{ display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
+.modbar .gk{ font-family:var(--mono); font-size:.62rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-soft); }
+.modbar a{ font-size:.84rem; font-weight:600; color:var(--ink); text-decoration:none;
+  border:1px solid var(--rule-strong); border-radius:99px; padding:4px 13px; }
+.modbar a:hover{ border-color:var(--flame); color:var(--flame); }
+.modbar a:focus-visible{ outline:3px solid var(--flame); outline-offset:2px; }
+.modbar a[aria-current="page"]{ background:var(--flame); border-color:var(--flame); color:#fff; }

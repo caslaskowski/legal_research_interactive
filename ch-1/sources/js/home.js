@@ -56,6 +56,16 @@
     ]));
   }
 
-  // The shared bottom pager (mounted by mountChrome) is the single way into and
-  // through the module — no separate "Start the module" button.
+  // 5) Start-here block
+  var first = (H.nav || []).filter(function (n) { return n.id === "workflow"; })[0];
+  app.appendChild(el("section", { class: "reveal d4", style: "margin-top:42px" }, [
+    el("div", { class: "notes-callout", style: "background:var(--paper-2)" }, [
+      el("div", { class: "txt" }, [
+        el("p", { class: "eyebrow", style: "margin-bottom:6px" }, ["Start here"]),
+        el("h3", {}, ["How Each Source Is Made"]),
+        el("p", {}, [(first && first.blurb) || "Click through the lifecycle of each source, from first draft to binding law."])
+      ]),
+      el("a", { class: "btn", href: (first && first.page) || "workflow.html" }, ["Start the module \u2192"])
+    ])
+  ]));
 })();

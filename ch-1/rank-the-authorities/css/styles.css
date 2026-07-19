@@ -83,7 +83,7 @@
   --body-read:     "Newsreader", Georgia, "Times New Roman", serif;
   --mono:          "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --measure: 100%;   /* full-width text per Phase 1 fix list */
+  --measure: 68ch;
   --maxw: 1080px;
   --radius: 4px;
 }

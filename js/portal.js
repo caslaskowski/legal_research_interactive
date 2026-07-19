@@ -47,9 +47,7 @@
   app.appendChild(el("section", { class: "hero reveal" }, [
     el("p", { class: "eyebrow" }, ["Interactive companion to the textbook"]),
     el("h1", {}, [s.title || "The Question Method of Legal Research"]),
-    s.ledeHtml
-      ? el("p", { class: "lede", html: s.ledeHtml })
-      : el("p", { class: "lede" }, [s.lede || ""])
+    el("p", { class: "lede" }, [s.lede || ""])
   ]));
 
   /* ---- the method strip: five steps + a checkpoint ---- */
@@ -103,8 +101,7 @@
 
     var ledger = el("div", { class: "ledger" });
     inPart.forEach(function (c) {
-      var apHrefs = ((R.appendices && R.appendices.items) || []).map(function (a) { return a.href; });
-      var mods = (c.modules || []).filter(function (m) { return apHrefs.indexOf(m.href) === -1; });
+      var mods = c.modules || [];
       var st = STATUS[chapterStatus(mods)] || STATUS.plan;
       var liveN = mods.filter(function (m) { return m.status === "live"; }).length;
       var isGuide = !!c.overview && !liveN;
@@ -166,7 +163,7 @@
         ])
       ]));
     });
-    app.appendChild(el("section", { class: "part reveal d4", id: "appendices" }, [
+    app.appendChild(el("section", { class: "part reveal d4" }, [
       el("div", { class: "part-head" }, [
         el("span", { class: "pnum" }, ["Appendices"]),
         el("h2", {}, [ap.eyebrow || "Appendices & Glossary"])

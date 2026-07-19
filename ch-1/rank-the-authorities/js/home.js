@@ -15,6 +15,10 @@
     el("p", {}, [H.method.body])
   ]));
 
+  app.appendChild(el("p", { class: "reveal d1", style: "margin:18px 0 6px" }, [
+    el("a", { class: "start-cta", href: "hierarchy.html" }, ["Start the module \u2192"])
+  ]));
+
   /* at a glance */
   var g = H.atAGlance;
   var thead = el("thead", {}, [el("tr", {}, g.columns.map(function (c) { return el("th", { scope: "col" }, [c]); }))]);
@@ -50,14 +54,14 @@
   /* navigation cards */
   var navSection = el("section", { class: "reveal d4", style: "margin-top:42px" });
   navSection.appendChild(el("p", { class: "eyebrow" }, ["In this module"]));
-  H.nav.filter(function (n) { return n.id !== "home"; }).forEach(function (item) {
+  H.nav.forEach(function (item) {
     navSection.appendChild(el("div", { class: "notes-callout", style: "background:var(--paper-2);margin-top:16px" }, [
       el("div", { class: "txt" }, [
         el("p", { class: "eyebrow", style: "margin-bottom:6px" }, [item.kicker]),
         el("h3", {}, [item.label]),
         el("p", {}, [item.blurb])
       ]),
-      el("a", { class: "btn", href: item.page }, ["Open \u2192"])
+      el("a", { class: "btn", href: item.page }, [item.kicker === "Assessment" ? "Open check →" : "Begin exploring →"])
     ]));
   });
   app.appendChild(navSection);

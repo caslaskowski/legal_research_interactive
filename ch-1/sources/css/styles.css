@@ -55,7 +55,7 @@
   --serif-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --serif-body:    "Archivo", "Helvetica Neue", Arial, sans-serif;
 
-  --measure: 100%;   /* full-width text per Phase 1 fix list */
+  --measure: 68ch;
   --maxw: 1080px;
   --radius: 4px;
 }

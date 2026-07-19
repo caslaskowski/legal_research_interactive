@@ -4,85 +4,78 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How to Read a Case — Ch. 5 · Case Law Research</title>
-<meta name="description" content="Walk the anatomy of a real multi-issue appellate opinion — Nash v. Tindall Corp. — then read it two ways: for an answer to the question you carry, and for class.">
-<!--shell:head:start-->
-<link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/firebrand.css">
-<!--shell:head:end-->
+<meta name="description" content="Walk the anatomy of a real appellate opinion — Glik v. Cunniffe — clicking each part to learn what it is and how to read it, with the issue and holding tied back to the Question Method.">
+<style>
+:root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;--radius:4px;
+--q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
+--slate:#4a5568;--slate-tint:#e7eaef;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
+--shadow:0 1px 2px rgba(20,20,18,.05),0 6px 22px rgba(20,20,18,.07);--shadow-lg:0 2px 6px rgba(20,20,18,.07),0 20px 50px rgba(20,20,18,.12);--maxw:1120px;}
+  .steps{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px 8px;margin:0 0 24px;}
+  .steps h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 12px;}
+  .steps ol{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px 20px;}
+  .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
+  .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
+  .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
+  .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
+  .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
+  .wkpanel .ws{font-size:.82rem;color:var(--ink-soft);margin:0 0 8px;}
+  .wkpanel .wf{font-size:.87rem;line-height:1.55;margin:0 0 8px;}
+  .wkpanel .wf.good{color:#2e6b34;}
+  .wkpanel .wf.bad{color:#8a1c00;}
+  .wkpanel button.wbtn{font:inherit;font-size:.83rem;font-weight:600;background:#fff;border:1.5px solid var(--flame);color:var(--flame);border-radius:7px;padding:6px 11px;cursor:pointer;}
+  .wkpanel button.wbtn:hover{background:rgba(167,45,42,.08);}
+  .wkpanel button.wbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+
+.modebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:10px 14px;margin:0 0 14px;}
+.modebar label{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);}
+.modebar select{font:inherit;font-size:.9rem;padding:6px 10px;border:1.5px solid var(--rule-strong);border-radius:7px;background:#fff;color:var(--ink);}
+.modebar select:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.modenote{flex-basis:100%;font-size:.9rem;line-height:1.6;color:var(--ink-soft);margin:0;}
+.modenote b{color:var(--ink);}
+</style>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <style>
 .lede{font-size:1.12rem;color:var(--ink-soft);}
-
-/* the ONE how-to box: five moves, absorbed from the old duplicate lists */
-.steps{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px 8px;margin:18px 0 20px;}
-.steps h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 12px;}
-.steps ol{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px 20px;}
-.steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
-.steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
-.steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
-
-/* mode chooser — after the how-to, and prominent enough to not be ignored */
-.modebar{display:flex;align-items:center;gap:14px;margin:0 0 12px;flex-wrap:wrap;background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:0 var(--radius) var(--radius) 0;padding:13px 18px;}
-.modebar label{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame-deep);font-weight:700;}
-.modebar select{font:inherit;font-size:1rem;font-weight:600;padding:9px 12px;border:2px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink);max-width:100%;}
-.modebar select:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
-
-/* companion notes — after the how-to as well, sized to be seen */
-.companion-dl{font-size:1rem;margin:0 0 20px;background:#fff;border:1px solid var(--rule-strong);border-radius:9px;padding:12px 16px;box-shadow:var(--shadow);}
-.companion-dl a{font-weight:700;color:var(--flame);text-decoration:none;font-size:1.02rem;}
-.companion-dl a:hover{text-decoration:underline;}
+.moves{margin:18px 0 24px;padding:0;list-style:none;display:grid;gap:9px;}
+.moves li{display:flex;gap:11px;align-items:baseline;font-size:.95rem;color:var(--ink-soft);}
+.moves .n{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center;}
+.moves b{color:var(--ink);}
+.howto{margin:0 0 18px;padding:14px 18px;border-left:4px solid var(--flame);background:var(--callout);border-radius:0 var(--radius) var(--radius) 0;font-size:.96rem;color:var(--ink);}
+.howto b{color:var(--flame-deep);}
 
 .casegrid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
 @media (max-width:820px){.casegrid{grid-template-columns:1fr;}}
 
 .opinion{border:1px solid var(--rule-strong);border-radius:10px;background:#fff;box-shadow:var(--shadow);overflow:hidden;}
 .opinion-top{background:var(--ink);color:#fff;padding:7px 16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;}
-.opinion-body{padding:4px 0 8px;}
+.opinion-body{padding:6px 0;}
 .part{position:relative;display:block;width:100%;text-align:left;font:inherit;background:transparent;border:0;border-left:4px solid transparent;
-  padding:5px 18px 5px 16px;cursor:pointer;color:var(--ink);}
+  padding:7px 18px 7px 16px;cursor:pointer;color:var(--ink);}
 .part:hover{background:var(--panel);}
 .part:focus-visible{outline:3px solid var(--flame);outline-offset:-3px;}
 .part.active{background:var(--panel);border-left-color:var(--slate);}
 .plabel{display:inline-block;font-family:var(--sans);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
-  color:var(--slate);background:var(--slate-tint);border-radius:4px;padding:2px 7px;margin-bottom:3px;}
-.part .ptext{font-family:var(--serif);font-size:1.02rem;line-height:1.55;color:var(--ink);}
+  color:var(--slate);background:var(--slate-tint);border-radius:4px;padding:2px 7px;margin-bottom:5px;}
+.part .ptext{font-family:var(--serif);font-size:1.04rem;line-height:1.62;color:var(--ink);}
 .part .ptext.cap{font-family:var(--sans);font-weight:700;}
 .part .ptext.hn{font-family:var(--sans);font-size:.9rem;color:var(--ink-soft);}
 .part.issue{border-left-color:var(--q1);} .part.issue.active{background:var(--q1-tint);}
 .part.issue .plabel{color:var(--q1);background:var(--q1-tint);}
 .part.holding{border-left-color:var(--q1);} .part.holding.active{background:var(--q1-tint);}
 .part.holding .plabel{color:var(--q1);background:var(--q1-tint);}
-.part .hint{position:absolute;right:12px;top:6px;font-family:var(--mono);font-size:.66rem;color:var(--flame);opacity:0;}
+.part .hint{position:absolute;right:8px;top:6px;font-family:var(--mono);font-size:.64rem;color:var(--flame);background:#fff;border:1px solid var(--rule-strong);border-radius:5px;padding:2px 8px;box-shadow:var(--shadow);opacity:0;pointer-events:none;z-index:2;}
 .part:hover .hint,.part:focus-visible .hint{opacity:1;}
 
-/* document signposts (shown when the anatomy tags are off): hug the text they label */
-.dochead{display:none;font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);
-  padding:0 18px 0 16px;margin:14px 0 2px;}
-.dochead::after{content:"";display:block;width:56px;height:2px;background:var(--rule-strong);margin-top:3px;}
-body.tags-off .dochead{display:block;}
-body.tags-off .plabel{display:none;}
-body.tags-off .part .hint{display:none;}
-
-.sidecol{display:flex;flex-direction:column;gap:0;min-width:0;position:sticky;top:14px;max-height:calc(100vh - 28px);overflow-y:auto;}
-@media (max-width:820px){.sidecol{position:static;max-height:none;overflow:visible;}}
-.info{border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
 .info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
 .info h2{font-size:1.12rem;margin:0 0 10px;}
 .info p{font-size:.94rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
 .info .tie{font-size:.86rem;color:var(--ink);background:var(--q1-tint);border-left:3px solid var(--q1);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
 .info .warn{font-size:.86rem;color:var(--ink);background:var(--callout);border-left:3px solid var(--flame);border-radius:0 6px 6px 0;padding:8px 11px;margin:0;}
-
-.wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:0;}
-.wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
-.wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
-.wkpanel .ws{font-size:.82rem;color:var(--ink-soft);margin:0 0 8px;}
-.wkpanel .wf{font-size:.87rem;line-height:1.55;margin:0 0 8px;}
-.wkpanel .wf.good{color:#2e6b34;}
-.wkpanel .wf.bad{color:#8a1c00;}
-.wkpanel button.wbtn{font:inherit;font-size:.83rem;font-weight:600;background:#fff;border:1.5px solid var(--flame);color:var(--flame);border-radius:7px;padding:6px 11px;cursor:pointer;}
-.wkpanel button.wbtn:hover{background:rgba(167,45,42,.08);}
-.wkpanel button.wbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
 
 .weighnote{margin:22px 0 0;padding:14px 18px;border:1px solid var(--rule-strong);border-left:4px solid var(--ink);background:#fff;border-radius:0 var(--radius) var(--radius) 0;font-size:.95rem;color:var(--ink-soft);}
 .weighnote b{color:var(--ink);}
@@ -116,9 +109,9 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
-                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
                   </ul>
                 </details>
               </li>
@@ -127,9 +120,9 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
-                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-2/database-practice/index.html">Database Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -138,11 +131,11 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
-                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-3/the-research-subway-map/index.html">The Research Subway Map<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/the-research-subway-map/index.html">The Research Subway Map</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
                   </ul>
                 </details>
               </li>
@@ -151,9 +144,10 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">4</span> Secondary Sources Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
-                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -162,8 +156,9 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">5</span> Case Law Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
-                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html" aria-current="page">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -172,9 +167,10 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">6</span> Statutes Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
-                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -183,8 +179,9 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
-                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -193,10 +190,10 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">8</span> Researching Across Sources</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
-                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-8/ada-canvas/index.html">The ADA Canvas<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/ada-canvas/index.html">The ADA Canvas</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -205,10 +202,10 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
-                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
                   </ul>
                 </details>
               </li>
@@ -222,9 +219,9 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
-                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
                   </ul>
                 </details>
               </li>
@@ -233,8 +230,8 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
-                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
                   </ul>
                 </details>
               </li>
@@ -243,8 +240,8 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">12</span> Legislative History Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
-                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History</a></li>
                   </ul>
                 </details>
               </li>
@@ -253,8 +250,8 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">13</span> Advanced Administrative Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
-                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
                   </ul>
                 </details>
               </li>
@@ -263,8 +260,8 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
-                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
                   </ul>
                 </details>
               </li>
@@ -273,9 +270,9 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">15</span> GenAI and Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
-                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
                   </ul>
                 </details>
               </li>
@@ -284,8 +281,8 @@ body.tags-off .part .hint{display:none;}
                   <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
-                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
                   </ul>
                 </details>
               </li>
@@ -320,6 +317,7 @@ body.tags-off .part .hint{display:none;}
               <h2>Toolkit &amp; Resources</h2>
               <ul class="modmenu-chaps">
               <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../how-to-navigate/index.html"><span class="cn">?</span> How to Navigate the Modules</a></li>
               </ul>
             </section>
             </div>
@@ -338,32 +336,37 @@ body.tags-off .part .hint{display:none;}
     <a class="cs-back" href="../../index.html">&larr; All modules</a>
     <p class="ch-eyebrow">Chapter 5 · Educational</p>
     <h1>How to Read a Case</h1>
-    <p class="lede">You don&rsquo;t read an opinion front to back like a story &mdash; and you rarely read it for just one thing. Here&rsquo;s the anatomy on a real multi-issue opinion, <em>Nash v. Tindall Corp.</em>, then two ways to work it: reading for the answer to a question you carry, and reading for class.</p>
+    <p class="lede">You don&rsquo;t read an opinion front to back like a story. You read it for the parts that answer your question, and you read the caption first &mdash; because the court and jurisdiction tell you whether the case is even worth your time. Here&rsquo;s the anatomy, on a real opinion.</p>
+
+    <ol class="moves">
+      <li><span class="n">1</span><span><b>Determine the weight before you invest the time.</b> Start with the caption: the jurisdiction and court level tell you whether the case binds you or merely persuades.</span></li>
+      <li><span class="n">2</span><span><b>Read with your question as the lens.</b> Pull out what answers it; log the rest as later questions.</span></li>
+      <li><span class="n">3</span><span><b>Find the dispositive facts</b> &mdash; the ones that, if changed, would change the result.</span></li>
+      <li><span class="n">4</span><span><b>Confirm it&rsquo;s still good law</b> with a citator before you rely on it.</span></li>
+    </ol>
+
+    <div class="howto"><b>Click any part of the opinion</b> to learn what it is and how to read it. The <span style="color:var(--q1);font-weight:700;">issue and holding</span> are tinted in Question-Method blue &mdash; the issue is the court&rsquo;s version of Step&nbsp;1.</div>
+    <div class="modebar">
+      <label for="readmode">I’m reading to…</label>
+      <select id="readmode" aria-label="Choose your reading purpose"><option value="explore">Explore the anatomy</option><option value="class">Reading for class</option><option value="answer">Reading for an answer</option></select>
+      <p class="modenote" id="modenote" role="status" aria-live="polite"><b>Explore:</b> click every part of the opinion to learn its job — the full anatomy, no agenda yet. This is the read you do once so the other two reads become fast.</p>
+    </div>
+
 
     <section class="steps" aria-label="How to engage with an opinion">
       <h2>How to engage with an opinion — the five moves</h2>
       <ol>
-        <li><b>Read the caption first</b>Court and jurisdiction decide whether this case can bind you — determine the weight before you invest the time.</li>
-        <li><b>Find the issue(s)</b>The court&rsquo;s version of Step 1 of the Question Method: the questions this opinion exists to answer. One case often answers several.</li>
-        <li><b>Pull the holding(s)</b>The court&rsquo;s answer to each issue — the parts with precedential force. Read with your question as the lens; log what answers other questions.</li>
-        <li><b>Mine the reasoning</b>What the rule turns on, and the dispositive facts — the ones that, if changed, would change the result. When your facts differ, this is where your argument lives.</li>
+        <li><b>Read the caption first</b>Court and jurisdiction decide whether this case can bind you — before you read a word further.</li>
+        <li><b>Find the issue</b>The court’s version of Step 1: the question this opinion exists to answer.</li>
+        <li><b>Pull the holding</b>The court’s answer to the issue — the part with precedential force.</li>
+        <li><b>Mine the reasoning</b>What the rule turns on. When your facts differ, this is where your argument lives.</li>
         <li><b>Check the treatment</b>Run the citator before you rely — a case can look perfect and no longer be good law.</li>
       </ol>
     </section>
 
-    <div class="modebar">
-      <label for="mode">Choose a mode</label>
-      <select id="mode">
-        <option value="explore">Explore &mdash; click a part, learn what it is</option>
-        <option value="answer">Reading a Case for an Answer &mdash; find your answer, log the rest</option>
-        <option value="class">Reading a Case for Class &mdash; questions, answers, reasoning, holding</option>
-      </select>
-    </div>
-
-    <p class="companion-dl"><a href="companion-notes.docx" download="how-to-read-a-case-companion-notes.docx">&#11015; Companion Notes (Word)</a> &mdash; a fill-in worksheet to complete as you work through this module.</p>
 
     <div class="casegrid">
-      <article class="opinion" aria-label="Elided opinion of Nash v. Tindall Corporation">
+      <article class="opinion" aria-label="Elided opinion of Glik v. Cunniffe">
         <div class="opinion-top">Elided &amp; abridged for teaching · public-domain opinion text</div>
         <div class="opinion-body" id="opinion"></div>
       </article>
@@ -371,27 +374,28 @@ body.tags-off .part .hint{display:none;}
       <div class="sidecol"><aside class="info" id="info" aria-live="polite" tabindex="-1">
         <p class="ik">Tap a part</p>
         <h2>The anatomy of an opinion</h2>
-        <p>Select any section of <em>Nash v. Tindall Corp.</em> on the left and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
+        <p>Select any highlighted section of <em>Glik v. Cunniffe</em> on the left and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
-      <div class="wkpanel" id="wkpanel" aria-label="Reading exercise" hidden>
-        <h2 id="wktitle">Reading a Case for an Answer</h2>
+      <div class="wkpanel" aria-label="Work the page">
+        <h2>Work the page</h2>
         <div id="wkbody"></div>
       </div>
       </div>
     </div>
 
-    <p class="weighnote"><b>So &mdash; would you cite it?</b> <em>Nash</em> is a published South Carolina Court of Appeals decision: binding on South Carolina trial courts, persuasive everywhere else &mdash; including on the very question it flags as open elsewhere. Deciding which cases are worth citing for a given matter &mdash; jurisdiction, court level, how on-point, and whether still good law &mdash; is its own skill. You&rsquo;ll practice it in <a href="../case-practice/index.html">Case Law Practice</a>.</p>
+    <p class="weighnote"><b>So &mdash; would you cite it?</b> <em>Glik</em> is a First Circuit decision: binding on federal courts in the First Circuit, persuasive everywhere else. Deciding which cases are worth citing for a given matter &mdash; jurisdiction, court level, how on-point they are, and whether they&rsquo;re still good law &mdash; is its own skill. You&rsquo;ll practice it in <a href="../case-practice/index.html">Case Law Practice</a>.</p>
 
-    <div id="export-slot"></div>
+    
   </div>
 </main>
 
 <!--shell:modnav:start-->
 <nav class="modnav" aria-label="Module navigation">
-  <p class="modnav-crumb">Appendix B · <a href="../../index.html#appendices">Appendices &amp; Glossary</a></p>
+  <p class="modnav-crumb">Part of <a href="../../ch-5/">Ch. 5 · Case Law Research</a></p>
+  <p class="modnav-verified">Authorities verified as of 2026-07-09. The law changes — run the method, don’t trust the module.</p>
   <div class="modnav-links">
-    <a class="modnav-link prev" href="../../ch-4/reading-secondary/index.html"><span class="dir">← Previous</span><span class="t">How to Read a Secondary Source</span></a>
-    <a class="modnav-link next" href="../../ch-6/reading-statutes/index.html"><span class="dir">Next →</span><span class="t">How to Read a Statute</span></a>
+    <a class="modnav-link prev" href="../../ch-5/case-graph/index.html"><span class="dir">← Previous</span><span class="t">Cases as a Web of Answers</span></a>
+    <a class="modnav-link next" href="../../ch-5/case-practice/index.html"><span class="dir">Next →</span><span class="t">Case Law Practice</span></a>
   </div>
 </nav>
 <!--shell:modnav:end-->
@@ -412,173 +416,116 @@ body.tags-off .part .hint{display:none;}
 <script src="../../js/export-reflect.js"></script>
 <script>
 (function(){
+  if (window.ExportReflect) ExportReflect.collect({ module: "How to Read a Case", chapter: "Chapter 5 — Case Law Research", session: "qm_er_reading_cases" });
   "use strict";
-  // Elided, abridged Nash v. Tindall Corp., 375 S.C. 36, 650 S.E.2d 81 (Ct. App. 2007).
-  // The court's own text is public domain; the headnotes here are FICTIONAL, written
-  // for teaching (real West/Lexis headnotes are copyrighted).
+  // Elided, abridged Glik v. Cunniffe, 655 F.3d 78 (1st Cir. 2011). Court's own text is public domain;
+  // headnotes here are FICTIONAL, written for teaching (real West/Lexis headnotes are copyrighted).
   var PARTS=[
     {key:"caption", label:"Caption", cls:"cap", role:"struct",
-     text:"Mark NASH, Joel Kennedy, David Prosser, Denise Prosser and Jerry Stevens, Appellants, v. TINDALL CORPORATION, formerly Tindall Concrete Products, Inc., Respondent. &mdash; Op. No. 4284 &mdash; South Carolina Court of Appeals &mdash; 375 S.C. 36, 650 S.E.2d 81 &mdash; Filed Aug. 2, 2007.",
-     info:"The case name, court, date, and citation. Read it first: a published South Carolina Court of Appeals decision binds South Carolina trial courts and persuades everyone else. That answers \u201cis this worth a close read?\u201d before you read a word of analysis."},
+     text:"Simon GLIK, Plaintiff, Appellee, v. John CUNNIFFE et al., Defendants, Appellants. &mdash; No. 10-1764 &mdash; United States Court of Appeals, First Circuit &mdash; 655 F.3d 78 &mdash; Decided Aug. 26, 2011.",
+     info:"The case name, court, date, and citation at the top. It tells you who sued whom, which court decided it, and when. On appeal the first-named party is usually the appellant. Read it first: the court and jurisdiction decide whether this opinion binds you, persuades you, or isn\u2019t worth a close read at all."},
     {key:"headnotes", label:"Headnotes (editorial)", cls:"hn", role:"struct",
-     text:"<b>1. Conflict of Laws &mdash; Lex Loci Delicti.</b> The substantive law governing a tort action is the law of the state where the injury occurred; procedural matters follow the law of the forum.<br><b>2. Limitation of Actions &mdash; Statute of Repose.</b> A statute of repose creates a substantive right to be free from liability after a legislatively determined period, and is therefore governed by the law of the place of injury.",
-     info:"Editorial summaries a publisher adds to the front of an opinion \u2014 a fast index to the points of law, but NOT written by the court and NOT authority. Use them to navigate; cite the court\u2019s own words, never the headnote.",
-     warn:"These two headnotes are fictional \u2014 written for this exercise. Never quote or cite a headnote as law."},
+     text:"<b>1. Constitutional Law &mdash; Freedom of Speech.</b> The First Amendment protects the right to record police officers performing their duties in a public space, subject to reasonable time, place, and manner limits.<br><b>2. Civil Rights &mdash; Qualified Immunity.</b> An officer is shielded from a \u00a7 1983 suit unless the right violated was clearly established at the time.",
+     info:"Editorial summaries a publisher (West, Lexis) adds to the front of an opinion. They are a fast index to the points of law \u2014 but they are NOT written by the court and are NOT authority. Use them to navigate; cite the court\u2019s own words, never the headnote.",
+     warn:"The two headnotes above are fictional \u2014 written for this exercise. Never quote or cite a headnote as law."},
     {key:"history", label:"Procedural History", cls:"", role:"struct",
-     text:"The trial court granted summary judgment to Tindall after applying North Carolina\u2019s statute of repose and holding Plaintiffs\u2019 claims were time barred. As an additional sustaining ground, the trial court held Plaintiffs\u2019 claims for gross negligence and willful and wanton conduct were barred by res judicata and collateral estoppel. This appeal follows.",
-     info:"How the case reached this court: an appeal from summary judgment, with two independent grounds below. The posture matters \u2014 it tells you the standard of review and warns you that the appellate court may not need to reach every ground."},
+     text:"Glik brought suit under 42 U.S.C. \u00a7 1983, alleging violations of his First and Fourth Amendment rights. The defendant officers moved to dismiss on the ground of qualified immunity. The district court denied the motion, and the defendants brought this interlocutory appeal.",
+     info:"How the case reached the court writing the opinion. Glik is an interlocutory appeal from the denial of a motion to dismiss on qualified-immunity grounds. The posture controls the standard the court applies and how broadly you can read the result."},
     {key:"facts", label:"Facts", cls:"", role:"struct",
-     text:"Tindall designed prestressed concrete double tees, some of which were used to support the pedestrian footbridge at Lowe\u2019s Motor Speedway, formerly Charlotte Motor Speedway, in North Carolina. In September 1995, the double tees were erected at the Speedway. On May 20, 2000, the pedestrian footbridge collapsed. Plaintiffs brought actions in both North Carolina and South Carolina; North Carolina dismissed Plaintiffs\u2019 claims with prejudice.",
-     info:"The events behind the lawsuit, selected for what bears on the legal questions. Watch the facts the court actually relies on: the injury happened in North Carolina, the component was allegedly made in South Carolina, and more than six years passed between completion and collapse."},
-    {key:"issue1", label:"Issue I \u2014 Choice of Law", cls:"", role:"q",
-     text:"Plaintiffs argue that South Carolina law, not North Carolina law, should be applied in this case. We disagree. &hellip; [W]hether a statute of repose is a substantive or procedural matter is the deciding factor in what law applies.",
-     info:"The first legal question: which state\u2019s law governs? Note how the court immediately reframes it into the question that actually decides it \u2014 is a statute of repose substantive or procedural? That reframing move is the Question Method running inside the opinion.",
-     tie:"One case, many questions: this opinion answers a choice-of-law question, a repose question, and a public-policy question. Reading for an answer means finding yours \u2014 and logging the others."},
-    {key:"rule1", label:"Holding &amp; Reasoning \u2014 Issue I", cls:"", role:"q",
-     text:"\u201cUnder traditional South Carolina choice of law principles, the substantive law governing a tort action is determined by the lex loci delicti, the law of the state in which the injury occurred.\u201d Boone v. Boone, 345 S.C. 8, 13, 546 S.E.2d 191, 193 (2001). \u201cProcedural matters are to be determined in accordance with the law of South Carolina, the lex fori.\u201d McDaniel v. McDaniel, 243 S.C. 286, 289, 133 S.E.2d 809, 811 (1963). In Langley v. Pierce, the supreme court stated \u201c[a] statute of repose creates a substantive right in those protected to be free from liability after a legislatively-determined period of time.\u201d 313 S.C. 401, 404, 438 S.E.2d 242, 243 (1993); see also Florence County Sch. Dist. v. Interkal, Inc., 348 S.C. 446, 453, 559 S.E.2d 866, 869 (Ct. App. 2002).",
-     info:"The court\u2019s answer to Issue I and the why: repose is substantive, so the law of the place of injury \u2014 North Carolina \u2014 governs. Notice the reasoning is built from binding in-state authority (Boone, McDaniel, Langley, Interkal). This is the part you\u2019d quote and cite."},
-    {key:"persuasive", label:"Persuasive Authority &amp; Dicta", cls:"", role:"struct",
-     text:"Plaintiffs argue the courts\u2019 treatment of statute of repose in Langley and Interkal was dicta, and therefore, this court should look to other jurisdictions for guidance. &hellip; The Alabama and Connecticut case law advanced by Plaintiffs are interesting but do not constitute persuasive precedent for this court. Baxter v. Sturm, Ruger &amp; Co., 644 A.2d 1297, 1302 (Conn. 1994); Etheredge v. Genie Industries, Inc., 632 So. 2d 1324, 1326 (Ala. 1994). The courts\u2019 holdings in Langley and Interkal depended on determining the type of right created by statute of repose &hellip; Therefore, the clear guidance provided by the South Carolina Supreme Court and this court was not dicta.",
-     info:"Two research lessons in one passage. First, out-of-jurisdiction cases (Connecticut, Alabama) can only ever persuade \u2014 and here they don\u2019t. Second, the dicta fight: a statement that is \u201cnot essential to the decision\u201d doesn\u2019t bind, so lawyers argue about which prior statements were holding and which were dicta. The court decides Langley\u2019s language was holding.",
-     tie:"Other jurisdictions answer this question differently \u2014 which means in many states this remains a live question. A case that closes a question in one jurisdiction can flag the same question as open in another."},
-    {key:"issue2", label:"Issue II \u2014 Public Policy", cls:"", role:"q",
-     text:"Plaintiffs assert that the trial court erred in not applying the public policy exception to lex loci delicti. We disagree. \u201c[U]nder the \u2018public policy exception,\u2019 the Court will not apply foreign law if it violates the public policy of South Carolina.\u201d Boone, 345 S.C. at 14, 546 S.E.2d at 193.",
-     info:"The second question: even if North Carolina law applies, does enforcing it offend South Carolina public policy? A separate issue with its own rule and its own answer \u2014 the anatomy repeats for every issue in a multi-issue opinion."},
-    {key:"holding2", label:"Holding &amp; Reasoning \u2014 Issue II", cls:"", role:"q",
-     text:"South Carolina\u2019s statute of repose for actions alleging defective or unsafe conditions of an improvement to real property bars actions brought more than eight years after substantial completion. S.C. Code Ann. \u00a7 15-3-640. North Carolina\u2019s equivalent statute bars claims brought more than six years after substantial completion. N.C. Gen. Stat. \u00a7 1-50(a)(5). Public policy is not violated by the two year difference in South Carolina and North Carolina\u2019s statutes of repose. Notably, Plaintiffs\u2019 attempt to bring this case in South Carolina constitutes forum shopping, an act which violates public policy.",
-     info:"The answer to Issue II: a mere difference between two states\u2019 laws doesn\u2019t make the foreign law offensive \u2014 and the court turns the policy argument around, calling the filing itself forum shopping. Note the statutes cited by section: this is where case law and statutory research meet."},
-    {key:"notreached", label:"Issues Not Reached", cls:"", role:"struct",
-     text:"Based on this conclusion, we need not address any remaining issues. See Rule 220(c), SCACR; Futch v. McAllister Towing of Georgetown, Inc., 335 S.C. 598, 613, 518 S.E.2d 591, 598 (1999) (stating that if an appellate court\u2019s ruling on a particular issue is dispositive of an appeal, rulings on remaining issues are unnecessary).",
-     info:"A part students skip and researchers don\u2019t: the court never decides the res judicata / collateral estoppel ground. If preclusion is YOUR question, this case raises it but does not answer it \u2014 log it and keep researching. An opinion can be a dead end for one question and a goldmine for another."},
+     text:"Glik used his cell phone to record several officers arresting a man on the Boston Common after he heard a bystander say the police were being too rough. The officers arrested Glik and charged him under the state wiretap statute, among other offenses. Those charges were later dismissed.",
+     info:"The events behind the lawsuit. Courts present facts selectively, including only what bears on the legal question. They are the foundation for everything that follows \u2014 and you read them watching for the facts the court actually relies on."},
+    {key:"issue", label:"Issue", cls:"", role:"q",
+     text:"The principal question is whether Glik had a constitutionally protected right to film the officers carrying out their duties in public &mdash; and, if so, whether that right was clearly established at the time, so that qualified immunity does not apply.",
+     info:"The legal question the court must decide \u2014 the court\u2019s version of Step 1 of the Question Method. Identifying it is one of the most important reading skills you build.",
+     tie:"A case often presents more than one issue (here, the right itself and whether it was clearly established). That is exactly the \u201cone case, many questions\u201d idea from the citation-web module."},
+    {key:"holding", label:"Holding", cls:"", role:"q",
+     text:"We hold that the First Amendment protects the filming of government officials, including police, in the discharge of their duties in a public space, and that this right was clearly established at the time of Glik\u2019s arrest. Qualified immunity is therefore unavailable.",
+     info:"The court\u2019s answer to the issue, and the part with precedential effect. When you record a case in your Research Log, the holding belongs at the center of your \u201cWhat I found\u201d entry."},
+    {key:"reasoning", label:"Reasoning", cls:"", role:"struct",
+     text:"Gathering information about government officials in a form that can be disseminated to others serves a cardinal First Amendment interest, and that right is not confined to the press. Because the contours of the right were sufficiently clear that a reasonable officer would have understood that arresting Glik for openly recording violated it, the right was clearly established.",
+     info:"The court\u2019s explanation of why it reached its holding \u2014 the analytical work, and what you will use most in your own writing. A holding gives you the rule; the reasoning shows how the court applied it. Two cases can reach the same holding through different reasoning, and the reasoning is what tells you which one fits your facts."},
     {key:"disposition", label:"Disposition", cls:"", role:"struct",
-     text:"AFFIRMED. STILWELL and WILLIAMS, JJ., concur.",
-     info:"What the court actually orders. \u201cAffirmed\u201d means the summary judgment stands: the claims are time barred under North Carolina\u2019s statute of repose. Who won is here; what rule decided it is in the holdings."}
+     text:"Affirmed.",
+     info:"What the court actually orders \u2014 affirmed, reversed, remanded, or vacated. \u201cAffirmed\u201d means the lower court\u2019s decision stands; here, the denial of qualified immunity is upheld and the case proceeds."}
   ];
 
   var op=document.getElementById("opinion");
   PARTS.forEach(function(p,i){
-    // Real signposts, shown when the anatomy tags are off: they sit tight against
-    // the text they label — "Headnotes" directly above the headnotes, "Opinion of
-    // the Court" directly above where the court starts speaking.
-    if(p.key==="headnotes"){
-      var h1=document.createElement("div"); h1.className="dochead"; h1.textContent="Headnotes"; op.appendChild(h1);
-    }
-    if(p.key==="history"){
-      var h2=document.createElement("div"); h2.className="dochead"; h2.textContent="Opinion of the Court"; op.appendChild(h2);
-    }
     var b=document.createElement("button");
-    b.className="part"+(p.role==="q"?(/^issue/.test(p.key)?" issue":" holding"):"");
-    b.type="button"; b.dataset.i=i; b.setAttribute("aria-label",p.label.replace(/&amp;/g,"&")+". Activate to select this part.");
+    b.className="part"+(p.role==="q"?" "+(p.key==="issue"?"issue":"holding"):"");
+    b.type="button"; b.dataset.i=i; b.setAttribute("aria-label",p.label+". Activate to read what this part is.");
     b.innerHTML='<span class="plabel">'+p.label+'</span><span class="hint" aria-hidden="true">what\u2019s this? \u2192</span>'+
       '<span class="ptext '+p.cls+'">'+p.text+'</span>';
     op.appendChild(b);
   });
 
   var info=document.getElementById("info");
-  var MODE="explore";
   function show(i){
     var p=PARTS[i];
-    if(MODE!=="explore"){ if(WK.active) WK.answer(p.key, p.label.replace(/&amp;/g,"&")); return; }
+    if(typeof WK==="object"&&WK.active){ WK.answer(p.key, p.label); return; }
     op.querySelectorAll(".part").forEach(function(x){ x.classList.toggle("active", +x.dataset.i===i); });
     var html='<p class="ik">'+(p.role==="q"?"Issue / holding \u2014 the question":"Part of the opinion")+'</p><h2>'+p.label+'</h2><p>'+p.info+'</p>';
     if(p.tie) html+='<p class="tie">'+p.tie+'</p>';
     if(p.warn) html+='<p class="warn">'+p.warn+'</p>';
     info.innerHTML=html;
     info.focus();
-    if(window.ExportReflect) ExportReflect.log("Inspected a part of the opinion", p.label.replace(/&amp;/g,"&"));
+    if(window.ExportReflect) ExportReflect.log("Inspected a part of the opinion", p.label);
   }
   op.addEventListener("click",function(e){ var b=e.target.closest(".part"); if(b) show(+b.dataset.i); });
 
-  /* ---- two question sets, one engine ---- */
-  // Reading a Case for an Answer: you arrive carrying ONE question. Scan for its
-  // answer; then log the other questions this case answers (and doesn't).
-  var WKQ_ANSWER = [
-    { q:"Your client was hurt in North Carolina but wants to sue in South Carolina, where the part was made. You came to this case carrying one question: which state's law governs? Find the part that answers it.",
-      a:"rule1", also:["issue1"],
-      why:"The court holds a statute of repose is substantive, so the law of the place of injury \u2014 North Carolina \u2014 governs. That is your answer; quote and cite this part.",
-      miss:{ facts:"the facts set up the conflict, but they don't resolve which law governs.",
-             headnotes:"the headnote summarizes the rule \u2014 but it is the editor's voice, never citable.",
-             holding2:"that answers a different question (public policy), not yours \u2014 log it and keep scanning." } },
-    { q:"You have your answer. Before you close the case: it answers at least one OTHER question worth logging. Find the part that answers whether South Carolina's public policy blocks the foreign statute.",
-      a:"holding2", also:["issue2"],
-      why:"Logged: a mere difference between two states' statutes doesn't violate public policy \u2014 and forum shopping does. One case, several answers; your research log just got two entries from one read.",
-      miss:{ rule1:"that's the answer you already have \u2014 you're scanning for the case's OTHER answers now.",
-             persuasive:"close \u2014 that passage is about dicta and other jurisdictions, not the public-policy exception." } },
-    { q:"The court cites Connecticut and Alabama cases that treat this question differently. Find the part that tells you how much weight out-of-jurisdiction authority carries here \u2014 and what that means for the question elsewhere.",
-      a:"persuasive",
-      why:"Out-of-state decisions can only persuade \u2014 and here they don't. But note the flip side: because jurisdictions split, this question remains open in many states. A survey question is born.",
-      miss:{ rule1:"that part rests on binding in-state authority \u2014 the out-of-jurisdiction discussion is elsewhere.",
-             notreached:"that part is about issues the court declined to decide, not out-of-state authority." } },
-    { q:"Last scan: suppose YOUR question had been res judicata. Find the part that tells you whether this case answers it.",
-      a:"notreached",
-      why:"It doesn't \u2014 the court never reaches preclusion because choice of law disposed of the appeal. Log the dead end and keep researching: a case can be a goldmine for one question and a dead end for another.",
-      miss:{ history:"the history shows preclusion was decided BELOW \u2014 but the question is what THIS court did with it.",
-             disposition:"\u201cAffirmed\u201d tells you who won, not which grounds the court reached." } }
-  ];
-  // Reading a Case for Class: what questions did the case deal with, what answers
-  // did it give and why, and what is the ultimate holding.
-  var WKQ_CLASS = [
-    { q:"Start where a case brief starts: find the facts the case turns on.",
-      a:"facts",
-      why:"Injury in North Carolina, component allegedly made in South Carolina, six-plus years after completion \u2014 change any of these and the analysis changes.",
-      miss:{ history:"the procedural history is how the case traveled, not what happened between the parties." } },
-    { q:"What is the FIRST question this case dealt with? Find where the court states it.",
-      a:"issue1",
-      why:"Which state's law applies \u2014 immediately reframed as whether a statute of repose is substantive or procedural. Your brief's \u201cIssue\u201d line should capture the reframing.",
-      miss:{ issue2:"that's the second question \u2014 find where the court takes up the choice-of-law fight first.",
-             caption:"the caption tells you who and where, not what was asked." } },
-    { q:"What answer did the court give to that first question \u2014 and why? Find the part your brief would quote.",
-      a:"rule1",
-      why:"Repose is substantive (Langley), so lex loci delicti points to North Carolina. The \u201cwhy\u201d is the chain of binding authority: Boone, McDaniel, Langley, Interkal.",
-      miss:{ headnotes:"the headnote paraphrases the answer, but a brief quotes the court, never the editor.",
-             disposition:"\u201cAffirmed\u201d is the outcome, not the reasoning your brief needs." } },
-    { q:"The case dealt with a second question. Find the court's answer to it \u2014 with the reasoning.",
-      a:"holding2", also:["issue2"],
-      why:"No public-policy violation in a two-year difference between repose statutes \u2014 and the plaintiffs' forum shopping cuts against them. Second issue, second answer, same anatomy.",
-      miss:{ persuasive:"that passage handles the dicta argument inside Issue I \u2014 the second ISSUE is the public-policy exception." } },
-    { q:"Finish the brief: what is the ultimate holding \u2014 the bottom line of the case?",
-      a:"disposition", also:["rule1"],
-      why:"Affirmed: the claims are time barred under North Carolina's statute of repose, which governs because repose is substantive. Outcome plus rule \u2014 that's the sentence you'd say in class.",
-      miss:{ notreached:"careful \u2014 that part is what the court did NOT decide. The ultimate holding is what it did." } }
+  
+  var WKQ = [
+    { q:"You just pulled this case from a search. Can it bind the court you're in \u2014 which part tells you who is speaking?",
+      a:"caption",
+      why:"The caption's court and jurisdiction settle bindingness before anything else \u2014 which is why it is always the first read.",
+      miss:{ history:"the history tells you how the case got here, not which court is speaking now.",
+             headnotes:"headnotes are the publisher's voice, not the court's." } },
+    { q:"What did the court actually decide on the question it faced?",
+      a:"holding",
+      why:"The holding is the court's answer to the issue \u2014 the only part with precedential force.",
+      miss:{ issue:"the issue states the question; you are after its answer.",
+             headnotes:"a headnote summarizes the holding, but it is an editor's words \u2014 never citable.",
+             disposition:"the disposition says who won; the holding says what rule decided it." } },
+    { q:"Your client's facts differ a little from these. Which part tells you how far the rule stretches?",
+      a:"reasoning",
+      why:"The reasoning shows what the rule turns on \u2014 the raw material for arguing that different facts still (or no longer) fit.",
+      miss:{ holding:"the holding gives the result on THESE facts; the stretch lives in the why.",
+             facts:"the facts matter, but only the reasoning tells you which of them carried weight." } }
   ];
 
-  /* ---- the exercise engine ---- */
-  var WK = { active:false, qi:-1, set:WKQ_ANSWER };
+  /* ---- Work the Page: hold a question, click the part that answers it ---- */
+  var WK = { active:false, qi:-1 };
   (function(){
     var host = document.getElementById("wkbody");
     function start(i){
       WK.qi = i; WK.active = true;
-      var Q = WK.set[i];
+      var Q = WKQ[i];
       host.innerHTML = "";
-      host.appendChild(QM.el("p",{class:"ws"},["Question "+(i+1)+" of "+WK.set.length]));
+      host.appendChild(QM.el("p",{class:"ws"},["Question "+(i+1)+" of "+WKQ.length]));
       host.appendChild(QM.el("p",{class:"wq"},["\u201c"+Q.q+"\u201d"]));
-      host.appendChild(QM.el("p",{class:"ws"},["Click the part of the opinion that answers it."]));
+      host.appendChild(QM.el("p",{class:"ws"},[Q.hint || "Click the part of the document that answers it."]));
       host.appendChild(QM.el("div",{class:"wf",id:"wkfb",role:"status","aria-live":"polite"}));
     }
     function idle(first){
       WK.active = false; WK.qi = -1;
       host.innerHTML = "";
-      var msg = first
-        ? (WK.set===WKQ_ANSWER
-            ? "You arrive at a case carrying a question. Scan for its answer \u2014 then log the other questions the case answers before you close it."
-            : "Brief the case the way you'd be called on: the questions it dealt with, the answers it gave and why, and the ultimate holding.")
-        : "All questions worked. Switch modes, explore freely, or run them again.";
-      host.appendChild(QM.el("p",{class:"ws"},[msg]));
+      host.appendChild(QM.el("p",{class:"ws"},[first
+        ? "Hold a question, then find the part of the page that answers it \u2014 the move every source rewards. (Anatomy clicks pause while a question is open.)"
+        : "All questions worked. Explore freely, or run them again."]));
       var b = QM.el("button",{class:"wbtn",type:"button"},[first ? "Start question 1 \u2192" : "Run them again \u21ba"]);
       b.addEventListener("click",function(){ start(0); });
       host.appendChild(b);
-      if(!first && window.ExportReflect) ExportReflect.log("Completed reading exercise", WK.set===WKQ_ANSWER ? "Reading a Case for an Answer" : "Reading a Case for Class");
+      if(!first && window.ExportReflect) ExportReflect.log("Work-the-page complete", String(WKQ.length)+" questions");
     }
-    WK.idle = idle;
     WK.answer = function(key,label){
-      var Q = WK.set[WK.qi], fb = document.getElementById("wkfb");
+      var Q = WKQ[WK.qi], fb = document.getElementById("wkfb");
       if(!Q || !fb) return;
       if(key === Q.a || (Q.also && Q.also.indexOf(key) !== -1)){
         fb.className = "wf good"; fb.innerHTML = "";
         window.setTimeout(function(){ fb.innerHTML = "<b>"+label+"</b> \u2014 right. "+Q.why; },30);
-        if(window.ExportReflect) ExportReflect.log((WK.set===WKQ_ANSWER?"For-an-Answer":"For-Class")+" Q"+(WK.qi+1),"found: "+label);
+        if(window.ExportReflect) ExportReflect.log("Work-the-page Q"+(WK.qi+1),"found: "+label);
         WK.active = false;
-        var nxt = WK.qi+1 < WK.set.length;
+        var nxt = WK.qi+1 < WKQ.length;
         var b = QM.el("button",{class:"wbtn",type:"button"},[nxt ? "Next question \u2192" : "Finish \u2192"]);
         b.addEventListener("click",function(){ nxt ? start(WK.qi+1) : idle(false); });
         host.appendChild(b);
@@ -586,45 +533,26 @@ body.tags-off .part .hint{display:none;}
         fb.className = "wf bad"; fb.innerHTML = "";
         var miss = (Q.miss && Q.miss[key]) ? Q.miss[key] : "that part answers a different question.";
         window.setTimeout(function(){ fb.innerHTML = "<b>"+label+"</b> \u2014 not this one: "+miss+" Hold the question and scan again."; },30);
-        if(window.ExportReflect) ExportReflect.log((WK.set===WKQ_ANSWER?"For-an-Answer":"For-Class")+" Q"+(WK.qi+1)+" miss","picked "+label);
+        if(window.ExportReflect) ExportReflect.log("Work-the-page Q"+(WK.qi+1)+" miss","picked "+label);
       }
     };
     idle(true);
-
-    /* ---- mode switch ---- */
-    var modeSel = document.getElementById("mode"),
-        infoPanel = document.getElementById("info"),
-        wkPanel = document.getElementById("wkpanel"),
-        wkTitle = document.getElementById("wktitle");
-    function setMode(m){
-      MODE = m;
-      var exercising = (m !== "explore");
-      document.body.classList.toggle("tags-off", exercising);
-      infoPanel.hidden = exercising;
-      wkPanel.hidden = !exercising;
-      op.querySelectorAll(".part").forEach(function(x){ x.classList.remove("active"); });
-      if(m === "answer"){ WK.set = WKQ_ANSWER; wkTitle.textContent = "Reading a Case for an Answer"; WK.idle(true); }
-      if(m === "class"){ WK.set = WKQ_CLASS; wkTitle.textContent = "Reading a Case for Class"; WK.idle(true); }
-      if(!exercising){ WK.active = false; WK.qi = -1; }
-      if(window.ExportReflect) ExportReflect.log("Switched mode",
-        m==="explore"?"Explore":(m==="answer"?"Reading a Case for an Answer":"Reading a Case for Class"));
-    }
-    modeSel.addEventListener("change", function(){ setMode(modeSel.value); });
-    setMode("explore");
   })();
 
-  if(window.ExportReflect){
-    ExportReflect.mount(document.getElementById("export-slot"),{
-      module:"How to Read a Case",
-      chapter:"Chapter 5 \u2014 Case Law Research",
-      intro:"You walked the anatomy of Nash v. Tindall Corp. and read it two ways.",
-      prompts:[
-        "Why does a researcher read the caption before anything else?",
-        "Nash answers one question and leaves another undecided. How does 'reading for an answer' treat those two facts differently than 'reading for class'?",
-        "The court calls the Connecticut and Alabama cases 'interesting but not persuasive.' What does that tell you about how the same question might come out in another state?"
-      ]
-    });
-  }
+  
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var N = {"explore":"<b>Explore:</b> click every part of the opinion to learn its job — the full anatomy, no agenda yet. This is the read you do once so the other two reads become fast.","class":"<b>Reading for class:</b> read in full, but capture four things for the cold call — the caption (court and year), the facts you could recite in two sentences, the issue and holding in the court’s own words, and the reasoning move you expect to be asked about: <i>which fact drove the outcome?</i>","answer":"<b>Reading for an answer:</b> the Question Method read. Arrive holding a question; check the caption first — jurisdiction and court decide whether this case can bind before you spend a minute more; jump to the issue and holding to see if it answers you; read the reasoning only for the dispositive facts you’ll compare to your client’s. The <b>Work the Page</b> exercise below is this read, simulated."};
+  var sel = document.getElementById("readmode"), note = document.getElementById("modenote");
+  sel.addEventListener("change", function(){
+    note.textContent = "";
+    window.setTimeout(function(){ note.innerHTML = N[sel.value]; }, 30);
+    if (window.ExportReflect) ExportReflect.log("Reading mode selected", sel.options[sel.selectedIndex].text);
+  });
 })();
 </script>
 </body>
