@@ -306,30 +306,6 @@ def build_modnav(rel, base):
         parts.append('  <p class="modnav-verified">Authorities verified as of %s. '
                      'The law changes \u2014 run the method, don\u2019t trust the module.</p>'
                      % esc(m["verified"]))
-    if m.get("pager") is False:
-        parts.append('</nav>')
-        return "\n".join(parts)
-    links = []
-    if i > 0:
-        p = mods[i - 1]
-        links.append('    <a class="modnav-link prev" href="%s%s"><span class="dir">\u2190 Previous</span>'
-                     '<span class="t">%s</span></a>' % (base, esc(p["href"]), esc(p["title"])))
-    else:
-        links.append('    <span></span>')
-    if i < len(mods) - 1:
-        n = mods[i + 1]
-        links.append('    <a class="modnav-link next" href="%s%s"><span class="dir">Next \u2192</span>'
-                     '<span class="t">%s</span></a>' % (base, esc(n["href"]), esc(n["title"])))
-    else:
-        idx = CHAPTERS.index(c)
-        if idx < len(CHAPTERS) - 1:
-            nc = CHAPTERS[idx + 1]
-            links.append('    <a class="modnav-link next" href="%s"><span class="dir">Next chapter \u2192</span>'
-                         '<span class="t">Ch. %d \u00b7 %s</span></a>'
-                         % (ch_url(base, nc["ch"]), nc["ch"], esc(nc["title"])))
-        else:
-            links.append('    <span></span>')
-    parts.append('  <div class="modnav-links">\n%s\n  </div>' % "\n".join(links))
     parts.append('</nav>')
     return "\n".join(parts)
 

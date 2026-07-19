@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your record — How to Read a Regulation</title>
-<meta name="description" content="Your downloadable record for How to Read a Regulation.">
+<title>Knowledge checks — Run the Citator</title>
+<meta name="description" content="Knowledge checks and your downloadable record for Run the Citator.">
 <!--shell:head:start-->
 <link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,9 +23,6 @@
   .opt.good{border-color:#2e6b34;background:#e5efe0;}
   .opt.bad{border-color:var(--flame);background:#f6e2dc;}
   .kc .fb{margin:12px 0 0;font-size:.93rem;line-height:1.55;color:var(--ink-soft);}
-  @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
-  }
 </style>
 </head>
 <body class="shell">
@@ -96,12 +93,13 @@
                 </details>
               </li>
               <li class="modmenu-chap">
-                <details class="mm-ch">
+                <details class="mm-ch" open>
                   <summary><span class="cn">5</span> Case Law Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
                   <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
                   <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/run-the-citator/index.html">Run the Citator</a></li>
                   <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
                   </ul>
                 </details>
@@ -119,7 +117,7 @@
                 </details>
               </li>
               <li class="modmenu-chap">
-                <details class="mm-ch" open>
+                <details class="mm-ch">
                   <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
@@ -276,8 +274,8 @@
 <nav class="pagenav" aria-label="This module">
   <div class="wrap">
       <a class="pn-link" href="../../index.html">Home</a>
-      <a class="pn-link" href="../../ch-7/">Ch. 7</a>
-      <a class="pn-link pn-title on" href="index.html">How to Read a Regulation</a>
+      <a class="pn-link" href="../../ch-5/">Ch. 5</a>
+      <a class="pn-link pn-title on" href="index.html">Run the Citator</a>
       <details class="pn-dd">
         <summary>Module pages</summary>
         <div class="pn-panel">
@@ -287,7 +285,7 @@
       <details class="pn-dd on">
         <summary>Learning resources</summary>
         <div class="pn-panel">
-        <a href="checks.html" class="on" aria-current="page">Your record</a>
+        <a href="checks.html" class="on" aria-current="page">Knowledge checks</a>
         </div>
       </details>
   </div>
@@ -296,8 +294,24 @@
 
 <main id="main">
   <div class="pagewrap">
-    <h1>Your record</h1>
-    <p class="lede">Add a reflection and download the record of your work from this module — collected here for this browser session.</p>
+    <h1>Knowledge checks</h1>
+    <p class="lede">Check your read of the signals, then add a reflection and download your record. Your work from the reports is already collected here for this browser session.</p>
+
+    <div class="kc">
+      <p class="q">A case you need shows a yellow signal. The move?</p>
+      <div class="opts" id="kc1" role="group" aria-label="First knowledge check"></div>
+      <div class="fb" id="kc1fb" role="status" aria-live="polite"></div>
+    </div>
+    <div class="kc">
+      <p class="q">A later court disapproved one of your case&rsquo;s holdings &mdash; but your memo relies on a different holding from the same case. Can you still cite it?</p>
+      <div class="opts" id="kc2" role="group" aria-label="Second knowledge check"></div>
+      <div class="fb" id="kc2fb" role="status" aria-live="polite"></div>
+    </div>
+    <div class="kc">
+      <p class="q">Your case came back clean &mdash; no negative treatment. Is the validation step done?</p>
+      <div class="opts" id="kc3" role="group" aria-label="Third knowledge check"></div>
+      <div class="fb" id="kc3fb" role="status" aria-live="polite"></div>
+    </div>
 
     <div id="export-slot"></div>
   </div>
@@ -321,18 +335,42 @@
 <script>
 (function(){
   "use strict";
+  QMKC.render("kc1", "kc1fb", "Check: the yellow signal", [
+    { t: "Read the citing opinions \u2014 the case may have been distinguished on facts nothing like yours", good: true,
+      fb: "Correct \u2014 and that's the chapter's rule doing its work: a signal is a reminder to read the citing opinions, not a verdict. A yellow case distinguished on facts nothing like yours remains perfectly good authority for your situation. You only know by reading." },
+    { t: "Drop the case \u2014 yellow means it can't be relied on", good: false,
+      fb: "A cautious instinct, but it throws away good authority. Yellow means later courts said something worth reading \u2014 often a distinction on facts that have nothing to do with yours. Read first; drop only if the treatment actually reaches your point." },
+    { t: "Cite it anyway \u2014 yellow is just a caution, not a stop sign", good: false,
+      fb: "This is the trap in the other direction. The color alone tells you neither that the case is fine nor that it's finished \u2014 it tells you there's something to read. Citing past an unread caution is how the Prewitt problem happens." }
+  ]);
+  QMKC.render("kc2", "kc2fb", "Check: signal vs. holding", [
+    { t: "Often yes \u2014 the signal attaches to the case, but your reliance attaches to a holding; read the disapproving opinion to confirm your point survives, then cite candidly", good: true,
+      fb: "Correct \u2014 this is the module's core distinction. In the report, Okafor killed Prewitt's no-notice point and left the remedy itself standing; only reading Okafor could tell you which side of that line your point was on. And candor matters: cite the case alongside the opinion that limited it." },
+    { t: "No \u2014 any negative treatment makes the whole case uncitable", good: false,
+      fb: "Understandable caution, but it treats the color as the verdict. Treatment often reaches one holding and leaves others untouched \u2014 courts disapprove points, not usually entire opinions. Read what the disapproval actually reached before you give up the case." },
+    { t: "Yes \u2014 and there's no need to mention the disapproving case if it doesn't touch your point", good: false,
+      fb: "The first half is right; the second isn't how careful researchers \u2014 or candid advocates \u2014 work. If a court has limited your case, say so and show the limit doesn't reach your point. Silence invites opposing counsel to make the connection for you, less charitably." }
+  ]);
+  QMKC.render("kc3", "kc3fb", "Check: the clean signal", [
+    { t: "Not permanently \u2014 a signal is a snapshot and an editorial judgment; re-run the citator when you actually rely on the case", good: true,
+      fb: "Correct on both counts. Citators lag the newest decisions, and the colors are the platform's judgment, not the court's. Authority that was good law last month may not be by the time you file \u2014 validation is a step you repeat, not a box you check once." },
+    { t: "Yes \u2014 a clean signal means the case is settled law", good: false,
+      fb: "Clean means no negative treatment had been recorded when you looked. A decision handed down last week may not be in the report yet, and editors' calls can change. Re-run it at reliance time \u2014 it costs a minute." },
+    { t: "Yes \u2014 signals come from the courts themselves, so they're authoritative", good: false,
+      fb: "A common misconception worth clearing: signals are editorial \u2014 assigned by the platform's staff, not the deciding courts. They're excellent guides and carry no authority of their own, which is exactly why the rule is to read the citing opinions." }
+  ]);
 
   if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
-    session: "qm_er_reading_regulations",
-      module:"How to Read a Regulation",
-      chapter:"Chapter 7 — Regulations Research",
-      intro:"You traced a regulation to its authorizing statute, navigated the CFR, read its operative language, and saw when the Federal Register matters.",
-      prompts:[
-        "Why does a researcher start with the authority note rather than the operative text?",
-        "The rule was codified in the CFR, but its explanation lived elsewhere. Where \u2014 and why is skipping it the most common regulatory-research mistake?",
-        "State the parallel in one sentence: the CFR is to the Federal Register as ____ is to ____."
-      ]
-    });
+    session: "qm_er_run_the_citator",
+    module: "Run the Citator",
+    chapter: "Chapter 5 \u2014 Case Law Research",
+    intro: "Your signal assignments and checks are collected locally. Add a reflection and download the record. The report cases are fictional.",
+    prompts: [
+      "Write the two-line note you would put in your Research Log for Prewitt after reading the Okafor snippet.",
+      "In your own words: why does the signal attach to the case while your reliance attaches to a holding?",
+      "When in your workflow will you actually re-run the citator \u2014 name the moment."
+    ]
+  });
 })();
 </script>
 </body>

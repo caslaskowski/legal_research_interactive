@@ -3,29 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your record — How to Read a Secondary Source</title>
-<meta name="description" content="Your downloadable record for How to Read a Secondary Source.">
+<title>Run the Citator — Ch. 5 · Case Law Research</title>
+<meta name="description" content="What citator signals mean, and what they don't — two mock reports where you assign the signal, then read the citing opinion before you decide.">
 <!--shell:head:start-->
 <link rel="preload" href="../../assets/fonts/archivo-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/archivo-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <!--shell:head:end-->
 <style>
-  .pagewrap{margin:0 auto;padding:26px 28px 10px;max-width:1000px;}
-  .lede{font-size:1rem;line-height:1.62;color:var(--ink-soft);margin:6px 0 14px;}
-  .kc{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:16px 20px;margin:14px 0;}
-  .kc .q{font-weight:600;margin:0 0 12px;}
-  .opts{display:flex;flex-direction:column;gap:8px;}
-  .opt{font:inherit;text-align:left;background:var(--panel);border:1px solid var(--rule-strong);border-radius:8px;padding:10px 13px;cursor:pointer;}
-  .opt:hover{border-color:var(--flame);}
-  .opt:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
-  .opt[disabled]{cursor:default;opacity:.85;}
-  .opt.good{border-color:#2e6b34;background:#e5efe0;}
-  .opt.bad{border-color:var(--flame);background:#f6e2dc;}
-  .kc .fb{margin:12px 0 0;font-size:.93rem;line-height:1.55;color:var(--ink-soft);}
-  @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
-  }
+  .pagewrap{margin:0 auto;padding:22px 28px 10px;max-width:1080px;}
+  .lede{font-size:1.02rem;line-height:1.62;color:var(--ink-soft);margin:6px 0 12px;}
+  .howto{background:var(--callout);border:1px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:8px;padding:10px 14px;font-size:.9rem;margin:0 0 16px;}
+  .bookrule{background:#fff;border:1.5px solid var(--ink);border-radius:10px;box-shadow:var(--shadow);padding:14px 18px;margin:0 0 18px;font-family:"Newsreader",Georgia,serif;font-size:1.05rem;line-height:1.6;}
+  .bookrule .bk{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);margin:0 0 4px;}
+  h2.sec{margin:26px 0 4px;}
+  .secdesc{color:var(--ink-soft);font-size:.95rem;margin:0 0 12px;}
+  .chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:0 0 8px;}
+  .chip{background:#fff;border:1px solid var(--rule-strong);border-radius:10px;box-shadow:var(--shadow);padding:12px 15px;}
+  .chip .dot{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:8px;vertical-align:-2px;}
+  .chip b{font-size:.95rem;}
+  .chip p{margin:6px 0 0;font-size:.88rem;line-height:1.55;color:var(--ink-soft);}
+  .d-red{background:#b3401f;} .d-yel{background:#d9a416;} .d-grn{background:#2e6b34;}
+  .platnote{font-size:.88rem;color:var(--ink-soft);margin:10px 0 0;}
+  .reptag{display:inline-block;background:var(--flame);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border-radius:6px 6px 0 0;padding:5px 12px;}
+  .report{background:#fff;border:1.5px solid var(--rule-strong);border-radius:0 10px 10px 10px;box-shadow:var(--shadow);padding:16px 20px;margin:0 0 22px;}
+  .rephead{display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding:0 0 10px;margin:0 0 12px;}
+  .rephead h3{margin:0;font-size:1.15rem;}
+  .sigslot{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px dashed var(--rule-strong);font-weight:700;color:var(--ink-soft);}
+  .sigslot.set{border-style:solid;color:#fff;font-size:1rem;}
+  .sigslot.s-red{background:#b3401f;border-color:#b3401f;}
+  .sigslot.s-yel{background:#d9a416;border-color:#d9a416;}
+  .sigslot.s-grn{background:#2e6b34;border-color:#2e6b34;}
+  .repsec{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:12px 0 6px;}
+  .citing{list-style:none;margin:0;padding:0;}
+  .citing li{border:1px solid var(--rule);border-radius:8px;padding:9px 12px;margin:0 0 8px;}
+  .treat{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 10px;border:1.5px solid currentColor;margin:0 8px 4px 0;}
+  .t-neg{color:#b3401f;} .t-cau{color:#a3780a;} .t-pos{color:#2e6b34;} .t-neu{color:var(--ink-soft);}
+  .citing .cn{font-weight:700;font-size:.95rem;}
+  .citing .snip{font-family:"Newsreader",Georgia,serif;font-size:.9rem;line-height:1.55;border-left:3px solid var(--rule-strong);padding:3px 3px 3px 10px;margin:6px 0 0;background:var(--panel);}
+  .task{background:var(--callout);border-left:4px solid var(--flame);border-radius:0 8px 8px 0;padding:10px 14px;margin:14px 0 0;}
+  .task p.q{font-weight:600;margin:0 0 8px;}
+  .btnrow{display:flex;gap:8px;flex-wrap:wrap;}
+  .pick{font:inherit;font-size:.88rem;font-weight:600;background:#fff;border:1.5px solid var(--rule-strong);border-radius:8px;padding:8px 13px;cursor:pointer;}
+  .pick:hover{border-color:var(--flame);}
+  .pick:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+  .task .fb{margin:10px 0 0;font-size:.92rem;line-height:1.6;}
+  .realbox{background:#fff;border:1px solid var(--rule-strong);border-left:4px solid #1f6f78;border-radius:0 10px 10px 0;box-shadow:var(--shadow);padding:12px 16px;margin:20px 0 0;font-size:.93rem;line-height:1.6;}
+  .realbox .rk{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#1f6f78;margin:0 0 4px;}
+  #export-slot{margin-top:28px;}
 </style>
 </head>
 <body class="shell">
@@ -84,7 +109,7 @@
                 </details>
               </li>
               <li class="modmenu-chap">
-                <details class="mm-ch" open>
+                <details class="mm-ch">
                   <summary><span class="cn">4</span> Secondary Sources Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
@@ -96,12 +121,13 @@
                 </details>
               </li>
               <li class="modmenu-chap">
-                <details class="mm-ch">
+                <details class="mm-ch" open>
                   <summary><span class="cn">5</span> Case Law Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
                   <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
                   <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/run-the-citator/index.html" aria-current="page">Run the Citator</a></li>
                   <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
                   </ul>
                 </details>
@@ -276,18 +302,18 @@
 <nav class="pagenav" aria-label="This module">
   <div class="wrap">
       <a class="pn-link" href="../../index.html">Home</a>
-      <a class="pn-link" href="../../ch-4/">Ch. 4</a>
-      <a class="pn-link pn-title on" href="index.html">How to Read a Secondary Source</a>
-      <details class="pn-dd">
+      <a class="pn-link" href="../../ch-5/">Ch. 5</a>
+      <a class="pn-link pn-title on" href="index.html">Run the Citator</a>
+      <details class="pn-dd on">
         <summary>Module pages</summary>
         <div class="pn-panel">
-        <a href="index.html">Overview</a>
+        <a href="index.html" class="on" aria-current="page">Overview</a>
         </div>
       </details>
-      <details class="pn-dd on">
+      <details class="pn-dd">
         <summary>Learning resources</summary>
         <div class="pn-panel">
-        <a href="checks.html" class="on" aria-current="page">Your record</a>
+        <a href="checks.html">Knowledge checks</a>
         </div>
       </details>
   </div>
@@ -296,12 +322,87 @@
 
 <main id="main">
   <div class="pagewrap">
-    <h1>Your record</h1>
-    <p class="lede">Add a reflection and download the record of your work from this module — collected here for this browser session.</p>
+    <h1>Run the Citator</h1>
+    <p class="lede"><b>What this module teaches:</b> a citator tracks a case&rsquo;s history and how later courts have treated it &mdash; followed, distinguished, criticized, overruled &mdash; and boils that record down to a colored signal. The platforms brand it differently (KeyCite on Westlaw, Shepard&rsquo;s on Lexis), but the signals work the same way, and so does the discipline for reading them. Here you&rsquo;ll run two mock reports: one where the signal looks bad and part of the case is still good, and one where the signal looks clean and the work still isn&rsquo;t done.</p>
+    <div class="bookrule"><span class="bk">The chapter&rsquo;s rule</span>A signal is a reminder to read the citing opinions, not a verdict.</div>
+    <div class="howto"><b>How to use this:</b> learn the three signal families below, then work each report: read it, assign the signal, and answer the questions that follow. Your work is collected locally on the Learning resources page.</div>
 
-    <div id="export-slot"></div>
+    <h2 class="sec">The signals</h2>
+    <p class="secdesc">Every platform draws them a little differently. The families are stable.</p>
+    <div class="chips">
+      <div class="chip"><span class="dot d-red"></span><b>Red &mdash; serious negative treatment</b><p>Overruled, reversed, or disapproved. The strongest warning a citator gives &mdash; and still not the last word, because the treatment may reach only part of the case.</p></div>
+      <div class="chip"><span class="dot d-yel"></span><b>Yellow &mdash; caution</b><p>Criticized, distinguished, or limited by later courts. A yellow case may have been distinguished on facts nothing like yours &mdash; in which case it remains perfectly good authority for your situation. You only know by reading the citing opinion.</p></div>
+      <div class="chip"><span class="dot d-grn"></span><b>Green or no flag &mdash; no negative treatment</b><p>Followed, cited, discussed. Reassuring &mdash; and still a snapshot: signals are editorial calls made by the platform, and they lag the newest decisions.</p></div>
+    </div>
+    <p class="platnote">Two parts of every report: the case&rsquo;s <b>history</b> (what happened to this very case on appeal) and its <b>citing references</b> (what other courts have said about it since). Both matter; they answer different questions.</p>
+
+    <h2 class="sec">Report one &mdash; the bad signal that isn&rsquo;t the whole story</h2>
+    <p class="secdesc">Your memo cites <i>Prewitt v. Stonegate LLC</i>. You run it through the citator before filing.</p>
+    <span class="reptag">Demonstration &mdash; fictional cases &amp; jurisdiction</span>
+    <div class="report">
+      <div class="rephead"><span class="sigslot" id="sig1" aria-label="Signal for Prewitt, not yet assigned">?</span><h3>Prewitt v. Stonegate LLC</h3></div>
+      <p class="repsec">History</p>
+      <p style="margin:0;font-size:.92rem;color:var(--ink-soft);">No subsequent appellate history.</p>
+      <p class="repsec">Citing references</p>
+      <ul class="citing">
+        <li><span class="treat t-neg">Disapproved of by</span><span class="cn">Okafor v. Canyon Ridge Apartments</span>
+          <p class="snip">&ldquo;A tenant faced with an unrepaired habitability defect may repair and deduct, or may withhold rent &mdash; but only after written notice and a reasonable opportunity to cure. To the extent <i>Prewitt v. Stonegate LLC</i> permitted withholding without notice, it is disapproved.&rdquo;</p></li>
+        <li><span class="treat t-neu">Cited</span><span class="cn">Delgado v. Mesa Verde Apartments</span></li>
+        <li><span class="treat t-neu">Cited</span><span class="cn">Vann v. Copper Sky Management</span></li>
+      </ul>
+      <div class="task">
+        <p class="q">Assign the signal.</p>
+        <div class="btnrow" role="group" aria-label="Assign a signal to Prewitt">
+          <button class="pick" type="button" data-r="1" data-sig="red">&#9679; Red</button>
+          <button class="pick" type="button" data-r="1" data-sig="yel">&#9679; Yellow</button>
+          <button class="pick" type="button" data-r="1" data-sig="grn">&#9679; Green</button>
+        </div>
+        <div class="fb" id="fb1" role="status" aria-live="polite"></div>
+      </div>
+      <div class="task" id="task1b" hidden>
+        <p class="q">Now the question that matters. Read the <i>Okafor</i> snippet again, then answer for each point:</p>
+        <div class="btnrow" role="group" aria-label="Can Prewitt carry each point">
+          <button class="pick" type="button" data-p="a">My point: a tenant may withhold <b>without notice</b></button>
+          <button class="pick" type="button" data-p="b">My point: withholding <b>exists as a remedy</b> at all</button>
+        </div>
+        <div class="fb" id="fb1b" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <h2 class="sec">Report two &mdash; the clean signal that isn&rsquo;t a finish line</h2>
+    <p class="secdesc">Same memo, different citation: <i>Marsh v. Golden Rentals</i>, your heat-duty case.</p>
+    <span class="reptag">Demonstration &mdash; fictional cases &amp; jurisdiction</span>
+    <div class="report">
+      <div class="rephead"><span class="sigslot" id="sig2" aria-label="Signal for Marsh, not yet assigned">?</span><h3>Marsh v. Golden Rentals</h3></div>
+      <p class="repsec">History</p>
+      <p style="margin:0;font-size:.92rem;color:var(--ink-soft);">No subsequent appellate history.</p>
+      <p class="repsec">Citing references</p>
+      <ul class="citing">
+        <li><span class="treat t-pos">Followed by</span><span class="cn">Tinsley v. Vista Property Management</span>
+          <p class="snip">&ldquo;As we held in <i>Marsh</i>, the duty to keep residential premises habitable includes providing adequate heat; once heat fails, the landlord must restore it within a reasonable time.&rdquo;</p></li>
+        <li><span class="treat t-neu">Cited</span><span class="cn">Okafor v. Canyon Ridge Apartments</span></li>
+        <li><span class="treat t-neu">Cited</span><span class="cn">Delgado v. Mesa Verde Apartments</span></li>
+      </ul>
+      <div class="task">
+        <p class="q">Assign the signal.</p>
+        <div class="btnrow" role="group" aria-label="Assign a signal to Marsh">
+          <button class="pick" type="button" data-r="2" data-sig="red">&#9679; Red</button>
+          <button class="pick" type="button" data-r="2" data-sig="yel">&#9679; Yellow</button>
+          <button class="pick" type="button" data-r="2" data-sig="grn">&#9679; Green</button>
+        </div>
+        <div class="fb" id="fb2" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="realbox"><span class="rk">The same lesson, in real law</span>For a real case that looked citable and wasn&rsquo;t &mdash; an Eleventh Circuit opinion vacated as moot while it sat in the reporters &mdash; walk the website chain in <a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a>. And you&rsquo;ve already seen the failure this step exists to catch: in <a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a>, <i>Prewitt</i> sat in the database, word for word, and could no longer carry its proposition. Existence is not validity.</div>
   </div>
 </main>
+
+<!--shell:modnav:start-->
+<nav class="modnav" aria-label="Module navigation">
+  <p class="modnav-crumb">Part of <a href="../../ch-5/">Ch. 5 · Case Law Research</a></p>
+</nav>
+<!--shell:modnav:end-->
 
 <!--shell:footer:start-->
 <footer class="foot">
@@ -316,22 +417,55 @@
 <!--shell:footer:end-->
 
 <script src="../../js/lib.js"></script>
-<script src="../../js/kc.js"></script>
 <script src="../../js/export-reflect.js"></script>
 <script>
 (function(){
   "use strict";
-
-  if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
-    session: "qm_er_reading_secondary",
-    module: "How to Read a Secondary Source (Appendix A)",
-    chapter: "Chapter 4 \u2014 Secondary Sources Research / Appendix A",
-    intro: "Your exploration and the three question\u2192sentence\u2192footnote runs are collected locally. Add a reflection and download the record to submit.",
-    prompts: [
-      "The move was: hold the question, find the sentence, pull the footnote. Describe, in your own words, how you knew which sentence matched which question.",
-      "The narrative handed you two terms of art you did not bring to the page. Write the next research question those terms make possible."
-    ]
-  });;
+  if (window.ExportReflect) ExportReflect.collect({
+    module: "Run the Citator", chapter: "Chapter 5 \u2014 Case Law Research",
+    session: "qm_er_run_the_citator"
+  });
+  var FB1 = {
+    red: "<b>Defensible.</b> \u201cDisapproved of by\u201d is serious negative treatment, and many platforms would flag it red. But notice how little the color settled: red for <i>what</i>? The next question is the one the signal can\u2019t answer.",
+    yel: "<b>Also defensible.</b> The disapproval reaches one holding, not the whole case \u2014 some platforms would show caution rather than a stop sign. Editors make this call differently, which is itself the lesson: the color is an editorial judgment. What it can\u2019t tell you is what the treatment reached \u2014 that\u2019s the next question.",
+    grn: "<b>Not this one.</b> A later court said \u201cit is disapproved\u201d by name \u2014 that is negative treatment, and every platform would surface it. Look at the Okafor snippet again, then pick red or yellow; either is defensible, and the follow-up question is where the real work happens."
+  };
+  var FB1B = {
+    a: "<b>Dead, for this point.</b> Okafor disapproved exactly this: withholding without notice. Citing Prewitt for it now invites the reply brief you least want to read. Strike it and cite Okafor\u2019s rule \u2014 written notice first.",
+    b: "<b>Still standing \u2014 and here is the module\u2019s core distinction.</b> The signal attaches to the <i>case</i>; your reliance attaches to a <i>holding</i>. Okafor didn\u2019t doubt that withholding exists as a remedy \u2014 it confirmed it, with a notice requirement attached. Prewitt survives for the remedy itself, cited candidly alongside Okafor. You could only know that by reading the citing opinion \u2014 the color alone would have made you throw the case away."
+  };
+  var FB2 = {
+    grn: "<b>Yes \u2014 and notice what that buys you.</b> No negative treatment, one court following it by name. Reassuring. Now the honest caveat: a clean signal is a snapshot. Citators lag the newest decisions, and the signal is the platform\u2019s judgment, not the court\u2019s. Validation is a step you re-run when you file, not a box you checked last month.",
+    red: "<b>Look again.</b> Nothing in this report is negative \u2014 one court followed Marsh by name and two others cited it. Red would mean overruling or disapproval, and there is none here.",
+    yel: "<b>Look again.</b> Caution would mean criticism, limits, or distinguishing \u2014 and this report shows following and citing, nothing else. The honest signal here is clean. The interesting question is what a clean signal does and doesn\u2019t promise \u2014 pick green and see."
+  };
+  function wire(r, fbmap, fbid, slotid, after){
+    document.querySelectorAll('.pick[data-r="' + r + '"]').forEach(function (b) {
+      b.addEventListener("click", function () {
+        var sig = b.getAttribute("data-sig");
+        var fb = document.getElementById(fbid);
+        fb.innerHTML = fbmap[sig];
+        var slot = document.getElementById(slotid);
+        var ok = (r === "1" && sig !== "grn") || (r === "2" && sig === "grn");
+        if (ok) {
+          slot.className = "sigslot set s-" + sig;
+          slot.textContent = "\u25cf";
+          slot.setAttribute("aria-label", "Signal assigned");
+          if (after) document.getElementById(after).hidden = false;
+        }
+        if (window.ExportReflect) ExportReflect.log("Signal assigned (report " + r + ")", sig + (ok ? " \u2014 accepted" : " \u2014 revisited"));
+      });
+    });
+  }
+  wire("1", FB1, "fb1", "sig1", "task1b");
+  wire("2", FB2, "fb2", "sig2", null);
+  document.querySelectorAll('.pick[data-p]').forEach(function (b) {
+    b.addEventListener("click", function () {
+      var p = b.getAttribute("data-p");
+      document.getElementById("fb1b").innerHTML = FB1B[p];
+      if (window.ExportReflect) ExportReflect.log("Prewitt point tested", p === "a" ? "withholding without notice \u2014 dead" : "withholding as a remedy \u2014 survives");
+    });
+  });
 })();
 </script>
 </body>

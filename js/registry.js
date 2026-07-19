@@ -243,6 +243,15 @@ window.REGISTRY = {
         },
         {
           "status": "live",
+          "type": "orientation",
+          "slug": "run-the-citator",
+          "href": "ch-5/run-the-citator/index.html",
+          "note": "New",
+          "title": "Run the Citator",
+          "desc": "What the signals mean and what they don't. Two mock reports in the Marsh universe: Prewitt, disapproved on one point and still good on another, and Marsh, clean today but a snapshot all the same. The chapter's rule, practiced: a signal is a reminder to read the citing opinions, not a verdict."
+        },
+        {
+          "status": "live",
           "type": "practice",
           "slug": "case-practice",
           "href": "ch-5/case-practice/index.html",
