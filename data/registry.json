@@ -148,7 +148,7 @@
           "href": "ch-3/the-research-subway-map/index.html",
           "note": "New",
           "title": "The Research Subway Map",
-          "desc": "Your question chains as intersecting subway lines — a Duty Line, a Standard Line, and a Knowledge Line built on a common-areas premises problem. Ride each line to its terminus, face the true interchange where one case serves two lines, and feel both choices: the noted transfer that pays your fare later, or the mid-line chase that shows you what cognitive overload is."
+          "desc": "Three chains as transit lines — with a twist: the Notice and Duty Lines leave the Elements station on shared rails, because one chain presupposes the other, and split only where they genuinely diverge. Ride every line, face the corridor choice, and watch the intersection chart fill: three fictional cases, nine stations, every column crossing lines."
         },
         {
           "status": "live",
@@ -344,8 +344,8 @@
           "slug": "tracing-sources",
           "href": "ch-8/tracing-sources/index.html",
           "title": "Tracing the Law Across Sources",
-          "desc": "Three real chains — Rowan, Schechter Poultry, and Arizona's Voter Protection Act — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution.",
-          "verified": "2026-07-09"
+          "desc": "Five real chains — Rowan, Schechter Poultry, Arizona's Voter Protection Act, the ADA golf-cart split the Supreme Court resolved, and the ADA website question still open — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution.",
+          "verified": "2026-07-10"
         },
         {
           "status": "live",
@@ -355,16 +355,6 @@
           "title": "Following the Question Trail",
           "desc": "Hold one question at a time on a real veterans-benefits problem and follow it across sources — from a secondary source to the statute, 38 C.F.R. § 3.326, and the case that answers it. Each answer produces the next question; nothing is assumed in advance.",
           "verified": "2026-07-10"
-        },
-        {
-          "status": "live",
-          "type": "orientation",
-          "slug": "ada-canvas",
-          "href": "ch-8/ada-canvas/index.html",
-          "note": "New",
-          "verified": "2026-07-10",
-          "title": "The ADA Canvas",
-          "desc": "One real question — must this business accommodate? — spread across a canvas of connected cards: 42 U.S.C. §§ 12181–12182 verbatim, 28 C.F.R. § 36.104's competing definitions, the golf-cart split the Supreme Court resolved, and the website split still open — including the Gil vacatur, a citator lesson hiding inside a doctrine map. Case holdings summarized above the law so you can see the evolution at a glance."
         },
         {
           "status": "live",

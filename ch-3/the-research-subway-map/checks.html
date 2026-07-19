@@ -136,7 +136,6 @@
                   <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
                   <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
                   <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
-                  <li><a href="../../ch-8/ada-canvas/index.html">The ADA Canvas</a></li>
                   <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
                   </ul>
                 </details>
@@ -283,14 +282,19 @@
     <p class="lede">Check your grasp of the module, then add a reflection and download your record. Your work from the module page is already collected here for this browser session.</p>
 
     <div class="kc">
-      <p class="q">Mid-chain on the Duty Line, a case in your results squarely answers the Knowledge Line&rsquo;s notice question. The method&rsquo;s move?</p>
+      <p class="q">Mid-ride on the Duty Line, <i>Pruett</i> turns out to also analyze constructive notice &mdash; station N2&rsquo;s question, on a line you haven&rsquo;t boarded. The method&rsquo;s move?</p>
       <div class="opts" id="kc1" role="group" aria-label="First knowledge check"></div>
       <div class="fb" id="kc1fb" role="status" aria-live="polite"></div>
     </div>
     <div class="kc">
-      <p class="q">Why insist on riding a line all the way to its terminus before switching?</p>
+      <p class="q">On this map the Notice Line and the Duty Line leave the first station on the <i>same rails</i> and only split after the duty station. What does the shared trunk represent?</p>
       <div class="opts" id="kc2" role="group" aria-label="Second knowledge check"></div>
       <div class="fb" id="kc2fb" role="status" aria-live="polite"></div>
+    </div>
+    <div class="kc">
+      <p class="q">The finished intersection chart shows <i>Pruett</i>&rsquo;s column holding teal cells (D1, D2) and a red cell (N2). What is that column telling you?</p>
+      <div class="opts" id="kc3" role="group" aria-label="Third knowledge check"></div>
+      <div class="fb" id="kc3fb" role="status" aria-live="polite"></div>
     </div>
 
     
@@ -316,31 +320,39 @@
 <script>
 (function(){
   "use strict";
-  QMKC.render("kc1", "kc1fb", "Check: the interchange move", [
-    { t: "Note the case and its target question in the log, then continue the current chain", good: true,
-      fb: "Correct \u2014 the transfer ticket. The find isn't lost; it's parked where you'll collect it. Your working memory stays on one open question, which is the whole point of the discipline." },
-    { t: "Answer the notice question immediately \u2014 the source is right there and re-finding it wastes time", good: false,
-      fb: "The most tempting wrong answer on the map, because it feels efficient. But the notice answer needs Q3 underneath it to mean anything \u2014 and your own line still has an open station behind you. The note costs ten seconds and loses nothing; the chase opens loops on two lines at once." },
-    { t: "Ignore it entirely \u2014 it isn't the current question", good: false,
-      fb: "Half the discipline \u2014 you stayed on the line, but you threw away the gift. The interchange is valuable precisely because you'll be at that station later; the log turns the distraction into a head start." }
+  QMKC.render("kc1", "kc1fb", "Check: the corridor move", [
+    { t: "Note the case and its target station (N2) in the log, then finish the Duty Line", good: true,
+      fb: "Correct \u2014 the transfer ticket. The find isn't lost; it's parked where you'll collect it. And there's a second reason here: N2 is a sub-question whose parent, N1 \u2014 is knowledge required at all? \u2014 hasn't been asked yet. The note respects both the line and the order." },
+    { t: "Climb the corridor and answer N2 now \u2014 the source is open and re-finding it wastes time", good: false,
+      fb: "The most tempting wrong answer on the map, because it feels efficient. But N2 asks when a landlord should have known \u2014 and you've never established that knowledge is required at all. An answer without its parent question is an orphan, and your own line sits unclosed behind you. Ten seconds of writing beats all of that." },
+    { t: "Ignore it \u2014 it isn't the current question", good: false,
+      fb: "Half the discipline \u2014 you stayed on the line, but you threw away the gift. You will be at N2 soon, and the log turns today's distraction into that day's head start. Note it; don't chase it, and don't waste it." }
   ]);
-  QMKC.render("kc2", "kc2fb", "Check: why ride to the terminus", [
-    { t: "Closing one thread at a time keeps open questions few, and each answer feeds the next question in its own chain", good: true,
-      fb: "Correct on both halves. The chain works because each answer produces the next question \u2014 breaking the chain breaks that engine. And a closed thread leaves nothing to hold in your head; several half-ridden lines is cognitive overload by definition." },
-    { t: "Because the first chain is always the most important one", good: false,
-      fb: "A reasonable guess, but importance isn't the reason \u2014 sibling threads can matter equally, and you'll ride them all. The reason is load: finish-then-switch keeps the set of open loops small." },
-    { t: "Because sources for one thread never help another", good: false,
-      fb: "The interchange proves the opposite \u2014 sources cross lines all the time, and that's a gift. The discipline isn't about sources staying in lanes; it's about your attention finishing what it opened." }
+  QMKC.render("kc2", "kc2fb", "Check: the shared trunk", [
+    { t: "The notice chain presupposes a duty \u2014 its questions can't be asked until the duty questions establish one, so the two chains genuinely share their first answers", good: true,
+      fb: "Correct \u2014 the parallel rails aren't decoration. \u201cDid the landlord know?\u201d has nothing to attach to until \u201cdoes the landlord owe a duty?\u201d is answered, which is why one Whitaker answer filled cells that both lines used. The split happens exactly where the chains stop needing the same answers." },
+    { t: "It's a shortcut \u2014 riding two lines at once finishes the map faster", good: false,
+      fb: "It can feel that way, but nothing about the trunk is a shortcut \u2014 it's a dependency. The lines share track because their early questions are literally the same questions, not because the researcher is multitasking. After the split, one-line-at-a-time discipline returns in full." },
+    { t: "The two chains are really one chain with a decorative fork", good: false,
+      fb: "Watch what happens after the split: the Duty Line digs into the duty's details while the Notice Line rests on a different element entirely, with its own sub-questions and its own terminus. Shared beginnings, genuinely separate ends \u2014 that's two chains with a common dependency, and the map draws it honestly." }
+  ]);
+  QMKC.render("kc3", "kc3fb", "Check: reading a column", [
+    { t: "One case served stations on two different lines \u2014 which is exactly why the corridor existed and why transfers get logged", good: true,
+      fb: "Correct. A column crossing colors is a source refusing to stay in its lane \u2014 Pruett answered two duty questions and the notice standard. The corridor marked that crossing on the map; the ticket carried it; and Whitaker and Beale's columns show crossings no corridor drew. The chart is your log in grid form." },
+    { t: "The chart has an error \u2014 a case can only answer questions on one line", good: false,
+      fb: "It's the opposite of an error \u2014 it's the module's whole point. Opinions answer whatever questions the dispute raised, with no regard for your chart's tidy lines. Expecting one-case-one-line is exactly the assumption the intersection chart exists to break." },
+    { t: "Pruett is the most important case, since its column has mixed colors", good: false,
+      fb: "Tempting, but the colors measure crossings, not weight \u2014 Whitaker's column also spans the trunk and the gold line, and Beale anchors two lines' termini. What a mixed column earns a case isn't rank; it's a transfer note, so its second appearance costs you nothing." }
   ]);
   if (window.ExportReflect) ExportReflect.mount(document.getElementById("export-slot"), {
     session: "qm_er_the_research_subway_map",
     module: "The Research Subway Map",
     chapter: "Chapter 3 \u2014 The Question Method of Legal Research",
-    intro: "Your ride \u2014 stations, the interchange choice, and the checks \u2014 is collected locally. Add a reflection and download the record. All cases are fictional.",
+    intro: "Your ride \u2014 the shared trunk, the corridor choice, the filled chart, and the checks \u2014 is collected locally. Add a reflection and download the record. All cases are fictional.",
     prompts: [
-      "Describe your own interchange moment: the last time a source tempted you off your question. What did you do?",
+      "Describe your own corridor moment: the last time a source tempted you off your question. What did you do?",
       "The subway rules in one sentence each, from memory \u2014 then star the one you most need.",
-      "Why does writing a note down actually reduce mental load, rather than just moving the work around?"
+      "Sketch the intersection chart for a problem you\u2019re actually researching: stations down the side, sources across the top. Which column crosses lines?"
     ]
   });;
 })();
