@@ -18,7 +18,7 @@
   .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
   .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
   .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
-  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;position:sticky;top:14px;align-self:start;max-height:calc(100vh - 28px);overflow:auto;}
   .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
   .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
   .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
@@ -98,7 +98,7 @@
 .excerpt p{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin:0 0 9px;color:var(--ink);}
 .excerpt .pp{font-family:var(--mono);font-size:.72rem;color:var(--flame);font-weight:600;margin-right:6px;}
 
-.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info{border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
 .info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
 .info h2{font-size:1.08rem;margin:0 0 10px;}
 .info p{font-size:.93rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
@@ -351,6 +351,26 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-6/">Ch. 6</a>
+      <a class="pn-link pn-title on" href="index.html">How to Read a Statute</a>
+      <details class="pn-dd on">
+        <summary>Module pages</summary>
+        <div class="pn-panel">
+        <a href="index.html" class="on" aria-current="page">Overview</a>
+        </div>
+      </details>
+      <details class="pn-dd">
+        <summary>Learning resources</summary>
+        <div class="pn-panel">
+        <a href="checks.html">Your record</a>
+        </div>
+      </details>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 
 <main id="main">
@@ -369,14 +389,8 @@
 
 
     <section class="steps" aria-label="How to engage with a statute">
-      <h2>How to engage with a statute — the five moves</h2>
-      <ol>
-        <li><b>Name the parts</b>Heading, operative text, exceptions — know what each piece of the section is doing.</li>
-        <li><b>Read the operative verb precisely</b>Shall, may, must not — the command lives in the verb, and every word carries weight.</li>
-        <li><b>Check the definitions</b>Never optional: a defined term rewrites the rule from another page.</li>
-        <li><b>Place the section in its structure</b>Open the table of contents — what surrounds a section changes what it means.</li>
-        <li><b>Open the Notes of Decision</b>What the text leaves undefined or ambiguous, the interpreting cases resolve.</li>
-      </ol>
+      <h2>How to engage with a statute</h2>
+      <ol id="engage"></ol>
     </section>
 
 
@@ -391,7 +405,7 @@
         <h2>Name the parts</h2>
         <p>Click any underlined part of the statute and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
-      <div class="wkpanel" aria-label="Work the page">
+      <div class="wkpanel" aria-label="Work the page" id="wkpanel" hidden>
         <h2>Work the page</h2>
         <div id="wkbody"></div>
       </div>
@@ -405,10 +419,6 @@
 <!--shell:modnav:start-->
 <nav class="modnav" aria-label="Module navigation">
   <p class="modnav-crumb">Part of <a href="../../ch-6/">Ch. 6 · Statutes Research</a></p>
-  <div class="modnav-links">
-    <a class="modnav-link prev" href="../../ch-6/finding-statutes/index.html"><span class="dir">← Previous</span><span class="t">How to Find a Statute</span></a>
-    <a class="modnav-link next" href="../../ch-6/statute-practice/index.html"><span class="dir">Next →</span><span class="t">Statutes Practice</span></a>
-  </div>
 </nav>
 <!--shell:modnav:end-->
 
@@ -718,11 +728,27 @@
 <script>
 (function(){
   "use strict";
-  var N = {"explore":"<b>Explore:</b> click each part of the section — heading, definitions, operative text, exceptions, history note — to learn its job.","class":"<b>Reading for class:</b> read the whole section slowly and be ready to say what it requires, of whom, with what exceptions — and to defend your reading of any ambiguous term against a classmate’s. Note where the definitions section changed what a word meant.","questions":"<b>Reading for your questions:</b> arrive holding a question; check the definitions first — a defined term can answer or transform your question instantly; read the operative text for the rule; check exceptions for your facts; and let every undefined standard become the next question in your chain. The exercise below is this read, simulated."};
-  var sel = document.getElementById("readmode"), note = document.getElementById("modenote");
+  var N = {
+    explore: "<b>Explore:</b> click each part of the section \u2014 heading, definitions, operative text, exceptions, history note \u2014 to learn its job.",
+    "class": "<b>Reading for class:</b> read the whole section slowly and be ready to say what it requires, of whom, with what exceptions \u2014 the steps on the right.",
+    questions: "<b>Reading for your questions:</b> arrive holding a question and read the section for its answer \u2014 the steps on the right, in order. The <b>Work the page</b> exercise runs this read on the section itself."
+  };
+  var S = {
+    explore: ["<b>Click each part</b> and read what it is doing \u2014 heading, operative text, exceptions, history note.","<b>Read the operative verb.</b> Shall, may, must not \u2014 the command lives in the verb.","<b>Open the definitions.</b> A defined term rewrites the rule from another page."],
+    "class": ["<b>Note the citation</b> and where the section sits in the code.","<b>Be ready to say what it requires, of whom</b>, in plain words \u2014 with the exceptions.","<b>Mark the defined terms.</b> Class discussion usually turns on one.","<b>Note what the text leaves ambiguous</b> \u2014 and be ready to defend your reading of it."],
+    questions: ["<b>Check the definitions first.</b> A defined term can answer or transform your question instantly.","<b>Read the operative text for your rule</b> \u2014 the verb and every word around it.","<b>Check the exceptions against your facts.</b>","<b>Place the section in its structure.</b> Open the table of contents \u2014 what surrounds a section changes what it means.","<b>Open the Notes of Decision.</b> What the text leaves undefined, the interpreting cases resolve \u2014 and every undefined standard becomes the next question in your chain."]
+  };
+  var sel = document.getElementById("readmode"), note = document.getElementById("modenote"),
+      eng = document.getElementById("engage"), wk = document.getElementById("wkpanel");
+  function apply(v, announce){
+    if (announce) { note.textContent = ""; window.setTimeout(function(){ note.innerHTML = N[v]; }, 30); }
+    else note.innerHTML = N[v];
+    eng.innerHTML = S[v].map(function(x){ return "<li>" + x + "</li>"; }).join("");
+    wk.hidden = (v !== "questions");
+  }
+  apply(sel.value, false);
   sel.addEventListener("change", function(){
-    note.textContent = "";
-    window.setTimeout(function(){ note.innerHTML = N[sel.value]; }, 30);
+    apply(sel.value, true);
     if (window.ExportReflect) ExportReflect.log("Reading mode selected", sel.options[sel.selectedIndex].text);
   });
 })();

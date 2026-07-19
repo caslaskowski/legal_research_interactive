@@ -101,19 +101,24 @@
 
     var links = [
       el("a", { class: "navlink", href: "../../index.html" }, ["Home"]),
-      el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch.\u00a01 \u00b7 Foundations"])
+      el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch.\u00a01"])
     ];
 
-    if (isPractice) {
-      links.push(navlink("practice", activeId));
-      links.push(buildDropdown("Drills", ["primary-secondary", "binding-persuasive", "statute-common"], activeId, "nav-sub"));
-      links.push(navlink("rank", activeId, "nav-sub"));
-      links.push(navlink("courts", activeId, "nav-sub"));
-    } else {
-      links.push(navlink("home", activeId));
-      links.push(navlink("hierarchy", activeId, "nav-sub"));
-      links.push(navlink("quiz", activeId, "nav-sub"));
-    }
+    links.push(el("a", {
+      class: "navlink navlink-title", href: "index.html",
+      "aria-current": activeId === "home" ? "page" : null
+    }, ["Hierarchy of Authorities"]));
+    links.push(buildDropdown("Module pages",
+      ["hierarchy", "practice", "primary-secondary", "binding-persuasive", "statute-common", "rank", "courts"],
+      activeId, "nav-sub"));
+    var lrMenu = buildDropdown("Learning resources", ["quiz"], activeId, "nav-sub");
+    (function () {
+      var ul = lrMenu.querySelector(".menu-list");
+      var nb = el("a", { role: "menuitem", href: "#", onclick: function (e) { e.preventDefault(); downloadCompanion(); } },
+                  ["\u2193 Companion Notes"]);
+      ul.appendChild(el("li", { role: "none" }, [nb]));
+    })();
+    links.push(lrMenu);
 
     var topnav = el("nav", { class: "topnav", "aria-label": "Primary" }, links.filter(Boolean));
     var bmSrc = document.getElementById("browse-menu-src");
@@ -122,8 +127,7 @@
       bmSrc.remove();
     }
 
-    var notesBtn = el("button", { class: "btn-notes", type: "button", onclick: downloadCompanion }, ["\u2193 Companion Notes"]);
-    var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav, notesBtn]);
+    var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav]);
 
     var toggle = el("button", {
       class: "nav-toggle", type: "button", "aria-expanded": "false",

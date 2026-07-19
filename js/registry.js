@@ -195,7 +195,8 @@ window.REGISTRY = {
           "href": "ch-4/reading-secondary/index.html",
           "note": "Appendix A",
           "title": "How to Read a Secondary Source",
-          "desc": "A secondary source as a database renders it — navigable table of contents, narrative, footnotes, currency line, editorial apparatus — then the core move, three times: hold a question, find the sentence that answers it, and pull the citation from that sentence's footnote."
+          "desc": "A secondary source as a database renders it — navigable table of contents, narrative, footnotes, currency line, editorial apparatus — then the core move, three times: hold a question, find the sentence that answers it, and pull the citation from that sentence's footnote.",
+          "pager": false
         },
         {
           "status": "live",
@@ -237,7 +238,8 @@ window.REGISTRY = {
           "href": "ch-5/reading-cases/index.html",
           "title": "How to Read a Case",
           "desc": "The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1.",
-          "verified": "2026-07-09"
+          "verified": "2026-07-09",
+          "pager": false
         },
         {
           "status": "live",
@@ -264,7 +266,7 @@ window.REGISTRY = {
           "note": "New",
           "verified": "2026-07-10",
           "title": "The Life of a Statute",
-          "desc": "One statute’s journey from enactment through slip law and session laws to the code — and the comparison that decides where research happens: bare text versus the annotated code’s research hub."
+          "desc": "One statute’s path from enactment through slip law and session laws to the code — and the comparison that decides where research happens: bare text versus the annotated code’s research hub."
         },
         {
           "status": "live",
@@ -280,7 +282,8 @@ window.REGISTRY = {
           "slug": "reading-statutes",
           "href": "ch-6/reading-statutes/index.html",
           "title": "How to Read a Statute",
-          "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision."
+          "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision.",
+          "pager": false
         },
         {
           "status": "live",
@@ -320,7 +323,8 @@ window.REGISTRY = {
           "slug": "reading-regulations",
           "href": "ch-7/reading-regulations/index.html",
           "title": "How to Read a Regulation",
-          "desc": "Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters."
+          "desc": "Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters.",
+          "pager": false
         },
         {
           "status": "live",

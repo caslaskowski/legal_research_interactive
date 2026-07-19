@@ -445,6 +445,26 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-3/">Ch. 3</a>
+      <a class="pn-link pn-title on" href="index.html">Notice of Claim — Research Sandbox</a>
+      <details class="pn-dd on">
+        <summary>Module pages</summary>
+        <div class="pn-panel">
+        <a href="index.html" class="on" aria-current="page">Overview</a>
+        </div>
+      </details>
+      <details class="pn-dd">
+        <summary>Learning resources</summary>
+        <div class="pn-panel">
+        <a href="checks.html">Your record</a>
+        </div>
+      </details>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 <div class="app">
   <header class="bar">
@@ -1178,8 +1198,7 @@
   function head(n){
     return crumbHtml(n.crumbs)
       + (n.kicker?`<div class="kicker">${n.kicker}</div>`:"")
-      + `<nav class="modbar" aria-label="Module navigation"><div class="grp"><span class="gk">Module pages</span><a href="index.html" aria-current="page">Overview</a></div><div class="grp"><span class="gk">Learning resources</span><a href="checks.html">Your record</a></div></nav>
-<h1>${n.title}</h1>`
+      + `<h1>${n.title}</h1>`
       + (n.cite?`<div class="cite-line">${n.cite}</div>`:"")
       + (n.hint?`<div class="hint"><div class="h">▸ Researcher's note</div>${n.hint}</div>`:"");
   }

@@ -18,7 +18,7 @@
   .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
   .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
   .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
-  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;position:sticky;top:14px;align-self:start;max-height:calc(100vh - 28px);overflow:auto;}
   .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
   .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
   .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
@@ -54,7 +54,7 @@
 .opinion-top{background:var(--ink);color:#fff;padding:7px 16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;}
 .opinion-body{padding:6px 0;}
 .part{position:relative;display:block;width:100%;text-align:left;font:inherit;background:transparent;border:0;border-left:4px solid transparent;
-  padding:7px 18px 7px 16px;cursor:pointer;color:var(--ink);}
+  padding:4px 18px 4px 16px;cursor:pointer;color:var(--ink);}
 .part:hover{background:var(--panel);}
 .part:focus-visible{outline:3px solid var(--flame);outline-offset:-3px;}
 .part.active{background:var(--panel);border-left-color:var(--slate);}
@@ -70,7 +70,7 @@
 .part .hint{position:absolute;right:8px;top:6px;font-family:var(--mono);font-size:.64rem;color:var(--flame);background:#fff;border:1px solid var(--rule-strong);border-radius:5px;padding:2px 8px;box-shadow:var(--shadow);opacity:0;pointer-events:none;z-index:2;}
 .part:hover .hint,.part:focus-visible .hint{opacity:1;}
 
-.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info{border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
 .info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
 .info h2{font-size:1.12rem;margin:0 0 10px;}
 .info p{font-size:.94rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
@@ -328,6 +328,26 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-5/">Ch. 5</a>
+      <a class="pn-link pn-title on" href="index.html">How to Read a Case</a>
+      <details class="pn-dd on">
+        <summary>Module pages</summary>
+        <div class="pn-panel">
+        <a href="index.html" class="on" aria-current="page">Overview</a>
+        </div>
+      </details>
+      <details class="pn-dd">
+        <summary>Learning resources</summary>
+        <div class="pn-panel">
+        <a href="checks.html">Your record</a>
+        </div>
+      </details>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 
 <main id="main">
@@ -336,13 +356,6 @@
     <p class="ch-eyebrow">Chapter 5 · Educational</p>
     <h1>How to Read a Case</h1>
     <p class="lede">You don&rsquo;t read an opinion front to back like a story. You read it for the parts that answer your question, and you read the caption first &mdash; because the court and jurisdiction tell you whether the case is even worth your time. Here&rsquo;s the anatomy, on a real opinion.</p>
-
-    <ol class="moves">
-      <li><span class="n">1</span><span><b>Determine the weight before you invest the time.</b> Start with the caption: the jurisdiction and court level tell you whether the case binds you or merely persuades.</span></li>
-      <li><span class="n">2</span><span><b>Read with your question as the lens.</b> Pull out what answers it; log the rest as later questions.</span></li>
-      <li><span class="n">3</span><span><b>Find the dispositive facts</b> &mdash; the ones that, if changed, would change the result.</span></li>
-      <li><span class="n">4</span><span><b>Confirm it&rsquo;s still good law</b> with a citator before you rely on it.</span></li>
-    </ol>
 
     <div class="howto"><b>Click any part of the opinion</b> to learn what it is and how to read it. The <span style="color:var(--q1);font-weight:700;">issue and holding</span> are tinted in Question-Method blue &mdash; the issue is the court&rsquo;s version of Step&nbsp;1.</div>
     <div class="modebar">
@@ -353,14 +366,8 @@
 
 
     <section class="steps" aria-label="How to engage with an opinion">
-      <h2>How to engage with an opinion — the five moves</h2>
-      <ol>
-        <li><b>Read the caption first</b>Court and jurisdiction decide whether this case can bind you — before you read a word further.</li>
-        <li><b>Find the issue</b>The court’s version of Step 1: the question this opinion exists to answer.</li>
-        <li><b>Pull the holding</b>The court’s answer to the issue — the part with precedential force.</li>
-        <li><b>Mine the reasoning</b>What the rule turns on. When your facts differ, this is where your argument lives.</li>
-        <li><b>Check the treatment</b>Run the citator before you rely — a case can look perfect and no longer be good law.</li>
-      </ol>
+      <h2>How to engage with an opinion</h2>
+      <ol id="engage"></ol>
     </section>
 
 
@@ -375,14 +382,14 @@
         <h2>The anatomy of an opinion</h2>
         <p>Select any highlighted section of <em>Glik v. Cunniffe</em> on the left and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
-      <div class="wkpanel" aria-label="Work the page">
+      <div class="wkpanel" aria-label="Work the page" id="wkpanel" hidden>
         <h2>Work the page</h2>
         <div id="wkbody"></div>
       </div>
       </div>
     </div>
 
-    <p class="weighnote"><b>So &mdash; would you cite it?</b> <em>Glik</em> is a First Circuit decision: binding on federal courts in the First Circuit, persuasive everywhere else. Deciding which cases are worth citing for a given matter &mdash; jurisdiction, court level, how on-point they are, and whether they&rsquo;re still good law &mdash; is its own skill. You&rsquo;ll practice it in <a href="../case-practice/index.html">Case Law Practice</a>.</p>
+    <p class="weighnote"><b>So &mdash; would you cite it?</b> <em>Glik</em> is a First Circuit decision: binding on federal courts in the First Circuit, persuasive everywhere else. Deciding which cases are worth citing for a given matter &mdash; jurisdiction, court level, how on-point they are, and whether they&rsquo;re still good law &mdash; is its own skill.</p>
 
     
   </div>
@@ -392,10 +399,6 @@
 <nav class="modnav" aria-label="Module navigation">
   <p class="modnav-crumb">Part of <a href="../../ch-5/">Ch. 5 · Case Law Research</a></p>
   <p class="modnav-verified">Authorities verified as of 2026-07-09. The law changes — run the method, don’t trust the module.</p>
-  <div class="modnav-links">
-    <a class="modnav-link prev" href="../../ch-5/case-graph/index.html"><span class="dir">← Previous</span><span class="t">Cases as a Web of Answers</span></a>
-    <a class="modnav-link next" href="../../ch-5/case-practice/index.html"><span class="dir">Next →</span><span class="t">Case Law Practice</span></a>
-  </div>
 </nav>
 <!--shell:modnav:end-->
 
@@ -545,11 +548,27 @@
 <script>
 (function(){
   "use strict";
-  var N = {"explore":"<b>Explore:</b> click every part of the opinion to learn its job — the full anatomy, no agenda yet. This is the read you do once so the other two reads become fast.","class":"<b>Reading for class:</b> read in full, but capture four things for the cold call — the caption (court and year), the facts you could recite in two sentences, the issue and holding in the court’s own words, and the reasoning move you expect to be asked about: <i>which fact drove the outcome?</i>","answer":"<b>Reading for an answer:</b> the Question Method read. Arrive holding a question; check the caption first — jurisdiction and court decide whether this case can bind before you spend a minute more; jump to the issue and holding to see if it answers you; read the reasoning only for the dispositive facts you’ll compare to your client’s. The <b>Work the Page</b> exercise below is this read, simulated."};
-  var sel = document.getElementById("readmode"), note = document.getElementById("modenote");
+  var N = {
+    explore: "<b>Explore:</b> click every part of the opinion to learn its job \u2014 the whole anatomy, no agenda yet. This is the read you do once so the other two reads become fast.",
+    "class": "<b>Reading for class:</b> read the opinion in full, and leave with four things written down \u2014 they are the steps on the right.",
+    answer: "<b>Reading for an answer:</b> the Question Method read. You arrive holding a question and read only as much as it takes to answer it \u2014 the steps on the right, in order. The <b>Work the page</b> exercise runs this read on the opinion itself."
+  };
+  var S = {
+    explore: ["<b>Click each highlighted part</b> and read what it does.","<b>Watch the order</b> \u2014 caption, parties, facts, issue, holding, reasoning. Courts write in a pattern, and the pattern is your map.","<b>Note which parts bind</b> later courts \u2014 the holding \u2014 and which do not."],
+    "class": ["<b>The caption</b> \u2014 court and year.","<b>The facts</b>, short enough to say out loud in two sentences.","<b>The issue and holding</b>, in the court\u2019s own words.","<b>The fact that drove the outcome</b> \u2014 that is the question you\u2019ll be asked."],
+    answer: ["<b>Check the caption first.</b> Jurisdiction and court level decide whether this case can bind you \u2014 before you spend a minute more.","<b>Jump to the issue and holding.</b> Does it answer your question?","<b>Read the reasoning for the dispositive facts</b> \u2014 the ones you\u2019ll compare to your client\u2019s.","<b>Write down what answers you</b>; log the rest as later questions.","<b>Run a citator</b> before you rely on it."]
+  };
+  var sel = document.getElementById("readmode"), note = document.getElementById("modenote"),
+      eng = document.getElementById("engage"), wk = document.getElementById("wkpanel");
+  function apply(v, announce){
+    if (announce) { note.textContent = ""; window.setTimeout(function(){ note.innerHTML = N[v]; }, 30); }
+    else note.innerHTML = N[v];
+    eng.innerHTML = S[v].map(function(x){ return "<li>" + x + "</li>"; }).join("");
+    wk.hidden = (v !== "answer");
+  }
+  apply(sel.value, false);
   sel.addEventListener("change", function(){
-    note.textContent = "";
-    window.setTimeout(function(){ note.innerHTML = N[sel.value]; }, 30);
+    apply(sel.value, true);
     if (window.ExportReflect) ExportReflect.log("Reading mode selected", sel.options[sel.selectedIndex].text);
   });
 })();

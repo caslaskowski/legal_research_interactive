@@ -45,6 +45,83 @@ for c in CHAPTERS:
     for i, m in enumerate(live):
         MOD_INDEX.setdefault(m["href"], {"chapter": c, "i": i, "mods": live, "mod": m})
 
+# ---- pagenav directory index ------------------------------------------------
+DIR_INDEX = {}   # module dir -> {"title", "ch" (or None), "ch_title"}
+for _href, _info in MOD_INDEX.items():
+    _d = os.path.dirname(_href)
+    if _d:
+        DIR_INDEX.setdefault(_d, {"title": _info["mod"]["title"], "ch": _info["chapter"]["ch"],
+                                  "ch_title": _info["chapter"]["title"]})
+for _key in ("spotlight", "toolkit", "appendices"):
+    _sec = R.get(_key) or {}
+    for _it in _sec.get("items", []):
+        if _it.get("href") and _it.get("title"):
+            _d = os.path.dirname(_it["href"])
+            if _d:
+                DIR_INDEX.setdefault(_d, {"title": _it["title"], "ch": None, "ch_title": None})
+DIR_INDEX.setdefault("how-to-navigate", {"title": "How to Navigate the Modules", "ch": None, "ch_title": None})
+
+PAGE_ORDER = {"ch-12/trace-the-bill": ["index.html", "sources.html", "report.html", "checks.html"]}
+_TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)
+_LR_FILES = {"checks.html", "record.html", "notes.html", "reflect.html"}
+
+def _short_title(path, fname):
+    try:
+        m = _TITLE_RE.search(open(path, encoding="utf-8").read(20000))
+        if m:
+            t = html.unescape(m.group(1)).split("\u2014")[0].strip()
+            if t:
+                return t
+    except OSError:
+        pass
+    return fname.replace(".html", "").replace("-", " ").title()
+
+def build_pagenav(rel, base):
+    dirn = os.path.dirname(rel)
+    info = DIR_INDEX.get(dirn)
+    if not info:
+        return None
+    absdir = os.path.join(HERE, dirn)
+    files = sorted(f for f in os.listdir(absdir) if f.endswith(".html"))
+    if dirn in PAGE_ORDER:
+        order = PAGE_ORDER[dirn]
+        files.sort(key=lambda f: (order.index(f) if f in order else 99, f))
+    elif "index.html" in files:
+        files.remove("index.html")
+        files.insert(0, "index.html")
+    mp, lr = [], []
+    for f in files:
+        t = _short_title(os.path.join(absdir, f), f)
+        low = t.lower()
+        if f in _LR_FILES or "knowledge check" in low or "your record" in low or low == "record" or "reflection" in low:
+            lr.append((f, t))
+        else:
+            mp.append((f, "Overview" if f == "index.html" else t))
+    cur = os.path.basename(rel)
+    def links(items):
+        out = []
+        for f, t in items:
+            on = ' class="on" aria-current="page"' if f == cur else ""
+            out.append('        <a href="%s"%s>%s</a>' % (esc(f), on, esc(t)))
+        return "\n".join(out)
+    def dd(label, items):
+        if not items:
+            return ""
+        open_on = ' class="pn-dd on"' if any(f == cur for f, _ in items) else ' class="pn-dd"'
+        return ('      <details%s>\n        <summary>%s</summary>\n        <div class="pn-panel">\n%s\n        </div>\n      </details>'
+                % (open_on, label, links(items)))
+    parts = ['<nav class="pagenav" aria-label="This module">', '  <div class="wrap">',
+             '      <a class="pn-link" href="%sindex.html">Home</a>' % base]
+    if info["ch"]:
+        parts.append('      <a class="pn-link" href="%s">Ch.\u00a0%d</a>' % (ch_url(base, info["ch"]), info["ch"]))
+    parts.append('      <a class="pn-link pn-title on" href="index.html">%s</a>' % esc(info["title"]))
+    parts.append(dd("Module pages", mp))
+    d2 = dd("Learning resources", lr)
+    if d2:
+        parts.append(d2)
+    parts += ['  </div>', '</nav>']
+    return "\n".join(p for p in parts if p)
+
 # ---- browse-modules menu ---------------------------------------------------
 def build_menu(base, current_rel):
     parts = R.get("parts", [])
@@ -229,6 +306,9 @@ def build_modnav(rel, base):
         parts.append('  <p class="modnav-verified">Authorities verified as of %s. '
                      'The law changes \u2014 run the method, don\u2019t trust the module.</p>'
                      % esc(m["verified"]))
+    if m.get("pager") is False:
+        parts.append('</nav>')
+        return "\n".join(parts)
     links = []
     if i > 0:
         p = mods[i - 1]
@@ -282,6 +362,8 @@ def process(path):
         return False
     base = base_for(rel)
     src = GFONTS.sub("", src)
+    src = re.sub(r'[ \t]*<nav class="modbar".*?</nav>\n?', '', src, flags=re.S)
+    src = re.sub(r'[ \t]*<p class="crumbs".*?</p>\n?', '', src, flags=re.S)
 
     cur_home  = ' aria-current="page"' if rel == "index.html" else ""
     cur_about = ' aria-current="page"' if rel == "about.html" else ""
@@ -289,6 +371,9 @@ def process(path):
     mast = (MASTHEAD.replace("{{MENU}}", build_menu(base, rel)).replace("{{BASE}}", base)
             .replace("{{CUR_HOME}}", cur_home).replace("{{CUR_ABOUT}}", cur_about))
     foot = FOOTER.replace("{{TAGLINE}}", TAGLINE)
+    pagenav = build_pagenav(rel, base)
+    if pagenav:
+        mast = mast + "\n" + pagenav
 
     # auto-insert the modnav region on registry module pages that lack it
     modnav = build_modnav(rel, base)

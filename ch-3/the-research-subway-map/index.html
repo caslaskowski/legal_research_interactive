@@ -367,12 +367,30 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-3/">Ch. 3</a>
+      <a class="pn-link pn-title on" href="index.html">The Research Subway Map</a>
+      <details class="pn-dd on">
+        <summary>Module pages</summary>
+        <div class="pn-panel">
+        <a href="index.html" class="on" aria-current="page">Overview</a>
+        </div>
+      </details>
+      <details class="pn-dd">
+        <summary>Learning resources</summary>
+        <div class="pn-panel">
+        <a href="checks.html">Knowledge checks</a>
+        </div>
+      </details>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 
 <main id="main">
   <div class="pagewrap">
-    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-3/" style="color:var(--flame)">Ch.&nbsp;3</a> / The Research Subway Map</p>
-    <nav class="modbar" aria-label="Module navigation"><div class="grp"><span class="gk">Module pages</span><a href="index.html" aria-current="page">Overview</a></div><div class="grp"><span class="gk">Learning resources</span><a href="checks.html">Knowledge checks</a></div></nav>
     <h1>The Research Subway Map</h1>
     <p class="lede"><b>What this module teaches:</b> how to stay on one chain of questions to its end, what to do when a source answers a question from a <i>different</i> chain, and why breaking that discipline is where cognitive overload comes from. The mental model is a subway map: each chain is a colored line, each question&ndash;answer pair a station. This map adds two things chains really do: lines that <b>share track</b> &mdash; two chains riding the same rails until the moment they genuinely diverge &mdash; and a final <b>intersection chart</b> that fills in as you ride, showing how just three cases answer nine questions across three lines.</p>
     <div class="howto"><b>How to use this:</b> ride the map station by station using the panel on the right &mdash; the train moves as you answer. The Notice and Duty Lines depart <em>coupled</em>, sharing track through the first two stations; when they split you&rsquo;ll ride each to its terminus. At the corridor you&rsquo;ll face a real choice; either answer teaches. And keep one eye on the chart below the map: every answer fills a cell, and by the end the columns tell their own story.</div>
@@ -381,21 +399,22 @@
       <div class="mapbox">
         <span class="maptag">Demonstration &mdash; fictional cases &amp; jurisdiction</span>
         <div class="mapwrap">
-          <svg class="tube" viewBox="0 0 640 400" role="img" aria-label="Subway map with three research lines and a shared trunk. The red Notice Line and teal Duty Line leave the Elements station coupled on parallel rails, pass together through the shared Duty station, then split: the red line climbs to an upper row of three stations, the teal line descends to a lower row of two. A dashed vertical corridor connects one red station and one teal station served by the same case. The gold Standard Line runs separately along the bottom. The full ride is narrated in the panel beside the map.">
+          <svg class="tube" viewBox="0 0 640 400" role="img" aria-label="Subway map with three research lines and a shared trunk. The red Notice Line and teal Duty Line leave the Elements station coupled on parallel rails, pass together through the shared Duty station, then split: the red line climbs to an upper row of three stations, the teal line descends to a lower row of two. A dashed vertical corridor connects one red station and one teal station served by the same case. The gold Standard Line drops from the top of the map, crossing over both trunk rails at the Duty station, then bends to run along the bottom. The full ride is narrated in the panel beside the map.">
             <!-- shared trunk: red over teal, coupled -->
             <path class="tline l1" d="M 60 168 H 240 L 302 108 H 600"/>
             <path class="tline l2" d="M 60 182 H 240 L 302 242 H 520"/>
-            <path class="tline l3" d="M 60 332 H 420"/>
+            <path class="lhalo" d="M 195 52 V 296 Q 195 332 231 332"/>
+            <path class="tline l3" d="M 195 52 V 296 Q 195 332 231 332 H 460"/>
             <!-- corridor (revealed during the ride) -->
             <line class="corr" id="corr" x1="450" y1="124" x2="450" y2="226"/>
             <!-- terminus bars -->
             <line class="term l1" x1="600" y1="94"  x2="600" y2="122"/>
             <line class="term l2" x1="520" y1="228" x2="520" y2="256"/>
-            <line class="term l3" x1="420" y1="318" x2="420" y2="346"/>
+            <line class="term l3" x1="460" y1="318" x2="460" y2="346"/>
             <!-- line names -->
             <text class="lname n1" x="316" y="88">NOTICE LINE</text>
             <text class="lname n2" x="316" y="270">DUTY LINE</text>
-            <text class="lname n3" x="60" y="316">STANDARD LINE</text>
+            <text class="lname n3" x="208" y="60">STANDARD LINE</text>
             <text class="trunklb" x="66" y="152">SHARED TRUNK &mdash; BOTH LINES</text>
             <!-- trunk stations (serve red + teal) -->
             <circle class="ixr" id="st-e" cx="90" cy="175" r="14"/><circle class="ixr-inner" cx="90" cy="175" r="8"/>
@@ -408,8 +427,8 @@
             <circle class="stn c2" id="st-d1" cx="350" cy="242" r="10"/>
             <circle class="stn c2" id="st-d2" cx="450" cy="242" r="10"/>
             <!-- gold (standard) stations -->
-            <circle class="stn c3" id="st-u1" cx="170" cy="332" r="10"/>
-            <circle class="stn c3" id="st-u2" cx="330" cy="332" r="10"/>
+            <circle class="stn c3" id="st-u1" cx="290" cy="332" r="10"/>
+            <circle class="stn c3" id="st-u2" cx="390" cy="332" r="10"/>
             <!-- labels -->
             <text class="slabel" id="lb-e"  x="90"  y="212" text-anchor="middle">E &middot; Elements</text>
             <text class="slabel" id="lb-d"  x="195" y="212" text-anchor="middle">D &middot; Duty</text>
@@ -418,8 +437,8 @@
             <text class="slabel" id="lb-n3" x="545" y="138" text-anchor="middle">N3</text>
             <text class="slabel" id="lb-d1" x="350" y="228" text-anchor="middle">D1</text>
             <text class="slabel" id="lb-d2" x="450" y="228" text-anchor="middle">D2</text>
-            <text class="slabel" id="lb-u1" x="170" y="362" text-anchor="middle">U1</text>
-            <text class="slabel" id="lb-u2" x="330" y="362" text-anchor="middle">U2</text>
+            <text class="slabel" id="lb-u1" x="290" y="362" text-anchor="middle">U1</text>
+            <text class="slabel" id="lb-u2" x="390" y="362" text-anchor="middle">U2</text>
             <!-- train -->
             <circle class="train" id="train" cx="90" cy="175" r="16"/>
           </svg>
@@ -523,7 +542,7 @@
     e:{x:90,y:175}, d:{x:195,y:175},
     n1:{x:350,y:108}, n2:{x:450,y:108}, n3:{x:545,y:108},
     d1:{x:350,y:242}, d2:{x:450,y:242},
-    u1:{x:170,y:332}, u2:{x:330,y:332}
+    u1:{x:290,y:332}, u2:{x:390,y:332}
   };
   var train = document.getElementById("train");
   var where = document.getElementById("r-where");
@@ -698,7 +717,7 @@
         fillCell("u1","w","lgold");
         setPanel("Standard Line \u00b7 U1 \u2014 answered",
           '<p class="q">U1 \u2014 What makes a condition unsafe?</p>'
-          + '<p class="a"><b>A(U1):</b> Conditions posing an unreasonable risk of harm \u2014 including obstructions left in shared paths. And the case that says so is <i>Whitaker</i> \u2014 the elements case from station E, surfacing a <i>third</i> time. Check its column: it now spans the trunk and the gold line. A corridor nobody drew.</p>',
+          + '<p class="a"><b>A(U1):</b> Conditions posing an unreasonable risk of harm \u2014 including obstructions left in shared paths. And the case that says so is <i>Whitaker</i> \u2014 the elements case from station E, surfacing a <i>third</i> time. Check its column: it now spans the trunk and the gold line. A corridor nobody drew. (And notice: this line crossed over the Duty stop on the map without stopping \u2014 lines cross all the time; only a shared station or a corridor means the sources actually meet.)</p>',
           [{t:"Next station \u2192", fn:sU2}]);
         if (window.ExportReflect) ExportReflect.log("Station answered", "U1 \u2014 unreasonable-risk conditions (Whitaker, third cell)");
       }}]);

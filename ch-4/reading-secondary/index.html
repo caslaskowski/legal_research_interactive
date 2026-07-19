@@ -361,15 +361,33 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-4/">Ch. 4</a>
+      <a class="pn-link pn-title on" href="index.html">How to Read a Secondary Source</a>
+      <details class="pn-dd on">
+        <summary>Module pages</summary>
+        <div class="pn-panel">
+        <a href="index.html" class="on" aria-current="page">Overview</a>
+        </div>
+      </details>
+      <details class="pn-dd">
+        <summary>Learning resources</summary>
+        <div class="pn-panel">
+        <a href="checks.html">Your record</a>
+        </div>
+      </details>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 
 <main id="main">
   <div class="pagewrap">
-    <p class="crumbs" style="font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 4px;"><a href="../../index.html" style="color:var(--flame)">Home</a> / <a href="../../ch-4/" style="color:var(--flame)">Ch.&nbsp;4</a> / Appendix&nbsp;A</p>
-    <nav class="modbar" aria-label="Module navigation"><div class="grp"><span class="gk">Module pages</span><a href="index.html" aria-current="page">Overview</a></div><div class="grp"><span class="gk">Learning resources</span><a href="checks.html">Your record</a></div></nav>
     <h1>How to Read a Secondary Source</h1>
     <p class="lede">A secondary source talks <em>about</em> the law rather than being the law. It is a map, not the territory: you use it to find and understand primary authority, and with rare exceptions you do not cite it as the law itself. Below is a demonstration encyclopedia entry, rendered the way a database renders one &mdash; a navigable table of contents on the left, the document in the middle. Reading it well is the Question Method applied to a page.</p>
-    <div class="howto"><b>How to use this:</b> first explore the anatomy &mdash; click the table of contents, any sentence of the narrative, a footnote, the currency line, and the research references, and the <b>Parts of the source</b> panel explains each. Then run the <b>Work the page</b> exercise on the right: it hands you a question, you find the sentence that answers it, and you pull the citation from that sentence&rsquo;s footnote &mdash; the move this whole appendix exists to teach.</div>
+    <div class="howto"><b>How to use this:</b> first explore the anatomy &mdash; click the table of contents, any sentence of the narrative, a footnote, the currency line, and the research references, and the <b>Parts of the source</b> panel explains each. Then switch the dropdown to <b>Reading for an answer</b> and run the <b>Work the page</b> exercise on the right: it hands you a question, you find the sentence that answers it, and you pull the citation from that sentence&rsquo;s footnote.</div>
     <div class="modebar">
       <label for="readmode">I’m reading to…</label>
       <select id="readmode" aria-label="Choose your reading purpose"><option value="explore">Explore the anatomy</option><option value="answer">Reading for an answer</option></select>
@@ -378,14 +396,8 @@
 
 
     <section class="steps" aria-label="How to engage with the source">
-      <h2>How to read a secondary source — the five moves</h2>
-      <ol>
-        <li><b>Check who is talking</b>Author and publisher first: is this an editor-maintained encyclopedia, a named scholar&rsquo;s treatise, an annotation? Authority varies, and it frames how much trust the text has earned before you read a word.</li>
-        <li><b>Check when it was last true</b>Find the &ldquo;current through&rdquo; date and any supplement. A secondary source is a snapshot; you are about to rely on its picture of the law, so date the picture.</li>
-        <li><b>Go to the text that answers <em>your</em> question</b>Use the table of contents and index to land on the right section, then scan the narrative for the sentence that actually answers what you asked &mdash; and read it in its surrounding paragraph, not in isolation.</li>
-        <li><b>Note the footnoted sources</b>The sentence that answers you carries a footnote; record the primary authority it cites in your Research Log. That citation &mdash; not the secondary text &mdash; is what you will read next and cite later.</li>
-        <li><b>Review the rest to map what&rsquo;s coming</b>Before you leave, skim the section&rsquo;s remaining headings and propositions: they are a preview of the questions you haven&rsquo;t asked yet. Log the ones that look like your next stations.</li>
-      </ol>
+      <h2>How to engage with the source</h2>
+      <ol id="engage"></ol>
     </section>
 
     <section class="db" aria-label="Demonstration — a secondary source as a database renders it (fictional)">
@@ -442,7 +454,7 @@
             <p class="seen" id="ex-seen">Explored 0 of 5 parts</p>
           </div>
 
-          <div class="panel" aria-label="Work the page">
+          <div class="panel" aria-label="Work the page" id="wkpanel" hidden>
             <h2>Work the page</h2>
             <div class="body" id="wk-body" role="status" aria-live="polite"></div>
           </div>
@@ -467,10 +479,6 @@
 <!--shell:modnav:start-->
 <nav class="modnav" aria-label="Module navigation">
   <p class="modnav-crumb">Part of <a href="../../ch-4/">Ch. 4 · Secondary Sources Research</a></p>
-  <div class="modnav-links">
-    <a class="modnav-link prev" href="../../ch-4/secondary-types/index.html"><span class="dir">← Previous</span><span class="t">The Types of Secondary Sources</span></a>
-    <a class="modnav-link next" href="../../ch-4/using-secondary-sources/index.html"><span class="dir">Next →</span><span class="t">How to Use a Secondary Source</span></a>
-  </div>
 </nav>
 <!--shell:modnav:end-->
 
@@ -686,11 +694,25 @@
 <script>
 (function(){
   "use strict";
-  var N = {"explore":"<b>Explore:</b> click through the entry’s parts — narrative, footnotes, currency line, sidebar — to learn what each is for.","answer":"<b>Reading for an answer:</b> run the five moves in order — authority, currency, the text that answers your question, the footnoted primary source into your log, then a skim of the rest to map your next questions. The exercise below simulates it."};
-  var sel = document.getElementById("readmode"), note = document.getElementById("modenote");
+  var N = {
+    explore: "<b>Explore:</b> click through the entry\u2019s parts \u2014 narrative, footnotes, currency line, sidebar \u2014 to learn what each is for.",
+    answer: "<b>Reading for an answer:</b> check the source, find the sentence that answers you, take its footnote, and skim the rest for your next questions \u2014 the steps on the right, in order. The <b>Work the page</b> exercise runs this read on the entry itself."
+  };
+  var S = {
+    explore: ["<b>Click each part</b> \u2014 the table of contents, any sentence of the narrative, a footnote, the currency line, the research references \u2014 and read what it is for.","<b>Notice who is talking.</b> An editor summarizing the law \u2014 useful, but not the law itself.","<b>Find the currency line.</b> Every secondary source is a snapshot; this is its date."],
+    answer: ["<b>Check who is talking.</b> Author and publisher first \u2014 an editor-maintained encyclopedia, a named scholar\u2019s treatise, an annotation? That frames how much trust the text has earned.","<b>Check when it was last true.</b> Find the \u201ccurrent through\u201d date and any supplement before you rely on the picture.","<b>Go to the text that answers <em>your</em> question.</b> Land on the right section, find the sentence that answers what you asked, and read it in its paragraph, not in isolation.","<b>Note the footnoted sources.</b> Record the primary authority the sentence cites in your Research Log \u2014 that citation, not the secondary text, is what you will read next and cite later.","<b>Review the rest before you leave.</b> The section\u2019s remaining headings are a preview of the questions you haven\u2019t asked yet \u2014 log the ones that look like your next stops."]
+  };
+  var sel = document.getElementById("readmode"), note = document.getElementById("modenote"),
+      eng = document.getElementById("engage"), wk = document.getElementById("wkpanel");
+  function apply(v, announce){
+    if (announce) { note.textContent = ""; window.setTimeout(function(){ note.innerHTML = N[v]; }, 30); }
+    else note.innerHTML = N[v];
+    eng.innerHTML = S[v].map(function(x){ return "<li>" + x + "</li>"; }).join("");
+    wk.hidden = (v !== "answer");
+  }
+  apply(sel.value, false);
   sel.addEventListener("change", function(){
-    note.textContent = "";
-    window.setTimeout(function(){ note.innerHTML = N[sel.value]; }, 30);
+    apply(sel.value, true);
     if (window.ExportReflect) ExportReflect.log("Reading mode selected", sel.options[sel.selectedIndex].text);
   });
 })();

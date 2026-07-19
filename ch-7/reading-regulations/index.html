@@ -18,7 +18,7 @@
   .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
   .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
   .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
-  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;position:sticky;top:14px;align-self:start;max-height:calc(100vh - 28px);overflow:auto;}
   .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
   .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
   .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
@@ -111,7 +111,7 @@
 .errnote{margin:14px 0 0;padding:11px 14px;border-radius:0 8px 8px 0;background:var(--callout);border-left:4px solid var(--flame);font-size:.92rem;color:var(--ink);}
 .errnote b{color:var(--flame-deep);}
 
-.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info{border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
 .info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
 .info h2{font-size:1.08rem;margin:0 0 10px;}
 .info p{font-size:.93rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
@@ -364,6 +364,26 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-7/">Ch. 7</a>
+      <a class="pn-link pn-title on" href="index.html">How to Read a Regulation</a>
+      <details class="pn-dd on">
+        <summary>Module pages</summary>
+        <div class="pn-panel">
+        <a href="index.html" class="on" aria-current="page">Overview</a>
+        </div>
+      </details>
+      <details class="pn-dd">
+        <summary>Learning resources</summary>
+        <div class="pn-panel">
+        <a href="checks.html">Your record</a>
+        </div>
+      </details>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 
 <main id="main">
@@ -382,14 +402,8 @@
 
 
     <section class="steps" aria-label="How to engage with a regulation">
-      <h2>How to engage with a regulation — the five moves</h2>
-      <ol>
-        <li><b>Start with the authority note</b>The statute that lets the agency speak — no authority, no rule.</li>
-        <li><b>Read the operative text like a statute</b>Verbs, exceptions, defined terms — the same precision applies.</li>
-        <li><b>Check the Part’s definitions</b>Regulatory terms are fixed at the Part level, not section by section.</li>
-        <li><b>Follow the source note to the Federal Register</b>The preamble is the agency’s explanation — skipping it is the most common regulatory-research mistake.</li>
-        <li><b>Confirm currency</b>A codified rule can be amended, stayed, or vacated after the CFR volume printed.</li>
-      </ol>
+      <h2>How to engage with a regulation</h2>
+      <ol id="engage"></ol>
     </section>
 
 
@@ -404,7 +418,7 @@
         <h2>Name the parts</h2>
         <p>Click any underlined part of the regulation and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
-      <div class="wkpanel" aria-label="Work the page">
+      <div class="wkpanel" aria-label="Work the page" id="wkpanel" hidden>
         <h2>Work the page</h2>
         <div id="wkbody"></div>
       </div>
@@ -418,10 +432,6 @@
 <!--shell:modnav:start-->
 <nav class="modnav" aria-label="Module navigation">
   <p class="modnav-crumb">Part of <a href="../../ch-7/">Ch. 7 · Basic Regulations and Administrative Research</a></p>
-  <div class="modnav-links">
-    <a class="modnav-link prev" href="../../ch-7/finding-regulations/index.html"><span class="dir">← Previous</span><span class="t">How to Find a Regulation</span></a>
-    <a class="modnav-link next" href="../../ch-7/regulation-practice/index.html"><span class="dir">Next →</span><span class="t">Regulations Practice</span></a>
-  </div>
 </nav>
 <!--shell:modnav:end-->
 
@@ -676,11 +686,27 @@
 <script>
 (function(){
   "use strict";
-  var N = {"explore":"<b>Explore:</b> click each part of the regulation — authority note, definitions, operative text, cross-references — to learn its job.","class":"<b>Reading for class:</b> read in full and trace the regulation back to its enabling statute — expect to be asked what authority it rests on, what it adds to the statute, and where its definitions differ.","questions":"<b>Reading for your questions:</b> arrive holding a question; confirm the regulation is in force and authorized; read the definitions, then the operative text for your rule; follow cross-references only when they bear on your question — and log the rest as coming stations. The exercise below simulates it."};
-  var sel = document.getElementById("readmode"), note = document.getElementById("modenote");
+  var N = {
+    explore: "<b>Explore:</b> click each part of the regulation \u2014 authority note, definitions, operative text, cross-references \u2014 to learn its job.",
+    "class": "<b>Reading for class:</b> read in full and trace the regulation back to its enabling statute \u2014 the steps on the right.",
+    questions: "<b>Reading for your questions:</b> arrive holding a question and read the rule for its answer \u2014 the steps on the right, in order. The <b>Work the page</b> exercise runs this read on the rule itself."
+  };
+  var S = {
+    explore: ["<b>Click each part</b> and read what it is doing \u2014 authority note, definitions, operative text, source note.","<b>Find the statute this rule implements.</b> No authority, no rule.","<b>Read the operative text like a statute.</b> Verbs, exceptions, defined terms \u2014 the same care applies."],
+    "class": ["<b>Note the citation</b> and the enabling statute it rests on.","<b>Be ready to say what the rule adds to the statute.</b>","<b>Mark where the rule\u2019s definitions differ</b> from the statute\u2019s \u2014 that difference is usually the discussion."],
+    questions: ["<b>Start with the authority note.</b> Confirm the rule rests on a statute before you rely on it.","<b>Check the Part\u2019s definitions.</b> Regulatory terms are fixed at the Part level, not section by section.","<b>Read the operative text for your rule.</b>","<b>Follow the source note to the Federal Register</b> when the rule\u2019s meaning is unclear \u2014 the preamble is the agency\u2019s own explanation.","<b>Confirm currency.</b> A codified rule can be amended, stayed, or vacated after the volume printed \u2014 and what the rule leaves unanswered is your next question."]
+  };
+  var sel = document.getElementById("readmode"), note = document.getElementById("modenote"),
+      eng = document.getElementById("engage"), wk = document.getElementById("wkpanel");
+  function apply(v, announce){
+    if (announce) { note.textContent = ""; window.setTimeout(function(){ note.innerHTML = N[v]; }, 30); }
+    else note.innerHTML = N[v];
+    eng.innerHTML = S[v].map(function(x){ return "<li>" + x + "</li>"; }).join("");
+    wk.hidden = (v !== "questions");
+  }
+  apply(sel.value, false);
   sel.addEventListener("change", function(){
-    note.textContent = "";
-    window.setTimeout(function(){ note.innerHTML = N[sel.value]; }, 30);
+    apply(sel.value, true);
     if (window.ExportReflect) ExportReflect.log("Reading mode selected", sel.options[sel.selectedIndex].text);
   });
 })();

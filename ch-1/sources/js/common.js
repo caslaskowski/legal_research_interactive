@@ -82,15 +82,21 @@
 
   /* ---- masthead + nav ---- */
   function buildHeader(activeId) {
-    var sourcesIds = ["statute", "regulation", "case"];
-    var modulesIds = ["workflow", "quiz", "connections"]; // how each source is made, knowledge check, bringing it together
+    var pageIds = ["statute", "regulation", "case", "workflow", "connections"];
 
+    var lrMenu = buildDropdown("Learning resources", ["quiz"], activeId, "nav-sub");
+    (function () {
+      var ul = lrMenu.querySelector(".menu-list");
+      var nb = el("a", { role: "menuitem", href: "#", onclick: function (e) { e.preventDefault(); downloadCompanion(); } },
+                  ["\u2193 Companion Notes"]);
+      ul.appendChild(el("li", { role: "none" }, [nb]));
+    })();
     var topnav = el("nav", { class: "topnav", "aria-label": "Primary" }, [
       el("a", { class: "navlink", href: "../../index.html" }, ["Home"]),
-      el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch. 1 \u00b7 Foundations"]),
-      el("a", { class: "navlink", href: "index.html", "aria-current": activeId === "home" ? "page" : null }, ["How Law Is Made"]),
-      buildDropdown("Sources", sourcesIds, activeId, "nav-sub"),
-      buildDropdown("Modules", modulesIds, activeId, "nav-sub")
+      el("a", { class: "navlink", href: "../../ch-1/" }, ["Ch.\u00a01"]),
+      el("a", { class: "navlink navlink-title", href: "index.html", "aria-current": activeId === "home" ? "page" : null }, ["How Law Is Made"]),
+      buildDropdown("Module pages", pageIds, activeId, "nav-sub"),
+      lrMenu
     ]);
     var bmSrc = document.getElementById("browse-menu-src");
     if (bmSrc && bmSrc.firstElementChild) {
@@ -98,8 +104,7 @@
       bmSrc.remove();
     }
 
-    var notesBtn = el("button", { class: "btn-notes", type: "button", onclick: downloadCompanion }, ["\u2193 Companion Notes"]);
-    var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav, notesBtn]);
+    var navArea = el("div", { class: "nav-area", id: "primary-nav" }, [topnav]);
 
     var toggle = el("button", {
       class: "nav-toggle", type: "button", "aria-expanded": "false",
