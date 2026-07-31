@@ -76,16 +76,8 @@ def _short_title(path, fname):
         pass
     return fname.replace(".html", "").replace("-", " ").title()
 
-<<<<<<< HEAD
 def module_pages(dirn):
     """Ordered (module pages, learning resources) for a module directory."""
-=======
-def build_pagenav(rel, base):
-    dirn = os.path.dirname(rel)
-    info = DIR_INDEX.get(dirn)
-    if not info:
-        return None
->>>>>>> 85c4532f37c92af125727910123789969c0aee4c
     absdir = os.path.join(HERE, dirn)
     files = sorted(f for f in os.listdir(absdir) if f.endswith(".html"))
     if dirn in PAGE_ORDER:
@@ -102,7 +94,6 @@ def build_pagenav(rel, base):
             lr.append((f, t))
         else:
             mp.append((f, "Overview" if f == "index.html" else t))
-<<<<<<< HEAD
     return mp, lr
 
 def build_pagenav(rel, base):
@@ -111,8 +102,6 @@ def build_pagenav(rel, base):
     if not info:
         return None
     mp, lr = module_pages(dirn)
-=======
->>>>>>> 85c4532f37c92af125727910123789969c0aee4c
     cur = os.path.basename(rel)
     def links(items):
         out = []
@@ -131,7 +120,6 @@ def build_pagenav(rel, base):
     if info["ch"]:
         parts.append('      <a class="pn-link" href="%s">Ch.\u00a0%d</a>' % (ch_url(base, info["ch"]), info["ch"]))
     parts.append('      <a class="pn-link pn-title on" href="index.html">%s</a>' % esc(info["title"]))
-<<<<<<< HEAD
     def menu_or_link(label, items):
         # no dropdown when there is nothing to drop down to: a menu whose only
         # entry is the page you are already on is noise, and a menu holding a
@@ -149,12 +137,6 @@ def build_pagenav(rel, base):
     m2 = menu_or_link("Learning resources", lr)
     if m2:
         parts.append(m2)
-=======
-    parts.append(dd("Module pages", mp))
-    d2 = dd("Learning resources", lr)
-    if d2:
-        parts.append(d2)
->>>>>>> 85c4532f37c92af125727910123789969c0aee4c
     parts += ['  </div>', '</nav>']
     return "\n".join(p for p in parts if p)
 
@@ -331,7 +313,6 @@ def emit_chapter_pages():
             f.write(chapter_page(c))
     print("chapter pages: %d written (ch-1/ \u2026 ch-%d/)" % (len(CHAPTERS), CHAPTERS[-1]["ch"]))
 
-<<<<<<< HEAD
 # ---- modnav (module crumb + explicit next step) ------------------------------
 def next_step(rel, base):
     """The single next stop in the reading path for this page: the next page of
@@ -383,21 +364,6 @@ def build_modnav(rel, base):
         href, dirlabel, label = nxt
         parts.append('  <p class="modnav-next"><a href="%s"><span class="dir">%s</span> %s '
                      '<span aria-hidden="true">\u2192</span></a></p>' % (esc(href), esc(dirlabel), esc(label)))
-=======
-# ---- modnav (module prev/next) ----------------------------------------------
-def build_modnav(rel, base):
-    info = MOD_INDEX.get(rel)
-    if not info:
-        return None
-    c, i, mods, m = info["chapter"], info["i"], info["mods"], info["mod"]
-    parts = ['<nav class="modnav" aria-label="Module navigation">',
-             '  <p class="modnav-crumb">Part of <a href="%s">Ch. %d \u00b7 %s</a></p>'
-             % (ch_url(base, c["ch"]), c["ch"], esc(c["title"]))]
-    if m.get("verified"):
-        parts.append('  <p class="modnav-verified">Authorities verified as of %s. '
-                     'The law changes \u2014 run the method, don\u2019t trust the module.</p>'
-                     % esc(m["verified"]))
->>>>>>> 85c4532f37c92af125727910123789969c0aee4c
     parts.append('</nav>')
     if len(parts) == 2:
         return None
