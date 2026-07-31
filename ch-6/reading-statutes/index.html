@@ -7,7 +7,7 @@
 <meta name="description" content="Read a real statute the way a researcher does: name its parts, open its table of contents, check the definitions, and let an ambiguity send you to the Notes of Decision.">
 <style>
 :root{--paper:#eeeeee;--paper-2:#e6e6e6;--panel:#f6f6f4;--ink:#262622;--ink-soft:#54534d;--ink-faint:#6b6a62;
---rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#a72d2a;--flame-deep:#8a0100;--flame-tint:#f1dedd;--callout:#f5efe0;--radius:4px;
+--rule:#cfcfcf;--rule-strong:#b6b6b6;--flame:#135169;--flame-deep:#0d3d50;--flame-tint:#dcebf2;--callout:#f5efe0;--radius:4px;
 --q1:#0072B2;--q1-tint:#dceaf4;--q2:#1a8f6f;--q2-tint:#d8efe7;--q3:#d55e00;--q3-tint:#f7e3d5;--q4:#a8478b;--q4-tint:#f1e2ec;
 --slate:#4a5568;--slate-tint:#e7eaef;
 --display:"Archivo","Helvetica Neue",Arial,sans-serif;--sans:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Newsreader",Georgia,serif;
@@ -18,7 +18,7 @@
   .steps li{counter-increment:st;position:relative;padding-left:30px;margin:0 0 10px;font-size:.88rem;line-height:1.5;}
   .steps li::before{content:counter(st);position:absolute;left:0;top:1px;font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--flame);}
   .steps li b{display:block;font-size:.92rem;margin:0 0 2px;}
-  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .sidecol{display:flex;flex-direction:column;gap:0;min-width:0;position:sticky;top:14px;align-self:start;max-height:calc(100vh - 28px);overflow:auto;}
   .wkpanel{background:var(--callout);border:1.5px solid var(--rule-strong);border-left:4px solid var(--flame);border-radius:9px;padding:13px 15px;margin:14px 0 0;}
   .wkpanel h2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flame);margin:0 0 8px;}
   .wkpanel .wq{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:.97rem;line-height:1.5;border-left:3px solid var(--flame);padding:4px 4px 4px 10px;margin:0 0 8px;background:#fff;}
@@ -27,8 +27,15 @@
   .wkpanel .wf.good{color:#2e6b34;}
   .wkpanel .wf.bad{color:#8a1c00;}
   .wkpanel button.wbtn{font:inherit;font-size:.83rem;font-weight:600;background:#fff;border:1.5px solid var(--flame);color:var(--flame);border-radius:7px;padding:6px 11px;cursor:pointer;}
-  .wkpanel button.wbtn:hover{background:rgba(167,45,42,.08);}
+  .wkpanel button.wbtn:hover{background:rgba(19,81,105,.08);}
   .wkpanel button.wbtn:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+
+.modebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fff;border:1.5px solid var(--rule-strong);border-radius:9px;padding:10px 14px;margin:0 0 14px;}
+.modebar label{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flame);}
+.modebar select{font:inherit;font-size:.9rem;padding:6px 10px;border:1.5px solid var(--rule-strong);border-radius:7px;background:#fff;color:var(--ink);}
+.modebar select:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+.modenote{flex-basis:100%;font-size:.9rem;line-height:1.6;color:var(--ink-soft);margin:0;}
+.modenote b{color:var(--ink);}
 </style>
 <link rel="stylesheet" href="../../assets/firebrand.css">
 <style>
@@ -91,7 +98,7 @@
 .excerpt p{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin:0 0 9px;color:var(--ink);}
 .excerpt .pp{font-family:var(--mono);font-size:.72rem;color:var(--flame);font-weight:600;margin-right:6px;}
 
-.info{position:sticky;top:14px;border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
+.info{border:1px solid var(--rule-strong);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);padding:16px 18px;}
 .info .ik{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 4px;}
 .info h2{font-size:1.08rem;margin:0 0 10px;}
 .info p{font-size:.93rem;line-height:1.6;color:var(--ink-soft);margin:0 0 10px;}
@@ -125,9 +132,9 @@
                   <summary><span class="cn">1</span> Foundations of Legal Authority</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-1/">Chapter overview →</a></li>
-                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-1/sources/index.html">How Law Is Made — A 1L Primer</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/index.html">Hierarchy of Authorities</a></li>
+                  <li><a href="../../ch-1/rank-the-authorities/practice.html">Applying the Hierarchy</a></li>
                   </ul>
                 </details>
               </li>
@@ -136,9 +143,9 @@
                   <summary><span class="cn">2</span> Introduction to Legal Research Platforms</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-2/">Chapter overview →</a></li>
-                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-2/database-practice/index.html">Database Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-2/database-interface/index.html">Database Interface Explorer</a></li>
+                  <li><a href="../../ch-2/using-databases/index.html">Using Databases for Legal Research</a></li>
+                  <li><a href="../../ch-2/database-practice/index.html">Database Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -147,11 +154,11 @@
                   <summary><span class="cn">3</span> The Question Method of Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-3/">Chapter overview →</a></li>
-                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-3/the-research-subway-map/index.html">The Research Subway Map<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-3/question-transformation/index.html">Reverse-Engineering the Question</a></li>
+                  <li><a href="../../ch-3/question-method/index.html">Notice of Claim — Research Sandbox</a></li>
+                  <li><a href="../../ch-3/the-research-subway-map/index.html">The Research Subway Map</a></li>
+                  <li><a href="../../ch-3/question-chain/index.html">Working the Chain — Forward &amp; Reverse</a></li>
+                  <li><a href="../../ch-3/type-the-question/index.html">Type the Question</a></li>
                   </ul>
                 </details>
               </li>
@@ -160,9 +167,10 @@
                   <summary><span class="cn">4</span> Secondary Sources Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-4/">Chapter overview →</a></li>
-                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-4/secondary-types/index.html">The Types of Secondary Sources</a></li>
+                  <li><a href="../../ch-4/reading-secondary/index.html">How to Read a Secondary Source</a></li>
+                  <li><a href="../../ch-4/using-secondary-sources/index.html">How to Use a Secondary Source</a></li>
+                  <li><a href="../../ch-4/secondary-practice/index.html">Secondary Sources Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -171,8 +179,10 @@
                   <summary><span class="cn">5</span> Case Law Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-5/">Chapter overview →</a></li>
-                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-5/case-graph/index.html">Cases as a Web of Answers</a></li>
+                  <li><a href="../../ch-5/reading-cases/index.html">How to Read a Case</a></li>
+                  <li><a href="../../ch-5/run-the-citator/index.html">Run the Citator</a></li>
+                  <li><a href="../../ch-5/case-practice/index.html">Case Law Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -181,19 +191,21 @@
                   <summary><span class="cn">6</span> Statutes Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-6/">Chapter overview →</a></li>
-                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-6/life-of-a-statute/index.html">The Life of a Statute</a></li>
+                  <li><a href="../../ch-6/finding-statutes/index.html">How to Find a Statute</a></li>
+                  <li><a href="../../ch-6/reading-statutes/index.html" aria-current="page">How to Read a Statute</a></li>
+                  <li><a href="../../ch-6/statute-practice/index.html">Statutes Practice</a></li>
                   </ul>
                 </details>
               </li>
               <li class="modmenu-chap">
                 <details class="mm-ch">
-                  <summary><span class="cn">7</span> Basic Regulations and Administrative Research</summary>
+                  <summary><span class="cn">7</span> Regulations and Administrative Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-7/">Chapter overview →</a></li>
-                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-7/finding-regulations/index.html">How to Find a Regulation</a></li>
+                  <li><a href="../../ch-7/reading-regulations/index.html">How to Read a Regulation</a></li>
+                  <li><a href="../../ch-7/regulation-practice/index.html">Regulations Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -202,10 +214,9 @@
                   <summary><span class="cn">8</span> Researching Across Sources</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-8/">Chapter overview →</a></li>
-                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-8/ada-canvas/index.html">The ADA Canvas<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-8/tracing-sources/index.html">Tracing the Law Across Sources</a></li>
+                  <li><a href="../../ch-8/question-trail/index.html">Following the Question Trail</a></li>
+                  <li><a href="../../ch-8/across-sources-practice/index.html">Across Sources Practice</a></li>
                   </ul>
                 </details>
               </li>
@@ -214,10 +225,10 @@
                   <summary><span class="cn">9</span> Narrowing and Closing Out Your Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-9/">Chapter overview →</a></li>
-                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-9/precision-search/index.html">Building a Precision Search</a></li>
+                  <li><a href="../../ch-9/closing-out/index.html">Knowing When to Stop</a></li>
+                  <li><a href="../../ch-9/diagnose-the-broken-search/index.html">Diagnose the Broken Search</a></li>
+                  <li><a href="../../ch-9/mixed-review/index.html">Mixed Review — The Diagnostic Moves</a></li>
                   </ul>
                 </details>
               </li>
@@ -231,9 +242,9 @@
                   <summary><span class="cn">10</span> Ethics and Professional Responsibility in Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-10/">Chapter overview →</a></li>
-                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-10/duties-behind-the-research/index.html">Duties Behind the Research</a></li>
+                  <li><a href="../../ch-10/catch-the-fabricated-citation/index.html">Catch the Fabricated Citation</a></li>
+                  <li><a href="../../ch-10/the-duty-calls/index.html">The Duty Calls</a></li>
                   </ul>
                 </details>
               </li>
@@ -242,8 +253,8 @@
                   <summary><span class="cn">11</span> Dockets and Court Document Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-11/">Chapter overview →</a></li>
-                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-11/read-the-docket/index.html">Read the Docket</a></li>
+                  <li><a href="../../ch-11/pull-the-right-paper/index.html">Pull the Right Paper</a></li>
                   </ul>
                 </details>
               </li>
@@ -252,8 +263,8 @@
                   <summary><span class="cn">12</span> Legislative History Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-12/">Chapter overview →</a></li>
-                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-12/trace-the-bill/index.html">Trace the Bill</a></li>
+                  <li><a href="../../ch-12/weigh-the-history/index.html">Weigh the History</a></li>
                   </ul>
                 </details>
               </li>
@@ -262,8 +273,8 @@
                   <summary><span class="cn">13</span> Advanced Administrative Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-13/">Chapter overview →</a></li>
-                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-13/beyond-the-rule/index.html">Beyond the Rule</a></li>
+                  <li><a href="../../ch-13/weigh-the-agency-materials/index.html">Weigh the Agency Materials</a></li>
                   </ul>
                 </details>
               </li>
@@ -272,8 +283,8 @@
                   <summary><span class="cn">14</span> Practice-Specific Research Strategies</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-14/">Chapter overview →</a></li>
-                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-14/same-cycle-different-parameters/index.html">Same Cycle, Different Parameters</a></li>
+                  <li><a href="../../ch-14/pick-the-parameters/index.html">Pick the Parameters</a></li>
                   </ul>
                 </details>
               </li>
@@ -282,9 +293,9 @@
                   <summary><span class="cn">15</span> GenAI and Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-15/">Chapter overview →</a></li>
-                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work<span class="mm-kind practice">practice</span></a></li>
-                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-15/how-the-machine-guesses/index.html">How the Machine Guesses</a></li>
+                  <li><a href="../../ch-15/verify-the-ai/index.html">Verify the AI’s Work</a></li>
+                  <li><a href="../../ch-15/right-tool-right-question/index.html">Right Tool, Right Question</a></li>
                   </ul>
                 </details>
               </li>
@@ -293,8 +304,8 @@
                   <summary><span class="cn">16</span> The NextGen Bar Exam and Legal Research</summary>
                   <ul class="modmenu-mods">
                   <li><a class="mm-chlink" href="../../ch-16/">Chapter overview →</a></li>
-                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped<span class="mm-kind orientation">orientation</span></a></li>
-                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe<span class="mm-kind practice">practice</span></a></li>
+                  <li><a href="../../ch-16/five-skills-mapped/index.html">Five Skills, Mapped</a></li>
+                  <li><a href="../../ch-16/the-closed-universe/index.html">The Closed Universe</a></li>
                   </ul>
                 </details>
               </li>
@@ -329,6 +340,7 @@
               <h2>Toolkit &amp; Resources</h2>
               <ul class="modmenu-chaps">
               <li class="modmenu-chap"><a class="mm-flat" href="../../toolkit/index.html"><span class="cn">T</span> Toolkit &amp; Resources — Templates &amp; Checklists</a></li>
+              <li class="modmenu-chap"><a class="mm-flat" href="../../how-to-navigate/index.html"><span class="cn">?</span> How to Navigate the Modules</a></li>
               </ul>
             </section>
             </div>
@@ -340,6 +352,14 @@
     </div>
   </div>
 </header>
+
+<nav class="pagenav" aria-label="This module">
+  <div class="wrap">
+      <a class="pn-link" href="../../index.html">Home</a>
+      <a class="pn-link" href="../../ch-6/">Ch. 6</a>
+      <a class="pn-link pn-title on" href="index.html">How to Read a Statute</a>
+  </div>
+</nav>
 <!--shell:masthead:end-->
 
 <main id="main">
@@ -350,16 +370,16 @@
     <p class="lede">A statute states the rule without explaining it &mdash; every word carries weight, and the answer to your question is rarely on the page you landed on. So you name the parts, open the table of contents, check the definitions, and let what&rsquo;s <em>undefined or ambiguous</em> point you to the next source.</p>
 
     <div class="howto"><b>How to move:</b> on the statute, click any underlined part to learn what it is and how to read it &mdash; the panel on the right explains it. The dark buttons <b>navigate</b> the source: open the table of contents, the definitions, or the Notes of Decision, just as you would in an annotated code.</div>
+    <div class="modebar">
+      <label for="readmode">I’m reading to…</label>
+      <select id="readmode" aria-label="Choose your reading purpose"><option value="explore">Explore the anatomy</option><option value="class">Reading for class</option><option value="questions">Reading for your questions</option></select>
+      <p class="modenote" id="modenote" role="status" aria-live="polite"><b>Explore:</b> click each part of the section — heading, definitions, operative text, exceptions, history note — to learn its job.</p>
+    </div>
+
 
     <section class="steps" aria-label="How to engage with a statute">
-      <h2>How to engage with a statute — the five moves</h2>
-      <ol>
-        <li><b>Name the parts</b>Heading, operative text, exceptions — know what each piece of the section is doing.</li>
-        <li><b>Read the operative verb precisely</b>Shall, may, must not — the command lives in the verb, and every word carries weight.</li>
-        <li><b>Check the definitions</b>Never optional: a defined term rewrites the rule from another page.</li>
-        <li><b>Place the section in its structure</b>Open the table of contents — what surrounds a section changes what it means.</li>
-        <li><b>Open the Notes of Decision</b>What the text leaves undefined or ambiguous, the interpreting cases resolve.</li>
-      </ol>
+      <h2>How to engage with a statute</h2>
+      <ol id="engage"></ol>
     </section>
 
 
@@ -374,24 +394,21 @@
         <h2>Name the parts</h2>
         <p>Click any underlined part of the statute and its explanation appears here &mdash; what the part is, and how a researcher reads it.</p>
       </aside>
-      <div class="wkpanel" aria-label="Work the page">
+      <div class="wkpanel" aria-label="Work the page" id="wkpanel" hidden>
         <h2>Work the page</h2>
         <div id="wkbody"></div>
       </div>
       </div>
     </div>
 
-    <div id="export-slot"></div>
+    
   </div>
 </main>
 
 <!--shell:modnav:start-->
 <nav class="modnav" aria-label="Module navigation">
-  <p class="modnav-crumb">Appendix C · <a href="../../index.html#appendices">Appendices &amp; Glossary</a></p>
-  <div class="modnav-links">
-    <a class="modnav-link prev" href="../../ch-5/reading-cases/index.html"><span class="dir">← Previous</span><span class="t">How to Read a Case</span></a>
-    <a class="modnav-link next" href="../../ch-7/reading-regulations/index.html"><span class="dir">Next →</span><span class="t">How to Read a Regulation</span></a>
-  </div>
+  <p class="modnav-crumb">Part of <a href="../../ch-6/">Ch. 6 · Statutes Research</a></p>
+  <p class="modnav-next"><a href="../../ch-6/statute-practice/index.html"><span class="dir">Next module</span> Statutes Practice <span aria-hidden="true">→</span></a></p>
 </nav>
 <!--shell:modnav:end-->
 
@@ -411,6 +428,7 @@
 <script src="../../js/export-reflect.js"></script>
 <script>
 (function(){
+  if (window.ExportReflect) ExportReflect.collect({ module: "How to Read a Statute", chapter: "Chapter 6 — Statutes Research", session: "qm_er_reading_statutes" });
   "use strict";
 
   // Statute text below is the public-domain text of the Americans with Disabilities Act
@@ -693,18 +711,36 @@
     idle(true);
   })();
 
-  if(window.ExportReflect){
-    ExportReflect.mount(document.getElementById("export-slot"),{
-      module:"How to Read a Statute",
-      chapter:"Chapter 6 — Statutes Research",
-      intro:"You read a statute by its parts, navigated its structure, and let an ambiguity send you to the cases.",
-      prompts:[
-        "The operative rule turned on one defined term. Why is checking the definitions section never optional?",
-        "The definition existed but didn\u2019t settle the website question. What made it ambiguous, and how did that become your next research question?",
-        "The Notes of Decision pointed three different ways. What decides which one you can actually rely on?"
-      ]
-    });
+  
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var N = {
+    explore: "<b>Explore:</b> click each part of the section \u2014 heading, definitions, operative text, exceptions, history note \u2014 to learn its job.",
+    "class": "<b>Reading for class:</b> read the whole section slowly and be ready to say what it requires, of whom, with what exceptions \u2014 the steps on the right.",
+    questions: "<b>Reading for your questions:</b> arrive holding a question and read the section for its answer \u2014 the steps on the right, in order. The <b>Work the page</b> exercise runs this read on the section itself."
+  };
+  var S = {
+    explore: ["<b>Click each part</b> and read what it is doing \u2014 heading, operative text, exceptions, history note.","<b>Read the operative verb.</b> Shall, may, must not \u2014 the command lives in the verb.","<b>Open the definitions.</b> A defined term rewrites the rule from another page."],
+    "class": ["<b>Note the citation</b> and where the section sits in the code.","<b>Be ready to say what it requires, of whom</b>, in plain words \u2014 with the exceptions.","<b>Mark the defined terms.</b> Class discussion usually turns on one.","<b>Note what the text leaves ambiguous</b> \u2014 and be ready to defend your reading of it."],
+    questions: ["<b>Check the definitions first.</b> A defined term can answer or transform your question instantly.","<b>Read the operative text for your rule</b> \u2014 the verb and every word around it.","<b>Check the exceptions against your facts.</b>","<b>Place the section in its structure.</b> Open the table of contents \u2014 what surrounds a section changes what it means.","<b>Open the Notes of Decision.</b> What the text leaves undefined, the interpreting cases resolve \u2014 and every undefined standard becomes the next question in your chain."]
+  };
+  var sel = document.getElementById("readmode"), note = document.getElementById("modenote"),
+      eng = document.getElementById("engage"), wk = document.getElementById("wkpanel");
+  function apply(v, announce){
+    if (announce) { note.textContent = ""; window.setTimeout(function(){ note.innerHTML = N[v]; }, 30); }
+    else note.innerHTML = N[v];
+    eng.innerHTML = S[v].map(function(x){ return "<li>" + x + "</li>"; }).join("");
+    wk.hidden = (v !== "questions");
   }
+  apply(sel.value, false);
+  sel.addEventListener("change", function(){
+    apply(sel.value, true);
+    if (window.ExportReflect) ExportReflect.log("Reading mode selected", sel.options[sel.selectedIndex].text);
+  });
 })();
 </script>
 </body>

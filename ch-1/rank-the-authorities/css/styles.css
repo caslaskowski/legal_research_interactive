@@ -43,7 +43,7 @@
   --rule-soft:  #dcdcdc;
 
   /* brand flame (crimson) — the single accent that ties this module to the hub */
-  --flame:      #a72d2a;
+  --flame:      #135169;
   --flame-tint: #f1dedd;--callout:#f5efe0;
   --flame-deep: #7f211f;
 
@@ -51,7 +51,7 @@
   --gold:       var(--flame);
 
   /* source / system accent hues (used sparingly, never as the only signal) */
-  --statute:      #a72d2a;
+  --statute:      #135169;
   --statute-tint: #f1dedd;
   --regulation:      #2f6d56;
   --regulation-tint: #dde9e2;
@@ -65,13 +65,13 @@
 
   /* binding-effect tiers (Rank the Stack). Each pairs a hue with a TEXT
      label and shape in markup, so colour is never the only cue. */
-  --tier-controls:        #a72d2a;  --tier-controls-tint:        #f1dedd;
+  --tier-controls:        #135169;  --tier-controls-tint:        #f1dedd;
   --tier-binding-sub:     #7a5416;  --tier-binding-sub-tint:     #efe5d2;
   --tier-persuasive:      #28406b;  --tier-persuasive-tint:      #dde2ed;
   --tier-secondary:       #6f6e66;  --tier-secondary-tint:       #e4e3df;
 
   /* pyramid bands (The Hierarchy) */
-  --tier-federal: #a72d2a;
+  --tier-federal: #135169;
   --tier-state:   #28406b;
   --tier-local:   #6f6e66;
 
@@ -83,7 +83,7 @@
   --body-read:     "Newsreader", Georgia, "Times New Roman", serif;
   --mono:          "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --measure: 100%;   /* full-width text per Phase 1 fix list */
+  --measure: 68ch;
   --maxw: 1080px;
   --radius: 4px;
 }
@@ -95,7 +95,7 @@ html{ scroll-behavior: smooth; }
 body{
   margin: 0;
   background-color: var(--paper);
-  background-image: radial-gradient(1100px 560px at 92% -10%, rgba(167,45,42,.05), transparent 62%);
+  background-image: radial-gradient(1100px 560px at 92% -10%, rgba(19,81,105,.05), transparent 62%);
   color: var(--ink);
   font-family: var(--serif-body);
   font-size: 18px;

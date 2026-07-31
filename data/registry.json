@@ -2,17 +2,16 @@
   "suite": {
     "title": "The Question Method of Legal Research",
     "subtitle": "Interactive Modules",
-    "lede": "This is a hands-on companion to The Question Method of Legal Research textbook. Each module maps onto the book, chapter by chapter. Some modules drill the entire cycle; others build a single skill the cycle depends on. As the core of the Question Method is simply making explicit that which most researchers do intuitively, the majority of lessons can be used independently in any legal research class.",
-    "tagline": "Constantly in beta · built by Cas Laskowski",
-    "ledeHtml": "This is a hands-on companion to <a href=\"https://opentextbooks.library.arizona.edu/legalresearch/\" target=\"_blank\" rel=\"noopener\">The Question Method of Legal Research textbook</a>. Each module maps onto the book, chapter by chapter. Some modules drill the entire cycle; others build a single skill the cycle depends on. As the core of the Question Method is simply making explicit that which most researchers do intuitively, the majority of lessons can be used independently in any legal research class."
+    "lede": "Hands-on companions to the textbook. Some drop you into a live research problem; others build a single skill the work depends on — reading a citation, navigating an annotated code, telling binding authority from persuasive. Together they map onto the book, chapter by chapter.",
+    "tagline": "Constantly in beta · built by Cas Laskowski"
   },
   "method": {
     "eyebrow": "The Question Method, in brief",
-    "intro": "The Question Method is a repeating cycle of five steps and continuous reflection through checkpoints using the research log (tracking where you have been and intend to go) and the annotated outline (synthesizing question answers into a roadmap of your legal argument).",
+    "intro": "A repeating cycle of five steps and a checkpoint, recorded in two tools: the Research Log (where you have been) and the annotated outline (what you know).",
     "steps": [
       {
         "t": "Write your research question",
-        "d": "State the issue as a question that reflects what you currently understand. Be specific — a vague question gives vague results."
+        "d": "Craft a research question that reflects what you currently understand. Be specific — a vague question gives vague results."
       },
       {
         "t": "Research to answer it",
@@ -20,11 +19,11 @@
       },
       {
         "t": "Write down what you found",
-        "d": "In your research log, record the source, what it told you, and how it relates to your question. Then move the synthesized answer into the right section of your annotated outline."
+        "d": "In your research log, record the source, what it told you, and how it relates to your question. Add the synthesized answer into your annotated outline."
       },
       {
         "t": "Identify your next question",
-        "d": "Based on what you found, decide what you still need to know — and write it down."
+        "d": "Identify what you still need to know next and craft a new research question to fill it."
       },
       {
         "t": "Repeat",
@@ -33,7 +32,7 @@
     ],
     "checkpoint": {
       "t": "Checkpoint — reflect and evaluate",
-      "d": "Checkpoints happen regularly throughout the process. After you reach the end of a question thread, review your work to ensure there are no gaps and that you have fully synthesized your findings before moving on to the next question. And, before you close out your research, review your work: Are your sources current, authoritative, and from the right jurisdiction? Did your sequence of questions capture the full scope of the issue? It is a habit you build into every cycle and perform formally at the end."
+      "d": "Review your work: Are your sources current, authoritative, and from the right jurisdiction? Did your sequence of questions capture the full scope of the issue?"
     }
   },
   "parts": [
@@ -149,7 +148,7 @@
           "href": "ch-3/the-research-subway-map/index.html",
           "note": "New",
           "title": "The Research Subway Map",
-          "desc": "Your question chains as intersecting subway lines — a Duty Line, a Standard Line, and a Knowledge Line built on a common-areas premises problem. Ride each line to its terminus, face the true interchange where one case serves two lines, and feel both choices: the noted transfer that pays your fare later, or the mid-line chase that shows you what cognitive overload is."
+          "desc": "Three chains as transit lines — with a twist: the Notice and Duty Lines leave the Elements station on shared rails, because one chain presupposes the other, and split only where they genuinely diverge. Ride every line, face the corridor choice, and watch the intersection chart fill: three fictional cases, nine stations, every column crossing lines."
         },
         {
           "status": "live",
@@ -194,7 +193,8 @@
           "href": "ch-4/reading-secondary/index.html",
           "note": "Appendix A",
           "title": "How to Read a Secondary Source",
-          "desc": "A secondary source as a database renders it — navigable table of contents, narrative, footnotes, currency line, editorial apparatus — then the core move, three times: hold a question, find the sentence that answers it, and pull the citation from that sentence's footnote."
+          "desc": "A secondary source as a database renders it — navigable table of contents, narrative, footnotes, currency line, editorial apparatus — then the core move, three times: hold a question, find the sentence that answers it, and pull the citation from that sentence's footnote.",
+          "pager": false
         },
         {
           "status": "live",
@@ -236,7 +236,17 @@
           "href": "ch-5/reading-cases/index.html",
           "title": "How to Read a Case",
           "desc": "The anatomy of a real appellate opinion (Glik v. Cunniffe), part by part, with the issue and holding tied to Step 1.",
-          "verified": "2026-07-09"
+          "verified": "2026-07-09",
+          "pager": false
+        },
+        {
+          "status": "live",
+          "type": "orientation",
+          "slug": "run-the-citator",
+          "href": "ch-5/run-the-citator/index.html",
+          "note": "New",
+          "title": "Run the Citator",
+          "desc": "What the signals mean and what they don't. Two mock reports in the Marsh universe: Prewitt, disapproved on one point and still good on another, and Marsh, clean today but a snapshot all the same. The chapter's rule, practiced: a signal is a reminder to read the citing opinions, not a verdict."
         },
         {
           "status": "live",
@@ -263,7 +273,7 @@
           "note": "New",
           "verified": "2026-07-10",
           "title": "The Life of a Statute",
-          "desc": "One statute’s journey from enactment through slip law and session laws to the code — and the comparison that decides where research happens: bare text versus the annotated code’s research hub."
+          "desc": "One statute’s path from enactment through slip law and session laws to the code — and the comparison that decides where research happens: bare text versus the annotated code’s research hub."
         },
         {
           "status": "live",
@@ -279,7 +289,8 @@
           "slug": "reading-statutes",
           "href": "ch-6/reading-statutes/index.html",
           "title": "How to Read a Statute",
-          "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision."
+          "desc": "Read the ADA's public-accommodations rule by its parts, navigate its table of contents and definitions, and let an ambiguity send you to the Notes of Decision.",
+          "pager": false
         },
         {
           "status": "live",
@@ -295,7 +306,7 @@
       "ch": 7,
       "part": "I",
       "slug": "regulations",
-      "title": "Basic Regulations and Administrative Research",
+      "title": "Regulations and Administrative Research",
       "desc": "Tracing a regulation from its enabling statute to the CFR and the Federal Register — and confirming it is still in force.",
       "modules": [
         {
@@ -319,7 +330,8 @@
           "slug": "reading-regulations",
           "href": "ch-7/reading-regulations/index.html",
           "title": "How to Read a Regulation",
-          "desc": "Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters."
+          "desc": "Trace a regulation to its authorizing statute, navigate the CFR by its table of contents, read the operative language precisely, and see when the Federal Register matters.",
+          "pager": false
         },
         {
           "status": "live",
@@ -345,8 +357,8 @@
           "slug": "tracing-sources",
           "href": "ch-8/tracing-sources/index.html",
           "title": "Tracing the Law Across Sources",
-          "desc": "Three real chains — Rowan, Schechter Poultry, and Arizona's Voter Protection Act — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution.",
-          "verified": "2026-07-09"
+          "desc": "Five real chains — Rowan, Schechter Poultry, Arizona's Voter Protection Act, the ADA golf-cart split the Supreme Court resolved, and the ADA website question still open — on a swimlane timeline, so you can watch authority pass between statutes, regulations, courts, and the Constitution.",
+          "verified": "2026-07-10"
         },
         {
           "status": "live",
@@ -364,20 +376,6 @@
           "href": "ch-8/across-sources-practice/index.html",
           "title": "Across Sources Practice",
           "desc": "Two problems — FMLA and Arizona workers' comp — each solved by pulling a statute, a regulation, and a case, with reveal-for-answer authority."
-        },
-        {
-          "slug": "ada-canvas",
-          "title": "The ADA Canvas",
-          "href": "ch-8/ada-canvas/index.html",
-          "status": "live",
-          "type": "practice",
-          "verified": "July 2026",
-          "desc": "The ADA's public-accommodation rules as a connected map. Pull § 12182 onto a canvas, click a defined term or cross-reference, and the definition, the DOJ regulation, or the case that answers it opens beside it — edges and all. Three starter questions guide the trail: one the Supreme Court answered (the golf cart), one still splitting the circuits (the website), and one that resolves inside the codes (the step at the door).",
-          "will": [
-            "Follow a defined term from a statute into its definition, the implementing regulation, and the cases construing it",
-            "Watch one question produce a circuit split — and one published answer get vacated",
-            "Recognize when a question resolves inside the codes and when it needs case law"
-          ]
         }
       ]
     },
@@ -748,32 +746,37 @@
   ],
   "appendices": {
     "eyebrow": "Appendices & Glossary",
-    "intro": "The book's how-to-read guides, as interactive anatomies, plus the glossary as a flashcard deck. Each guide lives here — reach it from this list, not from the chapter pages.",
+    "intro": "The book's how-to-read guides, as interactive anatomies — each is also listed under its chapter — plus the glossary as a flashcard deck.",
     "items": [
       {
         "id": "A",
         "title": "How to Read a Secondary Source",
-        "href": "ch-4/reading-secondary/index.html"
+        "href": "ch-4/reading-secondary/index.html",
+        "also": "Also under Ch. 4"
       },
       {
         "id": "B",
         "title": "How to Read a Case",
-        "href": "ch-5/reading-cases/index.html"
+        "href": "ch-5/reading-cases/index.html",
+        "also": "Also under Ch. 5"
       },
       {
         "id": "C",
         "title": "How to Read a Statute",
-        "href": "ch-6/reading-statutes/index.html"
+        "href": "ch-6/reading-statutes/index.html",
+        "also": "Also under Ch. 6"
       },
       {
         "id": "D",
         "title": "How to Read a Regulation",
-        "href": "ch-7/reading-regulations/index.html"
+        "href": "ch-7/reading-regulations/index.html",
+        "also": "Also under Ch. 7"
       },
       {
         "id": "G",
         "title": "Glossary — Flashcards",
-        "href": "appendices/glossary-flashcards/index.html"
+        "href": "appendices/glossary-flashcards/index.html",
+        "also": "Every defined term in the book"
       }
     ]
   },
@@ -785,6 +788,11 @@
         "id": "T",
         "title": "Toolkit & Resources — Templates & Checklists",
         "href": "toolkit/index.html"
+      },
+      {
+        "id": "?",
+        "title": "How to Navigate the Modules",
+        "href": "how-to-navigate/index.html"
       }
     ]
   },
@@ -796,7 +804,7 @@
         "id": "§",
         "title": "When Research Fails",
         "href": "when-research-fails/index.html",
-        "desc": "Real judges, real scoldings, real sanctions — the failure files, the ladder of consequences, and the countermove this site trains for each. Every quotation is from a real opinion or order.",
+        "desc": "Real judges, real scoldings, real sanctions — the Case Files of Bad Research, the Ladder of Consequences, and the countermove this site trains for each. Every quotation is from a real opinion or order.",
         "verified": "2026-07-10"
       }
     ]

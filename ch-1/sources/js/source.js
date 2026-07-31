@@ -74,7 +74,16 @@
     el("p", { class: "eyebrow" }, ["Key terms"]), dl
   ]));
 
-  // The shared bottom pager (mountChrome) carries prev/next in module order.
+  // pager
+  var list = window.SOURCES.sources;
+  var i = list.map(function (s) { return s.id; }).indexOf(id);
+  var prev = list[(i - 1 + list.length) % list.length];
+  var next = list[(i + 1) % list.length];
+  app.appendChild(el("nav", { class: "pager reveal d4", "aria-label": "Other sources" }, [
+    el("a", { href: "source.html?id=" + prev.id }, ["\u2190 " + prev.title]),
+    el("a", { href: "connections.html" }, ["How they connect"]),
+    el("a", { href: "source.html?id=" + next.id }, [next.title + " \u2192"])
+  ]));
 
   function metaCell(lbl, val) {
     return el("div", { class: "cell" }, [ el("div", { class: "lbl" }, [lbl]), el("div", { class: "val" }, [val]) ]);

@@ -23,9 +23,10 @@
     return n;
   }
 
-  // status precedence for a chapter's summary badge
+  // status precedence for a chapter's summary badge (everything shipping is live;
+  // dev/plan remain for any future work-in-progress)
   var STATUS = {
-    live: { cls: "live", rank: 3, label: "Available" },
+    live: { cls: "count", rank: 3 },
     dev:  { cls: "dev",  rank: 2, label: "In development" },
     plan: { cls: "plan", rank: 1, label: "Planned" }
   };
@@ -47,9 +48,7 @@
   app.appendChild(el("section", { class: "hero reveal" }, [
     el("p", { class: "eyebrow" }, ["Interactive companion to the textbook"]),
     el("h1", {}, [s.title || "The Question Method of Legal Research"]),
-    s.ledeHtml
-      ? el("p", { class: "lede", html: s.ledeHtml })
-      : el("p", { class: "lede" }, [s.lede || ""])
+    el("p", { class: "lede" }, [s.lede || ""])
   ]));
 
   /* ---- the method strip: five steps + a checkpoint ---- */
@@ -97,31 +96,24 @@
     var inPart = chapters.filter(function (c) { return c.part === part.id; });
     if (!inPart.length) return;
 
-    var liveChapters = inPart.filter(function (c) {
-      return (c.modules || []).some(function (m) { return m.status === "live"; });
-    }).length;
-
     var ledger = el("div", { class: "ledger" });
     inPart.forEach(function (c) {
-      var apHrefs = ((R.appendices && R.appendices.items) || []).map(function (a) { return a.href; });
-      var mods = (c.modules || []).filter(function (m) { return apHrefs.indexOf(m.href) === -1; });
+      var mods = c.modules || [];
       var st = STATUS[chapterStatus(mods)] || STATUS.plan;
       var liveN = mods.filter(function (m) { return m.status === "live"; }).length;
       var isGuide = !!c.overview && !liveN;
-      var countTxt = mods.length + (mods.length === 1 ? " module" : " modules");
-      var availTxt = liveN ? " \u00b7 " + liveN + " available" : "";
+      var countTxt = liveN + (liveN === 1 ? " module" : " modules");
+      var pillTxt = isGuide ? "Guide" : (st.label || countTxt);
 
       var meta = el("div", { class: "ch-meta" }, [
-        el("span", { class: "ch-note" }, [countTxt + availTxt]),
-        el("span", { class: "pill " + (isGuide ? "live" : st.cls) }, [isGuide ? "Guide" : st.label]),
+        el("span", { class: "pill " + (isGuide ? "count" : st.cls) }, [pillTxt]),
         el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
       ]);
 
       ledger.appendChild(el("a", {
         class: "entry" + ((liveN || isGuide) ? " is-live" : " is-plan"),
         href: "ch-" + c.ch + "/",
-        "aria-label": "Chapter " + c.ch + " \u2014 " + c.title +
-          " (" + countTxt + availTxt + ")"
+        "aria-label": "Chapter " + c.ch + " \u2014 " + c.title + " (" + pillTxt + ")"
       }, [
         el("div", { class: "ch-no", "aria-hidden": "true" }, [String(c.ch)]),
         el("div", { class: "ch-body" }, [
@@ -137,7 +129,7 @@
         el("span", { class: "pnum" }, ["Part " + part.id]),
         el("h2", {}, [part.name]),
         el("span", { class: "pcount" }, [
-          liveChapters + " of " + inPart.length + " chapters started"
+          inPart.length + " chapters"
         ])
       ]),
       part.blurb ? el("p", { class: "part-blurb" }, [part.blurb]) : null,
@@ -161,12 +153,11 @@
           el("p", { class: "ch-desc" }, [a.also || ""])
         ]),
         el("div", { class: "ch-meta" }, [
-          el("span", { class: "pill live" }, ["Available"]),
           el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
         ])
       ]));
     });
-    app.appendChild(el("section", { class: "part reveal d4", id: "appendices" }, [
+    app.appendChild(el("section", { class: "part reveal d4" }, [
       el("div", { class: "part-head" }, [
         el("span", { class: "pnum" }, ["Appendices"]),
         el("h2", {}, [ap.eyebrow || "Appendices & Glossary"])
@@ -192,7 +183,6 @@
           el("p", { class: "ch-desc" }, [a.also || ""])
         ]),
         el("div", { class: "ch-meta" }, [
-          el("span", { class: "pill live" }, ["Available"]),
           el("span", { class: "go", "aria-hidden": "true" }, ["\u2192"])
         ])
       ]));

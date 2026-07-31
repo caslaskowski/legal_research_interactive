@@ -9,43 +9,13 @@
   },
   "atAGlance": {
     "caption": "Types of authority compared",
-    "columns": [
-      "Authority",
-      "Primary or secondary?",
-      "Can it bind?",
-      "What determines whether it binds"
-    ],
+    "columns": ["Authority", "Primary or secondary?", "Can it bind?", "What determines whether it binds"],
     "rows": [
-      [
-        "Constitution",
-        "Primary",
-        "Yes — supreme",
-        "Sits above every other law in its jurisdiction; no lower authority may conflict"
-      ],
-      [
-        "Statute",
-        "Primary",
-        "Yes",
-        "Binds within its jurisdiction; outranks regulations and common law on the same subject"
-      ],
-      [
-        "Regulation",
-        "Primary",
-        "Yes",
-        "Binds if validly issued under an authorizing statute; yields to the statute itself"
-      ],
-      [
-        "Case (judicial opinion)",
-        "Primary",
-        "Yes — conditionally",
-        "Binds only if from a higher court in the same system for the same jurisdiction"
-      ],
-      [
-        "Treatise, encyclopedia, law review, Restatement",
-        "Secondary",
-        "No",
-        "Always persuasive at most — used to find and understand the law, never to settle it"
-      ]
+      ["Constitution", "Primary", "Yes — supreme", "Sits above every other law in its jurisdiction; no lower authority may conflict"],
+      ["Statute", "Primary", "Yes", "Binds within its jurisdiction; outranks regulations and common law on the same subject"],
+      ["Regulation", "Primary", "Yes", "Binds if validly issued under an authorizing statute; yields to the statute itself"],
+      ["Case (judicial opinion)", "Primary", "Yes — conditionally", "Binds only if from a higher court in the same system for the same jurisdiction"],
+      ["Treatise, encyclopedia, law review, Restatement", "Secondary", "No", "Always persuasive at most — used to find and understand the law, never to settle it"]
     ]
   },
   "nav": [
@@ -54,26 +24,12 @@
       "label": "The Hierarchy of Authority",
       "page": "hierarchy.html",
       "kicker": "Explore",
-      "blurb": "An interactive map of how authority layers — how higher law controls lower law, and the line between primary and secondary sources."
-    },
-    {
-      "id": "switch",
-      "label": "Switch the Question — and the Court",
-      "page": "switch.html",
-      "kicker": "Explore",
-      "blurb": "The same authorities appear before two very different courts. Watch which flip between binding and persuasive, and which hold steady."
-    },
-    {
-      "id": "quiz",
-      "label": "Knowledge Check",
-      "page": "quiz.html",
-      "kicker": "Assessment",
-      "blurb": "Test yourself, with detailed feedback on every answer."
+      "blurb": "An interactive map of how authority layers — how higher law controls lower law, and why the same case can bind in one courtroom and only persuade in another."
     }
   ],
   "companion": {
     "title": "Companion Notes",
-    "description": "A fill-in-the-blanks Word worksheet. Work through it alongside the module — completed, it becomes a one-page reference for weighing authority on any research problem.",
-    "buttonText": "Download Companion Notes (Word)"
+    "description": "A fill-in-the-blanks worksheet. Work through it alongside the module — completed, it becomes a one-page reference for weighing authority on any research problem.",
+    "buttonText": "Download Companion Notes (.txt)"
   }
 }

@@ -38,25 +38,107 @@ def esc(s): return html.escape(s or "", quote=True)
 def base_for(relpath): return "../" * relpath.replace("\\", "/").count("/")
 def ch_url(base, ch): return "%sch-%d/" % (base, ch)
 
-# ---- appendix items appear ONLY under Appendices (home + menu), never
-# duplicated on chapter pages or in the menu's chapter groups ----------------
-APPENDIX_ITEMS = (R.get("appendices") or {}).get("items", [])
-APPENDIX_HREFS = {a.get("href") for a in APPENDIX_ITEMS if a.get("href")}
-def not_appendix(mods):
-    return [m for m in mods if m.get("href") not in APPENDIX_HREFS]
-
 # ---- module ordering index (for prev/next nav) -----------------------------
 MOD_INDEX = {}   # href -> dict(chapter, i, mods)
 for c in CHAPTERS:
-    live = not_appendix([m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")])
+    live = [m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")]
     for i, m in enumerate(live):
         MOD_INDEX.setdefault(m["href"], {"chapter": c, "i": i, "mods": live, "mod": m})
 
-# appendix pages get their own prev/next chain, framed as appendices
-APPX_INDEX = {}  # href -> dict(i, items, item)
-for i, a in enumerate(APPENDIX_ITEMS):
-    if a.get("href"):
-        APPX_INDEX[a["href"]] = {"i": i, "items": APPENDIX_ITEMS, "item": a}
+# ---- pagenav directory index ------------------------------------------------
+DIR_INDEX = {}   # module dir -> {"title", "ch" (or None), "ch_title"}
+for _href, _info in MOD_INDEX.items():
+    _d = os.path.dirname(_href)
+    if _d:
+        DIR_INDEX.setdefault(_d, {"title": _info["mod"]["title"], "ch": _info["chapter"]["ch"],
+                                  "ch_title": _info["chapter"]["title"]})
+for _key in ("spotlight", "toolkit", "appendices"):
+    _sec = R.get(_key) or {}
+    for _it in _sec.get("items", []):
+        if _it.get("href") and _it.get("title"):
+            _d = os.path.dirname(_it["href"])
+            if _d:
+                DIR_INDEX.setdefault(_d, {"title": _it["title"], "ch": None, "ch_title": None})
+DIR_INDEX.setdefault("how-to-navigate", {"title": "How to Navigate the Modules", "ch": None, "ch_title": None})
+
+PAGE_ORDER = {"ch-12/trace-the-bill": ["index.html", "sources.html", "report.html", "checks.html"]}
+_TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)
+_LR_FILES = {"checks.html", "record.html", "notes.html", "reflect.html"}
+
+def _short_title(path, fname):
+    try:
+        m = _TITLE_RE.search(open(path, encoding="utf-8").read(20000))
+        if m:
+            t = html.unescape(m.group(1)).split("\u2014")[0].strip()
+            if t:
+                return t
+    except OSError:
+        pass
+    return fname.replace(".html", "").replace("-", " ").title()
+
+def module_pages(dirn):
+    """Ordered (module pages, learning resources) for a module directory."""
+    absdir = os.path.join(HERE, dirn)
+    files = sorted(f for f in os.listdir(absdir) if f.endswith(".html"))
+    if dirn in PAGE_ORDER:
+        order = PAGE_ORDER[dirn]
+        files.sort(key=lambda f: (order.index(f) if f in order else 99, f))
+    elif "index.html" in files:
+        files.remove("index.html")
+        files.insert(0, "index.html")
+    mp, lr = [], []
+    for f in files:
+        t = _short_title(os.path.join(absdir, f), f)
+        low = t.lower()
+        if f in _LR_FILES or "knowledge check" in low or "your record" in low or low == "record" or "reflection" in low:
+            lr.append((f, t))
+        else:
+            mp.append((f, "Overview" if f == "index.html" else t))
+    return mp, lr
+
+def build_pagenav(rel, base):
+    dirn = os.path.dirname(rel)
+    info = DIR_INDEX.get(dirn)
+    if not info:
+        return None
+    mp, lr = module_pages(dirn)
+    cur = os.path.basename(rel)
+    def links(items):
+        out = []
+        for f, t in items:
+            on = ' class="on" aria-current="page"' if f == cur else ""
+            out.append('        <a href="%s"%s>%s</a>' % (esc(f), on, esc(t)))
+        return "\n".join(out)
+    def dd(label, items):
+        if not items:
+            return ""
+        open_on = ' class="pn-dd on"' if any(f == cur for f, _ in items) else ' class="pn-dd"'
+        return ('      <details%s>\n        <summary>%s</summary>\n        <div class="pn-panel">\n%s\n        </div>\n      </details>'
+                % (open_on, label, links(items)))
+    parts = ['<nav class="pagenav" aria-label="This module">', '  <div class="wrap">',
+             '      <a class="pn-link" href="%sindex.html">Home</a>' % base]
+    if info["ch"]:
+        parts.append('      <a class="pn-link" href="%s">Ch.\u00a0%d</a>' % (ch_url(base, info["ch"]), info["ch"]))
+    parts.append('      <a class="pn-link pn-title on" href="index.html">%s</a>' % esc(info["title"]))
+    def menu_or_link(label, items):
+        # no dropdown when there is nothing to drop down to: a menu whose only
+        # entry is the page you are already on is noise, and a menu holding a
+        # single other page reads better as a plain link
+        real = [(f, t) for f, t in items if f != cur]
+        if not real:
+            return ""
+        if len(items) == 1:
+            f, t = items[0]
+            return '      <a class="pn-link" href="%s">%s</a>' % (esc(f), esc(t))
+        return dd(label, items)
+    m1 = menu_or_link("Module pages", mp)
+    if m1:
+        parts.append(m1)
+    m2 = menu_or_link("Learning resources", lr)
+    if m2:
+        parts.append(m2)
+    parts += ['  </div>', '</nav>']
+    return "\n".join(p for p in parts if p)
 
 # ---- browse-modules menu ---------------------------------------------------
 def build_menu(base, current_rel):
@@ -68,17 +150,15 @@ def build_menu(base, current_rel):
             continue
         rows = []
         for c in ch_in:
-            live = not_appendix([m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")])
+            live = [m for m in c.get("modules", []) if m.get("status") == "live" and m.get("href")]
             in_ch = current_rel.startswith("ch-%d/" % c["ch"])
             lis = ['                  <li><a class="mm-chlink" href="%s">Chapter overview \u2192</a></li>'
                    % ch_url(base, c["ch"])]
             for m in live:
                 href = m["href"]
                 cur = ' aria-current="page"' if href == current_rel else ""
-                kind = m.get("type")
-                tag = ('<span class="mm-kind %s">%s</span>' % (kind, kind)) if kind else ""
-                lis.append('                  <li><a href="%s%s"%s>%s%s</a></li>'
-                           % (base, esc(href), cur, esc(m["title"]), tag))
+                lis.append('                  <li><a href="%s%s"%s>%s</a></li>'
+                           % (base, esc(href), cur, esc(m["title"])))
             rows.append('              <li class="modmenu-chap">\n'
                         '                <details class="mm-ch"%s>\n'
                         '                  <summary><span class="cn">%d</span> %s</summary>\n'
@@ -128,8 +208,10 @@ STATUS = {"live": ("live", "Available"), "dev": ("dev", "In development"),
 def mod_card(m, base):
     cls, label = STATUS.get(m.get("status"), STATUS["plan"])
     live = m.get("status") == "live" and m.get("href")
-    body = ['      <div class="mod-head"><h3 class="mod-title">%s</h3>'
-            '<span class="pill %s">%s</span></div>' % (esc(m["title"]), cls, label)]
+    # live is the norm now — only work still in progress earns a status pill
+    pill = '' if live else '<span class="pill %s">%s</span>' % (cls, label)
+    body = ['      <div class="mod-head"><h3 class="mod-title">%s</h3>%s</div>'
+            % (esc(m["title"]), pill)]
     if m.get("desc"):
         body.append('      <p class="mod-desc">%s</p>' % esc(m["desc"]))
     if m.get("will"):
@@ -159,7 +241,7 @@ def mod_section(heading, subhead, items, base):
 
 def chapter_page(c):
     base = "../"
-    mods = not_appendix(c.get("modules", []))
+    mods = c.get("modules", [])
     orient = [m for m in mods if m.get("type") == "orientation"]
     prac   = [m for m in mods if m.get("type") == "practice"]
     other  = [m for m in mods if not m.get("type")]
@@ -231,63 +313,60 @@ def emit_chapter_pages():
             f.write(chapter_page(c))
     print("chapter pages: %d written (ch-1/ \u2026 ch-%d/)" % (len(CHAPTERS), CHAPTERS[-1]["ch"]))
 
-# ---- modnav (module prev/next) ----------------------------------------------
-def build_modnav(rel, base):
-    ax = APPX_INDEX.get(rel)
-    if ax:
-        i, items, a = ax["i"], ax["items"], ax["item"]
-        parts = ['<nav class="modnav" aria-label="Module navigation">',
-                 '  <p class="modnav-crumb">Appendix %s \u00b7 <a href="%sindex.html#appendices">'
-                 'Appendices &amp; Glossary</a></p>' % (esc(a.get("id", "")), base)]
-        links = []
-        if i > 0 and items[i - 1].get("href"):
-            p = items[i - 1]
-            links.append('    <a class="modnav-link prev" href="%s%s"><span class="dir">\u2190 Previous</span>'
-                         '<span class="t">%s</span></a>' % (base, esc(p["href"]), esc(p["title"])))
-        else:
-            links.append('    <span></span>')
-        if i < len(items) - 1 and items[i + 1].get("href"):
-            n = items[i + 1]
-            links.append('    <a class="modnav-link next" href="%s%s"><span class="dir">Next \u2192</span>'
-                         '<span class="t">%s</span></a>' % (base, esc(n["href"]), esc(n["title"])))
-        else:
-            links.append('    <span></span>')
-        parts.append('  <div class="modnav-links">\n%s\n  </div>' % "\n".join(links))
-        parts.append('</nav>')
-        return "\n".join(parts)
-    info = MOD_INDEX.get(rel)
-    if not info:
+# ---- modnav (module crumb + explicit next step) ------------------------------
+def next_step(rel, base):
+    """The single next stop in the reading path for this page: the next page of
+    the module, then the knowledge check, then the next module, then the next
+    chapter. Returns (href, label) or None."""
+    dirn = os.path.dirname(rel)
+    if dirn not in DIR_INDEX:
         return None
-    c, i, mods, m = info["chapter"], info["i"], info["mods"], info["mod"]
-    parts = ['<nav class="modnav" aria-label="Module navigation">',
-             '  <p class="modnav-crumb">Part of <a href="%s">Ch. %d \u00b7 %s</a></p>'
-             % (ch_url(base, c["ch"]), c["ch"], esc(c["title"]))]
-    if m.get("verified"):
-        parts.append('  <p class="modnav-verified">Authorities verified as of %s. '
-                     'The law changes \u2014 run the method, don\u2019t trust the module.</p>'
-                     % esc(m["verified"]))
-    links = []
-    if i > 0:
-        p = mods[i - 1]
-        links.append('    <a class="modnav-link prev" href="%s%s"><span class="dir">\u2190 Previous</span>'
-                     '<span class="t">%s</span></a>' % (base, esc(p["href"]), esc(p["title"])))
-    else:
-        links.append('    <span></span>')
-    if i < len(mods) - 1:
-        n = mods[i + 1]
-        links.append('    <a class="modnav-link next" href="%s%s"><span class="dir">Next \u2192</span>'
-                     '<span class="t">%s</span></a>' % (base, esc(n["href"]), esc(n["title"])))
-    else:
-        idx = CHAPTERS.index(c)
-        if idx < len(CHAPTERS) - 1:
-            nc = CHAPTERS[idx + 1]
-            links.append('    <a class="modnav-link next" href="%s"><span class="dir">Next chapter \u2192</span>'
-                         '<span class="t">Ch. %d \u00b7 %s</span></a>'
-                         % (ch_url(base, nc["ch"]), nc["ch"], esc(nc["title"])))
-        else:
-            links.append('    <span></span>')
-    parts.append('  <div class="modnav-links">\n%s\n  </div>' % "\n".join(links))
+    mp, lr = module_pages(dirn)
+    ordered = mp + lr
+    cur = os.path.basename(rel)
+    names = [f for f, _ in ordered]
+    if cur in names:
+        i = names.index(cur)
+        if i + 1 < len(ordered):
+            f, t = ordered[i + 1]
+            return (f, "Next", t)
+    # last page of the module: hand off to the next module in the chapter
+    idx_href = dirn + "/index.html"
+    info = MOD_INDEX.get(idx_href)
+    if info:
+        c, i, mods = info["chapter"], info["i"], info["mods"]
+        if i + 1 < len(mods):
+            nm = mods[i + 1]
+            return (base + nm["href"], "Next module", nm["title"])
+        ci = CHAPTERS.index(c)
+        if ci + 1 < len(CHAPTERS):
+            nc = CHAPTERS[ci + 1]
+            return (ch_url(base, nc["ch"]), "Next chapter", "Ch. %d \u00b7 %s" % (nc["ch"], nc["title"]))
+    return None
+
+def build_modnav(rel, base):
+    dirn = os.path.dirname(rel)
+    info = MOD_INDEX.get(rel)
+    dinfo = DIR_INDEX.get(dirn)
+    if not info and not dinfo:
+        return None
+    parts = ['<nav class="modnav" aria-label="Module navigation">']
+    if info:
+        c, m = info["chapter"], info["mod"]
+        parts.append('  <p class="modnav-crumb">Part of <a href="%s">Ch. %d \u00b7 %s</a></p>'
+                     % (ch_url(base, c["ch"]), c["ch"], esc(c["title"])))
+        if m.get("verified"):
+            parts.append('  <p class="modnav-verified">Authorities verified as of %s. '
+                         'The law changes \u2014 run the method, don\u2019t trust the module.</p>'
+                         % esc(m["verified"]))
+    nxt = next_step(rel, base)
+    if nxt:
+        href, dirlabel, label = nxt
+        parts.append('  <p class="modnav-next"><a href="%s"><span class="dir">%s</span> %s '
+                     '<span aria-hidden="true">\u2192</span></a></p>' % (esc(href), esc(dirlabel), esc(label)))
     parts.append('</nav>')
+    if len(parts) == 2:
+        return None
     return "\n".join(parts)
 
 # ---- page assembly -----------------------------------------------------------
@@ -302,9 +381,25 @@ def process(path):
     rel = os.path.relpath(path, HERE).replace("\\", "/")
     src = open(path, encoding="utf-8").read()
     if "<!--shell:masthead:start-->" not in src:
+        # pages outside the standard shell (suites) can still carry the browse menu
+        if "<!--shell:browsemenu:start-->" in src:
+            base = base_for(rel)
+            bm = ('<div id="browse-menu-src" hidden>\n'
+                  '<details class="modmenu">\n'
+                  '  <summary>Browse modules</summary>\n'
+                  '  <div class="modmenu-panel" role="group" aria-label="All chapters and modules">\n'
+                  '    <div class="modmenu-cols">\n'
+                  + build_menu(base, rel) +
+                  '\n    </div>\n  </div>\n</details>\n</div>')
+            pat, block = _region("browsemenu", bm)
+            src = pat.sub(lambda m: block, src, count=1)
+            open(path, "w", encoding="utf-8").write(src)
+            return True
         return False
     base = base_for(rel)
     src = GFONTS.sub("", src)
+    src = re.sub(r'[ \t]*<nav class="modbar".*?</nav>\n?', '', src, flags=re.S)
+    src = re.sub(r'[ \t]*<p class="crumbs".*?</p>\n?', '', src, flags=re.S)
 
     cur_home  = ' aria-current="page"' if rel == "index.html" else ""
     cur_about = ' aria-current="page"' if rel == "about.html" else ""
@@ -312,6 +407,9 @@ def process(path):
     mast = (MASTHEAD.replace("{{MENU}}", build_menu(base, rel)).replace("{{BASE}}", base)
             .replace("{{CUR_HOME}}", cur_home).replace("{{CUR_ABOUT}}", cur_about))
     foot = FOOTER.replace("{{TAGLINE}}", TAGLINE)
+    pagenav = build_pagenav(rel, base)
+    if pagenav:
+        mast = mast + "\n" + pagenav
 
     # auto-insert the modnav region on registry module pages that lack it
     modnav = build_modnav(rel, base)

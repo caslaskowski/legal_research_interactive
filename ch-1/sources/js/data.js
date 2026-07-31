@@ -3,7 +3,7 @@
 window.HOME = {
   "title": "How Law Is Made: Cases, Statutes, and Regulations",
   "subtitle": "An interactive introduction for first-year law students.",
-  "intro": "Most legal rules you will study come from three sources: statutes, regulations, and cases. There are other sources, such as executive orders and treaties, as discussed in the book chapter, but for the purpose of introducing you to how US authority affects legal research, this module focuses on these three. This module shows what each one is, how it is created, and when a lawyer reaches for it. Work through the pages in order and keep your companion notes open as you go.",
+  "intro": "Most legal rules you will study come from three sources: statutes, regulations, and cases. This module shows what each one is, how it is created, and when a lawyer reaches for it. Work through the pages in order, and keep your companion notes open as you go.",
   "method": {
     "eyebrow": "How this relates to the Question Method",
     "body": "Understanding how each source is made tells you more than when to use it — it tells you what authority it carries. A statute carries the weight of the legislature; a regulation carries delegated agency power; a case carries judicial interpretation of law as applied to facts. Those origins determine which source can bind a court, which must yield to another, and why your research is never done until you have found the right kind of source for the question you are actually asking."
@@ -23,8 +23,8 @@ window.HOME = {
   ],
   "companion": {
     "title": "Companion Notes",
-    "description": "A fill-in-the-blanks Word worksheet. Complete it as you move through the module \u2014 once it is filled in, it becomes your one-page cheat sheet.",
-    "buttonText": "Download Companion Notes (Word)"
+    "description": "A fill-in-the-blanks worksheet. Complete it as you move through the module \u2014 once it is filled in, it becomes your one-page cheat sheet.",
+    "buttonText": "Download Companion Notes (.txt)"
   },
   "atAGlance": {
     "columns": ["Source", "Made by", "What it does", "Best used when"],

@@ -1,86 +1,49 @@
 {
-  "title": "Sources of Law — Companion Notes",
+  "title": "Sources of Law \u2014 Companion Notes",
   "intro": "Fill in each blank as you work through the module. Try to answer from memory first, then check yourself against the pages. When every blank is filled, this becomes your one-page cheat sheet.",
   "sections": [
     {
       "id": "statute",
       "heading": "STATUTE",
       "fields": [
-        {
-          "label": "Made by"
-        },
-        {
-          "label": "What it is, in one line"
-        },
-        {
-          "label": "The three stages of how it is made"
-        },
-        {
-          "label": "Best used when"
-        }
+        { "label": "Made by" },
+        { "label": "What it is, in one line" },
+        { "label": "The three stages of how it is made" },
+        { "label": "Best used when" }
       ]
     },
     {
       "id": "regulation",
       "heading": "REGULATION",
       "fields": [
-        {
-          "label": "Made by"
-        },
-        {
-          "label": "What it is, in one line"
-        },
-        {
-          "label": "Where its authority comes from"
-        },
-        {
-          "label": "The stages of how it is made"
-        },
-        {
-          "label": "Best used when"
-        }
+        { "label": "Made by" },
+        { "label": "What it is, in one line" },
+        { "label": "Where its authority comes from" },
+        { "label": "The stages of how it is made" },
+        { "label": "Best used when" }
       ]
     },
     {
       "id": "case",
       "heading": "CASE",
       "fields": [
-        {
-          "label": "Made by"
-        },
-        {
-          "label": "What it is, in one line"
-        },
-        {
-          "label": "The three stages of how a precedent is made"
-        },
-        {
-          "label": "Best used when"
-        }
+        { "label": "Made by" },
+        { "label": "What it is, in one line" },
+        { "label": "The three stages of how a precedent is made" },
+        { "label": "Best used when" }
       ]
     },
     {
       "id": "connections",
       "heading": "HOW THEY FIT TOGETHER",
       "fields": [
-        {
-          "label": "A statute gives an agency the power to make"
-        },
-        {
-          "label": "A court can strike down a regulation when it"
-        },
-        {
-          "label": "A new statute can overturn a case by"
-        },
-        {
-          "label": "A court can refuse to enforce a statute when it"
-        },
-        {
-          "label": "Where no statute exists, courts"
-        }
+        { "label": "A statute gives an agency the power to make" },
+        { "label": "A court can strike down a regulation when it" },
+        { "label": "A new statute can overturn a case by" },
+        { "label": "A court can refuse to enforce a statute when it" },
+        { "label": "Where no statute exists, courts" }
       ]
     }
   ],
-  "footer": "Tip: if you can fill this in without looking, you understand the module.",
-  "subtitle": "Ch. 1 · Foundations of Legal Authority — How Law Is Made"
+  "footer": "Tip: if you can fill this in without looking, you understand the module."
 }

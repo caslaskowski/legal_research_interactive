@@ -39,7 +39,7 @@
   --gold:       #7a5416;
 
   /* source accents */
-  --statute:      #a72d2a;
+  --statute:      #135169;
   --statute-tint: #f1dedd;
   --regulation:      #2f6d56;
   --regulation-tint: #dde9e2;
@@ -55,7 +55,7 @@
   --serif-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --serif-body:    "Archivo", "Helvetica Neue", Arial, sans-serif;
 
-  --measure: 100%;   /* full-width text per Phase 1 fix list */
+  --measure: 68ch;
   --maxw: 1080px;
   --radius: 4px;
 }
@@ -449,7 +449,7 @@ details[open] .open-hint::after{ content:" — close"; }
 /* ===== Firebrand brand overrides (appended) ===================== */
 body{
   /* replace the warm radial + paper grain with the brand's clean gray ground */
-  background-image: radial-gradient(1100px 560px at 92% -10%, rgba(167,45,42,.05), transparent 62%);
+  background-image: radial-gradient(1100px 560px at 92% -10%, rgba(19,81,105,.05), transparent 62%);
   -webkit-font-smoothing: antialiased;
 }
 a{ text-underline-offset: 3px; }            /* brand links are underlined crimson (via --statute) */

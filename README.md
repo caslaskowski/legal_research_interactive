@@ -9,7 +9,6 @@ The **home page** is a chapter index. Every chapter has a **static page** at `/c
 listing that chapter's modules; modules not yet built appear as labeled placeholders.
 Modules live inside their chapter's directory — `/ch-2/database-interface/` — so the
 URL itself teaches the chapter mapping. Every old `/modules/<slug>/` address keeps a
-redirect stub, so links already in syllabi and the LMS continue to work. If a future
 edition renumbers chapters, the stub pattern is how those links survive too.
 
 ## Privacy (FERPA) and accessibility — standing mandates
@@ -26,20 +25,6 @@ Every page ships a skip link, semantic headings, visible focus states, a
 `prefers-reduced-motion` override, WCAG AA color contrast (asserted in the build),
 and `aria-live` regions on dynamic feedback. A GitHub Action runs pa11y (WCAG 2 AA)
 over every page on every push.
-
-## Companion notes (Word)
-
-Every module can ship a fill-in Word worksheet, generated from JSON and **committed
-to the repo** as `<module>/companion-notes.docx` — a plain static download, so the
-zero-external-requests / FERPA posture holds. Content lives in the module's own
-`data/companion.json`, or (for modules without a `data/` directory) in
-`data/companions/<name>.json` with a `"module"` field naming the destination.
-Regenerate after editing content:
-
-```
-pip install python-docx      # once
-python3 build_companions.py
-```
 
 ## Layout
 
@@ -67,7 +52,6 @@ python3 build_companions.py
 ├── build_registry.py        ← regenerates js/registry.js from data/registry.json
 ├── build_site.py            ← assembles the shell, generates /ch-N/, injects module nav
 ├── appendices/<slug>/       ← appendix-only modules (glossary flashcards)
-└── modules/<slug>/          ← redirect stubs only — modules moved to ch-N/<slug>/
 ```
 
 Chapter numbering and Part assignments follow the textbook exactly:

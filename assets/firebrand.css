@@ -48,11 +48,15 @@
   --rule:       #cfcfcf;
   --rule-strong:#b6b6b6;
 
-  /* the firebrand crimson (primary brand accent) -------------------------- */
-  --flame:      #a72d2a;   /* brand red — the signature */
-  --flame-deep: #8a0100;   /* deep crimson for hover / emphasis */
-  --ember:      #c44d44;   /* lighter crimson flare (logo highlight) */
-  --flame-tint: #f1dedd;--callout:#f5efe0;
+  /* the textbook teal (primary brand accent — sampled from the book) ------ */
+  --flame:      #135169;   /* deep teal — the book's heading blue */
+  --flame-deep: #0d3d50;   /* darker teal for hover / emphasis */
+  --ember:      #1d80a2;   /* the book's brighter teal flare */
+  --flame-tint: #dcebf2;--callout:#f5efe0;
+  /* the textbook orange (secondary accent — callout borders, count pills) -- */
+  --spark:      #d97f45;   /* decorative only — never body text */
+  --spark-deep: #8a4512;   /* AA-safe orange-brown for small text */
+  --spark-tint: #f6e3d4;
 
   /* source-type taxonomy hues (kept across the suite) --------------------- */
   --statute:      #8a0100; --statute-tint: #f0dede;
@@ -60,7 +64,7 @@
   --case:         #28406b; --case-tint:    #dde2ed;
 
   /* status semantics ------------------------------------------------------ */
-  --status-live: #2f6d56; --status-live-bg: #dde9e2;
+  --status-live: #135169; --status-live-bg: #dcebf2;
   --status-dev:  #7a5416; --status-dev-bg:  #f1e3c2;
   --status-plan: #6f6e66; --status-plan-bg: #e2e2e0;
 
@@ -85,7 +89,7 @@ body{
   margin: 0;
   min-height: 100%;
   background:
-    radial-gradient(1100px 560px at 92% -10%, rgba(167,45,42,.05), transparent 62%),
+    radial-gradient(1100px 560px at 92% -10%, rgba(19,81,105,.05), transparent 62%),
     var(--paper);
   color: var(--ink);
   font-family: var(--sans);
@@ -185,10 +189,6 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .modmenu-mods a{ font-family: var(--sans); font-size:.84rem; font-weight:500;
   color: var(--ink-soft); text-decoration:none; display:block; padding:1px 0 1px 12px; }
 .modmenu-mods a:hover{ color: var(--flame); }
-.mm-kind{ font-family: var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
-  border-radius:3px; padding:1px 5px; margin-left:7px; vertical-align:1px; }
-.mm-kind.orientation{ color:#28406b; background:#dde2ed; }
-.mm-kind.practice{ color:#7c2d3a; background:#efe0df; }
 .modmenu-mods a[aria-current="page"]{ color: var(--flame); font-weight:600; }
 .modmenu-empty{ font-size:.78rem; color: var(--ink-faint); margin:3px 0 0 1.7em; padding-left:12px; }
 
@@ -216,6 +216,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .pill.live{ color: var(--status-live); background: var(--status-live-bg); border-color: #c2d6c9; }
 .pill.dev{  color: var(--status-dev);  background: var(--status-dev-bg);  border-color: #e6d29a; }
 .pill.plan{ color: var(--status-plan); background: var(--status-plan-bg); border-color: #cfcfcd; }
+.pill.count{ color: var(--spark-deep); background: var(--spark-tint); border-color: #e4c39e; }
 
 /* =============================================================================
    HUB — landing page
@@ -227,7 +228,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 /* the method strip */
 .method{ margin: 38px 0 8px; border:1px solid var(--rule-strong); border-radius: var(--radius);
   background: var(--panel); padding: 24px 26px; box-shadow: var(--shadow); }
-.method .eyebrow{ color: var(--flame); }
+.method .eyebrow{ color: var(--flame); font-size: 1.02rem; letter-spacing: .12em; }
 .method-intro{ color: var(--ink-soft); font-size: .98rem; margin: 0 0 4px; }
 .method-steps{ list-style: none; counter-reset: step; margin: 16px 0 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 14px 22px; }
@@ -263,7 +264,7 @@ main{ flex: 1 0 auto; padding: 44px 0 76px; }
 .entry .ch-body{ min-width: 0; }
 .entry .ch-title{ font-family: var(--display); font-size: 1.16rem; font-weight: 600; margin: 0 0 2px;
   transition: color .14s ease; }
-.entry .ch-desc{ font-size: .9rem; color: var(--ink-soft); margin: 0; }
+.entry .ch-desc{ font-family: var(--serif); font-style: italic;  font-size: .9rem; color: var(--ink-soft); margin: 0; }
 .entry .ch-meta{ display:flex; align-items:center; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
 .entry .ch-note{ font-family: var(--mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase;
   color: var(--ink-faint); }
@@ -309,7 +310,7 @@ a.mod-card.is-live:focus-visible{ outline: 3px solid var(--flame); outline-offse
 .mod-head{ display:flex; align-items:center; gap: 12px; flex-wrap:wrap; margin-bottom: 8px; }
 .mod-title{ font-family: var(--display); font-size: 1.22rem; font-weight: 700; margin: 0; }
 a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
-.mod-desc{ color: var(--ink-soft); margin: 0 0 4px; }
+.mod-desc{ font-family: var(--serif); font-style: italic; color: var(--ink-soft); margin: 0 0 4px; }
 
 .mod-willwrap{ margin-top: 14px; }
 .mod-willhead{ font-family: var(--sans); font-size:.72rem; font-weight:700; letter-spacing:.08em;
@@ -374,6 +375,14 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .modnav-crumb a{ color: var(--flame); text-decoration: none; }
 .modnav-crumb a:hover, .modnav-crumb a:focus-visible{ text-decoration: underline; }
 .modnav-verified{ font-size: .85rem; color: var(--ink-soft); margin: 0 0 10px; }
+.modnav-next{ margin: 4px 0 0; }
+.modnav-next a{ display:inline-flex; align-items:center; gap:.5em; font-family: var(--sans);
+  font-weight: 600; font-size: .95rem; color: var(--flame); text-decoration: none;
+  border: 1px solid var(--rule-strong); border-radius: 8px; padding: 9px 14px; background: var(--panel); }
+.modnav-next a:hover{ border-color: var(--flame); color: var(--flame-deep); }
+.modnav-next a:focus-visible{ outline: 3px solid var(--flame); outline-offset: 2px; }
+.modnav-next .dir{ font-family: var(--mono); font-size: .68rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint); }
 .modnav-links{ display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
   padding: 6px 0 22px; }
 .modnav-link{ display: flex; flex-direction: column; gap: 2px; text-decoration: none;
@@ -450,3 +459,35 @@ a.mod-card.is-live:hover .mod-title{ color: var(--flame); }
 .spot-body h2{ font-size:1.2rem; margin:0 0 5px; }
 .spot-body p{ margin:0; font-size:.92rem; line-height:1.6; color: var(--ink-soft); }
 .spot-go{ margin-left:auto; flex:0 0 auto; font-size:1.5rem; color: var(--flame); font-weight:700; }
+
+/* ---- in-module navigation bar: module pages + learning resources ---- */
+.modbar{ display:flex; gap:20px; flex-wrap:wrap; align-items:baseline;
+  background:#fff; border:1.5px solid var(--rule-strong); border-radius:10px;
+  padding:10px 16px; margin:10px 0 18px; }
+.modbar .grp{ display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
+.modbar .gk{ font-family:var(--mono); font-size:.62rem; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-soft); }
+.modbar a{ font-size:.84rem; font-weight:600; color:var(--ink); text-decoration:none;
+  border:1px solid var(--rule-strong); border-radius:99px; padding:4px 13px; }
+.modbar a:hover{ border-color:var(--flame); color:var(--flame); }
+.modbar a:focus-visible{ outline:3px solid var(--flame); outline-offset:2px; }
+.modbar a[aria-current="page"]{ background:var(--flame); border-color:var(--flame); color:#fff; }
+
+/* ---- module page nav (generated by build_site.py) ---- */
+.pagenav{background:#fff;border-bottom:1px solid var(--rule-strong);}
+.pagenav .wrap{max-width:var(--maxw,1120px);margin:0 auto;padding:0 28px;display:flex;align-items:stretch;gap:2px;flex-wrap:wrap;}
+.pagenav .pn-link, .pagenav .pn-dd summary{display:flex;align-items:center;font-family:var(--sans);font-size:.92rem;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:12px 12px 9px;border-bottom:3px solid transparent;cursor:pointer;}
+.pagenav .pn-link:hover, .pagenav .pn-dd summary:hover{color:var(--flame-deep);}
+.pagenav .pn-link.on, .pagenav .pn-dd.on summary{color:var(--flame-deep);border-bottom-color:var(--flame);}
+.pagenav .pn-link:focus-visible, .pagenav .pn-dd summary:focus-visible{outline:3px solid var(--flame);outline-offset:-3px;}
+.pagenav .pn-title{font-weight:700;color:var(--ink);}
+.pagenav .pn-dd{position:relative;}
+.pagenav .pn-dd summary{list-style:none;}
+.pagenav .pn-dd summary::-webkit-details-marker{display:none;}
+.pagenav .pn-dd summary::after{content:"\25BE";margin-left:6px;font-size:.75em;}
+.pagenav .pn-panel{position:absolute;left:0;top:100%;z-index:998;min-width:240px;background:#fff;border:1px solid var(--rule-strong);border-radius:0 0 8px 8px;box-shadow:var(--shadow-lg);padding:6px;}
+.pagenav .pn-panel a{display:block;padding:8px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:.9rem;}
+.pagenav .pn-panel a:hover{background:var(--flame-tint,#f1dedd);color:var(--flame-deep);}
+.pagenav .pn-panel a.on{background:var(--flame);color:#fff;}
+.pagenav .pn-panel a:focus-visible{outline:3px solid var(--flame);outline-offset:2px;}
+@media (max-width:700px){.pagenav .wrap{padding:0 14px;} .pagenav .pn-link,.pagenav .pn-dd summary{padding:10px 8px 7px;font-size:.86rem;}}

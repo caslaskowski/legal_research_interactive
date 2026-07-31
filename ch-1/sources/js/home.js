@@ -13,10 +13,10 @@
   if (H.method) {
     var mbox = document.createElement("div");
     mbox.className = "method-callout reveal d1";
-    mbox.style.cssText = "margin-top:28px;border-left:4px solid #a72d2a;background:#f5efe0;border-radius:0 4px 4px 0;padding:16px 20px";
+    mbox.style.cssText = "margin-top:28px;border-left:4px solid #135169;background:#f5efe0;border-radius:0 4px 4px 0;padding:16px 20px";
     var mEyebrow = document.createElement("p");
     mEyebrow.className = "eyebrow";
-    mEyebrow.style.cssText = "color:#a72d2a;margin-bottom:.4rem";
+    mEyebrow.style.cssText = "color:#135169;margin-bottom:.4rem";
     mEyebrow.textContent = H.method.eyebrow;
     var mBody = document.createElement("p");
     mBody.style.margin = "0";
@@ -56,6 +56,16 @@
     ]));
   }
 
-  // The shared bottom pager (mounted by mountChrome) is the single way into and
-  // through the module — no separate "Start the module" button.
+  // 5) Start-here block
+  var first = (H.nav || []).filter(function (n) { return n.id === "workflow"; })[0];
+  app.appendChild(el("section", { class: "reveal d4", style: "margin-top:42px" }, [
+    el("div", { class: "notes-callout", style: "background:var(--paper-2)" }, [
+      el("div", { class: "txt" }, [
+        el("p", { class: "eyebrow", style: "margin-bottom:6px" }, ["Start here"]),
+        el("h3", {}, ["How Each Source Is Made"]),
+        el("p", {}, [(first && first.blurb) || "Click through the lifecycle of each source, from first draft to binding law."])
+      ]),
+      el("a", { class: "btn", href: (first && first.page) || "workflow.html" }, ["Start the module \u2192"])
+    ])
+  ]));
 })();
