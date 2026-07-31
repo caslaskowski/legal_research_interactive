@@ -7,7 +7,11 @@
   },
   "method": {
     "eyebrow": "The Question Method, in brief",
+<<<<<<< HEAD
     "intro": "A repeating cycle of five steps and a checkpoint, recorded in two tools: the Research Log (where you have been) and the annotated outline (what you know).",
+=======
+    "intro": "The method runs through the whole book — a repeating cycle of five steps and a checkpoint, recorded in two tools: the Research Log (where you have been) and the annotated outline (what you know). Some modules drill the entire cycle; others build a single skill the cycle depends on.",
+>>>>>>> 85c4532f37c92af125727910123789969c0aee4c
     "steps": [
       {
         "t": "Write your research question",
@@ -32,7 +36,11 @@
     ],
     "checkpoint": {
       "t": "Checkpoint — reflect and evaluate",
+<<<<<<< HEAD
       "d": "Review your work: Are your sources current, authoritative, and from the right jurisdiction? Did your sequence of questions capture the full scope of the issue?"
+=======
+      "d": "Before you close out, review your work: Are your sources current, authoritative, and from the right jurisdiction? Did your sequence of questions capture the full scope of the issue? It is a habit you build into every cycle and perform formally at the end."
+>>>>>>> 85c4532f37c92af125727910123789969c0aee4c
     }
   },
   "parts": [
