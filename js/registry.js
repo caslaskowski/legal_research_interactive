@@ -448,7 +448,7 @@ window.REGISTRY = {
           "type": "orientation",
           "slug": "duties-behind-the-research",
           "title": "Duties Behind the Research",
-          "desc": "Competence, candor, confidentiality, supervision — the four Model Rules duties mapped to the exact research moments where each one bites, plus a six-moment matching exercise.",
+          "desc": "Competence, candor, confidentiality, supervision — the four Model Rules duties, what each requires of your research, and a six-moment matching exercise.",
           "will": [
             "The three duties, panel by panel",
             "The consequences ladder — lost credibility to discipline",
